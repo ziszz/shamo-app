@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamo_app/presentation/pages/splash_screen.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/router.dart';
 import 'package:shamo_app/utilities/typography.dart';
@@ -10,11 +11,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      routeInformationParser: router.routeInformationParser,
-      routeInformationProvider: router.routeInformationProvider,
-      routerDelegate: router.routerDelegate,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColors.black1,
@@ -23,6 +21,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         textTheme: typography,
       ),
+      initialRoute: SplashScreen.routeName,
+      onGenerateRoute: router,
     );
   }
 }

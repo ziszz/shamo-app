@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:shamo_app/presentation/pages/login_page.dart';
+import 'package:shamo_app/presentation/pages/main_page.dart';
 import 'package:shamo_app/presentation/widgets/field_item.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/font_weight.dart';
 
 class SignUpPage extends StatelessWidget {
-  static const path = "/sign-up";
-  static const routeName = "sign-up";
+  static const routeName = "/sign-up";
 
   const SignUpPage({super.key});
 
@@ -74,6 +73,10 @@ class SignUpPage extends StatelessWidget {
                       height: 30,
                     ),
                     FilledButton(
+                      onPressed: () => Navigator.pushNamed(
+                        context,
+                        MainPage.routeName,
+                      ),
                       child: Text(
                         "Sign Up",
                         style: Theme.of(context).textTheme.button?.copyWith(
@@ -88,7 +91,8 @@ class SignUpPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 30),
                 child: InkWell(
-                  onTap: () => GoRouter.of(context).pushNamed(
+                  onTap: () => Navigator.pushNamed(
+                    context,
                     LoginPage.routeName,
                   ),
                   child: Text.rich(

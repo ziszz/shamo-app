@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:shamo_app/presentation/pages/login_page.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const path = "/splash";
-  static const routeName = "splash";
+  static const routeName = "/splash";
 
   const SplashScreen({super.key});
 
@@ -18,8 +16,10 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(
       const Duration(seconds: 3),
-      () => GoRouter.of(context).goNamed(
+      () => Navigator.pushNamedAndRemoveUntil(
+        context,
         LoginPage.routeName,
+        (route) => false,
       ),
     );
   }
