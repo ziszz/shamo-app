@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shamo_app/presentation/pages/sign_up_page.dart';
+import 'package:shamo_app/presentation/pages/login_page.dart';
 import 'package:shamo_app/presentation/widgets/field_item.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/font_weight.dart';
 
-class LoginPage extends StatelessWidget {
-  static const path = "/login";
-  static const routeName = "login";
+class SignUpPage extends StatelessWidget {
+  static const path = "/sign-up";
+  static const routeName = "sign-up";
 
-  const LoginPage({super.key});
+  const SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class LoginPage extends StatelessWidget {
           padding: const EdgeInsets.only(
             left: 16,
             right: 16,
-            top: 70,
+            top: 50,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -29,6 +29,28 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 child: Column(
                   children: [
+                    const FieldItem(
+                      label: "Full Name",
+                      prefixIcon: Icon(
+                        Icons.person_rounded,
+                        color: AppColors.purple,
+                        size: 24,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const FieldItem(
+                      label: "Username",
+                      prefixIcon: Icon(
+                        Icons.radio_button_checked,
+                        color: AppColors.purple,
+                        size: 24,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     const FieldItem(
                       label: "Email Address",
                       prefixIcon: Icon(
@@ -49,11 +71,11 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 30,
                     ),
                     FilledButton(
                       child: Text(
-                        "Sign In",
+                        "Sign Up",
                         style: Theme.of(context).textTheme.button?.copyWith(
                               color: AppColors.white,
                               fontWeight: medium,
@@ -67,17 +89,17 @@ class LoginPage extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 30),
                 child: InkWell(
                   onTap: () => GoRouter.of(context).pushNamed(
-                    SignUpPage.routeName,
+                    LoginPage.routeName,
                   ),
                   child: Text.rich(
                     TextSpan(
-                      text: "Don't have an account? ",
+                      text: "Already have an account? ",
                       style: Theme.of(context).textTheme.caption?.copyWith(
                             color: AppColors.grey,
                           ),
                       children: [
                         TextSpan(
-                          text: "Sign Up",
+                          text: "Sign In",
                           style: Theme.of(context).textTheme.caption?.copyWith(
                                 color: AppColors.purple,
                                 fontWeight: medium,
@@ -99,7 +121,7 @@ class LoginPage extends StatelessWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       title: Text(
-        "Login",
+        "Sign Up",
         style: Theme.of(context).textTheme.headline5?.copyWith(
               color: AppColors.white,
               fontWeight: semiBold,
@@ -111,7 +133,7 @@ class LoginPage extends StatelessWidget {
           alignment: Alignment.centerLeft,
           margin: const EdgeInsets.only(left: 16),
           child: Text(
-            "Sign In to Countinue",
+            "Register and Happy Shoping",
             style: Theme.of(context).textTheme.bodyText2?.copyWith(
                   color: AppColors.grey,
                 ),
