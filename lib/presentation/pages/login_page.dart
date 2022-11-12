@@ -51,9 +51,10 @@ class LoginPage extends StatelessWidget {
                       height: 20,
                     ),
                     FilledButton(
-                      onPressed: () => Navigator.pushNamed(
+                      onPressed: () => Navigator.pushNamedAndRemoveUntil(
                         context,
                         MainPage.routeName,
+                        (route) => false,
                       ),
                       child: Text(
                         "Sign In",

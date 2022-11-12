@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shamo_app/presentation/pages/login_page.dart';
 import 'package:shamo_app/presentation/pages/main_page.dart';
 import 'package:shamo_app/presentation/widgets/field_item.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
@@ -91,10 +90,7 @@ class SignUpPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 30),
                 child: InkWell(
-                  onTap: () => Navigator.pushNamed(
-                    context,
-                    LoginPage.routeName,
-                  ),
+                  onTap: () => Navigator.pushNamedAndRemoveUntil(context, MainPage.routeName, (route) => false,),
                   child: Text.rich(
                     TextSpan(
                       text: "Already have an account? ",
