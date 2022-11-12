@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:shamo_app/presentation/pages/login_page.dart';
 import 'package:shamo_app/presentation/pages/main_page.dart';
 import 'package:shamo_app/presentation/pages/splash_screen.dart';
 
@@ -10,6 +11,11 @@ final router = GoRouter(
       path: SplashScreen.path,
       name: SplashScreen.routeName,
       builder: (context, state) => const SplashScreen(),
+    ),
+    GoRoute(
+      path: LoginPage.path,
+      name: LoginPage.routeName,
+      builder: (context, state) => const LoginPage(),
     ),
     GoRoute(
       path: MainPage.path,
