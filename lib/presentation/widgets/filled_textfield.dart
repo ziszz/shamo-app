@@ -30,7 +30,14 @@ class FilledTextField extends StatelessWidget {
               color: AppColors.grey,
               fontSize: 14,
             ),
-        prefixIcon: prefixIcon,
+        prefixIcon: Padding(
+          padding: const EdgeInsets.all(16),
+          child: prefixIcon,
+        ),
+        prefixIconConstraints: const BoxConstraints(
+          maxWidth: 60,
+          maxHeight: 60,
+        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,

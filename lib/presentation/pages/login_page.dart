@@ -28,23 +28,21 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 child: Column(
                   children: [
-                    const FieldItem(
+                    FormItem(
                       label: "Email Address",
-                      prefixIcon: Icon(
-                        Icons.email_rounded,
-                        color: AppColors.purple,
-                        size: 24,
+                      prefixIcon: Image.asset(
+                        "assets/ic-email.png",
+                        width: 20,
                       ),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    const FieldItem(
+                    FormItem(
                       label: "Password",
-                      prefixIcon: Icon(
-                        Icons.lock_rounded,
-                        color: AppColors.purple,
-                        size: 24,
+                      prefixIcon: Image.asset(
+                        "assets/ic-lock.png",
+                        width: 17,
                       ),
                     ),
                     const SizedBox(

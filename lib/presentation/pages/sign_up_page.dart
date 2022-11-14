@@ -27,45 +27,42 @@ class SignUpPage extends StatelessWidget {
               SizedBox(
                 child: Column(
                   children: [
-                    const FieldItem(
+                    FormItem(
                       label: "Full Name",
-                      prefixIcon: Icon(
-                        Icons.person_rounded,
+                      prefixIcon: Image.asset(
+                        "assets/ic-profile.png",
+                        width: 17,
                         color: AppColors.purple,
-                        size: 24,
                       ),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    const FieldItem(
+                    FormItem(
                       label: "Username",
-                      prefixIcon: Icon(
-                        Icons.radio_button_checked,
-                        color: AppColors.purple,
-                        size: 24,
+                      prefixIcon: Image.asset(
+                        "assets/ic-username.png",
+                        width: 20,
                       ),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    const FieldItem(
+                    FormItem(
                       label: "Email Address",
-                      prefixIcon: Icon(
-                        Icons.email_rounded,
-                        color: AppColors.purple,
-                        size: 24,
+                      prefixIcon: Image.asset(
+                        "assets/ic-email.png",
+                        width: 20,
                       ),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    const FieldItem(
+                    FormItem(
                       label: "Password",
-                      prefixIcon: Icon(
-                        Icons.lock_rounded,
-                        color: AppColors.purple,
-                        size: 24,
+                      prefixIcon: Image.asset(
+                        "assets/ic-lock.png",
+                        width: 17,
                       ),
                     ),
                     const SizedBox(
@@ -90,7 +87,11 @@ class SignUpPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 30),
                 child: InkWell(
-                  onTap: () => Navigator.pushNamedAndRemoveUntil(context, MainPage.routeName, (route) => false,),
+                  onTap: () => Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    MainPage.routeName,
+                    (route) => false,
+                  ),
                   child: Text.rich(
                     TextSpan(
                       text: "Already have an account? ",
