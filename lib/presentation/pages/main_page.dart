@@ -15,9 +15,7 @@ class MainPage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: HomePage.appBar(context: context),
       body: const SafeArea(
-        child: SingleChildScrollView(
-          child: HomePage(),
-        ),
+        child: HomePage(),
       ),
     );
   }
