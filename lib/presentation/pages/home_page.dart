@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
           unselectedLabelStyle: Theme.of(context).textTheme.bodyText2?.copyWith(
                 fontWeight: light,
               ),
-          padding: const EdgeInsets.fromLTRB(8, 24, 8, 0),
+          padding: const EdgeInsets.fromLTRB(8, 24, 8, 8),
           splashBorderRadius: BorderRadius.circular(12),
           physics: const BouncingScrollPhysics(),
           isScrollable: true,
@@ -249,7 +249,7 @@ class HomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 16, top: 30),
+            padding: const EdgeInsets.only(left: 16, top: 22),
             child: Text(
               "Popular Product",
               style: Theme.of(context).textTheme.headline6?.copyWith(
