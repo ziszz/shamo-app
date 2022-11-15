@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:shamo_app/presentation/pages/empty_page.dart';
 import 'package:shamo_app/presentation/pages/login_page.dart';
 import 'package:shamo_app/presentation/pages/main_page.dart';
@@ -32,14 +33,24 @@ Route _createRoute({required Widget page}) {
 RouteFactory? router = (settings) {
   switch (settings.name) {
     case SplashScreen.routeName:
-      return _createRoute(page: const SplashScreen());
+      return MaterialPageRoute(
+        builder: (_) => const SplashScreen(),
+      );
     case LoginPage.routeName:
-      return _createRoute(page: const LoginPage());
+      return MaterialPageRoute(
+        builder: (_) => const LoginPage(),
+      );
     case SignUpPage.routeName:
-      return _createRoute(page: const SignUpPage());
+      return MaterialPageRoute(
+        builder: (_) => const SignUpPage(),
+      );
     case MainPage.routeName:
-      return _createRoute(page: const MainPage());
+      return MaterialPageRoute(
+        builder: (_) => const MainPage(),
+      );
     default:
-      return _createRoute(page: const EmptyPage());
+      return MaterialPageRoute(
+        builder: (_) => const EmptyPage(),
+      );
   }
 };

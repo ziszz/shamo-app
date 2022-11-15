@@ -36,7 +36,7 @@ class _MainPageState extends State<MainPage> {
     ];
 
     return Scaffold(
-      backgroundColor: _currentIndex != 0 ?AppColors.black3: AppColors.black1,
+      backgroundColor: _currentIndex != 0 ? AppColors.black3 : AppColors.black1,
       bottomNavigationBar: _bottomNavBar(),
       floatingActionButton: _floatingButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -83,11 +83,7 @@ class _MainPageState extends State<MainPage> {
       borderRadius: BorderRadius.circular(30),
       hoverColor: AppColors.purple,
       onTap: () {
-        _pageController.animateToPage(
-          index,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeIn,
-        );
+        _pageController.jumpToPage(index);
       },
       child: Padding(
         padding: const EdgeInsets.all(16),
