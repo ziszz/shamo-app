@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shamo_app/presentation/pages/splash_screen.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/router.dart';
-import 'package:shamo_app/utilities/typography.dart';
 
 void main() => runApp(const MyApp());
 
@@ -19,7 +19,9 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: AppColors.black1,
         useMaterial3: true,
-        textTheme: typography,
+        textTheme: GoogleFonts.poppinsTextTheme(
+          Theme.of(context).textTheme,
+        ),
       ),
       initialRoute: SplashScreen.routeName,
       onGenerateRoute: router,

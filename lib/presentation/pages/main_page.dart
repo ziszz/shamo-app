@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamo_app/presentation/pages/home_page.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 
 class MainPage extends StatelessWidget {
@@ -12,9 +13,10 @@ class MainPage extends StatelessWidget {
       bottomNavigationBar: _bottomNavBar(),
       floatingActionButton: _floatingButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      appBar: HomePage.appBar(context: context),
       body: const SafeArea(
         child: SingleChildScrollView(
-          child: SizedBox(),
+          child: HomePage(),
         ),
       ),
     );

@@ -101,13 +101,11 @@ class LoginPage extends StatelessWidget {
   AppBar _appBar({required BuildContext context}) {
     return AppBar(
       automaticallyImplyLeading: false,
-      title: Text(
-        "Login",
-        style: Theme.of(context).textTheme.headline5?.copyWith(
-              color: AppColors.white,
-              fontWeight: semiBold,
-            ),
-      ),
+      title: const Text("Login"),
+      titleTextStyle: Theme.of(context).textTheme.headline5?.copyWith(
+            color: AppColors.white,
+            fontWeight: semiBold,
+          ),
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(12),
         child: Container(

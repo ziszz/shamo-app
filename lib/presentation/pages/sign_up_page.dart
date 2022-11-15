@@ -69,9 +69,10 @@ class SignUpPage extends StatelessWidget {
                       height: 30,
                     ),
                     FilledButton(
-                      onPressed: () => Navigator.pushNamed(
+                      onPressed: () => Navigator.pushNamedAndRemoveUntil(
                         context,
                         MainPage.routeName,
+                        (route) => false,
                       ),
                       child: Text(
                         "Sign Up",
@@ -87,11 +88,7 @@ class SignUpPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 30),
                 child: InkWell(
-                  onTap: () => Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    MainPage.routeName,
-                    (route) => false,
-                  ),
+                  onTap: () => Navigator.pop(context),
                   child: Text.rich(
                     TextSpan(
                       text: "Already have an account? ",
