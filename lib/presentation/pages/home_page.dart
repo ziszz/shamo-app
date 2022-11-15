@@ -34,27 +34,14 @@ class HomePage extends StatelessWidget {
             _tabItem(text: "Tab 6"),
           ],
         ),
-        const Expanded(
+        Expanded(
           child: TabBarView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             children: [
-              Center(
-                child: Text("Tab 1"),
-              ),
-              Center(
-                child: Text("Tab 2"),
-              ),
-              Center(
-                child: Text("Tab 3"),
-              ),
-              Center(
-                child: Text("Tab 4"),
-              ),
-              Center(
-                child: Text("Tab 5"),
-              ),
-              Center(
-                child: Text("Tab 6"),
+              _allProduct(context: context),
+              ...List.generate(
+                5,
+                (index) => _productByCategory(context: context),
               ),
             ],
           ),
@@ -117,6 +104,251 @@ class HomePage extends StatelessWidget {
         ),
       ),
       child: Tab(text: text),
+    );
+  }
+
+  Widget _productCard({
+    required BuildContext context,
+    required String image,
+    required String category,
+    required String name,
+    required String price,
+  }) {
+    return Container(
+      width: 200,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: AppColors.lightWhite,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 30,
+            ),
+            child: Image.asset(
+              "assets/product-example.png",
+              width: 215,
+              height: 120,
+              fit: BoxFit.cover,
+            ),
+          ),
+          const SizedBox(
+            height: 6,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
+            child: Text(
+              category,
+              style: Theme.of(context).textTheme.caption?.copyWith(
+                    color: AppColors.grey,
+                  ),
+            ),
+          ),
+          const SizedBox(
+            height: 6,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
+            child: Text(
+              name,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    color: AppColors.black1,
+                    fontWeight: semiBold,
+                  ),
+            ),
+          ),
+          const SizedBox(
+            height: 6,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
+            child: Text(
+              price,
+              style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                    color: AppColors.blue,
+                    fontWeight: medium,
+                  ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _productTile({
+    required BuildContext context,
+    required String image,
+    required String category,
+    required String name,
+    required String price,
+  }) {
+    return Row(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Image.asset(
+            image,
+            width: 120,
+            height: 120,
+          ),
+        ),
+        const SizedBox(
+          width: 12,
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              category,
+              style: Theme.of(context).textTheme.caption?.copyWith(
+                    color: AppColors.grey,
+                  ),
+            ),
+            const SizedBox(
+              height: 6,
+            ),
+            Text(
+              name,
+              overflow: TextOverflow.clip,
+              maxLines: 2,
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    color: AppColors.white,
+                    fontWeight: semiBold,
+                  ),
+            ),
+            const SizedBox(
+              height: 6,
+            ),
+            Text(
+              price,
+              style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                    color: AppColors.blue,
+                    fontWeight: medium,
+                  ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _allProduct({required BuildContext context}) {
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 16, top: 30),
+            child: Text(
+              "Popular Product",
+              style: Theme.of(context).textTheme.headline6?.copyWith(
+                    color: AppColors.white,
+                    fontWeight: semiBold,
+                  ),
+            ),
+          ),
+          SizedBox(
+            height: 300,
+            child: ListView.separated(
+              physics: const BouncingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: 5,
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.all(16),
+              separatorBuilder: (context, index) => const SizedBox(
+                width: 30,
+              ),
+              itemBuilder: (context, index) {
+                return _productCard(
+                  context: context,
+                  image: "assets/product-example.png",
+                  category: "Football",
+                  name: "Predator 20.3 Firm Ground",
+                  price: "\$68,47",
+                );
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16, top: 30),
+            child: Text(
+              "New Arrival",
+              style: Theme.of(context).textTheme.headline6?.copyWith(
+                    color: AppColors.white,
+                    fontWeight: semiBold,
+                  ),
+            ),
+          ),
+          ListView.separated(
+            physics: const BouncingScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: 5,
+            padding: const EdgeInsets.all(16),
+            separatorBuilder: (context, index) => const SizedBox(
+              height: 30,
+            ),
+            itemBuilder: (context, index) {
+              return _productTile(
+                context: context,
+                image: "assets/product-example.png",
+                category: "Football",
+                name: "Predator 20.3 Firm Ground",
+                price: "\$68,47",
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _productByCategory({required BuildContext context}) {
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 16, top: 30),
+            child: Text(
+              "For you",
+              style: Theme.of(context).textTheme.headline6?.copyWith(
+                    color: AppColors.white,
+                    fontWeight: semiBold,
+                  ),
+            ),
+          ),
+          ListView.separated(
+            physics: const BouncingScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: 5,
+            padding: const EdgeInsets.all(16),
+            separatorBuilder: (context, index) => const SizedBox(
+              height: 30,
+            ),
+            itemBuilder: (context, index) {
+              return _productTile(
+                context: context,
+                image: "assets/product-example.png",
+                category: "Football",
+                name: "Predator 20.3 Firm Ground",
+                price: "\$68,47",
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }
