@@ -28,11 +28,19 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBarList = [
+      HomePage.appBar(context: context),
+      ChatPage.appBar(context: context),
+      FavoritePage.appBar(context: context),
+      ProfilePage.appBar(context: context),
+    ];
+
     return Scaffold(
+      backgroundColor: _currentIndex != 0 ?AppColors.black3: AppColors.black1,
       bottomNavigationBar: _bottomNavBar(),
       floatingActionButton: _floatingButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      appBar: HomePage.appBar(context: context),
+      appBar: appBarList[_currentIndex],
       body: SafeArea(
         child: PageView(
           controller: _pageController,

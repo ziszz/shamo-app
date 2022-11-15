@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
 
   static AppBar appBar({required BuildContext context}) {
     return AppBar(
-      toolbarHeight: 80,
+      toolbarHeight: 87,
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
                 children: [
                   Text(
                     "Hello, Alex",
-                    style: Theme.of(context).textTheme.headline5?.copyWith(
+                    style: Theme.of(context).textTheme.headline6?.copyWith(
                           fontWeight: semiBold,
                           color: AppColors.white,
                         ),
@@ -83,7 +83,7 @@ class HomePage extends StatelessWidget {
               ),
               Image.asset(
                 "assets/default-user-profile.png",
-                width: 54,
+                width: 50,
               ),
             ],
           ),

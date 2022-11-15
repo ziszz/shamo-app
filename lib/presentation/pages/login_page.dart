@@ -20,7 +20,7 @@ class LoginPage extends StatelessWidget {
           padding: const EdgeInsets.only(
             left: 16,
             right: 16,
-            top: 70,
+            top: 60,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -100,24 +100,25 @@ class LoginPage extends StatelessWidget {
 
   AppBar _appBar({required BuildContext context}) {
     return AppBar(
+      toolbarHeight: 87,
       automaticallyImplyLeading: false,
-      title: const Text("Login"),
-      titleTextStyle: Theme.of(context).textTheme.headline5?.copyWith(
-            color: AppColors.white,
-            fontWeight: semiBold,
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Login",
+            style: Theme.of(context).textTheme.headline6?.copyWith(
+                  color: AppColors.white,
+                  fontWeight: semiBold,
+                ),
           ),
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(12),
-        child: Container(
-          alignment: Alignment.centerLeft,
-          margin: const EdgeInsets.only(left: 16),
-          child: Text(
+          Text(
             "Sign In to Countinue",
             style: Theme.of(context).textTheme.bodyText2?.copyWith(
                   color: AppColors.grey,
                 ),
           ),
-        ),
+        ],
       ),
     );
   }

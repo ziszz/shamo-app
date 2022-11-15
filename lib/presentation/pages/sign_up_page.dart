@@ -19,7 +19,7 @@ class SignUpPage extends StatelessWidget {
           padding: const EdgeInsets.only(
             left: 16,
             right: 16,
-            top: 50,
+            top: 30,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -117,26 +117,25 @@ class SignUpPage extends StatelessWidget {
 
   AppBar _appBar({required BuildContext context}) {
     return AppBar(
+      toolbarHeight: 87,
       automaticallyImplyLeading: false,
-      title: Text(
-        "Sign Up",
-        style: Theme.of(context).textTheme.headline5?.copyWith(
-              color: AppColors.white,
-              fontWeight: semiBold,
-            ),
-      ),
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(12),
-        child: Container(
-          alignment: Alignment.centerLeft,
-          margin: const EdgeInsets.only(left: 16),
-          child: Text(
-            "Register and Happy Shoping",
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Sign Up",
+            style: Theme.of(context).textTheme.headline6?.copyWith(
+                  color: AppColors.white,
+                  fontWeight: semiBold,
+                ),
+          ),
+          Text(
+            "Sign In to Countinue",
             style: Theme.of(context).textTheme.bodyText2?.copyWith(
                   color: AppColors.grey,
                 ),
           ),
-        ),
+        ],
       ),
     );
   }
