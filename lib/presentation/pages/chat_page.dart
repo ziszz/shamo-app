@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamo_app/presentation/pages/chat_detail_page.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/font_weight.dart';
@@ -73,10 +74,13 @@ class ChatPage extends StatelessWidget {
   Widget _chatList() {
     return ListView.builder(
       physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.symmetric(vertical: 16),
       itemCount: 3,
       itemBuilder: (context, index) {
         return ListTile(
+          onTap: () => Navigator.pushNamed(
+            context,
+            ChatDetailPage.routeName,
+          ),
           leading: Image.asset(
             "assets/default-shop-profile.png",
           ),
