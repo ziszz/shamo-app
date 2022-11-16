@@ -8,7 +8,7 @@ class ChatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _emptyContent(context: context);
+    return _chatList();
   }
 
   static AppBar appBar({required BuildContext context}) {
@@ -67,6 +67,43 @@ class ChatPage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _chatList() {
+    return ListView.builder(
+      physics: const BouncingScrollPhysics(),
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      itemCount: 3,
+      itemBuilder: (context, index) {
+        return ListTile(
+          leading: Image.asset(
+            "assets/default-shop-profile.png",
+          ),
+          title: Text(
+            "Shoes Store",
+            style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                  color: AppColors.white,
+                ),
+          ),
+          subtitle: Text(
+            "Good night, This item is on...",
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                  color: AppColors.grey,
+                  fontWeight: light,
+                ),
+          ),
+          trailing: Text(
+            "Now",
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.overline?.copyWith(
+                  color: AppColors.grey,
+                  letterSpacing: 0,
+                ),
+          ),
+        );
+      },
     );
   }
 }
