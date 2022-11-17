@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:shamo_app/presentation/pages/checkout_page.dart';
 import 'package:shamo_app/presentation/pages/main_page.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
@@ -93,7 +94,10 @@ class _CartPageState extends State<CartPage> {
                 ),
               ),
               FilledButton(
-                onPressed: () {},
+                onPressed: () => Navigator.pushNamed(
+                  context,
+                  CheckoutPage.routeName,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

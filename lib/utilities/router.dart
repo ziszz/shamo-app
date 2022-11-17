@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shamo_app/presentation/pages/cart_page.dart';
+import 'package:shamo_app/presentation/pages/checkout_page.dart';
 import 'package:shamo_app/presentation/pages/empty_page.dart';
 import 'package:shamo_app/presentation/pages/login_page.dart';
 import 'package:shamo_app/presentation/pages/main_page.dart';
@@ -66,6 +67,10 @@ RouteFactory? router = (settings) {
       return _createRoute(
         page: const CartPage(),
         slideOption: SlideOption.slideY,
+      );
+    case CheckoutPage.routeName:
+      return _createRoute(
+        page: const CheckoutPage(),
       );
     default:
       return MaterialPageRoute(
