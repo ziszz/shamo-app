@@ -109,7 +109,7 @@ class _ChatPageState extends State<ChatPage> {
       trailing: Text(
         time,
         overflow: TextOverflow.ellipsis,
-        style: Theme.of(context).textTheme.overline?.copyWith(
+        style: Theme.of(context).textTheme.labelMedium?.copyWith(
               color: AppColors.grey,
               letterSpacing: 0,
             ),

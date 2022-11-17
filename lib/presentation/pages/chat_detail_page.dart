@@ -226,7 +226,7 @@ class ChatDetailPage extends StatelessWidget {
               ),
               Text(
                 "Now",
-                style: Theme.of(context).textTheme.overline?.copyWith(
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: AppColors.grey,
                       letterSpacing: 0,
                     ),
