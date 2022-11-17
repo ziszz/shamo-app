@@ -12,7 +12,7 @@ class EmptyPage extends StatelessWidget {
         child: Center(
           child: Text(
             "Page not found!!!",
-            style: Theme.of(context).textTheme.bodyText1?.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: AppColors.white,
                   fontWeight: medium,
                 ),

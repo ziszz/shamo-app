@@ -23,7 +23,7 @@ class FilledTextField extends StatelessWidget {
       height: height,
       child: TextFormField(
         onChanged: onChanged,
-        style: Theme.of(context).textTheme.bodyText2?.copyWith(
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: AppColors.white,
               fontSize: 14,
             ),
@@ -32,7 +32,7 @@ class FilledTextField extends StatelessWidget {
           filled: true,
           fillColor: fillColor,
           hintText: hintText,
-          hintStyle: Theme.of(context).textTheme.bodyText2?.copyWith(
+          hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: AppColors.grey,
                 fontSize: 14,
               ),

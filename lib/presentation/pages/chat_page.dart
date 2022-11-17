@@ -18,7 +18,7 @@ class ChatPage extends StatefulWidget {
       toolbarHeight: 87,
       title: Text(
         "Message Support",
-        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: AppColors.white,
               fontWeight: medium,
               fontSize: 18,
@@ -47,7 +47,7 @@ class _ChatPageState extends State<ChatPage> {
         ),
         Text(
           "Opss no message yet?",
-          style: Theme.of(context).textTheme.bodyText1?.copyWith(
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 color: AppColors.white,
                 fontWeight: medium,
               ),
@@ -57,7 +57,7 @@ class _ChatPageState extends State<ChatPage> {
         ),
         Text(
           "You have never done a transaction",
-          style: Theme.of(context).textTheme.bodyText2?.copyWith(
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: AppColors.grey,
               ),
         ),
@@ -69,7 +69,7 @@ class _ChatPageState extends State<ChatPage> {
           onPressed: () {},
           child: Text(
             "Explore Store",
-            style: Theme.of(context).textTheme.button?.copyWith(
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: AppColors.white,
                 ),
           ),
@@ -94,14 +94,14 @@ class _ChatPageState extends State<ChatPage> {
       ),
       title: Text(
         name,
-        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: AppColors.white,
             ),
       ),
       subtitle: Text(
         message,
         overflow: TextOverflow.ellipsis,
-        style: Theme.of(context).textTheme.bodyText2?.copyWith(
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: AppColors.grey,
               fontWeight: light,
             ),

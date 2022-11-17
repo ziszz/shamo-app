@@ -56,7 +56,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       child: Text(
                         "Sign In",
-                        style: Theme.of(context).textTheme.button?.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               color: AppColors.white,
                               fontWeight: medium,
                             ),
@@ -75,16 +75,17 @@ class LoginPage extends StatelessWidget {
                   child: Text.rich(
                     TextSpan(
                       text: "Don't have an account? ",
-                      style: Theme.of(context).textTheme.caption?.copyWith(
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: AppColors.grey,
                           ),
                       children: [
                         TextSpan(
                           text: "Sign Up",
-                          style: Theme.of(context).textTheme.caption?.copyWith(
-                                color: AppColors.purple,
-                                fontWeight: medium,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: AppColors.purple,
+                                    fontWeight: medium,
+                                  ),
                         ),
                       ],
                     ),
@@ -107,14 +108,14 @@ class LoginPage extends StatelessWidget {
         children: [
           Text(
             "Login",
-            style: Theme.of(context).textTheme.headline6?.copyWith(
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   color: AppColors.white,
                   fontWeight: semiBold,
                 ),
           ),
           Text(
             "Sign In to Countinue",
-            style: Theme.of(context).textTheme.bodyText2?.copyWith(
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: AppColors.grey,
                 ),
           ),

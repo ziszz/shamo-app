@@ -148,7 +148,7 @@ class _CartPageState extends State<CartPage> {
           ),
           Text(
             "Let's find your favorite shoes",
-            style: Theme.of(context).textTheme.bodyText2?.copyWith(
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: AppColors.grey,
                 ),
           ),
@@ -164,7 +164,7 @@ class _CartPageState extends State<CartPage> {
             ),
             child: Text(
               "Explore Store",
-              style: Theme.of(context).textTheme.button?.copyWith(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: AppColors.white,
                   ),
             ),
@@ -210,7 +210,7 @@ class _CartPageState extends State<CartPage> {
                 children: [
                   Text(
                     name,
-                    style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColors.white,
                           fontWeight: semiBold,
                         ),
@@ -220,7 +220,7 @@ class _CartPageState extends State<CartPage> {
                   ),
                   Text(
                     "\$$price",
-                    style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColors.blue,
                         ),
                   ),
@@ -245,7 +245,7 @@ class _CartPageState extends State<CartPage> {
                     padding: const EdgeInsets.symmetric(vertical: 2),
                     child: Text(
                       _quantity.toString(),
-                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: AppColors.white,
                             fontWeight: medium,
                           ),

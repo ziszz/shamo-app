@@ -20,7 +20,7 @@ class FavoritePage extends StatelessWidget {
       toolbarHeight: 87,
       title: Text(
         "Favorite Shoes",
-        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: AppColors.white,
               fontWeight: medium,
               fontSize: 18,

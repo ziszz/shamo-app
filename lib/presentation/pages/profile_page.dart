@@ -32,14 +32,14 @@ class ProfilePage extends StatelessWidget {
             children: [
               Text(
                 "Hello, Alex",
-                style: Theme.of(context).textTheme.headline6?.copyWith(
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: semiBold,
                       color: AppColors.white,
                     ),
               ),
               Text(
                 "@alexkeinn",
-                style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontWeight: regular,
                       color: AppColors.grey,
                     ),

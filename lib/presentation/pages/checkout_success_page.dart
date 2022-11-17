@@ -52,7 +52,7 @@ class CheckoutSuccessPage extends StatelessWidget {
                 ),
                 child: Text(
                   "Order Other Shoes",
-                  style: Theme.of(context).textTheme.button?.copyWith(
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppColors.white,
                       ),
                 ),
@@ -66,7 +66,7 @@ class CheckoutSuccessPage extends StatelessWidget {
                 onPressed: () {},
                 child: Text(
                   "View My Order",
-                  style: Theme.of(context).textTheme.button?.copyWith(
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppColors.grey,
                       ),
                 ),
@@ -86,7 +86,7 @@ class CheckoutSuccessPage extends StatelessWidget {
       toolbarHeight: 87,
       title: Text(
         "Checkout Success",
-        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: AppColors.white,
               fontWeight: medium,
               fontSize: 18,

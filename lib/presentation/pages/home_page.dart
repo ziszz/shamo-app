@@ -17,10 +17,11 @@ class HomePage extends StatelessWidget {
             color: AppColors.purple,
             borderRadius: BorderRadius.circular(12),
           ),
-          labelStyle: Theme.of(context).textTheme.bodyText2,
-          unselectedLabelStyle: Theme.of(context).textTheme.bodyText2?.copyWith(
-                fontWeight: light,
-              ),
+          labelStyle: Theme.of(context).textTheme.bodyMedium,
+          unselectedLabelStyle:
+              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: light,
+                  ),
           padding: const EdgeInsets.fromLTRB(8, 24, 8, 8),
           splashBorderRadius: BorderRadius.circular(12),
           physics: const BouncingScrollPhysics(),
@@ -67,14 +68,14 @@ class HomePage extends StatelessWidget {
                 children: [
                   Text(
                     "Hello, Alex",
-                    style: Theme.of(context).textTheme.headline6?.copyWith(
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                           fontWeight: semiBold,
                           color: AppColors.white,
                         ),
                   ),
                   Text(
                     "@alexkeinn",
-                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           fontWeight: regular,
                           color: AppColors.grey,
                         ),
@@ -143,7 +144,7 @@ class HomePage extends StatelessWidget {
             ),
             child: Text(
               category,
-              style: Theme.of(context).textTheme.caption?.copyWith(
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.grey,
                   ),
             ),
@@ -158,7 +159,7 @@ class HomePage extends StatelessWidget {
             child: Text(
               name,
               overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: AppColors.black1,
                     fontWeight: semiBold,
                   ),
@@ -173,7 +174,7 @@ class HomePage extends StatelessWidget {
             ),
             child: Text(
               price,
-              style: Theme.of(context).textTheme.bodyText2?.copyWith(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: AppColors.blue,
                     fontWeight: medium,
                   ),
@@ -210,7 +211,7 @@ class HomePage extends StatelessWidget {
           children: [
             Text(
               category,
-              style: Theme.of(context).textTheme.caption?.copyWith(
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.grey,
                   ),
             ),
@@ -221,7 +222,7 @@ class HomePage extends StatelessWidget {
               name,
               overflow: TextOverflow.clip,
               maxLines: 2,
-              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: AppColors.white,
                     fontWeight: semiBold,
                   ),
@@ -231,7 +232,7 @@ class HomePage extends StatelessWidget {
             ),
             Text(
               price,
-              style: Theme.of(context).textTheme.bodyText2?.copyWith(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: AppColors.blue,
                     fontWeight: medium,
                   ),
@@ -252,7 +253,7 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.only(left: 16, top: 22),
             child: Text(
               "Popular Product",
-              style: Theme.of(context).textTheme.headline6?.copyWith(
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: AppColors.white,
                     fontWeight: semiBold,
                   ),
@@ -284,7 +285,7 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.only(left: 16, top: 30),
             child: Text(
               "New Arrival",
-              style: Theme.of(context).textTheme.headline6?.copyWith(
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: AppColors.white,
                     fontWeight: semiBold,
                   ),
@@ -323,7 +324,7 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.only(left: 16, top: 30),
             child: Text(
               "For you",
-              style: Theme.of(context).textTheme.headline6?.copyWith(
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: AppColors.white,
                     fontWeight: semiBold,
                   ),

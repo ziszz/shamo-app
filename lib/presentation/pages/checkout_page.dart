@@ -57,7 +57,7 @@ class CheckoutPage extends StatelessWidget {
       toolbarHeight: 87,
       title: Text(
         "Checkout Detail",
-        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: AppColors.white,
               fontWeight: medium,
               fontSize: 18,
@@ -89,7 +89,7 @@ class CheckoutPage extends StatelessWidget {
             ),
             child: Text(
               "Checkout Now",
-              style: Theme.of(context).textTheme.button?.copyWith(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: AppColors.white,
                   ),
             ),

@@ -20,7 +20,7 @@ class FormItem extends StatelessWidget {
       children: [
         Text(
           label,
-          style: Theme.of(context).textTheme.bodyText1?.copyWith(
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 fontWeight: medium,
                 color: AppColors.white,
                 fontSize: 16,

@@ -70,14 +70,14 @@ class ChatDetailPage extends StatelessWidget {
             children: [
               Text(
                 "Shoes Shop",
-                style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: AppColors.white,
                       fontWeight: medium,
                     ),
               ),
               Text(
                 "Online",
-                style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: AppColors.grey,
                       fontWeight: light,
                     ),
@@ -128,13 +128,13 @@ class ChatDetailPage extends StatelessWidget {
                       name,
                       overflow: TextOverflow.clip,
                       maxLines: 2,
-                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: AppColors.white,
                           ),
                     ),
                     Text(
                       "\$$price",
-                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: AppColors.blue,
                             fontWeight: medium,
                           ),
@@ -168,7 +168,7 @@ class ChatDetailPage extends StatelessWidget {
                 onPressed: () {},
                 child: Text(
                   "Add to cart",
-                  style: Theme.of(context).textTheme.button?.copyWith(
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppColors.purple,
                       ),
                 ),
@@ -179,7 +179,7 @@ class ChatDetailPage extends StatelessWidget {
                 onPressed: () {},
                 child: Text(
                   "Buy Now",
-                  style: Theme.of(context).textTheme.button?.copyWith(
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppColors.black1,
                       ),
                 ),
@@ -216,7 +216,7 @@ class ChatDetailPage extends StatelessWidget {
               Expanded(
                 child: Text(
                   text,
-                  style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppColors.white,
                       ),
                 ),
@@ -316,13 +316,13 @@ class ChatDetailPage extends StatelessWidget {
                 Text(
                   name,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppColors.white,
                       ),
                 ),
                 Text(
                   "\$$price",
-                  style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppColors.blue,
                         fontWeight: medium,
                       ),
