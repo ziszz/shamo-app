@@ -14,6 +14,7 @@ class ProfilePage extends StatelessWidget {
 
   static AppBar appBar({required BuildContext context}) {
     return AppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: AppColors.black1,
       toolbarHeight: 125,
       titleSpacing: 30,
@@ -49,7 +50,7 @@ class ProfilePage extends StatelessWidget {
           const ImageIcon(
             AssetImage("assets/ic-logout.png"),
             size: 20,
-            color: AppColors.redColor,
+            color: AppColors.red,
           ),
         ],
       ),

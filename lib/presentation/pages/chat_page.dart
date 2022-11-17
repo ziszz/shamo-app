@@ -12,6 +12,8 @@ class ChatPage extends StatefulWidget {
 
   static AppBar appBar({required BuildContext context}) {
     return AppBar(
+      automaticallyImplyLeading: false,
+      centerTitle: true,
       backgroundColor: AppColors.black1,
       toolbarHeight: 87,
       title: Text(
@@ -22,7 +24,6 @@ class ChatPage extends StatefulWidget {
               fontSize: 18,
             ),
       ),
-      centerTitle: true,
     );
   }
 }
@@ -77,41 +78,55 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
+  Widget _chatTile({
+    required String imagePath,
+    required String name,
+    required String message,
+    required String time,
+  }) {
+    return ListTile(
+      onTap: () => Navigator.pushNamed(
+        context,
+        ChatDetailPage.routeName,
+      ),
+      leading: Image.asset(
+        imagePath,
+      ),
+      title: Text(
+        name,
+        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+              color: AppColors.white,
+            ),
+      ),
+      subtitle: Text(
+        message,
+        overflow: TextOverflow.ellipsis,
+        style: Theme.of(context).textTheme.bodyText2?.copyWith(
+              color: AppColors.grey,
+              fontWeight: light,
+            ),
+      ),
+      trailing: Text(
+        time,
+        overflow: TextOverflow.ellipsis,
+        style: Theme.of(context).textTheme.overline?.copyWith(
+              color: AppColors.grey,
+              letterSpacing: 0,
+            ),
+      ),
+    );
+  }
+
   Widget _chatList() {
     return ListView.builder(
       physics: const BouncingScrollPhysics(),
       itemCount: 3,
       itemBuilder: (context, index) {
-        return ListTile(
-          onTap: () => Navigator.pushNamed(
-            context,
-            ChatDetailPage.routeName,
-          ),
-          leading: Image.asset(
-            "assets/default-shop-profile.png",
-          ),
-          title: Text(
-            "Shoes Store",
-            style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                  color: AppColors.white,
-                ),
-          ),
-          subtitle: Text(
-            "Good night, This item is on...",
-            overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                  color: AppColors.grey,
-                  fontWeight: light,
-                ),
-          ),
-          trailing: Text(
-            "Now",
-            overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.overline?.copyWith(
-                  color: AppColors.grey,
-                  letterSpacing: 0,
-                ),
-          ),
+        return _chatTile(
+          imagePath: "assets/default-shop-profile.png",
+          name: "Shoes Store",
+          message: "Good night, This item is on...",
+          time: "Now",
         );
       },
     );

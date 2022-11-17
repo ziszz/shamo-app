@@ -14,6 +14,8 @@ class FavoritePage extends StatelessWidget {
 
   static AppBar appBar({required BuildContext context}) {
     return AppBar(
+      automaticallyImplyLeading: false,
+      centerTitle: true,
       backgroundColor: AppColors.black1,
       toolbarHeight: 87,
       title: Text(
@@ -24,7 +26,6 @@ class FavoritePage extends StatelessWidget {
               fontSize: 18,
             ),
       ),
-      centerTitle: true,
     );
   }
 }

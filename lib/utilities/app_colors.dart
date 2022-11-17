@@ -4,7 +4,7 @@ abstract class AppColors {
   static const purple = Color(0xff6C5ECF);
   static const lightPurple = Color(0xff2B2844);
   static const lightBlue = Color(0xff38ABBE);
-  static const redColor = Color(0xffED6363);
+  static const red = Color(0xffED6363);
   static const blue = Color(0xff2C96F1);
   static const black1 = Color(0xff1F1D2B);
   static const black2 = Color(0xff2B2937);

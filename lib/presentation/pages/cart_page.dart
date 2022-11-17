@@ -4,10 +4,17 @@ import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/font_weight.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   static const routeName = "/cart";
 
   const CartPage({super.key});
+
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  int _quantity = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +22,7 @@ class CartPage extends StatelessWidget {
       backgroundColor: AppColors.black3,
       appBar: _appBar(context: context),
       body: SafeArea(
-        child: _emptyContent(context: context),
+        child: _listProduct(),
       ),
     );
   }
@@ -91,6 +98,152 @@ class CartPage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _cardProduct({
+    required BuildContext context,
+    required String imagePath,
+    required String name,
+    required double price,
+  }) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        vertical: 10,
+        horizontal: 16,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: AppColors.black2,
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.asset(
+                  imagePath,
+                  width: 60,
+                ),
+              ),
+              const SizedBox(
+                width: 12,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                          color: AppColors.white,
+                          fontWeight: semiBold,
+                        ),
+                  ),
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Text(
+                    "\$$price",
+                    style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                          color: AppColors.blue,
+                        ),
+                  ),
+                ],
+              ),
+              const Spacer(),
+              Column(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        _quantity++;
+                      });
+                    },
+                    child: Image.asset(
+                      "assets/ic-add.png",
+                      width: 16,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Text(
+                    _quantity.toString(),
+                    style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                          color: AppColors.white,
+                          fontWeight: medium,
+                        ),
+                  ),
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        _quantity--;
+                      });
+                    },
+                    child: Image.asset(
+                      "assets/ic-reduce.png",
+                      width: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          InkWell(
+            onTap: () {},
+            child: Row(
+              children: [
+                const ImageIcon(
+                  AssetImage(
+                    "assets/ic-trash.png",
+                  ),
+                  color: AppColors.red,
+                  size: 12,
+                ),
+                const SizedBox(
+                  width: 4,
+                ),
+                Text(
+                  "Remove",
+                  style: Theme.of(context).textTheme.caption?.copyWith(
+                        color: AppColors.red,
+                        fontWeight: light,
+                      ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _listProduct() {
+    return ListView.separated(
+      physics: const BouncingScrollPhysics(),
+      itemCount: 3,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 24,
+      ),
+      separatorBuilder: (context, index) {
+        return const SizedBox(height: 16);
+      },
+      itemBuilder: (context, index) {
+        return _cardProduct(
+          context: context,
+          imagePath: "assets/product-example.png",
+          name: "Terrex Urban Low",
+          price: 143.98,
+        );
+      },
     );
   }
 }
