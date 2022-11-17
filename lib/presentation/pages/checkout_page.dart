@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/font_weight.dart';
 
@@ -12,8 +13,10 @@ class CheckoutPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.black3,
       appBar: _appBar(context: context),
+      bottomNavigationBar: _bottomAppBar(context: context),
       body: SafeArea(
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -26,6 +29,7 @@ class CheckoutPage extends StatelessWidget {
                         fontWeight: semiBold,
                       ),
                 ),
+                _listItems(),
                 _addressDetails(context: context),
                 _paymentSummary(context: context),
               ],
@@ -58,6 +62,95 @@ class CheckoutPage extends StatelessWidget {
               fontSize: 18,
             ),
       ),
+    );
+  }
+
+  Widget _bottomAppBar({required BuildContext context}) {
+    return Container(
+      height: 110,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+      ),
+      child: Column(
+        children: [
+          const Divider(
+            color: AppColors.black5,
+            thickness: 1,
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          FilledButton(
+            onPressed: () {},
+            child: Text(
+              "Checkout Now",
+              style: Theme.of(context).textTheme.button?.copyWith(
+                    color: AppColors.white,
+                  ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _itemTile({
+    required BuildContext context,
+    required String imagePath,
+    required String name,
+    required double price,
+  }) {
+    return ListTile(
+      tileColor: AppColors.black4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      leading: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Image.asset(
+          imagePath,
+          width: 50,
+        ),
+      ),
+      title: Text(
+        name,
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: AppColors.white,
+              fontWeight: semiBold,
+            ),
+      ),
+      subtitle: Text(
+        "\$$price",
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: AppColors.blue,
+            ),
+      ),
+      trailing: Text(
+        "2 Items",
+        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: AppColors.grey,
+            ),
+      ),
+    );
+  }
+
+  Widget _listItems() {
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: 2,
+      padding: const EdgeInsets.only(top: 12),
+      separatorBuilder: (context, index) {
+        return const SizedBox(height: 12);
+      },
+      itemBuilder: (context, index) {
+        return _itemTile(
+          context: context,
+          imagePath: "assets/product-example.png",
+          name: "Terrex Urban Low",
+          price: 143.98,
+        );
+      },
     );
   }
 
@@ -156,6 +249,33 @@ class CheckoutPage extends StatelessWidget {
     );
   }
 
+  Widget _summaryItem({
+    required BuildContext context,
+    required String leading,
+    required String trailing,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6.5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            leading,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: AppColors.grey,
+                ),
+          ),
+          Text(
+            trailing,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: AppColors.white,
+                ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _paymentSummary({required BuildContext context}) {
     return Container(
       width: double.infinity,
@@ -173,6 +293,47 @@ class CheckoutPage extends StatelessWidget {
                   color: AppColors.white,
                   fontWeight: medium,
                 ),
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          _summaryItem(
+            context: context,
+            leading: "Product Quantity",
+            trailing: "2 items",
+          ),
+          _summaryItem(
+            context: context,
+            leading: "Product Price",
+            trailing: "\$575.96",
+          ),
+          _summaryItem(
+            context: context,
+            leading: "Shipping",
+            trailing: "Free",
+          ),
+          const Divider(
+            color: AppColors.black5,
+            thickness: 1,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Total",
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: AppColors.blue,
+                      fontWeight: semiBold,
+                    ),
+              ),
+              Text(
+                "\$575.92",
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: AppColors.blue,
+                      fontWeight: semiBold,
+                    ),
+              ),
+            ],
           ),
         ],
       ),
