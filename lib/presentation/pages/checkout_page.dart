@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamo_app/presentation/pages/checkout_success_page.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/font_weight.dart';
@@ -81,7 +82,11 @@ class CheckoutPage extends StatelessWidget {
             height: 30,
           ),
           FilledButton(
-            onPressed: () {},
+            onPressed: () => Navigator.pushNamedAndRemoveUntil(
+              context,
+              CheckoutSuccessPage.routeName,
+              (route) => false,
+            ),
             child: Text(
               "Checkout Now",
               style: Theme.of(context).textTheme.button?.copyWith(

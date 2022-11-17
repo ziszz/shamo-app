@@ -4,6 +4,7 @@ import 'package:shamo_app/utilities/app_colors.dart';
 class FilledButton extends StatelessWidget {
   final Function() onPressed;
   final Widget child;
+  final Color fillColor;
   final double width;
   final double height;
 
@@ -11,6 +12,7 @@ class FilledButton extends StatelessWidget {
     super.key,
     required this.onPressed,
     required this.child,
+    this.fillColor = AppColors.purple,
     this.width = double.infinity,
     this.height = 50,
   });
@@ -23,9 +25,7 @@ class FilledButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
-          backgroundColor: const MaterialStatePropertyAll(
-            AppColors.purple,
-          ),
+          backgroundColor: MaterialStatePropertyAll(fillColor),
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
