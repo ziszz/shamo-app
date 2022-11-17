@@ -31,7 +31,7 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
-    return _chatList();
+    return _emptyContent(context: context);
   }
 
   Widget _emptyContent({required BuildContext context}) {

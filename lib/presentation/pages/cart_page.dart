@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:shamo_app/presentation/pages/main_page.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
@@ -20,6 +22,7 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.black3,
+      bottomNavigationBar: _bottomAppBar(),
       appBar: _appBar(context: context),
       body: SafeArea(
         child: _listProduct(),
@@ -48,6 +51,72 @@ class _CartPageState extends State<CartPage> {
               fontWeight: medium,
               fontSize: 18,
             ),
+      ),
+    );
+  }
+
+  Widget _bottomAppBar() {
+    return SizedBox(
+      height: 180,
+      child: BottomAppBar(
+        color: AppColors.black3,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 30,
+            vertical: 20,
+          ),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Subtotal",
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: AppColors.white,
+                        ),
+                  ),
+                  Text(
+                    "\$287,96",
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: AppColors.blue,
+                          fontWeight: semiBold,
+                        ),
+                  ),
+                ],
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                child: Divider(
+                  color: AppColors.black2,
+                  thickness: 1,
+                ),
+              ),
+              FilledButton(
+                onPressed: () {},
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Continue to Checkout",
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: AppColors.white,
+                            fontWeight: semiBold,
+                          ),
+                    ),
+                    Transform.rotate(
+                      angle: math.pi,
+                      child: const Icon(
+                        Icons.arrow_back,
+                        color: AppColors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -117,8 +186,10 @@ class _CartPageState extends State<CartPage> {
         color: AppColors.black2,
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
@@ -160,33 +231,32 @@ class _CartPageState extends State<CartPage> {
                         _quantity++;
                       });
                     },
-                    child: Image.asset(
-                      "assets/ic-add.png",
-                      width: 16,
+                    child: const Icon(
+                      Icons.add_circle,
+                      color: AppColors.purple,
+                      size: 18,
                     ),
                   ),
-                  const SizedBox(
-                    height: 2,
-                  ),
-                  Text(
-                    _quantity.toString(),
-                    style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                          color: AppColors.white,
-                          fontWeight: medium,
-                        ),
-                  ),
-                  const SizedBox(
-                    height: 2,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 2),
+                    child: Text(
+                      _quantity.toString(),
+                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                            color: AppColors.white,
+                            fontWeight: medium,
+                          ),
+                    ),
                   ),
                   InkWell(
                     onTap: () {
                       setState(() {
-                        _quantity--;
+                        if (_quantity > 0) _quantity--;
                       });
                     },
-                    child: Image.asset(
-                      "assets/ic-reduce.png",
-                      width: 16,
+                    child: const Icon(
+                      Icons.remove_circle,
+                      color: AppColors.grey,
+                      size: 18,
                     ),
                   ),
                 ],
@@ -228,7 +298,7 @@ class _CartPageState extends State<CartPage> {
   Widget _listProduct() {
     return ListView.separated(
       physics: const BouncingScrollPhysics(),
-      itemCount: 3,
+      itemCount: 10,
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
         vertical: 24,
