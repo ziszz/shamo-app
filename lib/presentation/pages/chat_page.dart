@@ -4,13 +4,11 @@ import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/font_weight.dart';
 
-class ChatPage extends StatelessWidget {
+class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return _chatList();
-  }
+  State<ChatPage> createState() => _ChatPageState();
 
   static AppBar appBar({required BuildContext context}) {
     return AppBar(
@@ -26,6 +24,13 @@ class ChatPage extends StatelessWidget {
       ),
       centerTitle: true,
     );
+  }
+}
+
+class _ChatPageState extends State<ChatPage> {
+  @override
+  Widget build(BuildContext context) {
+    return _chatList();
   }
 
   Widget _emptyContent({required BuildContext context}) {
