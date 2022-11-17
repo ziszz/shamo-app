@@ -57,7 +57,7 @@ class _CartPageState extends State<CartPage> {
 
   Widget _bottomAppBar() {
     return SizedBox(
-      height: 180,
+      height: 145,
       child: BottomAppBar(
         color: AppColors.black3,
         child: Padding(
@@ -86,7 +86,7 @@ class _CartPageState extends State<CartPage> {
                 ],
               ),
               const Padding(
-                padding: EdgeInsets.symmetric(vertical: 20),
+                padding: EdgeInsets.symmetric(vertical: 8),
                 child: Divider(
                   color: AppColors.black2,
                   thickness: 1,
