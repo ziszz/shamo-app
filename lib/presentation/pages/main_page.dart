@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamo_app/presentation/pages/cart_page.dart';
 import 'package:shamo_app/presentation/pages/chat_page.dart';
 import 'package:shamo_app/presentation/pages/favorite_page.dart';
 import 'package:shamo_app/presentation/pages/home_page.dart';
@@ -67,7 +68,10 @@ class _MainPageState extends State<MainPage> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(50),
       ),
-      onPressed: () {},
+      onPressed: () => Navigator.pushNamed(
+        context,
+        CartPage.routeName,
+      ),
       child: Image.asset(
         "assets/ic-cart.png",
         width: 20,

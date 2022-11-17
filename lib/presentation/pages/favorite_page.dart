@@ -21,6 +21,7 @@ class FavoritePage extends StatelessWidget {
         style: Theme.of(context).textTheme.bodyText1?.copyWith(
               color: AppColors.white,
               fontWeight: medium,
+              fontSize: 18,
             ),
       ),
       centerTitle: true,
