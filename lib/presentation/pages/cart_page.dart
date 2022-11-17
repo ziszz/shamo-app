@@ -94,6 +94,7 @@ class _CartPageState extends State<CartPage> {
                 ),
               ),
               FilledButton(
+                fillColor: AppColors.purple,
                 onPressed: () => Navigator.pushNamed(
                   context,
                   CheckoutPage.routeName,
