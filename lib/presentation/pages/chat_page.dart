@@ -31,7 +31,7 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
-    return _emptyContent(context: context);
+    return _chatList();
   }
 
   Widget _emptyContent({required BuildContext context}) {
@@ -120,7 +120,8 @@ class _ChatPageState extends State<ChatPage> {
   Widget _chatList() {
     return ListView.builder(
       physics: const BouncingScrollPhysics(),
-      itemCount: 3,
+      itemCount: 1,
+      padding: const EdgeInsets.symmetric(vertical: 8),
       itemBuilder: (context, index) {
         return _chatTile(
           imagePath: "assets/default-shop-profile.png",

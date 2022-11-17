@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
           splashFactory: NoSplash.splashFactory,
         ),
         appBarTheme: const AppBarTheme(
+          surfaceTintColor: AppColors.black1,
           backgroundColor: AppColors.black1,
         ),
         scaffoldBackgroundColor: AppColors.black1,

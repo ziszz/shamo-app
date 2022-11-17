@@ -108,7 +108,7 @@ class _MainPageState extends State<MainPage> {
           top: Radius.circular(32),
         ),
         child: BottomAppBar(
-          color: AppColors.black3,
+          color: AppColors.black4,
           shape: const CircularNotchedRectangle(),
           notchMargin: 10,
           clipBehavior: Clip.antiAliasWithSaveLayer,

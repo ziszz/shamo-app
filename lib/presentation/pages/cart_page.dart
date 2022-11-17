@@ -183,7 +183,7 @@ class _CartPageState extends State<CartPage> {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: AppColors.black2,
+        color: AppColors.black4,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -298,7 +298,7 @@ class _CartPageState extends State<CartPage> {
   Widget _listProduct() {
     return ListView.separated(
       physics: const BouncingScrollPhysics(),
-      itemCount: 10,
+      itemCount: 1,
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
         vertical: 24,
