@@ -25,11 +25,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         Column(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height * .65,
+              height: MediaQuery.of(context).size.height * .60,
               color: AppColors.lightWhite,
             ),
             Container(
-              height: MediaQuery.of(context).size.height * .35,
+              height: MediaQuery.of(context).size.height * .40,
               color: AppColors.black1,
             ),
           ],
@@ -135,7 +135,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       children: [
         CarouselSlider.builder(
           options: CarouselOptions(
-            height: 225,
+            height: 215,
             onPageChanged: (index, reason) {
               setState(() {
                 _carouselIndex = index;
