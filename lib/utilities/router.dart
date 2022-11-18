@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shamo_app/presentation/pages/cart_page.dart';
 import 'package:shamo_app/presentation/pages/checkout_page.dart';
 import 'package:shamo_app/presentation/pages/checkout_success_page.dart';
+import 'package:shamo_app/presentation/pages/edit_profile_page.dart';
 import 'package:shamo_app/presentation/pages/empty_page.dart';
 import 'package:shamo_app/presentation/pages/login_page.dart';
 import 'package:shamo_app/presentation/pages/main_page.dart';
@@ -76,6 +77,10 @@ RouteFactory? router = (settings) {
     case CheckoutSuccessPage.routeName:
       return _createRoute(
         page: const CheckoutSuccessPage(),
+      );
+    case EditProfilePage.routeName:
+      return _createRoute(
+        page: const EditProfilePage(),
       );
     default:
       return MaterialPageRoute(

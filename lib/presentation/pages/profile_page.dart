@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamo_app/presentation/pages/edit_profile_page.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/font_weight.dart';
 
@@ -106,7 +107,10 @@ class ProfilePage extends StatelessWidget {
           ),
           _optionItem(
             context: context,
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(
+              context,
+              EditProfilePage.routeName,
+            ),
             text: "Edit Profile",
           ),
           _optionItem(
