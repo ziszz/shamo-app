@@ -8,7 +8,7 @@ class FavoritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _emptyContent(context: context);
+    return _favoriteList();
   }
 
   static AppBar appBar({required BuildContext context}) {
@@ -71,6 +71,66 @@ class FavoritePage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _favoriteTile({required BuildContext context}) {
+    return ListTile(
+      onTap: () {},
+      tileColor: AppColors.black4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      leading: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Image.asset(
+          "assets/product-example.png",
+        ),
+      ),
+      title: Text(
+        "Terrex Urban Low",
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: AppColors.white,
+              fontWeight: semiBold,
+            ),
+      ),
+      subtitle: Text(
+        "\$143,98",
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: AppColors.blue,
+              fontWeight: regular,
+            ),
+      ),
+      trailing: IconButton(
+        onPressed: () {},
+        icon: const CircleAvatar(
+          radius: 15,
+          backgroundColor: AppColors.lightBlue,
+          child: ImageIcon(
+            AssetImage(
+              "assets/ic-favorite.png",
+            ),
+            color: AppColors.white,
+            size: 10,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _favoriteList() {
+    return ListView.separated(
+      itemCount: 2,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 24,
+      ),
+      separatorBuilder: (context, index) {
+        return const SizedBox(height: 20);
+      },
+      itemBuilder: (context, index) {
+        return _favoriteTile(context: context);
+      },
     );
   }
 }

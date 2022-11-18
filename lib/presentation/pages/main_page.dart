@@ -15,7 +15,8 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage>
+    with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
   late PageController _pageController;
 
@@ -25,6 +26,12 @@ class _MainPageState extends State<MainPage> {
     _pageController = PageController(
       initialPage: _currentIndex,
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
   }
 
   @override
@@ -83,9 +90,7 @@ class _MainPageState extends State<MainPage> {
     required int index,
     required ImageProvider image,
   }) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(30),
-      hoverColor: AppColors.purple,
+    return GestureDetector(
       onTap: () {
         _pageController.jumpToPage(index);
       },

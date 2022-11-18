@@ -174,7 +174,7 @@ class _CartPageState extends State<CartPage> {
     );
   }
 
-  Widget _cardProduct({
+  Widget _productTile({
     required BuildContext context,
     required String imagePath,
     required String name,
@@ -235,14 +235,18 @@ class _CartPageState extends State<CartPage> {
                         _quantity++;
                       });
                     },
-                    child: const Icon(
-                      Icons.add_circle,
-                      color: AppColors.purple,
-                      size: 18,
+                    child: const CircleAvatar(
+                      backgroundColor: AppColors.purple,
+                      radius: 8,
+                      child: Icon(
+                        Icons.add,
+                        color: AppColors.white,
+                        size: 13,
+                      ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 2),
+                    padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Text(
                       _quantity.toString(),
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -257,10 +261,14 @@ class _CartPageState extends State<CartPage> {
                         if (_quantity > 0) _quantity--;
                       });
                     },
-                    child: const Icon(
-                      Icons.remove_circle,
-                      color: AppColors.grey,
-                      size: 18,
+                    child: const CircleAvatar(
+                      backgroundColor: AppColors.black6,
+                      radius: 8,
+                      child: Icon(
+                        Icons.remove,
+                        color: AppColors.white,
+                        size: 13,
+                      ),
                     ),
                   ),
                 ],
@@ -311,7 +319,7 @@ class _CartPageState extends State<CartPage> {
         return const SizedBox(height: 16);
       },
       itemBuilder: (context, index) {
-        return _cardProduct(
+        return _productTile(
           context: context,
           imagePath: "assets/product-example.png",
           name: "Terrex Urban Low",
