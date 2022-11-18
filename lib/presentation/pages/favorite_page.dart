@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamo_app/presentation/pages/product_detail_page.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/font_weight.dart';
@@ -76,7 +77,10 @@ class FavoritePage extends StatelessWidget {
 
   Widget _favoriteTile({required BuildContext context}) {
     return ListTile(
-      onTap: () {},
+      onTap: () => Navigator.pushNamed(
+        context,
+        ProductDetailPage.routeName,
+      ),
       tileColor: AppColors.black4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),

@@ -6,6 +6,7 @@ import 'package:shamo_app/presentation/pages/edit_profile_page.dart';
 import 'package:shamo_app/presentation/pages/empty_page.dart';
 import 'package:shamo_app/presentation/pages/login_page.dart';
 import 'package:shamo_app/presentation/pages/main_page.dart';
+import 'package:shamo_app/presentation/pages/product_detail_page.dart';
 import 'package:shamo_app/presentation/pages/sign_up_page.dart';
 import 'package:shamo_app/presentation/pages/splash_screen.dart';
 
@@ -81,6 +82,10 @@ RouteFactory? router = (settings) {
     case EditProfilePage.routeName:
       return _createRoute(
         page: const EditProfilePage(),
+      );
+    case ProductDetailPage.routeName:
+      return _createRoute(
+        page: const ProductDetailPage(),
       );
     default:
       return MaterialPageRoute(

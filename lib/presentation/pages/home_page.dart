@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamo_app/presentation/pages/product_detail_page.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/font_weight.dart';
 
@@ -115,72 +116,78 @@ class HomePage extends StatelessWidget {
     required String name,
     required String price,
   }) {
-    return Container(
-      width: 200,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: AppColors.lightWhite,
+    return InkWell(
+      onTap: () => Navigator.pushNamed(
+        context,
+        ProductDetailPage.routeName,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 30,
+      child: Container(
+        width: 200,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: AppColors.lightWhite,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 30,
+              ),
+              child: Image.asset(
+                "assets/product-example.png",
+                width: 215,
+                height: 120,
+                fit: BoxFit.cover,
+              ),
             ),
-            child: Image.asset(
-              "assets/product-example.png",
-              width: 215,
-              height: 120,
-              fit: BoxFit.cover,
+            const SizedBox(
+              height: 6,
             ),
-          ),
-          const SizedBox(
-            height: 6,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
+              child: Text(
+                category,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppColors.grey,
+                    ),
+              ),
             ),
-            child: Text(
-              category,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.grey,
-                  ),
+            const SizedBox(
+              height: 6,
             ),
-          ),
-          const SizedBox(
-            height: 6,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
+              child: Text(
+                name,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: AppColors.black1,
+                      fontWeight: semiBold,
+                    ),
+              ),
             ),
-            child: Text(
-              name,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColors.black1,
-                    fontWeight: semiBold,
-                  ),
+            const SizedBox(
+              height: 6,
             ),
-          ),
-          const SizedBox(
-            height: 6,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
+              child: Text(
+                price,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: AppColors.blue,
+                      fontWeight: medium,
+                    ),
+              ),
             ),
-            child: Text(
-              price,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.blue,
-                    fontWeight: medium,
-                  ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -192,54 +199,60 @@ class HomePage extends StatelessWidget {
     required String name,
     required String price,
   }) {
-    return Row(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: Image.asset(
-            image,
-            width: 120,
-            height: 120,
+    return InkWell(
+      onTap: () => Navigator.pushNamed(
+        context,
+        ProductDetailPage.routeName,
+      ),
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.asset(
+              image,
+              width: 120,
+              height: 120,
+            ),
           ),
-        ),
-        const SizedBox(
-          width: 12,
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              category,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.grey,
-                  ),
-            ),
-            const SizedBox(
-              height: 6,
-            ),
-            Text(
-              name,
-              overflow: TextOverflow.clip,
-              maxLines: 2,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColors.white,
-                    fontWeight: semiBold,
-                  ),
-            ),
-            const SizedBox(
-              height: 6,
-            ),
-            Text(
-              price,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.blue,
-                    fontWeight: medium,
-                  ),
-            ),
-          ],
-        ),
-      ],
+          const SizedBox(
+            width: 12,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                category,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppColors.grey,
+                    ),
+              ),
+              const SizedBox(
+                height: 6,
+              ),
+              Text(
+                name,
+                overflow: TextOverflow.clip,
+                maxLines: 2,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: AppColors.white,
+                      fontWeight: semiBold,
+                    ),
+              ),
+              const SizedBox(
+                height: 6,
+              ),
+              Text(
+                price,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: AppColors.blue,
+                      fontWeight: medium,
+                    ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
