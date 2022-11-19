@@ -109,14 +109,14 @@ const testCategoryResponseJson = {
     "data": [
       {
         "id": 1,
-        "name": "Sport",
-        "deleted_at": null,
-        "created_at": "2021-04-15T02:15:27.000000Z",
-        "updated_at": "2021-04-15T02:15:27.000000Z"
+        "name": "name",
+        "deleted_at": "deleted_at",
+        "created_at": "created_at",
+        "updated_at": "updated_at",
       },
     ]
   }
 };
 
 final testCategoryResponse =
-    CategoryResponse.fromJson(testCategoryJson).catagoryList;
+    CategoryResponse.fromJson(testCategoryResponseJson).catagoryList;
