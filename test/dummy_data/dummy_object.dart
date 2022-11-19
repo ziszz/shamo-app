@@ -1,6 +1,6 @@
-import 'package:shamo_app/data/models/gallery_model.dart';
-import 'package:shamo_app/data/models/product_model.dart';
-import 'package:shamo_app/data/models/product_response.dart';
+import "package:shamo_app/data/models/gallery_model.dart";
+import "package:shamo_app/data/models/product_model.dart";
+import "package:shamo_app/data/models/product_response.dart";
 
 const testGalleryJson = {
   "id": 1,
@@ -22,10 +22,10 @@ const testGalleryModelList = [testGalleryModel];
 
 const testProductJson = {
   "id": 1,
-  "name": 'name',
+  "name": "name",
   "price": 1,
-  "description": 'description',
-  "tags": 'tags',
+  "description": "description",
+  "tags": null,
   "categories_id": 1,
   "galleries": [
     {
@@ -36,20 +36,20 @@ const testProductJson = {
       "updated_at": "updated_at",
     }
   ],
-  "created_at": 'created_at',
-  "updated_at": 'updated_at',
+  "created_at": "created_at",
+  "updated_at": "updated_at",
 };
 
 const testProductModel = ProductModel(
   id: 1,
-  name: 'name',
+  name: "name",
   price: 1,
-  description: 'description',
-  tags: 'tags',
+  description: "description",
+  tags: null,
   categoriesId: 1,
   galleries: testGalleryModelList,
-  createdAt: 'created_at',
-  updatedAt: 'updated_at',
+  createdAt: "created_at",
+  updatedAt: "updated_at",
 );
 
 const testProductModelList = [testProductModel];
@@ -62,9 +62,9 @@ const testProductResponseJson = {
         "name": "Name",
         "price": 1,
         "description": "description",
-        "tags": null,
+        "tags": "tags",
         "categories_id": 1,
-        "deleted_at": null,
+        "deleted_at": "deleted_at",
         "created_at": "created_at",
         "updated_at": "updated_at",
         "galleries": [
@@ -72,7 +72,7 @@ const testProductResponseJson = {
             "id": 1,
             "products_id": 1,
             "url": "url",
-            "deleted_at": null,
+            "deleted_at": "deleted_at",
             "created_at": "created_at",
             "updated_at": "updated_at"
           }

@@ -3,7 +3,7 @@
         "data": [
             {
                 "id": 1,
-                "name": "Name",
+                "name": "name",
                 "price": 1,
                 "description": "description",
                 "tags": null,
