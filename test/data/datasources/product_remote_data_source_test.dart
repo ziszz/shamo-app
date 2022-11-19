@@ -74,5 +74,14 @@ void main() {
       final result = await dataSource.getTransactions();
       expect(result, testTransactionModelList);
     });
+
+    test("should throw server exception when the response code is 404 or other",
+        () async {
+      when(mockIOClient
+              .get(Uri.parse("${dotenv.env["apiUrl"]}/api/transactions")))
+          .thenAnswer((_) async => http.Response("Not Found", 404));
+      final result = dataSource.getTransactions();
+      expect(result, throwsA(isA<ServerException>()));
+    });
   });
 }
