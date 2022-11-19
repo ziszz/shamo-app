@@ -7,7 +7,7 @@ import 'package:shamo_app/data/models/product_response.dart';
 import 'package:shamo_app/utilities/exceptions.dart';
 
 abstract class ProductRemoteDataSource {
-  Future<List<ProductModel>> getProduct();
+  Future<List<ProductModel>> getProducts();
 }
 
 class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
@@ -16,7 +16,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   const ProductRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<List<ProductModel>> getProduct() async {
+  Future<List<ProductModel>> getProducts() async {
     final response = await client.get(
       Uri.parse("${dotenv.env["apiUrl"]}/api/products"),
     );

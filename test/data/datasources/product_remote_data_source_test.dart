@@ -29,7 +29,7 @@ void main() {
       when(mockIOClient.get(Uri.parse("${dotenv.env['apiUrl']}/api/products")))
           .thenAnswer((_) async =>
               http.Response(readJson("dummy_data/product.json"), 200));
-      final result = await dataSource.getProduct();
+      final result = await dataSource.getProducts();
       expect(result, equals(testProductModelList));
     });
 
@@ -38,8 +38,20 @@ void main() {
         () async {
       when(mockIOClient.get(Uri.parse("${dotenv.env['apiUrl']}/api/products")))
           .thenAnswer((_) async => http.Response("Not Found", 404));
-      final result = dataSource.getProduct();
+      final result = dataSource.getProducts();
       expect(result, throwsA(isA<ServerException>()));
+    });
+  });
+
+  group("get Product Categories", () {
+    test("should return list of Category Model when the response code is 200",
+        () async {
+      when(mockIOClient
+              .get(Uri.parse("${dotenv.env["apiUrl"]}/api/categories")))
+          .thenAnswer((_) async =>
+              http.Response(readJson("dummy_data/category.json"), 200));
+      final result = await dataSource.getProductCategories();
+      expect(result, testCategoryModelList);
     });
   });
 }
