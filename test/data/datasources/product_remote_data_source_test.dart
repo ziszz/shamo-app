@@ -54,7 +54,7 @@ void main() {
       expect(result, testCategoryModelList);
     });
 
-    test(sdgad
+    test(
         "should throw a server exception when the response code is 404 or other",
         () async {
       when(mockIOClient
