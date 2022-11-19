@@ -6,7 +6,7 @@ import '../../dummy_data/dummy_object.dart';
 void main() {
   test("should return a valid Model from JSON", () async {
     const jsonMap = testProductResponseJson;
-    final result = ProductResponse.fromJson(jsonMap);
+    final result = ProductResponse.fromJson(jsonMap).productList;
     expect(result, testProductResponse);
   });
 }
