@@ -2,12 +2,15 @@ import 'dart:convert';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/io_client.dart';
+import 'package:shamo_app/data/models/category_model.dart';
+import 'package:shamo_app/data/models/category_response.dart';
 import 'package:shamo_app/data/models/product_model.dart';
 import 'package:shamo_app/data/models/product_response.dart';
 import 'package:shamo_app/utilities/exceptions.dart';
 
 abstract class ProductRemoteDataSource {
   Future<List<ProductModel>> getProducts();
+  Future<List<CategoryModel>> getProductCategories();
 }
 
 class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
@@ -24,6 +27,20 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
     if (response.statusCode == 200) {
       final result =
           ProductResponse.fromJson(json.decode(response.body)).productList;
+      return result;
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<List<CategoryModel>> getProductCategories() async {
+    final response =
+        await client.get(Uri.parse("${dotenv.env["apiUrl"]}/api/categories"));
+
+    if (response.statusCode == 200) {
+      final result =
+          CategoryResponse.fromJson(json.decode(response.body)).catagoryList;
       return result;
     } else {
       throw ServerException();

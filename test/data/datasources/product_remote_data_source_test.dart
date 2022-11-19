@@ -53,5 +53,15 @@ void main() {
       final result = await dataSource.getProductCategories();
       expect(result, testCategoryModelList);
     });
+
+    test(
+        "should throw a server exception when the response code is 404 or other",
+        () async {
+      when(mockIOClient
+              .get(Uri.parse("${dotenv.env["apiUrl"]}/api/categories")))
+          .thenAnswer((_) async => http.Response("Not Found", 404));
+      final result = dataSource.getProductCategories();
+      expect(result, throwsA(isA<ServerException>()));
+    });
   });
 }
