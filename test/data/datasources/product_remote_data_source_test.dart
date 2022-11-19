@@ -64,4 +64,15 @@ void main() {
       expect(result, throwsA(isA<ServerException>()));
     });
   });
+
+  group("get Transaction", () {
+    test("should return a valid Model from JSON", () async {
+      when(mockIOClient
+              .get(Uri.parse("${dotenv.env["apiUrl"]}/api/transactions")))
+          .thenAnswer((_) async =>
+              http.Response(readJson("dummy_data/transactions.json"), 200));
+      final result = await dataSource.getTransactions();
+      expect(result, testTransactionModelList);
+    });
+  });
 }

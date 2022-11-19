@@ -4,15 +4,16 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i5;
-import 'dart:convert' as _i8;
-import 'dart:typed_data' as _i9;
+import 'dart:convert' as _i9;
+import 'dart:typed_data' as _i10;
 
 import 'package:http/io_client.dart' as _i2;
-import 'package:http/src/base_request.dart' as _i7;
+import 'package:http/src/base_request.dart' as _i8;
 import 'package:http/src/response.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:shamo_app/data/datasources/product_remote_data_source.dart'
     as _i4;
+import 'package:shamo_app/data/models/category_model.dart' as _i7;
 import 'package:shamo_app/data/models/product_model.dart' as _i6;
 
 // ignore_for_file: type=lint
@@ -57,14 +58,24 @@ class MockProductRemoteDataSource extends _i1.Mock
   }
 
   @override
-  _i5.Future<List<_i6.ProductModel>> getProduct() => (super.noSuchMethod(
+  _i5.Future<List<_i6.ProductModel>> getProducts() => (super.noSuchMethod(
         Invocation.method(
-          #getProduct,
+          #getProducts,
           [],
         ),
         returnValue:
             _i5.Future<List<_i6.ProductModel>>.value(<_i6.ProductModel>[]),
       ) as _i5.Future<List<_i6.ProductModel>>);
+  @override
+  _i5.Future<List<_i7.CategoryModel>> getProductCategories() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getProductCategories,
+          [],
+        ),
+        returnValue:
+            _i5.Future<List<_i7.CategoryModel>>.value(<_i7.CategoryModel>[]),
+      ) as _i5.Future<List<_i7.CategoryModel>>);
 }
 
 /// A class which mocks [IOClient].
@@ -76,7 +87,7 @@ class MockIOClient extends _i1.Mock implements _i2.IOClient {
   }
 
   @override
-  _i5.Future<_i2.IOStreamedResponse> send(_i7.BaseRequest? request) =>
+  _i5.Future<_i2.IOStreamedResponse> send(_i8.BaseRequest? request) =>
       (super.noSuchMethod(
         Invocation.method(
           #send,
@@ -144,7 +155,7 @@ class MockIOClient extends _i1.Mock implements _i2.IOClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i8.Encoding? encoding,
+    _i9.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -174,7 +185,7 @@ class MockIOClient extends _i1.Mock implements _i2.IOClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i8.Encoding? encoding,
+    _i9.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -204,7 +215,7 @@ class MockIOClient extends _i1.Mock implements _i2.IOClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i8.Encoding? encoding,
+    _i9.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -234,7 +245,7 @@ class MockIOClient extends _i1.Mock implements _i2.IOClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i8.Encoding? encoding,
+    _i9.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -273,7 +284,7 @@ class MockIOClient extends _i1.Mock implements _i2.IOClient {
         returnValue: _i5.Future<String>.value(''),
       ) as _i5.Future<String>);
   @override
-  _i5.Future<_i9.Uint8List> readBytes(
+  _i5.Future<_i10.Uint8List> readBytes(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -283,6 +294,6 @@ class MockIOClient extends _i1.Mock implements _i2.IOClient {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i5.Future<_i9.Uint8List>.value(_i9.Uint8List(0)),
-      ) as _i5.Future<_i9.Uint8List>);
+        returnValue: _i5.Future<_i10.Uint8List>.value(_i10.Uint8List(0)),
+      ) as _i5.Future<_i10.Uint8List>);
 }

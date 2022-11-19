@@ -8,7 +8,7 @@ class ProductModel extends Equatable {
   final String description;
   final String? tags;
   final int categoriesId;
-  final List<GalleryModel> galleries;
+  final List<GalleryModel>? galleries;
   final String createdAt;
   final String updatedAt;
 
@@ -31,9 +31,12 @@ class ProductModel extends Equatable {
         description: json["description"],
         tags: json["tags"],
         categoriesId: json["categories_id"],
-        galleries: List<GalleryModel>.from(
-          (json["galleries"] as List).map((e) => GalleryModel.fromJson(e)),
-        ),
+        galleries: json["galleries"] != null
+            ? List<GalleryModel>.from(
+                (json["galleries"] as List)
+                    .map((e) => GalleryModel.fromJson(e)),
+              )
+            : [],
         createdAt: json["created_at"],
         updatedAt: json["updated_at"],
       );
@@ -45,7 +48,7 @@ class ProductModel extends Equatable {
         "description": description,
         "tags": tags,
         "categories_id": categoriesId,
-        "galleries": galleries.map((e) => e.toJson()).toList(),
+        "galleries": galleries?.map((e) => e.toJson()).toList(),
         "created_at": createdAt,
         "updated_at": updatedAt,
       };
