@@ -1,3 +1,5 @@
+import 'package:shamo_app/data/models/category_model.dart';
+import 'package:shamo_app/data/models/category_response.dart';
 import "package:shamo_app/data/models/gallery_model.dart";
 import "package:shamo_app/data/models/product_model.dart";
 import "package:shamo_app/data/models/product_response.dart";
@@ -84,3 +86,37 @@ const testProductResponseJson = {
 
 final testProductResponse =
     ProductResponse.fromJson(testProductResponseJson).productList;
+
+const testCategoryJson = {
+  "id": 1,
+  "name": "name",
+  "created_at": "created_at",
+  "updated_at": "updated_at",
+};
+
+const testCategoryModel = CategoryModel(
+  id: 1,
+  name: "name",
+  createdAt: "created_at",
+  updatedAt: "updated_at",
+);
+
+const testCategoryModelList = [testCategoryModel];
+
+const testCategoryResponseJson = {
+  "data": {
+    "current_page": 1,
+    "data": [
+      {
+        "id": 1,
+        "name": "Sport",
+        "deleted_at": null,
+        "created_at": "2021-04-15T02:15:27.000000Z",
+        "updated_at": "2021-04-15T02:15:27.000000Z"
+      },
+    ]
+  }
+};
+
+final testCategoryResponse =
+    CategoryResponse.fromJson(testCategoryJson).catagoryList;
