@@ -11,8 +11,8 @@ void main() {
   });
 
   test("should return a JSON map containing proper data", () async {
-    final result = testProductModel.toJson();
     const expectedJson = testProductJson;
+    final result = testProductModel.toJson();
     expect(result, expectedJson);
   });
 }
