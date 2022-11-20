@@ -70,7 +70,7 @@ void main() {
               body: jsonEncode(body)))
           .thenAnswer((_) async =>
               http.Response(readJson("dummy_data/login.json"), 200));
-      final result = dataSource.login(testEmail, testPass);
+      final result = await dataSource.login(testEmail, testPass);
       expect(result, testUserModel);
     });
 
