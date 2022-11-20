@@ -29,7 +29,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
 
     if (response.statusCode == 200) {
       final result =
-          ProductResponse.fromJson(json.decode(response.body)).productList;
+          ProductResponse.fromJson(jsonDecode(response.body)).productList;
       return result;
     } else {
       throw ServerException();
@@ -43,7 +43,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
 
     if (response.statusCode == 200) {
       final result =
-          CategoryResponse.fromJson(json.decode(response.body)).catagoryList;
+          CategoryResponse.fromJson(jsonDecode(response.body)).catagoryList;
       return result;
     } else {
       throw ServerException();
@@ -56,7 +56,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
         await client.get(Uri.parse("${dotenv.env["apiUrl"]}/api/transactions"));
 
     if (response.statusCode == 200) {
-      final result = TransactionResponse.fromJson(json.decode(response.body))
+      final result = TransactionResponse.fromJson(jsonDecode(response.body))
           .transactionList;
       return result;
     } else {
