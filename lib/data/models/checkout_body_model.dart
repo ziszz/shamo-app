@@ -17,7 +17,7 @@ class CheckoutBodyModel extends Equatable {
 
   Map<String, dynamic> toJson() => {
         "address": address,
-        "items": items.map((e) => e.toJson()),
+        "items": items.map((e) => e.toJson()).toList(),
         "status": status,
         "total_price": totalPrice,
         "shipping_price": shippingPrice,

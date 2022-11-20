@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -24,7 +26,10 @@ void main() {
   });
 
   const testToken = "access_token";
-  const testHeaders = {"Authorization": "Bearer $testToken"};
+  const testHeaders = {
+    "Accept": "application/json",
+    "Authorization": "Bearer $testToken",
+  };
 
   group("get Product", () {
     test("should return list of Product Model when the response code is 200",
@@ -92,17 +97,29 @@ void main() {
     });
   });
 
-  group("Checkout", () async {
-    const testBody = {};
+  group("Checkout", () {
+    const testBody = testCheckoutBodyModel;
     test("should return a Transaction Model when the response code is 200",
         () async {
       when(mockIOClient.post(
-        Uri.parse("${dotenv.env["checkout"]}"),
-        body: testBody,
+        Uri.parse("${dotenv.env["apiUrl"]}/api/checkout"),
+        body: jsonEncode(testBody.toJson()),
         headers: testHeaders,
-      ));
-      final result = await dataSource.checkout(testBody);
+      )).thenAnswer((_) async =>
+          http.Response(readJson("dummy_data/checkout.json"), 200));
+      final result = await dataSource.checkout(testToken, testBody);
       expect(result, testTransactionModel);
+    });
+
+    test("should throw server exception when the response code is 404 or other",
+        () async {
+      when(mockIOClient.post(
+        Uri.parse("${dotenv.env["apiUrl"]}/api/checkout"),
+        body: jsonEncode(testBody.toJson()),
+        headers: testHeaders,
+      )).thenAnswer((_) async => http.Response("Not Found", 404));
+      final result = dataSource.checkout(testToken, testBody);
+      expect(result, throwsA(isA<ServerException>()));
     });
   });
 }

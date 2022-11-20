@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/io_client.dart';
 import 'package:shamo_app/data/models/category_model.dart';
 import 'package:shamo_app/data/models/category_response.dart';
+import 'package:shamo_app/data/models/checkout_body_model.dart';
 import 'package:shamo_app/data/models/product_model.dart';
 import 'package:shamo_app/data/models/product_response.dart';
 import 'package:shamo_app/data/models/transaction_model.dart';
@@ -14,6 +15,8 @@ abstract class ProductRemoteDataSource {
   Future<List<ProductModel>> getProducts();
   Future<List<CategoryModel>> getProductCategories();
   Future<List<TransactionModel>> getTransactions(int idUser, String token);
+  Future<TransactionModel> checkout(
+      String token, CheckoutBodyModel checkoutData);
 }
 
 class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
@@ -53,7 +56,10 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   @override
   Future<List<TransactionModel>> getTransactions(
       int idUser, String token) async {
-    final headers = {"Authorization": "Bearer $token"};
+    final headers = {
+      "Accept": "application/json",
+      "Authorization": "Bearer $token",
+    };
     final response = await client.get(
         Uri.parse("${dotenv.env["apiUrl"]}/api/transactions?id=$idUser"),
         headers: headers);
@@ -61,6 +67,28 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
     if (response.statusCode == 200) {
       final result = TransactionResponse.fromJson(jsonDecode(response.body))
           .transactionList;
+      return result;
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<TransactionModel> checkout(
+      String token, CheckoutBodyModel checkoutData) async {
+    final headers = {
+      "Accept": "application/json",
+      "Authorization": "Bearer $token",
+    };
+
+    final response = await client.post(
+        Uri.parse("${dotenv.env["apiUrl"]}/api/checkout"),
+        body: jsonEncode(checkoutData.toJson()),
+        headers: headers);
+
+    if (response.statusCode == 200) {
+      final result =
+          TransactionModel.fromJson(jsonDecode(response.body)["data"]);
       return result;
     } else {
       throw ServerException();

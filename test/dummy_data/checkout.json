@@ -1,0 +1,36 @@
+{
+    "data": {
+        "id": 1,
+        "users_id": 1,
+        "address": "address",
+        "total_price": 1,
+        "shipping_price": 1,
+        "status": "status",
+        "payment": "payment",
+        "deleted_at": null,
+        "created_at": "created_at",
+        "updated_at": "updated_at",
+        "items": [
+            {
+                "id": 1,
+                "users_id": 1,
+                "products_id": 1,
+                "transactions_id": 1,
+                "quantity": 1,
+                "created_at": "created_at",
+                "updated_at": "updated_at",
+                "product": {
+                    "id": 1,
+                    "name": "name",
+                    "price": 1,
+                    "description": "description",
+                    "tags": null,
+                    "categories_id": 5,
+                    "deleted_at": null,
+                    "created_at": "created_at",
+                    "updated_at": "updated_at"
+                }
+            }
+        ]
+    }
+}
