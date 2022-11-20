@@ -13,7 +13,7 @@ import 'package:shamo_app/utilities/exceptions.dart';
 abstract class ProductRemoteDataSource {
   Future<List<ProductModel>> getProducts();
   Future<List<CategoryModel>> getProductCategories();
-  Future<List<TransactionModel>> getTransactions();
+  Future<List<TransactionModel>> getTransactions(int idUser, String token);
 }
 
 class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
@@ -51,9 +51,12 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   }
 
   @override
-  Future<List<TransactionModel>> getTransactions() async {
-    final response =
-        await client.get(Uri.parse("${dotenv.env["apiUrl"]}/api/transactions"));
+  Future<List<TransactionModel>> getTransactions(
+      int idUser, String token) async {
+    final headers = {"Authorization": "Bearer $token"};
+    final response = await client.get(
+        Uri.parse("${dotenv.env["apiUrl"]}/api/transactions?id=$idUser"),
+        headers: headers);
 
     if (response.statusCode == 200) {
       final result = TransactionResponse.fromJson(jsonDecode(response.body))

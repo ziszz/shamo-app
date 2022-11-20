@@ -10,7 +10,8 @@ abstract class AuthRemoteDataSource {
   Future<UserModel> register(
       String name, String email, String username, String password);
   Future<UserModel> login(String email, String password);
-  Future<UserModel> updateProfile(String name, String email, String username);
+  Future<UserModel> updateProfile(
+      String token, String name, String email, String username);
   Future<bool> logout(String token);
 }
 
@@ -60,8 +61,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<bool> logout(String token) async {
-    final response =
-        await client.post(Uri.parse("${dotenv.env["apiUrl"]}/api/logout"));
+    final headers = {"Authorization": "Bearer $token"};
+    final response = await client.post(
+      Uri.parse("${dotenv.env["apiUrl"]}/api/logout"),
+      headers: headers,
+    );
 
     if (response.statusCode == 200) {
       final result = jsonDecode(response.body)["data"];
@@ -73,7 +77,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<UserModel> updateProfile(
-      String name, String email, String username) async {
+      String token, String name, String email, String username) async {
+    final headers = {"Authorization": "Bearer $token"};
     final body = {
       "name": name,
       "email": email,
@@ -83,6 +88,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     final response = await client.post(
       Uri.parse("${dotenv.env["apiUrl"]}/api/user"),
       body: jsonEncode(body),
+      headers: headers,
     );
 
     if (response.statusCode == 200) {

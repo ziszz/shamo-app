@@ -66,21 +66,27 @@ void main() {
   });
 
   group("get Transaction", () {
+    const testId = 1;
+    const testToken = "access_token";
+    const headers = {"Authorization": "Bearer $testToken"};
+
     test("should return a valid Model from JSON", () async {
-      when(mockIOClient
-              .get(Uri.parse("${dotenv.env["apiUrl"]}/api/transactions")))
+      when(mockIOClient.get(
+              Uri.parse("${dotenv.env["apiUrl"]}/api/transactions?id=$testId"),
+              headers: headers))
           .thenAnswer((_) async =>
               http.Response(readJson("dummy_data/transactions.json"), 200));
-      final result = await dataSource.getTransactions();
+      final result = await dataSource.getTransactions(testId, testToken);
       expect(result, testTransactionModelList);
     });
 
     test("should throw server exception when the response code is 404 or other",
         () async {
-      when(mockIOClient
-              .get(Uri.parse("${dotenv.env["apiUrl"]}/api/transactions")))
+      when(mockIOClient.get(
+              Uri.parse("${dotenv.env["apiUrl"]}/api/transactions?id=$testId"),
+              headers: headers))
           .thenAnswer((_) async => http.Response("Not Found", 404));
-      final result = dataSource.getTransactions();
+      final result = dataSource.getTransactions(testId, testToken);
       expect(result, throwsA(isA<ServerException>()));
     });
   });
