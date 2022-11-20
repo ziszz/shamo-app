@@ -6,6 +6,7 @@ import "package:shamo_app/data/models/product_response.dart";
 import 'package:shamo_app/data/models/transaction_item_model.dart';
 import 'package:shamo_app/data/models/transaction_model.dart';
 import 'package:shamo_app/data/models/transaction_response.dart';
+import 'package:shamo_app/data/models/user_model.dart';
 
 const testGalleryJson = {
   "id": 1,
@@ -261,3 +262,19 @@ const testTransactionResponseJson = {
 
 final testTransactionResponse =
     TransactionResponse.fromJson(testTransactionResponseJson).transactionList;
+
+const testUserLoginJson = {
+  "access_token": "access_token",
+  "user": {
+    "id": 1,
+    "name": "name",
+    "email": "email",
+    "username": "username",
+    "roles": "roles",
+    "created_at": "created_at",
+    "updated_at": "updated_at",
+    "profile_photo_url": "profile_photo_url"
+  }
+};
+
+final testUserLoginModel = UserModel.fromJson(testUserLoginJson);
