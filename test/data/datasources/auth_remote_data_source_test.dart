@@ -29,22 +29,21 @@ void main() {
     const testEmail = "abdaziz1181@gmail.com";
     const testUsername = "abdaziz1181";
     const testPass = "12345678";
-    const testPhone = "123123123";
 
     const body = {
       "name": testName,
       "email": testEmail,
       "username": testUsername,
       "password": testPass,
-      "phone": testPhone,
     };
+
     test("should return User Model when the response code is 200", () async {
       when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/register"),
               body: jsonEncode(body)))
           .thenAnswer((_) async =>
-              http.Response(readJson("dummy_data/register.json"), 200));
+              http.Response(readJson("dummy_data/user.json"), 200));
       final result = await dataSource.register(
-          testName, testEmail, testUsername, testPass, testPhone);
+          testName, testEmail, testUsername, testPass);
       expect(result, testUserModel);
     });
 
@@ -53,8 +52,8 @@ void main() {
       when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/register"),
               body: jsonEncode(body)))
           .thenAnswer((_) async => http.Response("Not Found", 404));
-      final result = dataSource.register(
-          testName, testEmail, testUsername, testPass, testPhone);
+      final result =
+          dataSource.register(testName, testEmail, testUsername, testPass);
       expect(result, throwsA(isA<ServerException>()));
     });
   });
@@ -69,7 +68,7 @@ void main() {
       when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/login"),
               body: jsonEncode(body)))
           .thenAnswer((_) async =>
-              http.Response(readJson("dummy_data/login.json"), 200));
+              http.Response(readJson("dummy_data/user.json"), 200));
       final result = await dataSource.login(testEmail, testPass);
       expect(result, testUserModel);
     });
@@ -80,6 +79,38 @@ void main() {
               body: jsonEncode(body)))
           .thenAnswer((_) async => http.Response("Not Found", 404));
       final result = dataSource.login(testEmail, testPass);
+      expect(result, throwsA(isA<ServerException>()));
+    });
+  });
+
+  group("Update Profile", () {
+    const testName = "Zis";
+    const testEmail = "abdaziz1181@gmail.com";
+    const testUsername = "abdaziz1181";
+
+    const body = {
+      "name": testName,
+      "email": testEmail,
+      "username": testUsername,
+    };
+
+    test('should return user model when the response code is 200', () async {
+      when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/user"),
+              body: jsonEncode(body)))
+          .thenAnswer((_) async =>
+              http.Response(readJson("dummy_data/user.json"), 200));
+      final result =
+          await dataSource.updateProfile(testName, testEmail, testUsername);
+      expect(result, testUserModel);
+    });
+
+    test('should throw server exceptio when the response code is 404 or other',
+        () async {
+      when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/user"),
+              body: jsonEncode(body)))
+          .thenAnswer((_) async => http.Response("NotFound", 404));
+      final result =
+          dataSource.updateProfile(testName, testEmail, testUsername);
       expect(result, throwsA(isA<ServerException>()));
     });
   });

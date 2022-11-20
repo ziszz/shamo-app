@@ -6,9 +6,10 @@ import 'package:shamo_app/data/models/user_model.dart';
 import 'package:shamo_app/utilities/exceptions.dart';
 
 abstract class AuthRemoteDataSource {
-  Future<UserModel> register(String name, String email, String username,
-      String password, String phone);
+  Future<UserModel> register(
+      String name, String email, String username, String password);
   Future<UserModel> login(String email, String password);
+  Future<UserModel> updateProfile(String name, String email, String username);
   Future<bool> logout(String token);
 }
 
@@ -18,14 +19,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   const AuthRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<UserModel> register(String name, String email, String username,
-      String password, String phone) async {
+  Future<UserModel> register(
+      String name, String email, String username, String password) async {
     final body = {
       "name": name,
       "email": email,
       "username": username,
       "password": password,
-      "phone": phone,
     };
 
     final response = await client.post(
@@ -64,6 +64,28 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
     if (response.statusCode == 200) {
       final result = jsonDecode(response.body)["data"];
+      return result;
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<UserModel> updateProfile(
+      String name, String email, String username) async {
+    final body = {
+      "name": name,
+      "email": email,
+      "username": username,
+    };
+
+    final response = await client.post(
+      Uri.parse("${dotenv.env["apiUrl"]}/api/user"),
+      body: jsonEncode(body),
+    );
+
+    if (response.statusCode == 200) {
+      final result = UserModel.fromJson(jsonDecode(response.body)["data"]);
       return result;
     } else {
       throw ServerException();
