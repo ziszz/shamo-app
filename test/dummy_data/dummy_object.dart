@@ -1,5 +1,6 @@
 import 'package:shamo_app/data/models/category_model.dart';
 import 'package:shamo_app/data/models/category_response.dart';
+import 'package:shamo_app/data/models/checkout_body_model.dart';
 import "package:shamo_app/data/models/gallery_model.dart";
 import "package:shamo_app/data/models/product_model.dart";
 import "package:shamo_app/data/models/product_response.dart";
@@ -287,4 +288,32 @@ const testUserModel = UserModel(
   profilePhotoUrl: "profile_photo_url",
   createdAt: "created_at",
   updatedAt: "updated_at",
+);
+
+const testCheckoutItemJson = {
+  "id": 1,
+  "quantity": 1,
+};
+
+const testCheckoutItemModel = CheckoutItemModel(id: 1, quantity: 1);
+
+const testCheckoutBodyJson = {
+  "address": "address",
+  "items": [
+    {
+      "id": 1,
+      "quantity": 1,
+    },
+  ],
+  "status": "status",
+  "total_price": 1,
+  "shipping_price": 1,
+};
+
+const testCheckoutBodyModel = CheckoutBodyModel(
+  address: "address",
+  items: [testCheckoutItemModel],
+  status: "status",
+  totalPrice: 1,
+  shippingPrice: 1,
 );

@@ -23,6 +23,9 @@ void main() {
     );
   });
 
+  const testToken = "access_token";
+  const testHeaders = {"Authorization": "Bearer $testToken"};
+
   group("get Product", () {
     test("should return list of Product Model when the response code is 200",
         () async {
@@ -67,13 +70,11 @@ void main() {
 
   group("get Transaction", () {
     const testId = 1;
-    const testToken = "access_token";
-    const headers = {"Authorization": "Bearer $testToken"};
 
     test("should return a valid Model from JSON", () async {
       when(mockIOClient.get(
               Uri.parse("${dotenv.env["apiUrl"]}/api/transactions?id=$testId"),
-              headers: headers))
+              headers: testHeaders))
           .thenAnswer((_) async =>
               http.Response(readJson("dummy_data/transactions.json"), 200));
       final result = await dataSource.getTransactions(testId, testToken);
@@ -84,10 +85,24 @@ void main() {
         () async {
       when(mockIOClient.get(
               Uri.parse("${dotenv.env["apiUrl"]}/api/transactions?id=$testId"),
-              headers: headers))
+              headers: testHeaders))
           .thenAnswer((_) async => http.Response("Not Found", 404));
       final result = dataSource.getTransactions(testId, testToken);
       expect(result, throwsA(isA<ServerException>()));
+    });
+  });
+
+  group("Checkout", () async {
+    const testBody = {};
+    test("should return a Transaction Model when the response code is 200",
+        () async {
+      when(mockIOClient.post(
+        Uri.parse("${dotenv.env["checkout"]}"),
+        body: testBody,
+        headers: testHeaders,
+      ));
+      final result = await dataSource.checkout(testBody);
+      expect(result, testTransactionModel);
     });
   });
 }
