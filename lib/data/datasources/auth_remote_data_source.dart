@@ -6,6 +6,7 @@ import 'package:shamo_app/data/models/user_model.dart';
 import 'package:shamo_app/utilities/exceptions.dart';
 
 abstract class AuthRemoteDataSource {
+  Future<UserModel> getUser(String token);
   Future<UserModel> register(
       String name, String email, String username, String password);
   Future<UserModel> login(String email, String password);
@@ -83,6 +84,20 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       Uri.parse("${dotenv.env["apiUrl"]}/api/user"),
       body: jsonEncode(body),
     );
+
+    if (response.statusCode == 200) {
+      final result = UserModel.fromJson(jsonDecode(response.body)["data"]);
+      return result;
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<UserModel> getUser(String token) async {
+    final headers = {"Authorization": "Bearer $token"};
+    final response = await client
+        .get(Uri.parse("${dotenv.env["apiUrl"]}/api/user"), headers: headers);
 
     if (response.statusCode == 200) {
       final result = UserModel.fromJson(jsonDecode(response.body)["data"]);

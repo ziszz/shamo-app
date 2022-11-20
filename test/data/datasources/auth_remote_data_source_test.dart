@@ -24,6 +24,29 @@ void main() {
       client: mockIOClient,
     );
   });
+
+  group("get User", () {
+    const token = "access_token";
+    const headers = {"Authorization": "Bearer $token"};
+    test("should return User Model when the response code is 200", () async {
+      when(mockIOClient.get(Uri.parse("${dotenv.env["apiUrl"]}/api/user"),
+              headers: headers))
+          .thenAnswer((_) async =>
+              http.Response(readJson("dummy_data/user.json"), 200));
+      final result = await dataSource.getUser(token);
+      expect(result, testUserModel);
+    });
+
+    test("should throw server exception when the response code is 404 or other",
+        () async {
+      when(mockIOClient.get(Uri.parse("${dotenv.env["apiUrl"]}/api/user"),
+              headers: headers))
+          .thenAnswer((_) async => http.Response("Not Found", 404));
+      final result = dataSource.getUser(token);
+      expect(result, throwsA(isA<ServerException>()));
+    });
+  });
+
   group("Register", () {
     const testName = "Zis";
     const testEmail = "abdaziz1181@gmail.com";
