@@ -1,0 +1,20 @@
+{
+    "data": {
+        "access_token": "access_token",
+        "token_type": "token_type",
+        "user": {
+            "id": 1,
+            "name": "name",
+            "email": "email",
+            "username": "username",
+            "phone": "phone",
+            "roles": "roles",
+            "email_verified_at": null,
+            "current_team_id": null,
+            "profile_photo_path": null,
+            "created_at": "created_at",
+            "updated_at": "updated_at",
+            "profile_photo_url": "profile_photo_url"
+        }
+    }
+}

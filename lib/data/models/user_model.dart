@@ -6,6 +6,7 @@ class UserModel extends Equatable {
   final String name;
   final String email;
   final String username;
+  final String? phone;
   final String roles;
   final String profilePhotoUrl;
   final String createdAt;
@@ -17,6 +18,7 @@ class UserModel extends Equatable {
     required this.name,
     required this.email,
     required this.username,
+    required this.phone,
     required this.roles,
     required this.profilePhotoUrl,
     required this.createdAt,
@@ -29,6 +31,7 @@ class UserModel extends Equatable {
         name: json["user"]["name"],
         email: json["user"]["email"],
         username: json["user"]["username"],
+        phone: json["user"]["phone"] ?? "",
         roles: json["user"]["roles"],
         profilePhotoUrl: json["user"]["profile_photo_url"],
         createdAt: json["user"]["created_at"],
@@ -42,6 +45,7 @@ class UserModel extends Equatable {
           "name": name,
           "email": email,
           "username": username,
+          "phone": phone ?? "",
           "roles": roles,
           "profile_photo_url": profilePhotoUrl,
           "created_at": createdAt,

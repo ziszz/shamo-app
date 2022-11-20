@@ -5,13 +5,13 @@ import '../../dummy_data/dummy_object.dart';
 
 void main() {
   test("should return a valid Model when the response code is 200", () async {
-    const jsonMap = testUserLoginJson;
+    const jsonMap = testUserJson;
     final result = UserModel.fromJson(jsonMap);
     expect(result, testUserModel);
   });
 
   test("should return json containing proper data", () async {
-    const expectedJson = testUserLoginJson;
+    const expectedJson = testUserJson;
     final result = testUserModel.toJson();
     expect(result, expectedJson);
   });

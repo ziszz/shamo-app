@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -22,22 +24,60 @@ void main() {
       client: mockIOClient,
     );
   });
-
-  group("Login", () {
+  group("Register", () {
+    const testName = "Zis";
     const testEmail = "abdaziz1181@gmail.com";
+    const testUsername = "abdaziz1181";
     const testPass = "12345678";
+    const testPhone = "123123123";
 
+    const body = {
+      "name": testName,
+      "email": testEmail,
+      "username": testUsername,
+      "password": testPass,
+      "phone": testPhone,
+    };
     test("should return User Model when the response code is 200", () async {
-      when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/login")))
+      when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/register"),
+              body: jsonEncode(body)))
           .thenAnswer((_) async =>
-              http.Response(readJson("dummy_data/login.json"), 200));
-      final result = await dataSource.login(testEmail, testPass);
+              http.Response(readJson("dummy_data/register.json"), 200));
+      final result = await dataSource.register(
+          testName, testEmail, testUsername, testPass, testPhone);
       expect(result, testUserModel);
     });
 
     test("should throw server exception when the response code is 404 or other",
         () async {
-      when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/login")))
+      when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/register"),
+              body: jsonEncode(body)))
+          .thenAnswer((_) async => http.Response("Not Found", 404));
+      final result = dataSource.register(
+          testName, testEmail, testUsername, testPass, testPhone);
+      expect(result, throwsA(isA<ServerException>()));
+    });
+  });
+
+  group("Login", () {
+    const testEmail = "abdaziz1181@gmail.com";
+    const testPass = "12345678";
+
+    const body = {"email": testEmail, "password": testPass};
+
+    test("should return User Model when the response code is 200", () async {
+      when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/login"),
+              body: jsonEncode(body)))
+          .thenAnswer((_) async =>
+              http.Response(readJson("dummy_data/login.json"), 200));
+      final result = dataSource.login(testEmail, testPass);
+      expect(result, testUserModel);
+    });
+
+    test("should throw server exception when the response code is 404 or other",
+        () async {
+      when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/login"),
+              body: jsonEncode(body)))
           .thenAnswer((_) async => http.Response("Not Found", 404));
       final result = dataSource.login(testEmail, testPass);
       expect(result, throwsA(isA<ServerException>()));
@@ -45,7 +85,7 @@ void main() {
   });
 
   group("Logout", () {
-    const token = "22758|zI1Rm0NSzxm7l5MODP6c7rzR4ps0Qcpwwla1qsiU";
+    const token = "access_token";
     test("should return true when the response code is 200", () async {
       when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/logout")))
           .thenAnswer((_) async =>
