@@ -5,6 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:shamo_app/data/datasources/auth_remote_data_source.dart';
 import 'package:shamo_app/utilities/exceptions.dart';
 
+import '../../dummy_data/dummy_object.dart';
 import '../../helpers/test_helper.mocks.dart';
 import '../../json_reader.dart';
 
@@ -22,7 +23,26 @@ void main() {
     );
   });
 
-  group("Login", () {});
+  group("Login", () {
+    const testEmail = "abdaziz1181@gmail.com";
+    const testPass = "12345678";
+
+    test("should return User Model when the response code is 200", () async {
+      when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/login")))
+          .thenAnswer((_) async =>
+              http.Response(readJson("dummy_data/login.json"), 200));
+      final result = await dataSource.login(testEmail, testPass);
+      expect(result, testUserModel);
+    });
+
+    test("should throw server exception when the response code is 404 or other",
+        () async {
+      when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/login")))
+          .thenAnswer((_) async => http.Response("Not Found", 404));
+      final result = dataSource.login(testEmail, testPass);
+      expect(result, throwsA(isA<ServerException>()));
+    });
+  });
 
   group("Logout", () {
     const token = "22758|zI1Rm0NSzxm7l5MODP6c7rzR4ps0Qcpwwla1qsiU";

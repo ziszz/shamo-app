@@ -277,4 +277,4 @@ const testUserLoginJson = {
   }
 };
 
-final testUserLoginModel = UserModel.fromJson(testUserLoginJson);
+final testUserModel = UserModel.fromJson(testUserLoginJson);

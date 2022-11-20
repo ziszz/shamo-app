@@ -7,12 +7,12 @@ void main() {
   test("should return a valid Model when the response code is 200", () async {
     const jsonMap = testUserLoginJson;
     final result = UserModel.fromJson(jsonMap);
-    expect(result, testUserLoginModel);
+    expect(result, testUserModel);
   });
 
   test("should return json containing proper data", () async {
     const expectedJson = testUserLoginJson;
-    final result = testUserLoginModel.toJson();
+    final result = testUserModel.toJson();
     expect(result, expectedJson);
   });
 }
