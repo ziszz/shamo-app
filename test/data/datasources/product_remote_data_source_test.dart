@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:shamo_app/data/datasources/product_remote_data_source.dart';
+import 'package:shamo_app/utilities/constants.dart';
 import 'package:shamo_app/utilities/exceptions.dart';
 
 import '../../dummy_data/dummy_object.dart';
@@ -117,7 +118,7 @@ void main() {
 
   group("Checkout", () {
     const testBody = testCheckoutBodyModel;
-    test("should return a Transaction Model when the response code is 200",
+    test("should return a Success Message when the response code is 200",
         () async {
       // arrange
       when(mockIOClient.post(
@@ -129,10 +130,10 @@ void main() {
       // act
       final result = await dataSource.checkout(testToken, testBody);
       // assert
-      expect(result, testTransactionModel);
+      expect(result, Constants.checkoutSuccessMessage);
     });
 
-    test("should throw server exception when the response code is 404 or other",
+    test("should throw Failed Message when the response code is 404 or other",
         () async {
       // arrange
       when(mockIOClient.post(
@@ -141,9 +142,9 @@ void main() {
         headers: testHeaders,
       )).thenAnswer((_) async => http.Response("Not Found", 404));
       // act
-      final result = dataSource.checkout(testToken, testBody);
+      final result = await dataSource.checkout(testToken, testBody);
       // assert
-      expect(result, throwsA(isA<ServerException>()));
+      expect(result, Constants.checkoutFailedMessage);
     });
   });
 }

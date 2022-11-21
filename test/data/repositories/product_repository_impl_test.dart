@@ -19,6 +19,8 @@ void main() {
     );
   });
 
+  const testToken = "access_token";
+
   group("Product", () {
     test(
         "should return remote data when the call to remote data source is successful",
@@ -74,7 +76,6 @@ void main() {
 
   group("Transaction", () {
     const testIdUser = 1;
-    const testToken = "access_token";
 
     test(
         "should return remote data when call to the remote data source is successful",
@@ -101,4 +102,19 @@ void main() {
       expect(result, const Left(ServerFailure("")));
     });
   });
+
+  // group("Checkout", () {
+  //   test(
+  //       "should return Succes message when send data to remote data source successful",
+  //       () async {
+  //     // arrange
+  //     when(mockRemoteDataSource.checkout(testToken, testCheckoutBodyModel))
+  //         .thenAnswer((_) async => testTransactionModel);
+  //     // act
+  //     final result =
+  //         await repository.checkout(testToken, testCheckoutBodyModel);
+  //     // assert
+  //     expect(result, const Right(Constants.checkoutSuccessMessage));
+  //   });
+  // });
 }
