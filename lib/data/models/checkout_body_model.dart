@@ -43,15 +43,16 @@ class CheckoutItemModel extends Equatable {
     required this.quantity,
   });
 
+  factory CheckoutItemModel.fromEntity(CheckoutItem checkoutItem) =>
+      CheckoutItemModel(
+        id: checkoutItem.id,
+        quantity: checkoutItem.quantity,
+      );
+
   Map<String, dynamic> toJson() => {
         "id": id,
         "quantity": quantity,
       };
-
-  CheckoutItem toEntity() => CheckoutItem(
-        id: id,
-        quantity: quantity,
-      );
 
   @override
   List<Object?> get props => [

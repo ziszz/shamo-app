@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shamo_app/data/models/checkout_body_model.dart';
 
 import '../../dummy_data/dummy_object.dart';
 
@@ -12,11 +13,11 @@ void main() {
       expect(result, expectedJson);
     });
 
-    test("should return a subclass of CheckoutItem entity", () async {
+    test("should return a valid Model from Entity", () async {
       // act
-      final result = testCheckoutItemModel.toEntity();
+      final result = CheckoutItemModel.fromEntity(testCheckoutItem);
       // assert
-      expect(result, testCheckoutItem);
+      expect(result, testCheckoutItemModel);
     });
   });
 }
