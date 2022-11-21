@@ -6,14 +6,18 @@ import '../../dummy_data/dummy_object.dart';
 void main() {
   group("Category model", () {
     test("should return a valid Model from JSON", () async {
+      // act
       const jsonMap = testCategoryJson;
       final result = CategoryModel.fromJson(jsonMap);
+      // assert
       expect(result, testCategoryModel);
     });
 
     test("should return json containing proper data", () async {
+      // act
       const expectedJson = testCategoryJson;
       final result = testCategoryModel.toJson();
+      // assert
       expect(result, expectedJson);
     });
   });

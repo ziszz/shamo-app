@@ -6,8 +6,10 @@ import '../../dummy_data/dummy_object.dart';
 void main() {
   group("Transaction Response", () {
     test("should return a valid Model from JSON", () async {
+      // act
       const jsonMap = testTransactionResponseJson;
       final result = TransactionResponse.fromJson(jsonMap).transactionList;
+      // assert
       expect(result, testTransactionResponse);
     });
   });

@@ -8,7 +8,9 @@ import 'package:shamo_app/data/models/transaction_item_model.dart';
 import 'package:shamo_app/data/models/transaction_model.dart';
 import 'package:shamo_app/data/models/transaction_response.dart';
 import 'package:shamo_app/data/models/user_model.dart';
+import 'package:shamo_app/domain/entities/gallery.dart';
 
+// Model
 const testGalleryJson = {
   "id": 1,
   "products_id": 1,
@@ -316,4 +318,13 @@ const testCheckoutBodyModel = CheckoutBodyModel(
   status: "status",
   totalPrice: 1,
   shippingPrice: 1,
+);
+
+// Entity
+const testGallery = Gallery(
+  id: 1,
+  productsId: 1,
+  url: "url",
+  createdAt: "created_at",
+  updatedAt: "updated_at",
 );

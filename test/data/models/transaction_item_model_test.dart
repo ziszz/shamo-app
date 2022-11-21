@@ -6,14 +6,18 @@ import '../../dummy_data/dummy_object.dart';
 void main() {
   group("Transaction Item Model", () {
     test("should return a valid Model from JSON", () async {
+      // act
       const Map<String, dynamic> jsonMap = testTransactionItemJson;
       final result = TransactionItemModel.fromJson(jsonMap);
+      // assert
       expect(result, testTransactionItemModel);
     });
 
     test("should return a JSON map containing proper data", () async {
+      // act
       const expectedJson = testTransactionItemJson;
       final result = testTransactionItemModel.toJson();
+      // assert
       expect(result, expectedJson);
     });
   });

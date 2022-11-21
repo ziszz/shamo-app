@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:shamo_app/domain/entities/gallery.dart';
 
 class GalleryModel extends Equatable {
   final int id;
@@ -30,6 +31,14 @@ class GalleryModel extends Equatable {
         "created_at": createdAt,
         "updated_at": updatedAt,
       };
+
+  Gallery toEntity() => Gallery(
+        id: id,
+        productsId: productsId,
+        url: url,
+        createdAt: createdAt,
+        updatedAt: updatedAt,
+      );
 
   @override
   List<Object?> get props => [id, url, productsId, createdAt, updatedAt];
