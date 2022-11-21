@@ -9,6 +9,7 @@ import 'package:shamo_app/data/models/transaction_model.dart';
 import 'package:shamo_app/data/models/transaction_response.dart';
 import 'package:shamo_app/data/models/user_model.dart';
 import 'package:shamo_app/domain/entities/category.dart';
+import 'package:shamo_app/domain/entities/checkout_body.dart';
 import 'package:shamo_app/domain/entities/checkout_item.dart';
 import 'package:shamo_app/domain/entities/gallery.dart';
 import 'package:shamo_app/domain/entities/product.dart';
@@ -380,4 +381,12 @@ const testTransaction = Transaction(
 const testCheckoutItem = CheckoutItem(
   id: 1,
   quantity: 1,
+);
+
+const testCheckoutBody = CheckoutBody(
+  address: "address",
+  items: [testCheckoutItem],
+  status: "status",
+  totalPrice: 1,
+  shippingPrice: 1,
 );

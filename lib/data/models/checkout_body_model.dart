@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:shamo_app/domain/entities/checkout_body.dart';
 import 'package:shamo_app/domain/entities/checkout_item.dart';
 
 class CheckoutBodyModel extends Equatable {
@@ -15,6 +16,17 @@ class CheckoutBodyModel extends Equatable {
     required this.totalPrice,
     required this.shippingPrice,
   });
+
+  factory CheckoutBodyModel.fromEntity(CheckoutBody checkoutBody) =>
+      CheckoutBodyModel(
+        address: checkoutBody.address,
+        items: checkoutBody.items
+            .map((e) => CheckoutItemModel.fromEntity(e))
+            .toList(),
+        status: checkoutBody.status,
+        totalPrice: checkoutBody.totalPrice,
+        shippingPrice: checkoutBody.shippingPrice,
+      );
 
   Map<String, dynamic> toJson() => {
         "address": address,
