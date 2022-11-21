@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shamo_app/data/repositories/product_repository_impl.dart';
+import 'package:shamo_app/utilities/constants.dart';
 import 'package:shamo_app/utilities/exceptions.dart';
 import 'package:shamo_app/utilities/failure.dart';
 
@@ -103,18 +104,29 @@ void main() {
     });
   });
 
-  // group("Checkout", () {
-  //   test(
-  //       "should return Succes message when send data to remote data source successful",
-  //       () async {
-  //     // arrange
-  //     when(mockRemoteDataSource.checkout(testToken, testCheckoutBodyModel))
-  //         .thenAnswer((_) async => testTransactionModel);
-  //     // act
-  //     final result =
-  //         await repository.checkout(testToken, testCheckoutBodyModel);
-  //     // assert
-  //     expect(result, const Right(Constants.checkoutSuccessMessage));
-  //   });
-  // });
+  group("Checkout", () {
+    test(
+        "should return Succes message when send data to remote data source successful",
+        () async {
+      // arrange
+      when(mockRemoteDataSource.checkout(testToken, testCheckoutBodyModel))
+          .thenAnswer((_) async => Constants.checkoutSuccessMessage);
+      // act
+      final result = await repository.checkout(testToken, testCheckoutBody);
+      // assert
+      expect(result, const Right(Constants.checkoutSuccessMessage));
+    });
+
+    test(
+        "should return Failed message when send data to remote data source successful",
+        () async {
+      // arrange
+      when(mockRemoteDataSource.checkout(testToken, testCheckoutBodyModel))
+          .thenAnswer((_) async => Constants.checkoutFailedMessage);
+      // act
+      final result = await repository.checkout(testToken, testCheckoutBody);
+      // assert
+      expect(result, const Right(Constants.checkoutFailedMessage));
+    });
+  });
 }

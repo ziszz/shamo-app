@@ -130,7 +130,7 @@ void main() {
       // act
       final result = await dataSource.checkout(testToken, testBody);
       // assert
-      expect(result, Constants.checkoutSuccessMessage);
+      expect(result, true);
     });
 
     test("should throw Failed Message when the response code is 404 or other",
@@ -144,7 +144,7 @@ void main() {
       // act
       final result = await dataSource.checkout(testToken, testBody);
       // assert
-      expect(result, Constants.checkoutFailedMessage);
+      expect(result, false);
     });
   });
 }

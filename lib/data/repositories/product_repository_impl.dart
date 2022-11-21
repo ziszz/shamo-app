@@ -6,7 +6,6 @@ import 'package:shamo_app/domain/entities/checkout_body.dart';
 import 'package:shamo_app/domain/entities/product.dart';
 import 'package:shamo_app/domain/entities/transaction.dart';
 import 'package:shamo_app/domain/repositories/product_repository.dart';
-import 'package:shamo_app/utilities/constants.dart';
 import 'package:shamo_app/utilities/exceptions.dart';
 import 'package:shamo_app/utilities/failure.dart';
 
@@ -51,9 +50,6 @@ class ProductRepositoryImpl implements ProductRepository {
       String token, CheckoutBody checkoutData) async {
     final result = await remoteDataSource.checkout(
         token, CheckoutBodyModel.fromEntity(checkoutData));
-    final message = checkoutData.items.isNotEmpty
-        ? Constants.checkoutSuccessMessage
-        : Constants.checkoutFailedMessage;
-    return Right(message);
+    return Right(result);
   }
 }

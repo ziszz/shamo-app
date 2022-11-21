@@ -1,6 +1,7 @@
 import 'package:shamo_app/data/models/category_model.dart';
 import 'package:shamo_app/data/models/category_response.dart';
 import 'package:shamo_app/data/models/checkout_body_model.dart';
+import 'package:shamo_app/data/models/checkout_response.dart';
 import "package:shamo_app/data/models/gallery_model.dart";
 import "package:shamo_app/data/models/product_model.dart";
 import "package:shamo_app/data/models/product_response.dart";
@@ -324,6 +325,18 @@ const testCheckoutBodyModel = CheckoutBodyModel(
   status: "status",
   totalPrice: 1,
   shippingPrice: 1,
+);
+
+const testCheckoutJson = {
+  "code": 200,
+  "status": "status",
+  "message": "message",
+};
+
+const testCheckoutResponse = CheckoutResponse(
+  code: 200,
+  status: "status",
+  message: "message",
 );
 
 // Entity
