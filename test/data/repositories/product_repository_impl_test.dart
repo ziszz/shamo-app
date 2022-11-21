@@ -44,4 +44,19 @@ void main() {
       expect(result, const Left(ServerFailure("")));
     });
   });
+
+  group("Product Categories", () async {
+    test(
+        "should return remote data when the call to remote data source is successful",
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getProductCategories())
+          .thenAnswer((_) async => testCategoryModelList);
+      // act
+      final result = await repository.getProductCategories();
+      final resultList = result.getOrElse(() => []);
+      // assert
+      expect(resultList, [testCategory]);
+    });
+  });
 }

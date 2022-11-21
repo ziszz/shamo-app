@@ -8,6 +8,7 @@ import 'package:shamo_app/data/models/transaction_item_model.dart';
 import 'package:shamo_app/data/models/transaction_model.dart';
 import 'package:shamo_app/data/models/transaction_response.dart';
 import 'package:shamo_app/data/models/user_model.dart';
+import 'package:shamo_app/domain/entities/category.dart';
 import 'package:shamo_app/domain/entities/gallery.dart';
 import 'package:shamo_app/domain/entities/product.dart';
 
@@ -338,6 +339,13 @@ const testProduct = Product(
   tags: "",
   categoriesId: 1,
   galleries: [testGallery],
+  createdAt: "created_at",
+  updatedAt: "updated_at",
+);
+
+const testCategory = Category(
+  id: 1,
+  name: "name",
   createdAt: "created_at",
   updatedAt: "updated_at",
 );

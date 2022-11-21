@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:shamo_app/domain/entities/category.dart';
 
 class CategoryModel extends Equatable {
   final int id;
@@ -26,6 +27,13 @@ class CategoryModel extends Equatable {
         "created_at": createdAt,
         "updated_at": updatedAt,
       };
+
+  Category toEntity() => Category(
+        id: id,
+        name: name,
+        createdAt: createdAt,
+        updatedAt: updatedAt,
+      );
 
   @override
   List<Object?> get props => [id, name, createdAt, updatedAt];
