@@ -20,5 +20,10 @@ void main() {
       // assert
       expect(result, expectedJson);
     });
+
+    test("should return a subclass of Transacton entity", () async {
+      final result = testTransactionModel.toEntity();
+      expect(result, testTransaction);
+    });
   });
 }

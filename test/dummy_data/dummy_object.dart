@@ -11,6 +11,7 @@ import 'package:shamo_app/data/models/user_model.dart';
 import 'package:shamo_app/domain/entities/category.dart';
 import 'package:shamo_app/domain/entities/gallery.dart';
 import 'package:shamo_app/domain/entities/product.dart';
+import 'package:shamo_app/domain/entities/transaction.dart';
 import 'package:shamo_app/domain/entities/transaction_item.dart';
 
 // Model
@@ -358,6 +359,19 @@ const testTransactionItem = TransactionItem(
   transactionsId: 1,
   quantity: 1,
   product: testProduct,
+  createdAt: "created_at",
+  updatedAt: "updated_at",
+);
+
+const testTransaction = Transaction(
+  id: 1,
+  usersId: 1,
+  address: "address",
+  totalPrice: 1,
+  shippingPrice: 1,
+  status: "status",
+  payment: "payment",
+  items: [testTransactionItem],
   createdAt: "created_at",
   updatedAt: "updated_at",
 );
