@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shamo_app/presentation/pages/chat_detail_page.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/font_weight.dart';
+import 'package:shamo_app/utilities/constants.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -20,7 +20,7 @@ class ChatPage extends StatefulWidget {
         "Message Support",
         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: AppColors.white,
-              fontWeight: medium,
+              fontWeight: Constants.medium,
               fontSize: 18,
             ),
       ),
@@ -49,7 +49,7 @@ class _ChatPageState extends State<ChatPage> {
           "Opss no message yet?",
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 color: AppColors.white,
-                fontWeight: medium,
+                fontWeight: Constants.medium,
               ),
         ),
         const SizedBox(
@@ -103,7 +103,7 @@ class _ChatPageState extends State<ChatPage> {
         overflow: TextOverflow.ellipsis,
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: AppColors.grey,
-              fontWeight: light,
+              fontWeight: Constants.light,
             ),
       ),
       trailing: Text(

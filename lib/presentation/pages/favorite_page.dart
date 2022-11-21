@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shamo_app/presentation/pages/product_detail_page.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/font_weight.dart';
+import 'package:shamo_app/utilities/constants.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});
@@ -22,7 +22,7 @@ class FavoritePage extends StatelessWidget {
         "Favorite Shoes",
         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: AppColors.white,
-              fontWeight: medium,
+              fontWeight: Constants.medium,
               fontSize: 18,
             ),
       ),
@@ -54,7 +54,7 @@ class FavoritePage extends StatelessWidget {
             "Let's find your favorite shoes",
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: AppColors.grey,
-                  fontWeight: regular,
+                  fontWeight: Constants.regular,
                 ),
           ),
           const SizedBox(
@@ -95,14 +95,14 @@ class FavoritePage extends StatelessWidget {
         "Terrex Urban Low",
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: AppColors.white,
-              fontWeight: semiBold,
+              fontWeight: Constants.semiBold,
             ),
       ),
       subtitle: Text(
         "\$143,98",
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: AppColors.blue,
-              fontWeight: regular,
+              fontWeight: Constants.regular,
             ),
       ),
       trailing: IconButton(

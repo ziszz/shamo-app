@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shamo_app/presentation/pages/main_page.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/font_weight.dart';
+import 'package:shamo_app/utilities/constants.dart';
 
 class CheckoutSuccessPage extends StatelessWidget {
   static const routeName = "/checkout-success";
@@ -27,7 +27,7 @@ class CheckoutSuccessPage extends StatelessWidget {
                 "You made a transaction",
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: AppColors.white,
-                      fontWeight: medium,
+                      fontWeight: Constants.medium,
                     ),
               ),
               const SizedBox(
@@ -88,7 +88,7 @@ class CheckoutSuccessPage extends StatelessWidget {
         "Checkout Success",
         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: AppColors.white,
-              fontWeight: medium,
+              fontWeight: Constants.medium,
               fontSize: 18,
             ),
       ),

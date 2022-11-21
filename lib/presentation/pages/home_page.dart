@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shamo_app/presentation/pages/product_detail_page.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/font_weight.dart';
+import 'package:shamo_app/utilities/constants.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
           labelStyle: Theme.of(context).textTheme.bodyMedium,
           unselectedLabelStyle:
               Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontWeight: light,
+                    fontWeight: Constants.light,
                   ),
           padding: const EdgeInsets.fromLTRB(8, 24, 8, 8),
           splashBorderRadius: BorderRadius.circular(12),
@@ -70,14 +70,14 @@ class HomePage extends StatelessWidget {
                   Text(
                     "Hello, Alex",
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: semiBold,
+                          fontWeight: Constants.semiBold,
                           color: AppColors.white,
                         ),
                   ),
                   Text(
                     "@alexkeinn",
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          fontWeight: regular,
+                          fontWeight: Constants.regular,
                           color: AppColors.grey,
                         ),
                   ),
@@ -167,7 +167,7 @@ class HomePage extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: AppColors.black1,
-                      fontWeight: semiBold,
+                      fontWeight: Constants.semiBold,
                     ),
               ),
             ),
@@ -182,7 +182,7 @@ class HomePage extends StatelessWidget {
                 price,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: AppColors.blue,
-                      fontWeight: medium,
+                      fontWeight: Constants.medium,
                     ),
               ),
             ),
@@ -236,7 +236,7 @@ class HomePage extends StatelessWidget {
                 maxLines: 2,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: AppColors.white,
-                      fontWeight: semiBold,
+                      fontWeight: Constants.semiBold,
                     ),
               ),
               const SizedBox(
@@ -246,7 +246,7 @@ class HomePage extends StatelessWidget {
                 price,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: AppColors.blue,
-                      fontWeight: medium,
+                      fontWeight: Constants.medium,
                     ),
               ),
             ],
@@ -268,7 +268,7 @@ class HomePage extends StatelessWidget {
               "Popular Product",
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: AppColors.white,
-                    fontWeight: semiBold,
+                    fontWeight: Constants.semiBold,
                   ),
             ),
           ),
@@ -300,7 +300,7 @@ class HomePage extends StatelessWidget {
               "New Arrival",
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: AppColors.white,
-                    fontWeight: semiBold,
+                    fontWeight: Constants.semiBold,
                   ),
             ),
           ),
@@ -339,7 +339,7 @@ class HomePage extends StatelessWidget {
               "For you",
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: AppColors.white,
-                    fontWeight: semiBold,
+                    fontWeight: Constants.semiBold,
                   ),
             ),
           ),

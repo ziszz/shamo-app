@@ -1,4 +1,12 @@
+import 'package:flutter/material.dart';
+
 abstract class Constants {
-  static const checkoutSuccessMessage = "Checkout Success";
-  static const checkoutFailedMessage = "Checkout Failed";
+  // message
+  static const checkoutFailedMessage = "failed";
+
+  // font weight
+  static const light = FontWeight.w300;
+  static const regular = FontWeight.w400;
+  static const medium = FontWeight.w500;
+  static const semiBold = FontWeight.w600;
 }

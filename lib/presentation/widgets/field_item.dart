@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shamo_app/presentation/widgets/filled_textfield.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/font_weight.dart';
+import 'package:shamo_app/utilities/constants.dart';
 
 class FormItem extends StatelessWidget {
   final String label;
@@ -21,7 +21,7 @@ class FormItem extends StatelessWidget {
         Text(
           label,
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                fontWeight: medium,
+                fontWeight: Constants.medium,
                 color: AppColors.white,
                 fontSize: 16,
               ),

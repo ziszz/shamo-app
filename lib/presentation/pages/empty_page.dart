@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/font_weight.dart';
+import 'package:shamo_app/utilities/constants.dart';
 
 class EmptyPage extends StatelessWidget {
   const EmptyPage({super.key});
@@ -14,7 +14,7 @@ class EmptyPage extends StatelessWidget {
             "Page not found!!!",
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: AppColors.white,
-                  fontWeight: medium,
+                  fontWeight: Constants.medium,
                 ),
           ),
         ),

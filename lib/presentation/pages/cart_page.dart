@@ -5,7 +5,7 @@ import 'package:shamo_app/presentation/pages/checkout_page.dart';
 import 'package:shamo_app/presentation/pages/main_page.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/font_weight.dart';
+import 'package:shamo_app/utilities/constants.dart';
 
 class CartPage extends StatefulWidget {
   static const routeName = "/cart";
@@ -49,7 +49,7 @@ class _CartPageState extends State<CartPage> {
         "Your Cart",
         style: Theme.of(context).textTheme.bodyText1?.copyWith(
               color: AppColors.white,
-              fontWeight: medium,
+              fontWeight: Constants.medium,
               fontSize: 18,
             ),
       ),
@@ -81,7 +81,7 @@ class _CartPageState extends State<CartPage> {
                     "\$287,96",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColors.blue,
-                          fontWeight: semiBold,
+                          fontWeight: Constants.semiBold,
                         ),
                   ),
                 ],
@@ -105,7 +105,7 @@ class _CartPageState extends State<CartPage> {
                       "Continue to Checkout",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: AppColors.white,
-                            fontWeight: semiBold,
+                            fontWeight: Constants.semiBold,
                           ),
                     ),
                     Transform.rotate(
@@ -140,7 +140,7 @@ class _CartPageState extends State<CartPage> {
             "Opss! Your cart is Empty",
             style: Theme.of(context).textTheme.bodyText1?.copyWith(
                   color: AppColors.white,
-                  fontWeight: medium,
+                  fontWeight: Constants.medium,
                 ),
           ),
           const SizedBox(
@@ -212,7 +212,7 @@ class _CartPageState extends State<CartPage> {
                     name,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColors.white,
-                          fontWeight: semiBold,
+                          fontWeight: Constants.semiBold,
                         ),
                   ),
                   const SizedBox(
@@ -251,7 +251,7 @@ class _CartPageState extends State<CartPage> {
                       _quantity.toString(),
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: AppColors.white,
-                            fontWeight: medium,
+                            fontWeight: Constants.medium,
                           ),
                     ),
                   ),
@@ -296,7 +296,7 @@ class _CartPageState extends State<CartPage> {
                   "Remove",
                   style: Theme.of(context).textTheme.caption?.copyWith(
                         color: AppColors.red,
-                        fontWeight: light,
+                        fontWeight: Constants.light,
                       ),
                 ),
               ],

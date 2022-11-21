@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/presentation/widgets/filled_textfield.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/font_weight.dart';
+import 'package:shamo_app/utilities/constants.dart';
 
 class ChatDetailPage extends StatelessWidget {
   static const routeName = "/chat-detail";
@@ -72,14 +72,14 @@ class ChatDetailPage extends StatelessWidget {
                 "Shoes Shop",
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: AppColors.white,
-                      fontWeight: medium,
+                      fontWeight: Constants.medium,
                     ),
               ),
               Text(
                 "Online",
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: AppColors.grey,
-                      fontWeight: light,
+                      fontWeight: Constants.light,
                     ),
               ),
             ],
@@ -136,7 +136,7 @@ class ChatDetailPage extends StatelessWidget {
                       "\$$price",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: AppColors.blue,
-                            fontWeight: medium,
+                            fontWeight: Constants.medium,
                           ),
                     ),
                   ],
@@ -324,7 +324,7 @@ class ChatDetailPage extends StatelessWidget {
                   "\$$price",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppColors.blue,
-                        fontWeight: medium,
+                        fontWeight: Constants.medium,
                       ),
                 ),
               ],

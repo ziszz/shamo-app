@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shamo_app/presentation/pages/edit_profile_page.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/font_weight.dart';
+import 'package:shamo_app/utilities/constants.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -32,14 +32,14 @@ class ProfilePage extends StatelessWidget {
               Text(
                 "Hello, Alex",
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontWeight: semiBold,
+                      fontWeight: Constants.semiBold,
                       color: AppColors.white,
                     ),
               ),
               Text(
                 "@alexkeinn",
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      fontWeight: regular,
+                      fontWeight: Constants.regular,
                       color: AppColors.grey,
                     ),
               ),
@@ -99,7 +99,7 @@ class ProfilePage extends StatelessWidget {
             "Account",
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: AppColors.white,
-                  fontWeight: semiBold,
+                  fontWeight: Constants.semiBold,
                 ),
           ),
           const SizedBox(
@@ -130,7 +130,7 @@ class ProfilePage extends StatelessWidget {
             "General",
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: AppColors.white,
-                  fontWeight: semiBold,
+                  fontWeight: Constants.semiBold,
                 ),
           ),
           const SizedBox(

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shamo_app/presentation/pages/cart_page.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/font_weight.dart';
+import 'package:shamo_app/utilities/constants.dart';
 
 class ProductDetailPage extends StatefulWidget {
   static const routeName = "/product-detail";
@@ -195,7 +195,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             color: AppColors.white,
                             fontSize: 18,
-                            fontWeight: semiBold,
+                            fontWeight: Constants.semiBold,
                           ),
                     ),
                     Text(
@@ -239,14 +239,14 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   "Price starts from",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: AppColors.white,
-                        fontWeight: regular,
+                        fontWeight: Constants.regular,
                       ),
                 ),
                 Text(
                   "\$143,98",
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: AppColors.blue,
-                        fontWeight: semiBold,
+                        fontWeight: Constants.semiBold,
                       ),
                 ),
               ],

@@ -4,7 +4,7 @@ import 'package:shamo_app/presentation/pages/sign_up_page.dart';
 import 'package:shamo_app/presentation/widgets/field_item.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/font_weight.dart';
+import 'package:shamo_app/utilities/constants.dart';
 
 class LoginPage extends StatelessWidget {
   static const routeName = "/login";
@@ -58,7 +58,7 @@ class LoginPage extends StatelessWidget {
                         "Sign In",
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               color: AppColors.white,
-                              fontWeight: medium,
+                              fontWeight: Constants.medium,
                             ),
                       ),
                     ),
@@ -84,7 +84,7 @@ class LoginPage extends StatelessWidget {
                           style:
                               Theme.of(context).textTheme.bodySmall?.copyWith(
                                     color: AppColors.purple,
-                                    fontWeight: medium,
+                                    fontWeight: Constants.medium,
                                   ),
                         ),
                       ],
@@ -110,7 +110,7 @@ class LoginPage extends StatelessWidget {
             "Login",
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   color: AppColors.white,
-                  fontWeight: semiBold,
+                  fontWeight: Constants.semiBold,
                 ),
           ),
           Text(

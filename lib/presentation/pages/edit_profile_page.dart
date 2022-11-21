@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/font_weight.dart';
+import 'package:shamo_app/utilities/constants.dart';
 
 class EditProfilePage extends StatefulWidget {
   static const routeName = "/edit-profile";
@@ -67,7 +67,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         "Favorite Shoes",
         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: AppColors.white,
-              fontWeight: medium,
+              fontWeight: Constants.medium,
               fontSize: 18,
             ),
       ),

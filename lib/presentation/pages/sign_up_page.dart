@@ -3,7 +3,7 @@ import 'package:shamo_app/presentation/pages/main_page.dart';
 import 'package:shamo_app/presentation/widgets/field_item.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/font_weight.dart';
+import 'package:shamo_app/utilities/constants.dart';
 
 class SignUpPage extends StatelessWidget {
   static const routeName = "/sign-up";
@@ -78,7 +78,7 @@ class SignUpPage extends StatelessWidget {
                         "Sign Up",
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               color: AppColors.white,
-                              fontWeight: medium,
+                              fontWeight: Constants.medium,
                             ),
                       ),
                     ),
@@ -101,7 +101,7 @@ class SignUpPage extends StatelessWidget {
                           style:
                               Theme.of(context).textTheme.bodySmall?.copyWith(
                                     color: AppColors.purple,
-                                    fontWeight: medium,
+                                    fontWeight: Constants.medium,
                                   ),
                         ),
                       ],
@@ -127,7 +127,7 @@ class SignUpPage extends StatelessWidget {
             "Sign Up",
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   color: AppColors.white,
-                  fontWeight: semiBold,
+                  fontWeight: Constants.semiBold,
                 ),
           ),
           Text(
