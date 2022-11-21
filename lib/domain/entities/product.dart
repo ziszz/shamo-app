@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:shamo_app/data/models/gallery_model.dart';
+import 'package:shamo_app/domain/entities/gallery.dart';
 
 class Product extends Equatable {
   final int id;
@@ -8,7 +8,7 @@ class Product extends Equatable {
   final String description;
   final String tags;
   final int categoriesId;
-  final List<GalleryModel> galleries;
+  final List<Gallery> galleries;
   final String createdAt;
   final String updatedAt;
 

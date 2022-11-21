@@ -9,6 +9,7 @@ import 'package:shamo_app/data/models/transaction_model.dart';
 import 'package:shamo_app/data/models/transaction_response.dart';
 import 'package:shamo_app/data/models/user_model.dart';
 import 'package:shamo_app/domain/entities/gallery.dart';
+import 'package:shamo_app/domain/entities/product.dart';
 
 // Model
 const testGalleryJson = {
@@ -325,6 +326,18 @@ const testGallery = Gallery(
   id: 1,
   productsId: 1,
   url: "url",
+  createdAt: "created_at",
+  updatedAt: "updated_at",
+);
+
+const testProduct = Product(
+  id: 1,
+  name: "name",
+  price: 1,
+  description: "description",
+  tags: "",
+  categoriesId: 1,
+  galleries: [testGallery],
   createdAt: "created_at",
   updatedAt: "updated_at",
 );
