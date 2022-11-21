@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shamo_app/data/repositories/product_repository_impl.dart';
+import 'package:shamo_app/domain/repositories/product_repository.dart';
 
 import '../../dummy_data/dummy_object.dart';
 import '../../helpers/test_helper.mocks.dart';
@@ -10,7 +12,7 @@ void main() {
 
   setUp(() {
     mockRemoteDataSource = MockProductRemoteDataSource();
-    repository = ProductRepository(
+    repository = ProductRepositoryImpl(
       remoteDataSource: mockRemoteDataSource,
     );
   });
@@ -22,11 +24,11 @@ void main() {
       // arrange
       when(mockRemoteDataSource.getProducts())
           .thenAnswer((_) async => testProductModelList);
-// act
+      // act
       final result = await repository.getProducts();
       final resultList = result.getOrElse(() => []);
-// assert
-      expect(resultList, testProductList);
+      // assert
+      expect(resultList, [testProduct]);
     });
   });
 }
