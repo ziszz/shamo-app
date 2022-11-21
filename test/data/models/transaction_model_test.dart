@@ -22,7 +22,9 @@ void main() {
     });
 
     test("should return a subclass of Transacton entity", () async {
+      // act
       final result = testTransactionModel.toEntity();
+      // assert
       expect(result, testTransaction);
     });
   });

@@ -24,6 +24,7 @@ void main() {
     test("should return subclass of Product entity", () async {
       // act
       final result = testProductModel.toEntity();
+      // assert
       expect(result, testProduct);
     });
   });

@@ -24,6 +24,7 @@ void main() {
     test("should return subclass of Gallery entity", () async {
       // act
       final result = testGalleryModel.toEntity();
+      // assert
       expect(result, testGallery);
     });
   });

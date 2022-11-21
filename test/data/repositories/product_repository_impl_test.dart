@@ -71,4 +71,34 @@ void main() {
       expect(result, const Left(ServerFailure("")));
     });
   });
+
+  group("Transaction", () {
+    const testIdUser = 1;
+    const testToken = "access_token";
+
+    test(
+        "should return remote data when call to the remote data source is successful",
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getTransactions(testIdUser, testToken))
+          .thenAnswer((_) async => testTransactionModelList);
+      // act
+      final result = await repository.getTransactions(testIdUser, testToken);
+      final resultList = result.getOrElse(() => []);
+      // assert
+      expect(resultList, [testTransaction]);
+    });
+
+    test(
+        "should return server failure when call to the remote data source is failed",
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getTransactions(testIdUser, testToken))
+          .thenThrow(ServerException());
+      // act
+      final result = await repository.getTransactions(testIdUser, testToken);
+      // assert
+      expect(result, const Left(ServerFailure("")));
+    });
+  });
 }

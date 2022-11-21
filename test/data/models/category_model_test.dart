@@ -22,7 +22,9 @@ void main() {
     });
 
     test("should return subclass of Category entity", () async {
+      // act
       final result = testCategoryModel.toEntity();
+      // assert
       expect(result, testCategory);
     });
   });

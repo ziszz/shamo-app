@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:shamo_app/data/datasources/product_remote_data_source.dart';
 import 'package:shamo_app/domain/entities/category.dart';
 import 'package:shamo_app/domain/entities/product.dart';
+import 'package:shamo_app/domain/entities/transaction.dart';
 import 'package:shamo_app/domain/repositories/product_repository.dart';
 import 'package:shamo_app/utilities/exceptions.dart';
 import 'package:shamo_app/utilities/failure.dart';
@@ -27,6 +28,17 @@ class ProductRepositoryImpl implements ProductRepository {
       final result = await remoteDataSource.getProductCategories();
       return Right(result.map((e) => e.toEntity()).toList());
     } on ServerException {
+      return const Left(ServerFailure(""));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Transaction>>> getTransactions(
+      int idUser, String token) async {
+    try {
+      final result = await remoteDataSource.getTransactions(idUser, token);
+      return Right(result.map((e) => e.toEntity()).toList());
+    } catch (e) {
       return const Left(ServerFailure(""));
     }
   }

@@ -22,7 +22,9 @@ void main() {
     });
 
     test("should return subclass of TransactionItem entity", () async {
+      // act
       final result = testTransactionItemModel.toEntity();
+      // assert
       expect(result, testTransactionItem);
     });
   });
