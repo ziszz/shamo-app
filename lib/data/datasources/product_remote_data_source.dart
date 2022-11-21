@@ -5,18 +5,19 @@ import 'package:http/io_client.dart';
 import 'package:shamo_app/data/models/category_model.dart';
 import 'package:shamo_app/data/models/category_response.dart';
 import 'package:shamo_app/data/models/checkout_body_model.dart';
+import 'package:shamo_app/data/models/checkout_response.dart';
 import 'package:shamo_app/data/models/product_model.dart';
 import 'package:shamo_app/data/models/product_response.dart';
 import 'package:shamo_app/data/models/transaction_model.dart';
 import 'package:shamo_app/data/models/transaction_response.dart';
-import 'package:shamo_app/utilities/constants.dart';
 import 'package:shamo_app/utilities/exceptions.dart';
 
 abstract class ProductRemoteDataSource {
   Future<List<ProductModel>> getProducts();
   Future<List<CategoryModel>> getProductCategories();
   Future<List<TransactionModel>> getTransactions(int idUser, String token);
-  Future<String> checkout(String token, CheckoutBodyModel checkoutData);
+  Future<CheckoutResponse> checkout(
+      String token, CheckoutBodyModel checkoutData);
 }
 
 class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
@@ -74,7 +75,8 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   }
 
   @override
-  Future<String> checkout(String token, CheckoutBodyModel checkoutData) async {
+  Future<CheckoutResponse> checkout(
+      String token, CheckoutBodyModel checkoutData) async {
     final headers = {
       "Accept": "application/json",
       "Authorization": "Bearer $token",
@@ -86,9 +88,11 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
         headers: headers);
 
     if (response.statusCode == 200) {
-      return Constants.checkoutSuccessMessage;
+      final result =
+          CheckoutResponse.fromJson(jsonDecode(response.body)["meta"]);
+      return result;
     } else {
-      return Constants.checkoutFailedMessage;
+      throw ServerException();
     }
   }
 }

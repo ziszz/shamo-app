@@ -45,11 +45,11 @@ class ProductRepositoryImpl implements ProductRepository {
     }
   }
 
-  @override
-  Future<Either<Failure, String>> checkout(
-      String token, CheckoutBody checkoutData) async {
-    final result = await remoteDataSource.checkout(
-        token, CheckoutBodyModel.fromEntity(checkoutData));
-    return Right(result);
-  }
+  // @override
+  // Future<Either<Failure, String>> checkout(
+  //     String token, CheckoutBody checkoutData) async {
+  //   final result = await remoteDataSource.checkout(
+  //       token, CheckoutBodyModel.fromEntity(checkoutData));
+  //   return Right(result);
+  // }
 }
