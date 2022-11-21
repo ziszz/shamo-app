@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:shamo_app/domain/entities/checkout_item.dart';
 
 class CheckoutBodyModel extends Equatable {
   final String address;
@@ -46,6 +47,11 @@ class CheckoutItemModel extends Equatable {
         "id": id,
         "quantity": quantity,
       };
+
+  CheckoutItem toEntity() => CheckoutItem(
+        id: id,
+        quantity: quantity,
+      );
 
   @override
   List<Object?> get props => [
