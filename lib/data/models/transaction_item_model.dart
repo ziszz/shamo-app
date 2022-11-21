@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:shamo_app/data/models/product_model.dart';
+import 'package:shamo_app/domain/entities/transaction_item.dart';
 
 class TransactionItemModel extends Equatable {
   final int id;
@@ -44,6 +45,17 @@ class TransactionItemModel extends Equatable {
         "created_at": createdAt,
         "updated_at": updatedAt,
       };
+
+  TransactionItem toEntity() => TransactionItem(
+        id: id,
+        usersId: usersId,
+        productsId: productsId,
+        transactionsId: transactionsId,
+        quantity: quantity,
+        product: product.toEntity(),
+        createdAt: createdAt,
+        updatedAt: updatedAt,
+      );
 
   @override
   List<Object?> get props => [
