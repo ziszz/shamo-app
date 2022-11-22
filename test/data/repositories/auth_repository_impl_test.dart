@@ -46,4 +46,39 @@ void main() {
       expect(result, const Left(ServerFailure("")));
     });
   });
+
+  group("Register", () {
+    const testName = "Zis";
+    const testEmail = "abdaziz1181@gmail.com";
+    const testUsername = "abdaziz1181";
+    const testPass = "12345678";
+
+    test(
+        "should return remote data when the call remote data source is successful",
+        () async {
+      // arrange
+      when(mockRemoteDataSource.register(
+              testName, testEmail, testUsername, testPass))
+          .thenAnswer((_) async => testUserModel);
+      // act
+      final result = await repository.register(
+          testName, testEmail, testUsername, testPass);
+      // assert
+      expect(result, const Right(testUser));
+    });
+
+    test(
+        "should return server failure when the call remote data source is failed",
+        () async {
+      // arrange
+      when(mockRemoteDataSource.register(
+              testName, testEmail, testUsername, testPass))
+          .thenThrow(ServerException());
+      // act
+      final result = await repository.register(
+          testName, testEmail, testUsername, testPass);
+      // assert
+      expect(result, const Left(ServerFailure("")));
+    });
+  });
 }
