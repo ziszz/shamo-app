@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:shamo_app/domain/entities/user.dart';
 
 class UserModel extends Equatable {
   final int id;
@@ -48,6 +49,18 @@ class UserModel extends Equatable {
           "updated_at": updatedAt,
         },
       };
+
+  User toEntity() => User(
+        id: id,
+        token: token,
+        name: name,
+        email: email,
+        username: username,
+        roles: roles,
+        profilePhotoUrl: profilePhotoUrl,
+        createdAt: createdAt,
+        updatedAt: updatedAt,
+      );
 
   @override
   List<Object?> get props => [

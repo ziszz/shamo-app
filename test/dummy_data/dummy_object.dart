@@ -16,6 +16,7 @@ import 'package:shamo_app/domain/entities/gallery.dart';
 import 'package:shamo_app/domain/entities/product.dart';
 import 'package:shamo_app/domain/entities/transaction.dart';
 import 'package:shamo_app/domain/entities/transaction_item.dart';
+import 'package:shamo_app/domain/entities/user.dart';
 
 // Model
 const testGalleryJson = {
@@ -402,4 +403,16 @@ const testCheckoutBody = CheckoutBody(
   status: "status",
   totalPrice: 1,
   shippingPrice: 1,
+);
+
+const testUser = User(
+  id: 1,
+  token: "access_token",
+  name: "name",
+  email: "email",
+  username: "username",
+  roles: "roles",
+  profilePhotoUrl: "profile_photo_url",
+  createdAt: "created_at",
+  updatedAt: "updated_at",
 );

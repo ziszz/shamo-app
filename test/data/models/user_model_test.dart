@@ -20,5 +20,12 @@ void main() {
       // assert
       expect(result, expectedJson);
     });
+
+    test("should return a subclass of User entity", () async {
+      // act
+      final result = testUserModel.toEntity();
+      // assert
+      expect(result, testUser);
+    });
   });
 }
