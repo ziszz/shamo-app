@@ -19,9 +19,13 @@ void main() {
     );
   });
 
-  group("User", () {
-    const testToken = "access_token";
+  const testToken = "access_token";
+  const testName = "Zis";
+  const testEmail = "abdaziz1181@gmail.com";
+  const testUsername = "abdaziz1181";
+  const testPass = "12345678";
 
+  group("User", () {
     test(
         "should return remote data when the call remote data source is successful",
         () async {
@@ -48,11 +52,6 @@ void main() {
   });
 
   group("Register", () {
-    const testName = "Zis";
-    const testEmail = "abdaziz1181@gmail.com";
-    const testUsername = "abdaziz1181";
-    const testPass = "12345678";
-
     test(
         "should return remote data when the call remote data source is successful",
         () async {
@@ -77,6 +76,65 @@ void main() {
       // act
       final result = await repository.register(
           testName, testEmail, testUsername, testPass);
+      // assert
+      expect(result, const Left(ServerFailure("")));
+    });
+  });
+
+  group("Login", () {
+    const testEmail = "abdaziz1181@gmail.com";
+    const testPass = "12345678";
+
+    test(
+        "should return remote data when the call remote data source is successful",
+        () async {
+      // arrange
+      when(mockRemoteDataSource.login(testEmail, testPass))
+          .thenAnswer((_) async => testUserModel);
+      // act
+      final result = await repository.login(testEmail, testPass);
+      // assert
+      expect(result, const Right(testUser));
+    });
+
+    test(
+        "should return server failure when the call remote data source is failed",
+        () async {
+      // arrange
+      when(mockRemoteDataSource.login(testEmail, testPass))
+          .thenThrow(ServerException());
+      // act
+      final result = await repository.login(testEmail, testPass);
+      // assert
+      expect(result, const Left(ServerFailure("")));
+    });
+  });
+
+  group("Update Profile", () {
+    test(
+        "should return remote data when the call remote data source is successful",
+        () async {
+      // arrange
+      when(mockRemoteDataSource.updateProfile(
+              testToken, testName, testEmail, testUsername))
+          .thenAnswer((_) async => testUserModel);
+      // act
+      final result = await repository.updateProfile(
+          testToken, testName, testEmail, testUsername);
+      // assert
+      expect(result, const Right(testUser));
+    });
+
+    test(
+        "should return server failure when the call remote data source is failed",
+        () async {
+      // arrange
+      when(mockRemoteDataSource.updateProfile(
+              testToken, testName, testName, testUsername))
+          .thenThrow(ServerException());
+      // act
+      final result = await repository.updateProfile(
+          testToken, testName, testName, testUsername);
       // assert
       expect(result, const Left(ServerFailure("")));
     });

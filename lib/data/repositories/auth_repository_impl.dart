@@ -32,4 +32,26 @@ class AuthRepositoryImpl implements AuthRepository {
       return const Left(ServerFailure(""));
     }
   }
+
+  @override
+  Future<Either<Failure, User>> login(String email, String password) async {
+    try {
+      final result = await remoteDataSource.login(email, password);
+      return Right(result.toEntity());
+    } on ServerException {
+      return const Left(ServerFailure(""));
+    }
+  }
+
+  @override
+  Future<Either<Failure, User>> updateProfile(
+      String token, String name, String email, String username) async {
+    try {
+      final result =
+          await remoteDataSource.updateProfile(token, name, email, username);
+      return Right(result.toEntity());
+    } on ServerException {
+      return const Left(ServerFailure(""));
+    }
+  }
 }
