@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:shamo_app/data/datasources/auth_remote_data_source.dart';
 import 'package:shamo_app/domain/entities/user.dart';
 import 'package:shamo_app/domain/repositories/auth_repository.dart';
+import 'package:shamo_app/utilities/constants.dart';
 import 'package:shamo_app/utilities/failure.dart';
 
 import '../../utilities/exceptions.dart';
@@ -52,6 +53,16 @@ class AuthRepositoryImpl implements AuthRepository {
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure(""));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> logout(String token) async {
+    try {
+      final result = await remoteDataSource.logout(token);
+      return Right(result);
+    } on ServerException {
+      return const Left(ServerFailure(Constants.unauthenticatedMessage));
     }
   }
 }

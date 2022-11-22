@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shamo_app/data/repositories/auth_repository_impl.dart';
+import 'package:shamo_app/utilities/constants.dart';
 import 'package:shamo_app/utilities/exceptions.dart';
 import 'package:shamo_app/utilities/failure.dart';
 
@@ -137,6 +138,32 @@ void main() {
           testToken, testName, testName, testUsername);
       // assert
       expect(result, const Left(ServerFailure("")));
+    });
+  });
+
+  group("Logout", () {
+    test(
+        "should return remote data when the call remote data source is successful",
+        () async {
+      // arrange
+      when(mockRemoteDataSource.logout(testToken))
+          .thenAnswer((_) async => true);
+      // act
+      final result = await repository.logout(testToken);
+      // assert
+      expect(result, const Right(true));
+    });
+
+    test(
+        "should return server exception when the call remote datasource is failed",
+        () async {
+      // arrange
+      when(mockRemoteDataSource.logout(testToken)).thenThrow(ServerException());
+      // act
+      final result = await repository.logout(testToken);
+      // assert
+      expect(
+          result, const Left(ServerFailure(Constants.unauthenticatedMessage)));
     });
   });
 }

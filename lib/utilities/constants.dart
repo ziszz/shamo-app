@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 abstract class Constants {
   // message
   static const checkoutFailedMessage = "failed";
+  static const unauthenticatedMessage = "Unauthenticated";
 
   // font weight
   static const light = FontWeight.w300;
