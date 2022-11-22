@@ -4,12 +4,12 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i8;
-import 'dart:convert' as _i20;
-import 'dart:typed_data' as _i21;
+import 'dart:convert' as _i23;
+import 'dart:typed_data' as _i24;
 
 import 'package:dartz/dartz.dart' as _i4;
 import 'package:http/io_client.dart' as _i5;
-import 'package:http/src/base_request.dart' as _i19;
+import 'package:http/src/base_request.dart' as _i22;
 import 'package:http/src/response.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:shamo_app/data/datasources/auth_remote_data_source.dart'
@@ -23,8 +23,11 @@ import 'package:shamo_app/data/models/product_model.dart' as _i9;
 import 'package:shamo_app/data/models/transaction_model.dart' as _i11;
 import 'package:shamo_app/data/models/user_model.dart' as _i3;
 import 'package:shamo_app/domain/entities/category.dart' as _i17;
+import 'package:shamo_app/domain/entities/checkout_body.dart' as _i19;
 import 'package:shamo_app/domain/entities/product.dart' as _i16;
 import 'package:shamo_app/domain/entities/transaction.dart' as _i18;
+import 'package:shamo_app/domain/entities/user.dart' as _i21;
+import 'package:shamo_app/domain/repositories/auth_repository.dart' as _i20;
 import 'package:shamo_app/domain/repositories/product_repository.dart' as _i14;
 import 'package:shamo_app/utilities/failure.dart' as _i15;
 
@@ -347,6 +350,57 @@ class MockProductRepository extends _i1.Mock implements _i14.ProductRepository {
           ),
         )),
       ) as _i8.Future<_i4.Either<_i15.Failure, List<_i18.Transaction>>>);
+  @override
+  _i8.Future<_i4.Either<_i15.Failure, String>> checkout(
+    String? token,
+    _i19.CheckoutBody? checkoutData,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #checkout,
+          [
+            token,
+            checkoutData,
+          ],
+        ),
+        returnValue: _i8.Future<_i4.Either<_i15.Failure, String>>.value(
+            _FakeEither_2<_i15.Failure, String>(
+          this,
+          Invocation.method(
+            #checkout,
+            [
+              token,
+              checkoutData,
+            ],
+          ),
+        )),
+      ) as _i8.Future<_i4.Either<_i15.Failure, String>>);
+}
+
+/// A class which mocks [AuthRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAuthRepository extends _i1.Mock implements _i20.AuthRepository {
+  MockAuthRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i8.Future<_i4.Either<_i15.Failure, _i21.User>> getUser(String? token) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getUser,
+          [token],
+        ),
+        returnValue: _i8.Future<_i4.Either<_i15.Failure, _i21.User>>.value(
+            _FakeEither_2<_i15.Failure, _i21.User>(
+          this,
+          Invocation.method(
+            #getUser,
+            [token],
+          ),
+        )),
+      ) as _i8.Future<_i4.Either<_i15.Failure, _i21.User>>);
 }
 
 /// A class which mocks [IOClient].
@@ -358,7 +412,7 @@ class MockIOClient extends _i1.Mock implements _i5.IOClient {
   }
 
   @override
-  _i8.Future<_i5.IOStreamedResponse> send(_i19.BaseRequest? request) =>
+  _i8.Future<_i5.IOStreamedResponse> send(_i22.BaseRequest? request) =>
       (super.noSuchMethod(
         Invocation.method(
           #send,
@@ -426,7 +480,7 @@ class MockIOClient extends _i1.Mock implements _i5.IOClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i20.Encoding? encoding,
+    _i23.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -456,7 +510,7 @@ class MockIOClient extends _i1.Mock implements _i5.IOClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i20.Encoding? encoding,
+    _i23.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -486,7 +540,7 @@ class MockIOClient extends _i1.Mock implements _i5.IOClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i20.Encoding? encoding,
+    _i23.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -516,7 +570,7 @@ class MockIOClient extends _i1.Mock implements _i5.IOClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i20.Encoding? encoding,
+    _i23.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -555,7 +609,7 @@ class MockIOClient extends _i1.Mock implements _i5.IOClient {
         returnValue: _i8.Future<String>.value(''),
       ) as _i8.Future<String>);
   @override
-  _i8.Future<_i21.Uint8List> readBytes(
+  _i8.Future<_i24.Uint8List> readBytes(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -565,6 +619,6 @@ class MockIOClient extends _i1.Mock implements _i5.IOClient {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i8.Future<_i21.Uint8List>.value(_i21.Uint8List(0)),
-      ) as _i8.Future<_i21.Uint8List>);
+        returnValue: _i8.Future<_i24.Uint8List>.value(_i24.Uint8List(0)),
+      ) as _i8.Future<_i24.Uint8List>);
 }
