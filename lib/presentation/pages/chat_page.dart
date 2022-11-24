@@ -40,7 +40,7 @@ class _ChatPageState extends State<ChatPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          "assets/ic-headset.png",
+          "assets/imagesic-headset.png",
         ),
         const SizedBox(
           height: 20,
@@ -124,7 +124,7 @@ class _ChatPageState extends State<ChatPage> {
       padding: const EdgeInsets.symmetric(vertical: 8),
       itemBuilder: (context, index) {
         return _chatTile(
-          imagePath: "assets/default-shop-profile.png",
+          imagePath: "assets/imagesdefault-shop-profile.png",
           name: "Shoes Store",
           message: "Good night, This item is on...",
           time: "Now",

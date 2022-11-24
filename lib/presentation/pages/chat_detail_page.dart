@@ -60,7 +60,7 @@ class ChatDetailPage extends StatelessWidget {
       title: Row(
         children: [
           _imageBadge(
-            imagePath: "assets/default-shop-profile.png",
+            imagePath: "assets/imagesdefault-shop-profile.png",
           ),
           const SizedBox(
             width: 12,
@@ -113,7 +113,7 @@ class ChatDetailPage extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
-                  "assets/product-example.png",
+                  "assets/imagesproduct-example.png",
                   width: 70,
                 ),
               ),
@@ -249,7 +249,7 @@ class ChatDetailPage extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: _productPreviewCard(
               context: context,
-              imagePath: "assets/product-preview.png",
+              imagePath: "assets/imagesproduct-preview.png",
               name: "Terrex Urban Low",
               price: 57.15,
             ),
@@ -302,7 +302,7 @@ class ChatDetailPage extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(
-              "assets/product-example.png",
+              "assets/imagesproduct-example.png",
             ),
           ),
           const SizedBox(
@@ -337,7 +337,7 @@ class ChatDetailPage extends StatelessWidget {
             borderRadius: BorderRadius.circular(50),
             onTap: () {},
             child: Image.asset(
-              "assets/ic-close.png",
+              "assets/imagesic-close.png",
               width: 22,
             ),
           ),
@@ -359,7 +359,7 @@ class ChatDetailPage extends StatelessWidget {
             children: [
               _productPreviewTile(
                 context: context,
-                imagePath: "assets/product-preview.png",
+                imagePath: "assets/imagesproduct-preview.png",
                 name: "Terrex Urban Low",
                 price: 57.15,
               ),
@@ -391,7 +391,7 @@ class ChatDetailPage extends StatelessWidget {
                     onPressed: () {},
                     icon: const ImageIcon(
                       AssetImage(
-                        "assets/ic-send.png",
+                        "assets/imagesic-send.png",
                       ),
                       size: 19,
                     ),

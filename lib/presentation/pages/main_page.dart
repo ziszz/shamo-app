@@ -80,7 +80,7 @@ class _MainPageState extends State<MainPage>
         CartPage.routeName,
       ),
       child: Image.asset(
-        "assets/ic-cart.png",
+        "assets/imagesic-cart.png",
         width: 20,
       ),
     );
@@ -123,13 +123,13 @@ class _MainPageState extends State<MainPage>
               _navBarItem(
                 index: 0,
                 image: const AssetImage(
-                  "assets/ic-home.png",
+                  "assets/imagesic-home.png",
                 ),
               ),
               _navBarItem(
                 index: 1,
                 image: const AssetImage(
-                  "assets/ic-message.png",
+                  "assets/imagesic-message.png",
                 ),
               ),
               const SizedBox(
@@ -138,13 +138,13 @@ class _MainPageState extends State<MainPage>
               _navBarItem(
                 index: 2,
                 image: const AssetImage(
-                  "assets/ic-favorite.png",
+                  "assets/imagesic-favorite.png",
                 ),
               ),
               _navBarItem(
                 index: 3,
                 image: const AssetImage(
-                  "assets/ic-profile.png",
+                  "assets/imagesic-profile.png",
                 ),
               ),
             ],

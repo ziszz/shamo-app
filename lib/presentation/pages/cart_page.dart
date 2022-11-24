@@ -131,7 +131,7 @@ class _CartPageState extends State<CartPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            "assets/ic-trolly.png",
+            "assets/imagesic-trolly.png",
           ),
           const SizedBox(
             height: 20,
@@ -284,7 +284,7 @@ class _CartPageState extends State<CartPage> {
               children: [
                 const ImageIcon(
                   AssetImage(
-                    "assets/ic-trash.png",
+                    "assets/imagesic-trash.png",
                   ),
                   color: AppColors.red,
                   size: 12,
@@ -321,7 +321,7 @@ class _CartPageState extends State<CartPage> {
       itemBuilder: (context, index) {
         return _productTile(
           context: context,
-          imagePath: "assets/product-example.png",
+          imagePath: "assets/imagesproduct-example.png",
           name: "Terrex Urban Low",
           price: 143.98,
         );

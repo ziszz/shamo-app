@@ -20,7 +20,7 @@ class ProfilePage extends StatelessWidget {
       title: Row(
         children: [
           Image.asset(
-            "assets/default-user-profile.png",
+            "assets/imagesdefault-user-profile.png",
             width: 64,
           ),
           const SizedBox(
@@ -47,7 +47,7 @@ class ProfilePage extends StatelessWidget {
           ),
           const Spacer(),
           const ImageIcon(
-            AssetImage("assets/ic-logout.png"),
+            AssetImage("assets/imagesic-logout.png"),
             size: 20,
             color: AppColors.red,
           ),

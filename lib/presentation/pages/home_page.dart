@@ -84,7 +84,7 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               Image.asset(
-                "assets/default-user-profile.png",
+                "assets/imagesdefault-user-profile.png",
                 width: 50,
               ),
             ],
@@ -135,7 +135,7 @@ class HomePage extends StatelessWidget {
                 vertical: 30,
               ),
               child: Image.asset(
-                "assets/product-example.png",
+                "assets/imagesproduct-example.png",
                 width: 215,
                 height: 120,
                 fit: BoxFit.cover,
@@ -286,7 +286,7 @@ class HomePage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return _productCard(
                   context: context,
-                  image: "assets/product-example.png",
+                  image: "assets/imagesproduct-example.png",
                   category: "Football",
                   name: "Predator 20.3 Firm Ground",
                   price: "\$68,47",
@@ -315,7 +315,7 @@ class HomePage extends StatelessWidget {
             itemBuilder: (context, index) {
               return _productTile(
                 context: context,
-                image: "assets/product-example.png",
+                image: "assets/imagesproduct-example.png",
                 category: "Football",
                 name: "Predator 20.3 Firm Ground",
                 price: "\$68,47",
@@ -354,7 +354,7 @@ class HomePage extends StatelessWidget {
             itemBuilder: (context, index) {
               return _productTile(
                 context: context,
-                image: "assets/product-example.png",
+                image: "assets/imagesproduct-example.png",
                 category: "Football",
                 name: "Predator 20.3 Firm Ground",
                 price: "\$68,47",

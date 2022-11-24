@@ -70,7 +70,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         IconButton(
           onPressed: () => Navigator.pushNamed(context, CartPage.routeName),
           icon: Image.asset(
-            "assets/ic-cart-black.png",
+            "assets/imagesic-cart-black.png",
             width: 20,
           ),
         ),
@@ -101,7 +101,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   onPressed: () {},
                   icon: const ImageIcon(
                     AssetImage(
-                      "assets/ic-message.png",
+                      "assets/imagesic-message.png",
                     ),
                     color: AppColors.purple,
                   ),
@@ -126,9 +126,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
   Widget _gallery() {
     final images = [
-      "assets/product-example.png",
-      "assets/product-example.png",
-      "assets/product-example.png",
+      "assets/imagesproduct-example.png",
+      "assets/imagesproduct-example.png",
+      "assets/imagesproduct-example.png",
     ];
 
     return Column(
@@ -212,7 +212,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     backgroundColor: AppColors.black6,
                     child: ImageIcon(
                       AssetImage(
-                        "assets/ic-favorite.png",
+                        "assets/imagesic-favorite.png",
                       ),
                       size: 20,
                       color: AppColors.black1,
@@ -305,7 +305,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(6),
                     child: Image.asset(
-                      "assets/product-example.png",
+                      "assets/imagesproduct-example.png",
                       width: 54,
                       height: 54,
                       fit: BoxFit.cover,
