@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: SafeArea(
         child: Center(
           child: Image.asset(
-            "assets/imagesapp-logo.png",
+            "assets/images/app-logo.png",
           ),
         ),
       ),

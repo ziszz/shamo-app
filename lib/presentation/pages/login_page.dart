@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                       controller: _emailController,
                       label: "Email Address",
                       prefixIcon: Image.asset(
-                        "assets/imagesic-email.png",
+                        "assets/images/ic-email.png",
                         width: 20,
                       ),
                     ),
@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                       controller: _passController,
                       label: "Password",
                       prefixIcon: Image.asset(
-                        "assets/imagesic-lock.png",
+                        "assets/images/ic-lock.png",
                         width: 17,
                       ),
                     ),

@@ -130,7 +130,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       children: [
         Center(
           child: Image.asset(
-            "assets/imagesdefault-user-profile.png",
+            "assets/images/default-user-profile.png",
             width: 100,
             fit: BoxFit.cover,
           ),

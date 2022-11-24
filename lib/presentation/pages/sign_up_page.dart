@@ -30,7 +30,7 @@ class SignUpPage extends StatelessWidget {
                     FormItem(
                       label: "Full Name",
                       prefixIcon: Image.asset(
-                        "assets/imagesic-profile.png",
+                        "assets/images/ic-profile.png",
                         width: 17,
                         color: AppColors.purple,
                       ),
@@ -41,7 +41,7 @@ class SignUpPage extends StatelessWidget {
                     FormItem(
                       label: "Username",
                       prefixIcon: Image.asset(
-                        "assets/imagesic-username.png",
+                        "assets/images/ic-username.png",
                         width: 20,
                       ),
                     ),
@@ -51,7 +51,7 @@ class SignUpPage extends StatelessWidget {
                     FormItem(
                       label: "Email Address",
                       prefixIcon: Image.asset(
-                        "assets/imagesic-email.png",
+                        "assets/images/ic-email.png",
                         width: 20,
                       ),
                     ),
@@ -61,7 +61,7 @@ class SignUpPage extends StatelessWidget {
                     FormItem(
                       label: "Password",
                       prefixIcon: Image.asset(
-                        "assets/imagesic-lock.png",
+                        "assets/images/ic-lock.png",
                         width: 17,
                       ),
                     ),

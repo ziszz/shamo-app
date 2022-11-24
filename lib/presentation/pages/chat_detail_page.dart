@@ -60,7 +60,7 @@ class ChatDetailPage extends StatelessWidget {
       title: Row(
         children: [
           _imageBadge(
-            imagePath: "assets/imagesdefault-shop-profile.png",
+            imagePath: "assets/images/default-shop-profile.png",
           ),
           const SizedBox(
             width: 12,
@@ -113,7 +113,7 @@ class ChatDetailPage extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
-                  "assets/imagesproduct-example.png",
+                  "assets/images/product-example.png",
                   width: 70,
                 ),
               ),
@@ -249,7 +249,7 @@ class ChatDetailPage extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: _productPreviewCard(
               context: context,
-              imagePath: "assets/imagesproduct-preview.png",
+              imagePath: "assets/images/product-preview.png",
               name: "Terrex Urban Low",
               price: 57.15,
             ),
@@ -302,7 +302,7 @@ class ChatDetailPage extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(
-              "assets/imagesproduct-example.png",
+              "assets/images/product-example.png",
             ),
           ),
           const SizedBox(
@@ -337,7 +337,7 @@ class ChatDetailPage extends StatelessWidget {
             borderRadius: BorderRadius.circular(50),
             onTap: () {},
             child: Image.asset(
-              "assets/imagesic-close.png",
+              "assets/images/ic-close.png",
               width: 22,
             ),
           ),
@@ -359,7 +359,7 @@ class ChatDetailPage extends StatelessWidget {
             children: [
               _productPreviewTile(
                 context: context,
-                imagePath: "assets/imagesproduct-preview.png",
+                imagePath: "assets/images/product-preview.png",
                 name: "Terrex Urban Low",
                 price: 57.15,
               ),
@@ -391,7 +391,7 @@ class ChatDetailPage extends StatelessWidget {
                     onPressed: () {},
                     icon: const ImageIcon(
                       AssetImage(
-                        "assets/imagesic-send.png",
+                        "assets/images/ic-send.png",
                       ),
                       size: 19,
                     ),

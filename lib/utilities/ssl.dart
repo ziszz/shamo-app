@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 
 Future<HttpClient> getHttpClient() async {
-  final sslCert =
-      await rootBundle.load("assets/imagescertficate/certificate.crt");
+  final sslCert = await rootBundle.load("assets/certificate/certificate.crt");
   final securityContext = SecurityContext(withTrustedRoots: false);
   securityContext.setTrustedCertificatesBytes(sslCert.buffer.asInt8List());
 

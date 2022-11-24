@@ -35,7 +35,7 @@ class FavoritePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            "assets/imagesic-favorite.png",
+            "assets/images/ic-favorite.png",
             color: AppColors.purple,
           ),
           const SizedBox(
@@ -88,7 +88,7 @@ class FavoritePage extends StatelessWidget {
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: Image.asset(
-          "assets/imagesproduct-example.png",
+          "assets/images/product-example.png",
         ),
       ),
       title: Text(
@@ -112,7 +112,7 @@ class FavoritePage extends StatelessWidget {
           backgroundColor: AppColors.lightBlue,
           child: ImageIcon(
             AssetImage(
-              "assets/imagesic-favorite.png",
+              "assets/images/ic-favorite.png",
             ),
             color: AppColors.white,
             size: 10,

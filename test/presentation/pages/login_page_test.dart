@@ -4,14 +4,17 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:shamo_app/presentation/pages/login_page.dart';
+import 'package:shamo_app/presentation/pages/main_page.dart';
 
 import '../../dummy_data/dummy_object.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {
+  late MockNavigatorObserver mockNavigatorObserver;
   late MockAuthBloc mockAuthBloc;
 
   setUp(() {
+    mockNavigatorObserver = MockNavigatorObserver();
     mockAuthBloc = MockAuthBloc();
   });
 
@@ -37,10 +40,26 @@ void main() {
       final loginBtnFinder = find.byKey(const Key("login_btn"));
 
       await tester.pumpWidget(makeTestableWidget(const LoginPage()));
+
+      expect(emailInputFinder, findsWidgets);
+      expect(passInputFinder, findsWidgets);
+      expect(loginBtnFinder, findsWidgets);
+
       await tester.enterText(emailInputFinder, testEmail);
       await tester.enterText(passInputFinder, testPass);
       await tester.tap(loginBtnFinder);
       await tester.pumpAndSettle();
+
+      verify(
+        mockNavigatorObserver.didPush(
+          MaterialPageRoute(
+            builder: (_) => const MainPage(),
+          ),
+          MaterialPageRoute(
+            builder: (_) => const LoginPage(),
+          ),
+        ),
+      );
       // assert
       // expect(find.byType(MainPage), findsOneWidget);
     });

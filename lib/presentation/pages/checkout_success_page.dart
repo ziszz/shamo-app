@@ -19,7 +19,7 @@ class CheckoutSuccessPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("assets/imagesic-trolly.png"),
+              Image.asset("assets/images/ic-trolly.png"),
               const SizedBox(
                 height: 20,
               ),

@@ -151,7 +151,7 @@ class CheckoutPage extends StatelessWidget {
       itemBuilder: (context, index) {
         return _itemTile(
           context: context,
-          imagePath: "assets/imagesproduct-example.png",
+          imagePath: "assets/images/product-example.png",
           name: "Terrex Urban Low",
           price: 143.98,
         );
@@ -223,7 +223,7 @@ class CheckoutPage extends StatelessWidget {
             context: context,
             icon: const ImageIcon(
               AssetImage(
-                "assets/imagesic-building.png",
+                "assets/images/ic-building.png",
               ),
               color: AppColors.lightBlue,
               size: 17,
@@ -234,14 +234,14 @@ class CheckoutPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Image.asset(
-              "assets/imagesvertical-divider.png",
+              "assets/images/vertical-divider.png",
             ),
           ),
           _addressItem(
             context: context,
             icon: const ImageIcon(
               AssetImage(
-                "assets/imagesic-location.png",
+                "assets/images/ic-location.png",
               ),
               color: AppColors.lightBlue,
               size: 17,
