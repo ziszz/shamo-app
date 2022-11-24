@@ -22,8 +22,9 @@ void main() {
   const testEmail = "abdaziz1181@gmail.com";
   const testPass = "12345678";
 
-  group("Login", () {
+  group("OnLogin Event", () {
     test("initial state should be empty", () async {
+      // assert
       expect(bloc.state, AuthInitial());
     });
 

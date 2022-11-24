@@ -5,12 +5,14 @@ class FilledTextField extends StatelessWidget {
   final String hintText;
   final Color fillColor;
   final double height;
+  final TextEditingController? controller;
   final Function(String)? onChanged;
   final Widget? prefixIcon;
 
   const FilledTextField({
     super.key,
     required this.hintText,
+    this.controller,
     this.height = 50,
     this.fillColor = AppColors.black2,
     this.onChanged,
@@ -22,6 +24,8 @@ class FilledTextField extends StatelessWidget {
     return SizedBox(
       height: height,
       child: TextFormField(
+        key: key,
+        controller: controller,
         onChanged: onChanged,
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: AppColors.white,

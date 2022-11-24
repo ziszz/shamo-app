@@ -6,11 +6,13 @@ import 'package:shamo_app/utilities/constants.dart';
 class FormItem extends StatelessWidget {
   final String label;
   final Widget prefixIcon;
+  final TextEditingController? controller;
 
   const FormItem({
     super.key,
     required this.label,
     required this.prefixIcon,
+    this.controller,
   });
 
   @override
@@ -30,6 +32,8 @@ class FormItem extends StatelessWidget {
           height: 12,
         ),
         FilledTextField(
+          key: key,
+          controller: controller,
           hintText: "Your $label",
           prefixIcon: prefixIcon,
         ),
