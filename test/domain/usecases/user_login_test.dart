@@ -22,7 +22,8 @@ void main() {
   const testPass = "12345678";
 
   group("User Login Use Case", () {
-    test("should get user data from the repository when success", () async {
+    test("should get user data when get data from the repository is successful",
+        () async {
       // arrange
       when(mockAuthRepository.login(testEmail, testPass))
           .thenAnswer((_) async => const Right(testUser));
@@ -32,7 +33,9 @@ void main() {
       expect(result, const Right(testUser));
     });
 
-    test("should get failure message when data from when failed", () async {
+    test(
+        "should get failure message when get data from the repository is failed",
+        () async {
       // arrange
       when(mockAuthRepository.login(testEmail, testPass))
           .thenAnswer((_) async => const Left(ServerFailure("")));
