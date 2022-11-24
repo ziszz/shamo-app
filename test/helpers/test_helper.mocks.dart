@@ -401,6 +401,109 @@ class MockAuthRepository extends _i1.Mock implements _i20.AuthRepository {
           ),
         )),
       ) as _i8.Future<_i4.Either<_i15.Failure, _i21.User>>);
+  @override
+  _i8.Future<_i4.Either<_i15.Failure, _i21.User>> register(
+    String? name,
+    String? email,
+    String? username,
+    String? password,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #register,
+          [
+            name,
+            email,
+            username,
+            password,
+          ],
+        ),
+        returnValue: _i8.Future<_i4.Either<_i15.Failure, _i21.User>>.value(
+            _FakeEither_2<_i15.Failure, _i21.User>(
+          this,
+          Invocation.method(
+            #register,
+            [
+              name,
+              email,
+              username,
+              password,
+            ],
+          ),
+        )),
+      ) as _i8.Future<_i4.Either<_i15.Failure, _i21.User>>);
+  @override
+  _i8.Future<_i4.Either<_i15.Failure, _i21.User>> login(
+    String? email,
+    String? password,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #login,
+          [
+            email,
+            password,
+          ],
+        ),
+        returnValue: _i8.Future<_i4.Either<_i15.Failure, _i21.User>>.value(
+            _FakeEither_2<_i15.Failure, _i21.User>(
+          this,
+          Invocation.method(
+            #login,
+            [
+              email,
+              password,
+            ],
+          ),
+        )),
+      ) as _i8.Future<_i4.Either<_i15.Failure, _i21.User>>);
+  @override
+  _i8.Future<_i4.Either<_i15.Failure, _i21.User>> updateProfile(
+    String? token,
+    String? name,
+    String? email,
+    String? username,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateProfile,
+          [
+            token,
+            name,
+            email,
+            username,
+          ],
+        ),
+        returnValue: _i8.Future<_i4.Either<_i15.Failure, _i21.User>>.value(
+            _FakeEither_2<_i15.Failure, _i21.User>(
+          this,
+          Invocation.method(
+            #updateProfile,
+            [
+              token,
+              name,
+              email,
+              username,
+            ],
+          ),
+        )),
+      ) as _i8.Future<_i4.Either<_i15.Failure, _i21.User>>);
+  @override
+  _i8.Future<_i4.Either<_i15.Failure, bool>> logout(String? token) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #logout,
+          [token],
+        ),
+        returnValue: _i8.Future<_i4.Either<_i15.Failure, bool>>.value(
+            _FakeEither_2<_i15.Failure, bool>(
+          this,
+          Invocation.method(
+            #logout,
+            [token],
+          ),
+        )),
+      ) as _i8.Future<_i4.Either<_i15.Failure, bool>>);
 }
 
 /// A class which mocks [IOClient].
