@@ -24,7 +24,6 @@ class FilledTextField extends StatelessWidget {
     return SizedBox(
       height: height,
       child: TextFormField(
-        key: key,
         controller: controller,
         onChanged: onChanged,
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(

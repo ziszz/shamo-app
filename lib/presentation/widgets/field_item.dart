@@ -32,7 +32,6 @@ class FormItem extends StatelessWidget {
           height: 12,
         ),
         FilledTextField(
-          key: key,
           controller: controller,
           hintText: "Your $label",
           prefixIcon: prefixIcon,

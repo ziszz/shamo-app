@@ -4,24 +4,22 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:shamo_app/presentation/pages/login_page.dart';
-import 'package:shamo_app/presentation/pages/main_page.dart';
 
-import '../../dummy_data/dummy_object.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {
-  late MockNavigatorObserver mockNavigatorObserver;
   late MockAuthBloc mockAuthBloc;
 
   setUp(() {
-    mockNavigatorObserver = MockNavigatorObserver();
     mockAuthBloc = MockAuthBloc();
   });
 
   Widget makeTestableWidget(Widget body) {
     return BlocProvider<AuthBloc>.value(
       value: mockAuthBloc,
-      child: MaterialApp(home: body),
+      child: MaterialApp(
+        home: body,
+      ),
     );
   }
 
@@ -29,39 +27,16 @@ void main() {
   const testPass = "12345678";
 
   group("Login Page", () {
-    testWidgets("should go to main page when login success", (tester) async {
+    testWidgets("should display progress bar when loading", (tester) async {
       // arrange
-      when(mockAuthBloc.stream)
-          .thenAnswer((_) => Stream.value(const AuthLoaded(user: testUser)));
-      when(mockAuthBloc.state).thenReturn(const AuthLoaded(user: testUser));
+      when(mockAuthBloc.stream).thenAnswer((_) => Stream.value(AuthLoading()));
+      when(mockAuthBloc.state).thenReturn(AuthLoading());
       // act
-      final emailInputFinder = find.byKey(const Key("email_input"));
-      final passInputFinder = find.byKey(const Key("pass_input"));
-      final loginBtnFinder = find.byKey(const Key("login_btn"));
+      final progressBar = find.byKey(const Key("progress_bar"));
 
       await tester.pumpWidget(makeTestableWidget(const LoginPage()));
-
-      expect(emailInputFinder, findsWidgets);
-      expect(passInputFinder, findsWidgets);
-      expect(loginBtnFinder, findsWidgets);
-
-      await tester.enterText(emailInputFinder, testEmail);
-      await tester.enterText(passInputFinder, testPass);
-      await tester.tap(loginBtnFinder);
-      await tester.pumpAndSettle();
-
-      verify(
-        mockNavigatorObserver.didPush(
-          MaterialPageRoute(
-            builder: (_) => const MainPage(),
-          ),
-          MaterialPageRoute(
-            builder: (_) => const LoginPage(),
-          ),
-        ),
-      );
       // assert
-      // expect(find.byType(MainPage), findsOneWidget);
+      expect(progressBar, findsOneWidget);
     });
   });
 }

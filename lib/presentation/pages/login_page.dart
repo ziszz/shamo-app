@@ -21,19 +21,6 @@ class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
 
-  void _login({
-    required BuildContext context,
-    required String email,
-    required String password,
-  }) {
-    context.read<AuthBloc>().add(OnLogin(email: email, password: password));
-    Navigator.pushNamedAndRemoveUntil(
-      context,
-      MainPage.routeName,
-      (route) => false,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,21 +62,60 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    FilledButton(
-                      key: const Key("login_btn"),
-                      onPressed: () => _login(
-                        context: context,
-                        email: _emailController.text,
-                        password: _passController.text,
-                      ),
-                      child: Text(
-                        "Sign In",
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: AppColors.white,
-                              fontWeight: Constants.medium,
+                    BlocConsumer<AuthBloc, AuthState>(
+                      listener: (context, state) {
+                        if (state is AuthSuccess) {
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            MainPage.routeName,
+                            (route) => false,
+                          );
+                        } else if (state is AuthError) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: AppColors.red,
+                              content: Text(
+                                state.message,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                      color: AppColors.white,
+                                      fontWeight: Constants.medium,
+                                    ),
+                              ),
                             ),
-                      ),
-                    ),
+                          );
+                        }
+                      },
+                      builder: (context, state) {
+                        if (state is AuthLoading) {
+                          return const Center(
+                            key: Key("progress_bar"),
+                            child: CircularProgressIndicator(),
+                          );
+                        } else {
+                          return FilledButton(
+                            onPressed: () => context.read<AuthBloc>().add(
+                                  OnLogin(
+                                    email: _emailController.text,
+                                    password: _passController.text,
+                                  ),
+                                ),
+                            child: Text(
+                              "Sign In",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                    color: AppColors.white,
+                                    fontWeight: Constants.medium,
+                                  ),
+                            ),
+                          );
+                        }
+                      },
+                    )
                   ],
                 ),
               ),

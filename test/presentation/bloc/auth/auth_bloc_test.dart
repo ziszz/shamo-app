@@ -55,7 +55,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        const AuthLoaded(user: testUser),
+        const AuthSuccess(user: testUser),
       ],
     );
 

@@ -11,10 +11,10 @@ class AuthInitial extends AuthState {}
 
 class AuthLoading extends AuthState {}
 
-class AuthLoaded extends AuthState {
+class AuthSuccess extends AuthState {
   final User user;
 
-  const AuthLoaded({required this.user});
+  const AuthSuccess({required this.user});
 }
 
 class AuthError extends AuthState {

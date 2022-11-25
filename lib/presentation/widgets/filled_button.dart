@@ -23,7 +23,6 @@ class FilledButton extends StatelessWidget {
       width: width,
       height: height,
       child: ElevatedButton(
-        key: key,
         onPressed: onPressed,
         style: ButtonStyle(
           backgroundColor: MaterialStatePropertyAll(fillColor),
