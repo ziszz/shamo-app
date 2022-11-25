@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -122,7 +120,7 @@ void main() {
       // arrange
       when(mockIOClient.post(
         Uri.parse("${dotenv.env["apiUrl"]}/api/checkout"),
-        body: jsonEncode(testBody.toJson()),
+        body: testBody.toJson(),
         headers: testHeaders,
       )).thenAnswer((_) async =>
           http.Response(readJson("dummy_data/checkout.json"), 200));
@@ -137,7 +135,7 @@ void main() {
       // arrange
       when(mockIOClient.post(
         Uri.parse("${dotenv.env["apiUrl"]}/api/checkout"),
-        body: jsonEncode(testBody.toJson()),
+        body: testBody.toJson(),
         headers: testHeaders,
       )).thenAnswer((_) async => http.Response("Not Found", 404));
       // act

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
@@ -78,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                                 state.message,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyMedium
+                                    .bodySmall
                                     ?.copyWith(
                                       color: AppColors.white,
                                       fontWeight: Constants.medium,
@@ -96,6 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         } else {
                           return FilledButton(
+                            key: const Key("login_btn"),
                             onPressed: () => context.read<AuthBloc>().add(
                                   OnLogin(
                                     email: _emailController.text,

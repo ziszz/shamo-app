@@ -32,7 +32,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
     final response = await client.post(
       Uri.parse("${dotenv.env["apiUrl"]}/api/register"),
-      body: jsonEncode(body),
+      body: body,
     );
 
     if (response.statusCode == 200) {
@@ -48,7 +48,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     final body = {"email": email, "password": password};
     final response = await client.post(
       Uri.parse("${dotenv.env["apiUrl"]}/api/login"),
-      body: jsonEncode(body),
+      body: body,
     );
 
     if (response.statusCode == 200) {
@@ -87,7 +87,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
     final response = await client.post(
       Uri.parse("${dotenv.env["apiUrl"]}/api/user"),
-      body: jsonEncode(body),
+      body: body,
       headers: headers,
     );
 

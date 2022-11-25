@@ -84,7 +84,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
 
     final response = await client.post(
         Uri.parse("${dotenv.env["apiUrl"]}/api/checkout"),
-        body: jsonEncode(checkoutData.toJson()),
+        body: checkoutData.toJson(),
         headers: headers);
 
     if (response.statusCode == 200) {

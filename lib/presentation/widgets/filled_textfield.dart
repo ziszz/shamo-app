@@ -31,7 +31,6 @@ class FilledTextField extends StatelessWidget {
               fontSize: 14,
             ),
         decoration: InputDecoration(
-          isDense: true,
           filled: true,
           fillColor: fillColor,
           hintText: hintText,

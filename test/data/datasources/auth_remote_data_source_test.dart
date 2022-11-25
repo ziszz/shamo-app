@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -70,7 +68,7 @@ void main() {
     test("should return User Model when the response code is 200", () async {
       // arrange
       when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/register"),
-              body: jsonEncode(testBody)))
+              body: testBody))
           .thenAnswer((_) async =>
               http.Response(readJson("dummy_data/user.json"), 200));
       // act
@@ -84,7 +82,7 @@ void main() {
         () async {
       // arrange
       when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/register"),
-              body: jsonEncode(testBody)))
+              body: testBody))
           .thenAnswer((_) async => http.Response("Not Found", 404));
       // act
       final result =
@@ -103,7 +101,7 @@ void main() {
     test("should return User Model when the response code is 200", () async {
       // arrange
       when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/login"),
-              body: jsonEncode(testBody)))
+              body: testBody))
           .thenAnswer((_) async =>
               http.Response(readJson("dummy_data/user.json"), 200));
       // act
@@ -116,7 +114,7 @@ void main() {
         () async {
       // arrange
       when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/login"),
-              body: jsonEncode(testBody)))
+              body: testBody))
           .thenAnswer((_) async => http.Response("Not Found", 404));
       // act
       final result = dataSource.login(testEmail, testPass);
@@ -139,7 +137,7 @@ void main() {
     test('should return user model when the response code is 200', () async {
       // arrange
       when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/user"),
-              body: jsonEncode(testBody), headers: testHeaders))
+              body: testBody, headers: testHeaders))
           .thenAnswer((_) async =>
               http.Response(readJson("dummy_data/user.json"), 200));
       // act
@@ -153,7 +151,7 @@ void main() {
         () async {
       // arrange
       when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/user"),
-              body: jsonEncode(testBody), headers: testHeaders))
+              body: testBody, headers: testHeaders))
           .thenAnswer((_) async => http.Response("NotFound", 404));
       // act
       final result = dataSource.updateProfile(
