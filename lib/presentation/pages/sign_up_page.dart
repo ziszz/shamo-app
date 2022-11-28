@@ -26,152 +26,154 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       appBar: _appBar(context: context),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 16,
-            right: 16,
-            top: 30,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-                child: Column(
-                  children: [
-                    FormItem(
-                      textInputAction: TextInputAction.next,
-                      controller: _nameController,
-                      label: "Full Name",
-                      prefixIcon: Image.asset(
-                        "assets/images/ic-profile.png",
-                        width: 17,
-                        color: AppColors.purple,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 16,
+              right: 16,
+              top: 30,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  child: Column(
+                    children: [
+                      FormItem(
+                        textInputAction: TextInputAction.next,
+                        controller: _nameController,
+                        label: "Full Name",
+                        prefixIcon: Image.asset(
+                          "assets/images/ic-profile.png",
+                          width: 17,
+                          color: AppColors.purple,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    FormItem(
-                      textInputAction: TextInputAction.next,
-                      controller: _usernameController,
-                      label: "Username",
-                      prefixIcon: Image.asset(
-                        "assets/images/ic-username.png",
-                        width: 20,
+                      const SizedBox(
+                        height: 20,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    FormItem(
-                      textInputAction: TextInputAction.next,
-                      controller: _emailController,
-                      label: "Email Address",
-                      prefixIcon: Image.asset(
-                        "assets/images/ic-email.png",
-                        width: 20,
+                      FormItem(
+                        textInputAction: TextInputAction.next,
+                        controller: _usernameController,
+                        label: "Username",
+                        prefixIcon: Image.asset(
+                          "assets/images/ic-username.png",
+                          width: 20,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    FormItem(
-                      textInputAction: TextInputAction.done,
-                      controller: _passController,
-                      label: "Password",
-                      obscureText: true,
-                      prefixIcon: Image.asset(
-                        "assets/images/ic-lock.png",
-                        width: 17,
+                      const SizedBox(
+                        height: 20,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    BlocConsumer<AuthBloc, AuthState>(
-                      listener: (context, state) {
-                        if (state is AuthSuccess) {
-                          Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            MainPage.routeName,
-                            (route) => false,
-                          );
-                        } else if (state is AuthError) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              backgroundColor: AppColors.red,
-                              content: Text(
-                                "Maaf register gagal, silahkan coba lagi nanti!!",
+                      FormItem(
+                        textInputAction: TextInputAction.next,
+                        controller: _emailController,
+                        label: "Email Address",
+                        prefixIcon: Image.asset(
+                          "assets/images/ic-email.png",
+                          width: 20,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      FormItem(
+                        textInputAction: TextInputAction.done,
+                        controller: _passController,
+                        label: "Password",
+                        obscureText: true,
+                        prefixIcon: Image.asset(
+                          "assets/images/ic-lock.png",
+                          width: 17,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      BlocConsumer<AuthBloc, AuthState>(
+                        listener: (context, state) {
+                          if (state is AuthSuccess) {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              MainPage.routeName,
+                              (route) => false,
+                            );
+                          } else if (state is AuthError) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                backgroundColor: AppColors.red,
+                                content: Text(
+                                  "Maaf register gagal, silahkan coba lagi nanti!!",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.copyWith(
+                                        color: AppColors.white,
+                                        fontWeight: Constants.medium,
+                                      ),
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                        builder: (context, state) {
+                          if (state is AuthLoading) {
+                            return const CenterProgressBar();
+                          } else {
+                            return FilledButton(
+                              onPressed: () => context.read<AuthBloc>().add(
+                                    OnRegister(
+                                      name: _nameController.text,
+                                      username: _usernameController.text,
+                                      email: _emailController.text,
+                                      password: _passController.text,
+                                    ),
+                                  ),
+                              child: Text(
+                                "Sign Up",
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodySmall
+                                    .bodyMedium
                                     ?.copyWith(
                                       color: AppColors.white,
                                       fontWeight: Constants.medium,
                                     ),
                               ),
-                            ),
-                          );
-                        }
-                      },
-                      builder: (context, state) {
-                        if (state is AuthLoading) {
-                          return const CenterProgressBar();
-                        } else {
-                          return FilledButton(
-                            onPressed: () => context.read<AuthBloc>().add(
-                                  OnRegister(
-                                    name: _nameController.text,
-                                    username: _usernameController.text,
-                                    email: _emailController.text,
-                                    password: _passController.text,
-                                  ),
-                                ),
-                            child: Text(
-                              "Sign Up",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(
-                                    color: AppColors.white,
-                                    fontWeight: Constants.medium,
-                                  ),
-                            ),
-                          );
-                        }
-                      },
-                    ),
-                  ],
+                            );
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 30),
-                child: InkWell(
-                  onTap: () => Navigator.pop(context),
-                  child: Text.rich(
-                    TextSpan(
-                      text: "Already have an account? ",
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.grey,
+                Padding(
+                  padding: const EdgeInsets.only(top: 30),
+                  child: InkWell(
+                    onTap: () => Navigator.pop(context),
+                    child: Text.rich(
+                      TextSpan(
+                        text: "Already have an account? ",
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: AppColors.grey,
+                            ),
+                        children: [
+                          TextSpan(
+                            text: "Sign In",
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      color: AppColors.purple,
+                                      fontWeight: Constants.medium,
+                                    ),
                           ),
-                      children: [
-                        TextSpan(
-                          text: "Sign In",
-                          style:
-                              Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: AppColors.purple,
-                                    fontWeight: Constants.medium,
-                                  ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
