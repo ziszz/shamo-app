@@ -8,6 +8,7 @@ class FormItem extends StatelessWidget {
   final Widget prefixIcon;
   final bool obscureText;
   final TextEditingController? controller;
+  final TextInputAction? textInputAction;
 
   const FormItem({
     super.key,
@@ -15,6 +16,7 @@ class FormItem extends StatelessWidget {
     required this.prefixIcon,
     this.obscureText = false,
     this.controller,
+    this.textInputAction,
   });
 
   @override
@@ -34,6 +36,7 @@ class FormItem extends StatelessWidget {
           height: 12,
         ),
         FilledTextField(
+          textInputAction: textInputAction,
           obscureText: obscureText,
           controller: controller,
           hintText: "Your $label",

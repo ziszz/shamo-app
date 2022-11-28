@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:shamo_app/presentation/pages/main_page.dart';
 import 'package:shamo_app/presentation/pages/sign_up_page.dart';
+import 'package:shamo_app/presentation/widgets/center_progress_bar.dart';
 import 'package:shamo_app/presentation/widgets/field_item.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
@@ -39,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: [
                     FormItem(
-                      key: const Key("email_input"),
+                      textInputAction: TextInputAction.next,
                       controller: _emailController,
                       label: "Email Address",
                       prefixIcon: Image.asset(
@@ -51,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 20,
                     ),
                     FormItem(
-                      key: const Key("pass_input"),
+                      textInputAction: TextInputAction.done,
                       controller: _passController,
                       label: "Password",
                       obscureText: true,
@@ -91,13 +92,9 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       builder: (context, state) {
                         if (state is AuthLoading) {
-                          return const Center(
-                            key: Key("progress_bar"),
-                            child: CircularProgressIndicator(),
-                          );
+                          return const CenterProgressBar();
                         } else {
                           return FilledButton(
-                            key: const Key("login_btn"),
                             onPressed: () => context.read<AuthBloc>().add(
                                   OnLogin(
                                     email: _emailController.text,

@@ -7,6 +7,7 @@ class FilledTextField extends StatelessWidget {
   final Color fillColor;
   final double height;
   final TextEditingController? controller;
+  final TextInputAction? textInputAction;
   final Function(String)? onChanged;
   final Widget? prefixIcon;
 
@@ -15,6 +16,7 @@ class FilledTextField extends StatelessWidget {
     required this.hintText,
     this.obscureText = false,
     this.controller,
+    this.textInputAction,
     this.height = 50,
     this.fillColor = AppColors.black2,
     this.onChanged,
@@ -26,6 +28,7 @@ class FilledTextField extends StatelessWidget {
     return SizedBox(
       height: height,
       child: TextFormField(
+        textInputAction: textInputAction,
         obscureText: obscureText,
         controller: controller,
         onChanged: onChanged,
