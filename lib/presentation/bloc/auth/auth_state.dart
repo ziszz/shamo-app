@@ -17,6 +17,12 @@ class AuthSuccess extends AuthState {
   const AuthSuccess({required this.user});
 }
 
+class AuthLogoutSuccess extends AuthState {
+  final bool isLogout;
+
+  const AuthLogoutSuccess({required this.isLogout});
+}
+
 class AuthError extends AuthState {
   final String message;
 

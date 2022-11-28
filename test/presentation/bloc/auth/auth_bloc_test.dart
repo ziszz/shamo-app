@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
+import 'package:shamo_app/utilities/constants.dart';
 import 'package:shamo_app/utilities/failure.dart';
 
 import '../../../dummy_data/dummy_object.dart';
@@ -12,16 +13,20 @@ void main() {
   late AuthBloc bloc;
   late MockUserLogin mockUserLogin;
   late MockUserRegister mockUserRegister;
+  late MockUserLogout mockUserLogout;
 
   setUp(() {
     mockUserRegister = MockUserRegister();
     mockUserLogin = MockUserLogin();
+    mockUserLogout = MockUserLogout();
     bloc = AuthBloc(
       userLogin: mockUserLogin,
       userRegister: mockUserRegister,
+      userLogout: mockUserLogout,
     );
   });
 
+  const testToken = "access_token";
   const testName = "Zis";
   const testEmail = "abdaziz1181@gmail.com";
   const testPass = "12345678";
@@ -139,6 +144,46 @@ void main() {
       expect: () => [
         AuthLoading(),
         const AuthError(message: ""),
+      ],
+    );
+  });
+
+  group("OnLogout Event", () {
+    blocTest<AuthBloc, AuthState>(
+      "should execute user logout when function called",
+      build: () {
+        when(mockUserLogout.execute(testToken))
+            .thenAnswer((_) async => const Right(true));
+        return bloc;
+      },
+      act: (bloc) => bloc.add(const OnLogout(token: testToken)),
+      verify: (bloc) => verify(bloc.userLogout.execute(testToken)),
+    );
+    blocTest<AuthBloc, AuthState>(
+      "should emit [Loading, Success] when post data successfuly",
+      build: () {
+        when(mockUserLogout.execute(testToken))
+            .thenAnswer((_) async => const Right(true));
+        return bloc;
+      },
+      act: (bloc) => bloc.add(const OnLogout(token: testToken)),
+      expect: () => [
+        AuthLoading(),
+        const AuthLogoutSuccess(isLogout: true),
+      ],
+    );
+
+    blocTest<AuthBloc, AuthState>(
+      "should emit [Loading, Error] when post data successfuly",
+      build: () {
+        when(mockUserLogout.execute(testToken)).thenAnswer((_) async =>
+            const Left(ServerFailure(Constants.unauthenticatedMessage)));
+        return bloc;
+      },
+      act: (bloc) => bloc.add(const OnLogout(token: testToken)),
+      expect: () => [
+        AuthLoading(),
+        const AuthError(message: Constants.unauthenticatedMessage),
       ],
     );
   });

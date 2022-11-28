@@ -9,6 +9,7 @@ import 'package:shamo_app/data/repositories/product_repository_impl.dart';
 import 'package:shamo_app/domain/repositories/auth_repository.dart';
 import 'package:shamo_app/domain/repositories/product_repository.dart';
 import 'package:shamo_app/domain/usecases/user_login.dart';
+import 'package:shamo_app/domain/usecases/user_logout.dart';
 import 'package:shamo_app/domain/usecases/user_register.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
 
@@ -20,6 +21,7 @@ void init(HttpClient httpClient) {
     () => AuthBloc(
       userLogin: locator(),
       userRegister: locator(),
+      userLogout: locator(),
     ),
   );
 
@@ -29,6 +31,9 @@ void init(HttpClient httpClient) {
   );
   locator.registerLazySingleton<UserRegister>(
     () => UserRegister(repository: locator()),
+  );
+  locator.registerLazySingleton<UserLogout>(
+    () => UserLogout(repository: locator()),
   );
 
   // repositories

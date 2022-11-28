@@ -6,6 +6,7 @@ import 'package:shamo_app/data/datasources/product_remote_data_source.dart';
 import 'package:shamo_app/domain/repositories/auth_repository.dart';
 import 'package:shamo_app/domain/repositories/product_repository.dart';
 import 'package:shamo_app/domain/usecases/user_login.dart';
+import 'package:shamo_app/domain/usecases/user_logout.dart';
 import 'package:shamo_app/domain/usecases/user_register.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
 
@@ -17,6 +18,7 @@ import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
   AuthRepository,
   UserLogin,
   UserRegister,
+  UserLogout,
   AuthBloc,
 ], customMocks: [
   MockSpec<IOClient>(as: #MockIOClient)
