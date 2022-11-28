@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamo_app/domain/entities/user.dart';
 import 'package:shamo_app/presentation/pages/cart_page.dart';
 import 'package:shamo_app/presentation/pages/checkout_page.dart';
 import 'package:shamo_app/presentation/pages/checkout_success_page.dart';
@@ -60,7 +61,10 @@ RouteFactory? router = (settings) {
       );
     case MainPage.routeName:
       return MaterialPageRoute(
-        builder: (_) => const MainPage(),
+        settings: settings,
+        builder: (_) => MainPage(
+          user: settings.arguments as User,
+        ),
       );
     case ChatDetailPage.routeName:
       return _createRoute(

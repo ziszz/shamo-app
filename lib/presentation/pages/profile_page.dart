@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shamo_app/domain/entities/user.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:shamo_app/presentation/pages/edit_profile_page.dart';
 import 'package:shamo_app/presentation/pages/login_page.dart';
@@ -15,7 +17,7 @@ class ProfilePage extends StatelessWidget {
     return _content(context: context);
   }
 
-  static AppBar appBar({required BuildContext context}) {
+  static AppBar appBar({required BuildContext context, required User user}) {
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: AppColors.black1,
@@ -23,9 +25,16 @@ class ProfilePage extends StatelessWidget {
       titleSpacing: 30,
       title: Row(
         children: [
-          Image.asset(
-            "assets/images/default-user-profile.png",
-            width: 64,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            child: CachedNetworkImage(
+              imageUrl: user.profilePhotoUrl,
+              width: 64,
+              placeholder: (context, url) => const CenterProgressBar(),
+              errorWidget: (context, url, error) => Image.asset(
+                "assets/images/default-user-profile.png",
+              ),
+            ),
           ),
           const SizedBox(
             width: 16,
@@ -34,14 +43,14 @@ class ProfilePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Hello, Alex",
+                "Hello, ${user.name}",
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: Constants.semiBold,
                       color: AppColors.white,
                     ),
               ),
               Text(
-                "@alexkeinn",
+                "@${user.username}",
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontWeight: Constants.regular,
                       color: AppColors.grey,
@@ -50,7 +59,23 @@ class ProfilePage extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          BlocConsumer(
+          BlocConsumer<AuthBloc, AuthState>(
+            builder: (context, state) {
+              if (state is AuthLoading) {
+                return const CenterProgressBar();
+              } else {
+                return InkWell(
+                  onTap: () => context.read<AuthBloc>().add(
+                        OnLogout(token: user.token ?? ""),
+                      ),
+                  child: const ImageIcon(
+                    AssetImage("assets/images/ic-logout.png"),
+                    size: 20,
+                    color: AppColors.red,
+                  ),
+                );
+              }
+            },
             listener: (context, state) {
               if (state is AuthLogoutSuccess) {
                 Navigator.pushNamedAndRemoveUntil(
@@ -69,19 +94,6 @@ class ProfilePage extends StatelessWidget {
                             fontWeight: Constants.medium,
                           ),
                     ),
-                  ),
-                );
-              }
-            },
-            builder: (context, state) {
-              if (state is AuthLoading) {
-                return const CenterProgressBar();
-              } else {
-                return const InkWell(
-                  child: ImageIcon(
-                    AssetImage("assets/images/ic-logout.png"),
-                    size: 20,
-                    color: AppColors.red,
                   ),
                 );
               }

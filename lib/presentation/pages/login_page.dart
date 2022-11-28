@@ -72,6 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.pushNamedAndRemoveUntil(
                               context,
                               MainPage.routeName,
+                              arguments: state.user,
                               (route) => false,
                             );
                           } else if (state is AuthError) {

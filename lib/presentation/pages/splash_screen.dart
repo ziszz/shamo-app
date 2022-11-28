@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shamo_app/presentation/pages/login_page.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const routeName = "/splash";
+  static const routeName = "/";
 
   const SplashScreen({super.key});
 

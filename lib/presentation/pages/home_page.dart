@@ -1,11 +1,71 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shamo_app/domain/entities/user.dart';
 import 'package:shamo_app/presentation/pages/product_detail_page.dart';
+import 'package:shamo_app/presentation/widgets/center_progress_bar.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/constants.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  final String token;
 
+  const HomePage({super.key, required this.token});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+
+  static AppBar appBar({required BuildContext context, required User user}) {
+    return AppBar(
+      toolbarHeight: 87,
+      flexibleSpace: FlexibleSpaceBar(
+        titlePadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+        ),
+        title: SafeArea(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Hello, ${user.name}",
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          fontWeight: Constants.semiBold,
+                          color: AppColors.white,
+                        ),
+                  ),
+                  Text(
+                    "@${user.username}",
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          fontWeight: Constants.regular,
+                          color: AppColors.grey,
+                        ),
+                  ),
+                ],
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: CachedNetworkImage(
+                  imageUrl: user.profilePhotoUrl,
+                  width: 50,
+                  placeholder: (context, url) => const CenterProgressBar(),
+                  errorWidget: (context, url, error) => Image.asset(
+                    "assets/images/default-user-profile.png",
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -49,48 +109,6 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ]),
-    );
-  }
-
-  static AppBar appBar({required BuildContext context}) {
-    return AppBar(
-      toolbarHeight: 87,
-      flexibleSpace: FlexibleSpaceBar(
-        titlePadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-        ),
-        title: SafeArea(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Hello, Alex",
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: Constants.semiBold,
-                          color: AppColors.white,
-                        ),
-                  ),
-                  Text(
-                    "@alexkeinn",
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          fontWeight: Constants.regular,
-                          color: AppColors.grey,
-                        ),
-                  ),
-                ],
-              ),
-              Image.asset(
-                "assets/images/default-user-profile.png",
-                width: 50,
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamo_app/domain/entities/user.dart';
 import 'package:shamo_app/presentation/pages/cart_page.dart';
 import 'package:shamo_app/presentation/pages/chat_page.dart';
 import 'package:shamo_app/presentation/pages/favorite_page.dart';
@@ -7,9 +8,11 @@ import 'package:shamo_app/presentation/pages/profile_page.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 
 class MainPage extends StatefulWidget {
-  static const routeName = "/";
+  static const routeName = "/main";
 
-  const MainPage({super.key});
+  final User user;
+
+  const MainPage({super.key, required this.user});
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -37,10 +40,16 @@ class _MainPageState extends State<MainPage>
   @override
   Widget build(BuildContext context) {
     final appBarList = [
-      HomePage.appBar(context: context),
+      HomePage.appBar(
+        context: context,
+        user: widget.user,
+      ),
       ChatPage.appBar(context: context),
       FavoritePage.appBar(context: context),
-      ProfilePage.appBar(context: context),
+      ProfilePage.appBar(
+        context: context,
+        user: widget.user,
+      ),
     ];
 
     return Scaffold(
@@ -58,11 +67,13 @@ class _MainPageState extends State<MainPage>
               _currentIndex = index;
             });
           },
-          children: const [
-            HomePage(),
-            ChatPage(),
-            FavoritePage(),
-            ProfilePage(),
+          children: [
+            HomePage(
+              token: widget.user.token ?? "",
+            ),
+            const ChatPage(),
+            const FavoritePage(),
+            const ProfilePage(),
           ],
         ),
       ),
