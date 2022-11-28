@@ -41,9 +41,9 @@ dependencies:
   get_it: ^7.2.0
   google_fonts: ^3.0.1
   http: ^0.13.5
-  mockito: ^5.3.2
 
 dev_dependencies:
+  mockito: ^5.3.2
   bloc_test: ^9.1.0
   build_runner: ^2.1.5
   flutter_lints: ^2.0.0

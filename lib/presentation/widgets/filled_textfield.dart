@@ -3,6 +3,7 @@ import 'package:shamo_app/utilities/app_colors.dart';
 
 class FilledTextField extends StatelessWidget {
   final String hintText;
+  final bool obscureText;
   final Color fillColor;
   final double height;
   final TextEditingController? controller;
@@ -12,6 +13,7 @@ class FilledTextField extends StatelessWidget {
   const FilledTextField({
     super.key,
     required this.hintText,
+    this.obscureText = false,
     this.controller,
     this.height = 50,
     this.fillColor = AppColors.black2,
@@ -24,6 +26,7 @@ class FilledTextField extends StatelessWidget {
     return SizedBox(
       height: height,
       child: TextFormField(
+        obscureText: obscureText,
         controller: controller,
         onChanged: onChanged,
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(

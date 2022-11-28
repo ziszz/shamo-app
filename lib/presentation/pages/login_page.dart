@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
@@ -55,6 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                       key: const Key("pass_input"),
                       controller: _passController,
                       label: "Password",
+                      obscureText: true,
                       prefixIcon: Image.asset(
                         "assets/images/ic-lock.png",
                         width: 17,
@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                             SnackBar(
                               backgroundColor: AppColors.red,
                               content: Text(
-                                state.message,
+                                "Email atau password anda salah",
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodySmall
@@ -117,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         }
                       },
-                    )
+                    ),
                   ],
                 ),
               ),
