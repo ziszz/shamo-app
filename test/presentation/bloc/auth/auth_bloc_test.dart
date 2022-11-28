@@ -14,15 +14,18 @@ void main() {
   late MockUserLogin mockUserLogin;
   late MockUserRegister mockUserRegister;
   late MockUserLogout mockUserLogout;
+  late MockGetUser mockGetUser;
 
   setUp(() {
     mockUserRegister = MockUserRegister();
     mockUserLogin = MockUserLogin();
     mockUserLogout = MockUserLogout();
+    mockGetUser = MockGetUser();
     bloc = AuthBloc(
       userLogin: mockUserLogin,
       userRegister: mockUserRegister,
       userLogout: mockUserLogout,
+      getUser: mockGetUser,
     );
   });
 
@@ -159,6 +162,7 @@ void main() {
       act: (bloc) => bloc.add(const OnLogout(token: testToken)),
       verify: (bloc) => verify(bloc.userLogout.execute(testToken)),
     );
+
     blocTest<AuthBloc, AuthState>(
       "should emit [Loading, Success] when post data successfuly",
       build: () {
@@ -184,6 +188,47 @@ void main() {
       expect: () => [
         AuthLoading(),
         const AuthError(message: Constants.unauthenticatedMessage),
+      ],
+    );
+  });
+
+  group("Get User Event", () {
+    blocTest<AuthBloc, AuthState>(
+      "should execute get user when function called",
+      build: () {
+        when(mockGetUser.execute(testToken))
+            .thenAnswer((_) async => const Right(testUser));
+        return bloc;
+      },
+      act: (bloc) => bloc.add(const FetchUser(token: testToken)),
+      verify: (bloc) => verify(bloc.getUser.execute(testToken)),
+    );
+
+    blocTest<AuthBloc, AuthState>(
+      "should [Loading, Success] when gotten data successfuly",
+      build: () {
+        when(mockGetUser.execute(testToken))
+            .thenAnswer((_) async => const Right(testUser));
+        return bloc;
+      },
+      act: (bloc) => bloc.add(const FetchUser(token: testToken)),
+      expect: () => [
+        AuthLoading(),
+        const AuthSuccess(user: testUser),
+      ],
+    );
+
+    blocTest<AuthBloc, AuthState>(
+      "should [Loading, Error] when gotten data failed",
+      build: () {
+        when(mockGetUser.execute(testToken))
+            .thenAnswer((_) async => const Left(ServerFailure("")));
+        return bloc;
+      },
+      act: (bloc) => bloc.add(const FetchUser(token: testToken)),
+      expect: () => [
+        AuthLoading(),
+        const AuthError(message: ""),
       ],
     );
   });

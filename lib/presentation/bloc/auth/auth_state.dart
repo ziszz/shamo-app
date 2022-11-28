@@ -15,16 +15,25 @@ class AuthSuccess extends AuthState {
   final User user;
 
   const AuthSuccess({required this.user});
+
+  @override
+  List<Object> get props => [user];
 }
 
 class AuthLogoutSuccess extends AuthState {
   final bool isLogout;
 
   const AuthLogoutSuccess({required this.isLogout});
+
+  @override
+  List<Object> get props => [isLogout];
 }
 
 class AuthError extends AuthState {
   final String message;
 
   const AuthError({required this.message});
+
+  @override
+  List<Object> get props => [message];
 }

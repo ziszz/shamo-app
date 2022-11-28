@@ -12,6 +12,9 @@ class OnLogin extends AuthEvent {
   final String password;
 
   const OnLogin({required this.email, required this.password});
+
+  @override
+  List<Object?> get props => [email, password];
 }
 
 class OnRegister extends AuthEvent {
@@ -26,10 +29,25 @@ class OnRegister extends AuthEvent {
     required this.username,
     required this.password,
   });
+
+  @override
+  List<Object?> get props => [email, name, username, password];
 }
 
 class OnLogout extends AuthEvent {
   final String token;
 
   const OnLogout({required this.token});
+
+  @override
+  List<Object?> get props => [token];
+}
+
+class FetchUser extends AuthEvent {
+  final String token;
+
+  const FetchUser({required this.token});
+
+  @override
+  List<Object?> get props => [token];
 }
