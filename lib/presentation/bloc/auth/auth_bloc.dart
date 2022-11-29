@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shamo_app/domain/entities/user.dart';
 import 'package:shamo_app/domain/usecases/get_user.dart';
+import 'package:shamo_app/domain/usecases/update_profile.dart';
 import 'package:shamo_app/domain/usecases/user_login.dart';
 import 'package:shamo_app/domain/usecases/user_logout.dart';
 import 'package:shamo_app/domain/usecases/user_register.dart';
@@ -14,12 +15,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserRegister userRegister;
   final UserLogout userLogout;
   final GetUser getUser;
+  final UpdateProfile updateProfile;
 
   AuthBloc({
     required this.userLogin,
     required this.userRegister,
     required this.userLogout,
     required this.getUser,
+    required this.updateProfile,
   }) : super(AuthInitial()) {
     on<OnLogin>((event, emit) async {
       emit(AuthLoading());
@@ -72,6 +75,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final token = event.token;
 
       final result = await getUser.execute(token);
+
+      result.fold(
+        (failure) => emit(AuthError(message: failure.message)),
+        (result) => emit(AuthSuccess(user: result)),
+      );
+    });
+    on<OnUpdate>((event, emit) async {
+      emit(AuthLoading());
+
+      final token = event.token;
+      final name = event.name;
+      final email = event.email;
+      final username = event.username;
+
+      final result = await updateProfile.execute(token, name, email, username);
 
       result.fold(
         (failure) => emit(AuthError(message: failure.message)),

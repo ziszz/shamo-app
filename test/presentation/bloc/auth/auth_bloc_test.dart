@@ -15,17 +15,20 @@ void main() {
   late MockUserRegister mockUserRegister;
   late MockUserLogout mockUserLogout;
   late MockGetUser mockGetUser;
+  late MockUpdateProfile mockUpdateProfile;
 
   setUp(() {
     mockUserRegister = MockUserRegister();
     mockUserLogin = MockUserLogin();
     mockUserLogout = MockUserLogout();
     mockGetUser = MockGetUser();
+    mockUpdateProfile = MockUpdateProfile();
     bloc = AuthBloc(
       userLogin: mockUserLogin,
       userRegister: mockUserRegister,
       userLogout: mockUserLogout,
       getUser: mockGetUser,
+      updateProfile: mockUpdateProfile,
     );
   });
 
@@ -226,6 +229,70 @@ void main() {
         return bloc;
       },
       act: (bloc) => bloc.add(const FetchUser(token: testToken)),
+      expect: () => [
+        AuthLoading(),
+        const AuthError(message: ""),
+      ],
+    );
+  });
+
+  group("OnUpdate Event", () {
+    blocTest<AuthBloc, AuthState>(
+      "should execute update profile when function called",
+      build: () {
+        when(mockUpdateProfile.execute(
+                testToken, testName, testEmail, testUsername))
+            .thenAnswer((_) async => const Right(testUser));
+        return bloc;
+      },
+      act: (bloc) => bloc.add(const OnUpdate(
+        token: testToken,
+        name: testName,
+        email: testEmail,
+        username: testUsername,
+      )),
+      verify: (bloc) => verify(bloc.updateProfile.execute(
+        testToken,
+        testName,
+        testEmail,
+        testUsername,
+      )),
+    );
+
+    blocTest<AuthBloc, AuthState>(
+      "should emit [Loading, Success] when data gotten successfuly",
+      build: () {
+        when(mockUpdateProfile.execute(
+                testToken, testName, testEmail, testUsername))
+            .thenAnswer((_) async => const Right(testUser));
+        return bloc;
+      },
+      act: (bloc) => bloc.add(const OnUpdate(
+        token: testToken,
+        name: testName,
+        email: testEmail,
+        username: testUsername,
+      )),
+      expect: () => [
+        AuthLoading(),
+        const AuthSuccess(user: testUser),
+      ],
+    );
+
+    blocTest<AuthBloc, AuthState>(
+      "should emit [Loading, Error] when data gotten successfuly",
+      build: () {
+        when(mockUpdateProfile.execute(
+                testToken, testName, testEmail, testUsername))
+            .thenAnswer((_) async => const Left(ServerFailure("")));
+        return bloc;
+      },
+      act: (bloc) => bloc.add(const OnUpdate(
+        token: testToken,
+        name: testName,
+        email: testEmail,
+        username: testUsername,
+      )),
       expect: () => [
         AuthLoading(),
         const AuthError(message: ""),

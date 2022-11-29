@@ -51,3 +51,21 @@ class FetchUser extends AuthEvent {
   @override
   List<Object?> get props => [token];
 }
+
+class OnUpdate extends AuthEvent {
+  final String token;
+  final String name;
+  final String email;
+  final String username;
+
+  const OnUpdate({
+    required this.token,
+    required this.name,
+    required this.email,
+    required this.username,
+  });
+
+  @override
+  @override
+  List<Object?> get props => [token, name, email, username];
+}
