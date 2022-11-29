@@ -8,26 +8,26 @@ import 'package:shamo_app/utilities/failure.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {
-  late UserLogout useCase;
+  late UserLogout usecase;
   late MockAuthRepository mockAuthRepository;
 
   setUp(() {
     mockAuthRepository = MockAuthRepository();
-    useCase = UserLogout(
+    usecase = UserLogout(
       repository: mockAuthRepository,
     );
   });
 
   const testToken = "access_token";
 
-  group("User Logout Use Case", () {
+  group("User Logout use case", () {
     test("should return true when get data from the repository is successful",
         () async {
       // arrange
       when(mockAuthRepository.logout(testToken))
           .thenAnswer((_) async => const Right(true));
       // act
-      final result = await useCase.execute(testToken);
+      final result = await usecase.execute(testToken);
       // assert
       expect(result, const Right(true));
     });
@@ -39,7 +39,7 @@ void main() {
       when(mockAuthRepository.logout(testToken)).thenAnswer((_) async =>
           const Left(ServerFailure(Constants.unauthenticatedMessage)));
       // act
-      final result = await useCase.execute(testToken);
+      final result = await usecase.execute(testToken);
       // assert
       expect(
           result, const Left(ServerFailure(Constants.unauthenticatedMessage)));

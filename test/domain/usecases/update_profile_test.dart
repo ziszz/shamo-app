@@ -1,46 +1,53 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:shamo_app/domain/usecases/get_user.dart';
+import 'package:shamo_app/domain/usecases/update_profile.dart';
 import 'package:shamo_app/utilities/failure.dart';
 
 import '../../dummy_data/dummy_object.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {
-  late GetUser usecase;
+  late UpdateProfile usecase;
   late MockAuthRepository mockAuthRepository;
 
   setUp(() {
     mockAuthRepository = MockAuthRepository();
-    usecase = GetUser(
+    usecase = UpdateProfile(
       repository: mockAuthRepository,
     );
   });
 
   const testToken = "access_token";
+  const testName = "Zis";
+  const testEmail = "abdaziz1181@gmail.com";
+  const testUsername = "abdaziz1181";
 
-  group("Get User use case", () {
+  group("Update Profile use case", () {
     test(
         "should return user data when get data from the repository is successfuly",
         () async {
       // arrange
-      when(mockAuthRepository.getUser(testToken))
+      when(mockAuthRepository.updateProfile(
+              testToken, testName, testEmail, testUsername))
           .thenAnswer((_) async => const Right(testUser));
       // act
-      final result = await usecase.execute(testToken);
+      final result =
+          await usecase.execute(testToken, testName, testEmail, testUsername);
       // assert
       expect(result, const Right(testUser));
     });
 
     test(
-        "should return failure message when get data from the repository is failed",
+        "should return failure message when get data from the repository is successfuly",
         () async {
       // arrange
-      when(mockAuthRepository.getUser(testToken))
+      when(mockAuthRepository.updateProfile(
+              testToken, testName, testEmail, testUsername))
           .thenAnswer((_) async => const Left(ServerFailure("")));
       // act
-      final result = await usecase.execute(testToken);
+      final result =
+          await usecase.execute(testToken, testName, testEmail, testUsername);
       // assert
       expect(result, const Left(ServerFailure("")));
     });

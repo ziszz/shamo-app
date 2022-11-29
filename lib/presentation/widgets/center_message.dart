@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 
 class CenterMessage extends StatelessWidget {

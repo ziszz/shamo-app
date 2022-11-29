@@ -8,12 +8,12 @@ import '../../dummy_data/dummy_object.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {
-  late UserRegister useCase;
+  late UserRegister usecase;
   late MockAuthRepository mockAuthRepository;
 
   setUp(() {
     mockAuthRepository = MockAuthRepository();
-    useCase = UserRegister(
+    usecase = UserRegister(
       repository: mockAuthRepository,
     );
   });
@@ -23,7 +23,7 @@ void main() {
   const testUsername = "abdaziz1181";
   const testPass = "12345678";
 
-  group("User Register Use Case", () {
+  group("User Register use case", () {
     test("should get user data when get from repository is successful",
         () async {
       // arrange
@@ -32,7 +32,7 @@ void main() {
           .thenAnswer((_) async => const Right(testUser));
       // act
       final result =
-          await useCase.execute(testName, testEmail, testUsername, testPass);
+          await usecase.execute(testName, testEmail, testUsername, testPass);
       // assert
       expect(result, const Right(testUser));
     });
@@ -45,7 +45,7 @@ void main() {
           .thenAnswer((_) async => const Left(ServerFailure("")));
       // act
       final result =
-          await useCase.execute(testName, testEmail, testUsername, testPass);
+          await usecase.execute(testName, testEmail, testUsername, testPass);
       // assert
       expect(result, const Left(ServerFailure("")));
     });
