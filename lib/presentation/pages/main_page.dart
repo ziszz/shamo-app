@@ -73,7 +73,9 @@ class _MainPageState extends State<MainPage>
             ),
             const ChatPage(),
             const FavoritePage(),
-            const ProfilePage(),
+            ProfilePage(
+              token: widget.user.token ?? "",
+            ),
           ],
         ),
       ),

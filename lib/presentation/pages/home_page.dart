@@ -32,7 +32,8 @@ class HomePage extends StatefulWidget {
                   Text(
                     "Hello, ${user.name}",
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          fontSize: 20,
                           fontWeight: Constants.semiBold,
                           color: AppColors.white,
                         ),

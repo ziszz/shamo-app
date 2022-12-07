@@ -47,7 +47,7 @@ class _CartPageState extends State<CartPage> {
       toolbarHeight: 87,
       title: Text(
         "Your Cart",
-        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: AppColors.white,
               fontWeight: Constants.medium,
               fontSize: 18,

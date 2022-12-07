@@ -165,7 +165,8 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           Text(
             "Login",
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontSize: 20,
                   color: AppColors.white,
                   fontWeight: Constants.semiBold,
                 ),

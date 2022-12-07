@@ -190,7 +190,8 @@ class _SignUpPageState extends State<SignUpPage> {
         children: [
           Text(
             "Sign Up",
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontSize: 20,
                   color: AppColors.white,
                   fontWeight: Constants.semiBold,
                 ),

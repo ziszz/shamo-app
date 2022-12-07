@@ -17,9 +17,11 @@ enum SlideOption { slideX, slideY }
 
 Route _createRoute({
   required Widget page,
+  RouteSettings? settings,
   SlideOption slideOption = SlideOption.slideX,
 }) {
   return PageRouteBuilder(
+    settings: settings,
     transitionDuration: const Duration(milliseconds: 300),
     reverseTransitionDuration: const Duration(milliseconds: 300),
     pageBuilder: (context, animation, secondaryAnimation) => page,
@@ -85,7 +87,10 @@ RouteFactory? router = (settings) {
       );
     case EditProfilePage.routeName:
       return _createRoute(
-        page: const EditProfilePage(),
+        settings: settings,
+        page: EditProfilePage(
+          user: settings.arguments as User,
+        ),
       );
     case ProductDetailPage.routeName:
       return _createRoute(

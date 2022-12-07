@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shamo_app/domain/entities/user.dart';
+import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/constants.dart';
 
 class EditProfilePage extends StatefulWidget {
   static const routeName = "/edit-profile";
 
-  const EditProfilePage({super.key});
+  final User user;
+
+  const EditProfilePage({super.key, required this.user});
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
@@ -19,9 +24,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController(text: "Alex keinnzal");
-    _usernameController = TextEditingController(text: "@alexkeinn");
-    _emailController = TextEditingController(text: "alex.kein@gmail.com");
+    _nameController = TextEditingController(text: widget.user.name);
+    _usernameController = TextEditingController(text: widget.user.username);
+    _emailController = TextEditingController(text: widget.user.email);
   }
 
   @override
@@ -55,12 +60,41 @@ class _EditProfilePageState extends State<EditProfilePage> {
         ),
       ),
       actions: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.check,
-            color: AppColors.purple,
-          ),
+        BlocConsumer<AuthBloc, AuthState>(
+          builder: (context, state) {
+            if (state is AuthLoading) {
+              return const CircularProgressIndicator();
+            } else {
+              return IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.check,
+                  color: AppColors.purple,
+                ),
+              );
+            }
+          },
+          listener: (context, state) {
+            if (state is AuthSuccess) {
+              Navigator.popUntil(
+                context,
+                (route) => false,
+              );
+            } else if (state is AuthError) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: AppColors.red,
+                  content: Text(
+                    "Gagal update profile. Silahkan coba lagi nanti!!",
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppColors.white,
+                          fontWeight: Constants.medium,
+                        ),
+                  ),
+                ),
+              );
+            }
+          },
         ),
       ],
       title: Text(

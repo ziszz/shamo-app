@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shamo_app/domain/entities/user.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
-import 'package:shamo_app/presentation/pages/edit_profile_page.dart';
 import 'package:shamo_app/presentation/pages/login_page.dart';
 import 'package:shamo_app/presentation/widgets/center_progress_bar.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/constants.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  final String token;
+
+  const ProfilePage({super.key, required this.token});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,8 @@ class ProfilePage extends StatelessWidget {
             children: [
               Text(
                 "Hello, ${user.name}",
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontSize: 20,
                       fontWeight: Constants.semiBold,
                       color: AppColors.white,
                     ),
@@ -155,10 +157,7 @@ class ProfilePage extends StatelessWidget {
           ),
           _optionItem(
             context: context,
-            onTap: () => Navigator.pushNamed(
-              context,
-              EditProfilePage.routeName,
-            ),
+            onTap: () {},
             text: "Edit Profile",
           ),
           _optionItem(
