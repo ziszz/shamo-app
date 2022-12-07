@@ -112,7 +112,6 @@ class ProfilePage extends StatelessWidget {
     required String text,
   }) {
     return InkWell(
-      borderRadius: BorderRadius.circular(12),
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),

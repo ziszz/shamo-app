@@ -288,6 +288,7 @@ class _HomePageState extends State<HomePage> {
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: AppColors.white,
                     fontWeight: Constants.semiBold,
+                    fontSize: 18,
                   ),
             ),
           ),
@@ -320,6 +321,7 @@ class _HomePageState extends State<HomePage> {
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: AppColors.white,
                     fontWeight: Constants.semiBold,
+                    fontSize: 18,
                   ),
             ),
           ),
@@ -359,6 +361,7 @@ class _HomePageState extends State<HomePage> {
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: AppColors.white,
                     fontWeight: Constants.semiBold,
+                    fontSize: 18,
                   ),
             ),
           ),
