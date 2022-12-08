@@ -30,12 +30,12 @@ void main() {
       // arrange
       when(mockAuthRepository.updateProfile(
               testToken, testName, testEmail, testUsername))
-          .thenAnswer((_) async => const Right(testUser));
+          .thenAnswer((_) async => const Right(testUserFromUserModel));
       // act
       final result =
           await usecase.execute(testToken, testName, testEmail, testUsername);
       // assert
-      expect(result, const Right(testUser));
+      expect(result, const Right(testUserFromUserModel));
     });
 
     test(
