@@ -3,6 +3,7 @@ import 'package:shamo_app/domain/entities/user.dart';
 
 class UserModel extends Equatable {
   final int id;
+  final String token;
   final String name;
   final String email;
   final String username;
@@ -13,6 +14,7 @@ class UserModel extends Equatable {
 
   const UserModel({
     required this.id,
+    required this.token,
     required this.name,
     required this.email,
     required this.username,
@@ -22,8 +24,10 @@ class UserModel extends Equatable {
     required this.updatedAt,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+  factory UserModel.fromJson(String token, Map<String, dynamic> json) =>
+      UserModel(
         id: json["id"],
+        token: token,
         name: json["name"],
         email: json["email"],
         username: json["username"],
@@ -46,7 +50,7 @@ class UserModel extends Equatable {
 
   User toEntity() => User(
         id: id,
-        token: "",
+        token: token,
         name: name,
         email: email,
         username: username,

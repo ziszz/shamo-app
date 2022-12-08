@@ -7,8 +7,9 @@ void main() {
   group("User Model", () {
     test("should return a valid Model from JSON", () async {
       // act
+      const testToken = "access_token";
       const jsonMap = testUserJson;
-      final result = UserModel.fromJson(jsonMap);
+      final result = UserModel.fromJson(testToken, jsonMap);
       // assert
       expect(result, testUserModel);
     });
@@ -25,7 +26,7 @@ void main() {
       // act
       final result = testUserModel.toEntity();
       // assert
-      expect(result, testUserFromUserModel);
+      expect(result, testUser);
     });
   });
 }

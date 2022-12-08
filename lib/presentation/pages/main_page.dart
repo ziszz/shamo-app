@@ -43,10 +43,7 @@ class _MainPageState extends State<MainPage>
       HomePage.appBar(context: context),
       ChatPage.appBar(context: context),
       FavoritePage.appBar(context: context),
-      ProfilePage.appBar(
-        context: context,
-        user: widget.user,
-      ),
+      ProfilePage.appBar(context: context),
     ];
 
     return Scaffold(

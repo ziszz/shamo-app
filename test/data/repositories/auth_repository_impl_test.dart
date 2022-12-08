@@ -36,7 +36,7 @@ void main() {
       // act
       final result = await repository.getUser(testToken);
       // assert
-      expect(result, const Right(testUserFromUserModel));
+      expect(result, const Right(testUser));
     });
 
     test(
@@ -59,12 +59,12 @@ void main() {
       // arrange
       when(mockRemoteDataSource.register(
               testName, testEmail, testUsername, testPass))
-          .thenAnswer((_) async => testUserResponse);
+          .thenAnswer((_) async => testUserModel);
       // act
       final result = await repository.register(
           testName, testEmail, testUsername, testPass);
       // assert
-      expect(result, const Right(testUserFromUserReponse));
+      expect(result, const Right(testUser));
     });
 
     test(
@@ -91,11 +91,11 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.login(testEmail, testPass))
-          .thenAnswer((_) async => testUserResponse);
+          .thenAnswer((_) async => testUserModel);
       // act
       final result = await repository.login(testEmail, testPass);
       // assert
-      expect(result, const Right(testUserFromUserReponse));
+      expect(result, const Right(testUser));
     });
 
     test(
@@ -123,7 +123,7 @@ void main() {
       final result = await repository.updateProfile(
           testToken, testName, testEmail, testUsername);
       // assert
-      expect(result, const Right(testUserFromUserModel));
+      expect(result, const Right(testUser));
     });
 
     test(

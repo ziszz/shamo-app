@@ -4,6 +4,7 @@ import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:shamo_app/presentation/pages/main_page.dart';
 import 'package:shamo_app/presentation/pages/sign_up_page.dart';
 import 'package:shamo_app/presentation/widgets/center_progress_bar.dart';
+import 'package:shamo_app/presentation/widgets/error_snackbar.dart';
 import 'package:shamo_app/presentation/widgets/field_item.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
@@ -76,20 +77,9 @@ class _LoginPageState extends State<LoginPage> {
                               (route) => false,
                             );
                           } else if (state is AuthError) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                backgroundColor: AppColors.red,
-                                content: Text(
-                                  "Email atau password anda salah",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall
-                                      ?.copyWith(
-                                        color: AppColors.white,
-                                        fontWeight: Constants.medium,
-                                      ),
-                                ),
-                              ),
+                            errorSnackbar(
+                              context: context,
+                              message: "Email atau password anda salah",
                             );
                           }
                         },

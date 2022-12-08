@@ -26,11 +26,11 @@ void main() {
         () async {
       // arrange
       when(mockAuthRepository.getUser(testToken))
-          .thenAnswer((_) async => const Right(testUserFromUserModel));
+          .thenAnswer((_) async => const Right(testUser));
       // act
       final result = await usecase.execute(testToken);
       // assert
-      expect(result, const Right(testUserFromUserModel));
+      expect(result, const Right(testUser));
     });
 
     test(

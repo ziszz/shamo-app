@@ -75,7 +75,7 @@ void main() {
       final result = await dataSource.register(
           testName, testEmail, testUsername, testPass);
       // assert
-      expect(result, testUserResponse);
+      expect(result, testUser);
     });
 
     test("should throw server exception when the response code is 404 or other",
@@ -107,7 +107,7 @@ void main() {
       // act
       final result = await dataSource.login(testEmail, testPass);
       // assert
-      expect(result, testUserResponse);
+      expect(result, testUser);
     });
 
     test("should throw server exception when the response code is 404 or other",

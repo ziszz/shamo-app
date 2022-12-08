@@ -48,7 +48,7 @@ void main() {
       "should execute user login when function called",
       build: () {
         when(mockUserLogin.execute(testEmail, testPass))
-            .thenAnswer((_) async => const Right(testUserFromUserReponse));
+            .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
       act: (bloc) => bloc.add(const OnLogin(
@@ -62,7 +62,7 @@ void main() {
       "should emit [Loading, Loaded] when post data successfuly",
       build: () {
         when(mockUserLogin.execute(testEmail, testPass))
-            .thenAnswer((_) async => const Right(testUserFromUserReponse));
+            .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
       act: (bloc) => bloc.add(const OnLogin(
@@ -71,7 +71,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        const AuthSuccess(user: testUserFromUserReponse),
+        const AuthSuccess(user: testUser),
       ],
     );
 
@@ -99,7 +99,7 @@ void main() {
       build: () {
         when(mockUserRegister.execute(
                 testName, testEmail, testUsername, testPass))
-            .thenAnswer((_) async => const Right(testUserFromUserReponse));
+            .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
       act: (bloc) => bloc.add(const OnRegister(
@@ -118,7 +118,7 @@ void main() {
       build: () {
         when(mockUserRegister.execute(
                 testName, testEmail, testUsername, testPass))
-            .thenAnswer((_) async => const Right(testUserFromUserReponse));
+            .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
       act: (bloc) => bloc.add(const OnRegister(
@@ -129,7 +129,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        const AuthSuccess(user: testUserFromUserReponse),
+        const AuthSuccess(user: testUser),
       ],
     );
 
@@ -200,7 +200,7 @@ void main() {
       "should execute get user when function called",
       build: () {
         when(mockGetUser.execute(testToken))
-            .thenAnswer((_) async => const Right(testUserFromUserModel));
+            .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
       act: (bloc) => bloc.add(const OnFetchUser(token: testToken)),
@@ -211,13 +211,13 @@ void main() {
       "should [Loading, Success] when gotten data successfuly",
       build: () {
         when(mockGetUser.execute(testToken))
-            .thenAnswer((_) async => const Right(testUserFromUserModel));
+            .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
       act: (bloc) => bloc.add(const OnFetchUser(token: testToken)),
       expect: () => [
         AuthLoading(),
-        const AuthSuccess(user: testUserFromUserModel),
+        const AuthSuccess(user: testUser),
       ],
     );
 
@@ -242,7 +242,7 @@ void main() {
       build: () {
         when(mockUpdateProfile.execute(
                 testToken, testName, testEmail, testUsername))
-            .thenAnswer((_) async => const Right(testUserFromUserModel));
+            .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
       act: (bloc) => bloc.add(const OnUpdate(
@@ -264,7 +264,7 @@ void main() {
       build: () {
         when(mockUpdateProfile.execute(
                 testToken, testName, testEmail, testUsername))
-            .thenAnswer((_) async => const Right(testUserFromUserModel));
+            .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
       act: (bloc) => bloc.add(const OnUpdate(
@@ -275,7 +275,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        const AuthSuccess(user: testUserFromUserModel),
+        const AuthSuccess(user: testUser),
       ],
     );
 

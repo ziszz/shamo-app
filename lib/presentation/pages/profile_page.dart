@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shamo_app/domain/entities/user.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:shamo_app/presentation/pages/edit_profile_page.dart';
 import 'package:shamo_app/presentation/pages/login_page.dart';
 import 'package:shamo_app/presentation/widgets/center_progress_bar.dart';
+import 'package:shamo_app/presentation/widgets/error_snackbar.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/constants.dart';
 
@@ -48,90 +48,80 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  static AppBar appBar({required BuildContext context, required User user}) {
+  static AppBar appBar({required BuildContext context}) {
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: AppColors.black1,
       toolbarHeight: 125,
       titleSpacing: 30,
-      title: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: CachedNetworkImage(
-              imageUrl: user.profilePhotoUrl,
-              width: 64,
-              placeholder: (context, url) => const CenterProgressBar(),
-              errorWidget: (context, url, error) => Image.asset(
-                "assets/images/default-user-profile.png",
-              ),
-            ),
-          ),
-          const SizedBox(
-            width: 16,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Hello, ${user.name}",
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      fontSize: 20,
-                      fontWeight: Constants.semiBold,
-                      color: AppColors.white,
+      title: BlocConsumer<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state is AuthLogoutSuccess) {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              LoginPage.routeName,
+              (route) => false,
+            );
+          } else if (state is AuthError) {
+            errorSnackbar(
+              context: context,
+              message: state.message,
+            );
+          }
+        },
+        builder: (context, state) {
+          if (state is AuthSuccess) {
+            return Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: CachedNetworkImage(
+                    imageUrl: state.user.profilePhotoUrl,
+                    width: 64,
+                    placeholder: (context, url) => const CenterProgressBar(),
+                    errorWidget: (context, url, error) => Image.asset(
+                      "assets/images/default-user-profile.png",
                     ),
-              ),
-              Text(
-                "@${user.username}",
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      fontWeight: Constants.regular,
-                      color: AppColors.grey,
+                  ),
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Hello, ${state.user.name}",
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontSize: 20,
+                            fontWeight: Constants.semiBold,
+                            color: AppColors.white,
+                          ),
                     ),
-              ),
-            ],
-          ),
-          const Spacer(),
-          BlocConsumer<AuthBloc, AuthState>(
-            builder: (context, state) {
-              if (state is AuthLoading) {
-                return const CenterProgressBar();
-              } else {
-                return InkWell(
-                  onTap: () => context.read<AuthBloc>().add(
-                        OnLogout(token: user.token ?? ""),
-                      ),
+                    Text(
+                      "@${state.user.username}",
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: Constants.regular,
+                            color: AppColors.grey,
+                          ),
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                InkWell(
+                  onTap: () {},
                   child: const ImageIcon(
                     AssetImage("assets/images/ic-logout.png"),
                     size: 20,
                     color: AppColors.red,
                   ),
-                );
-              }
-            },
-            listener: (context, state) {
-              if (state is AuthLogoutSuccess) {
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  LoginPage.routeName,
-                  (route) => false,
-                );
-              } else if (state is AuthError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    backgroundColor: AppColors.red,
-                    content: Text(
-                      state.message,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.white,
-                            fontWeight: Constants.medium,
-                          ),
-                    ),
-                  ),
-                );
-              }
-            },
-          ),
-        ],
+                ),
+              ],
+            );
+          } else {
+            return const SizedBox();
+          }
+        },
       ),
     );
   }
