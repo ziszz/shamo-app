@@ -40,10 +40,7 @@ class _MainPageState extends State<MainPage>
   @override
   Widget build(BuildContext context) {
     final appBarList = [
-      HomePage.appBar(
-        context: context,
-        user: widget.user,
-      ),
+      HomePage.appBar(context: context),
       ChatPage.appBar(context: context),
       FavoritePage.appBar(context: context),
       ProfilePage.appBar(

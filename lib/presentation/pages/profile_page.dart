@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shamo_app/domain/entities/user.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
+import 'package:shamo_app/presentation/pages/edit_profile_page.dart';
 import 'package:shamo_app/presentation/pages/login_page.dart';
 import 'package:shamo_app/presentation/widgets/center_progress_bar.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
@@ -155,7 +156,18 @@ class ProfilePage extends StatelessWidget {
             height: 8,
           ),
           BlocListener<AuthBloc, AuthState>(
-            listener: (context, state) {},
+            listener: (context, state) {
+              if (state is AuthSuccess) {
+                Navigator.pushNamed(
+                  context,
+                  EditProfilePage.routeName,
+                  arguments: {
+                    "token": token,
+                    "user": state.user,
+                  },
+                );
+              }
+            },
             child: _optionItem(
               context: context,
               onTap: () => context.read<AuthBloc>().add(

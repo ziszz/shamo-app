@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shamo_app/domain/entities/user.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
+import 'package:shamo_app/presentation/widgets/center_progress_bar.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/constants.dart';
 
 class EditProfilePage extends StatefulWidget {
   static const routeName = "/edit-profile";
 
+  final String token;
   final User user;
 
-  const EditProfilePage({super.key, required this.user});
+  const EditProfilePage({
+    super.key,
+    required this.token,
+    required this.user,
+  });
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
@@ -63,10 +69,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
         BlocConsumer<AuthBloc, AuthState>(
           builder: (context, state) {
             if (state is AuthLoading) {
-              return const CircularProgressIndicator();
+              return const CenterProgressBar();
             } else {
               return IconButton(
-                onPressed: () {},
+                onPressed: () => context.read<AuthBloc>().add(
+                      OnUpdate(
+                        token: widget.token,
+                        name: _nameController.text,
+                        email: _emailController.text,
+                        username: _usernameController.text,
+                      ),
+                    ),
                 icon: const Icon(
                   Icons.check,
                   color: AppColors.purple,
@@ -76,10 +89,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           },
           listener: (context, state) {
             if (state is AuthSuccess) {
-              Navigator.popUntil(
-                context,
-                (route) => false,
-              );
+              Navigator.pop(context);
             } else if (state is AuthError) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(

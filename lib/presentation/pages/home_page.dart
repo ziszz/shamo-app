@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:shamo_app/domain/entities/user.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:shamo_app/presentation/pages/product_detail_page.dart';
 import 'package:shamo_app/presentation/widgets/center_progress_bar.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
@@ -14,59 +15,73 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 
-  static AppBar appBar({required BuildContext context, required User user}) {
+  static AppBar appBar({required BuildContext context}) {
     return AppBar(
       toolbarHeight: 87,
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsets.symmetric(
           horizontal: 16,
         ),
-        title: SafeArea(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
+        title: SafeArea(child: BlocBuilder<AuthBloc, AuthState>(
+          builder: (context, state) {
+            if (state is AuthSuccess) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Hello, ${user.name}",
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          fontSize: 20,
-                          fontWeight: Constants.semiBold,
-                          color: AppColors.white,
-                        ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Hello, ${state.user.name}",
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontSize: 20,
+                              fontWeight: Constants.semiBold,
+                              color: AppColors.white,
+                            ),
+                      ),
+                      Text(
+                        "@${state.user.username}",
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontWeight: Constants.regular,
+                              color: AppColors.grey,
+                            ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    "@${user.username}",
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          fontWeight: Constants.regular,
-                          color: AppColors.grey,
-                        ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: CachedNetworkImage(
+                      imageUrl: state.user.profilePhotoUrl,
+                      width: 50,
+                      placeholder: (context, url) => const CenterProgressBar(),
+                      errorWidget: (context, url, error) => Image.asset(
+                        "assets/images/default-user-profile.png",
+                      ),
+                    ),
                   ),
                 ],
-              ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: CachedNetworkImage(
-                  imageUrl: user.profilePhotoUrl,
-                  width: 50,
-                  placeholder: (context, url) => const CenterProgressBar(),
-                  errorWidget: (context, url, error) => Image.asset(
-                    "assets/images/default-user-profile.png",
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+              );
+            } else {
+              return const SizedBox();
+            }
+          },
+        )),
       ),
     );
   }
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(
+      () => context.read<AuthBloc>().add(OnFetchUser(token: widget.token)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
