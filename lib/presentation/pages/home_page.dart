@@ -17,6 +17,7 @@ class HomePage extends StatefulWidget {
 
   static AppBar appBar({required BuildContext context}) {
     return AppBar(
+      automaticallyImplyLeading: false,
       toolbarHeight: 87,
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsets.symmetric(

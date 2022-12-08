@@ -109,7 +109,9 @@ class ProfilePage extends StatelessWidget {
                 ),
                 const Spacer(),
                 InkWell(
-                  onTap: () {},
+                  onTap: () => context.read<AuthBloc>().add(
+                        OnLogout(token: state.user.token ?? ""),
+                      ),
                   child: const ImageIcon(
                     AssetImage("assets/images/ic-logout.png"),
                     size: 20,

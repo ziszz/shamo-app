@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shamo_app/domain/entities/user.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
-import 'package:shamo_app/presentation/widgets/center_progress_bar.dart';
+import 'package:shamo_app/presentation/widgets/error_snackbar.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/constants.dart';
 
@@ -68,40 +68,28 @@ class _EditProfilePageState extends State<EditProfilePage> {
       actions: [
         BlocConsumer<AuthBloc, AuthState>(
           builder: (context, state) {
-            if (state is AuthLoading) {
-              return const CenterProgressBar();
-            } else {
-              return IconButton(
-                onPressed: () => context.read<AuthBloc>().add(
-                      OnUpdate(
-                        token: widget.token,
-                        name: _nameController.text,
-                        email: _emailController.text,
-                        username: _usernameController.text,
-                      ),
+            return IconButton(
+              onPressed: () => context.read<AuthBloc>().add(
+                    OnUpdate(
+                      token: widget.token,
+                      name: _nameController.text,
+                      email: _emailController.text,
+                      username: _usernameController.text,
                     ),
-                icon: const Icon(
-                  Icons.check,
-                  color: AppColors.purple,
-                ),
-              );
-            }
+                  ),
+              icon: const Icon(
+                Icons.check,
+                color: AppColors.purple,
+              ),
+            );
           },
           listener: (context, state) {
             if (state is AuthSuccess) {
               Navigator.pop(context);
             } else if (state is AuthError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  backgroundColor: AppColors.red,
-                  content: Text(
-                    "Gagal update profile. Silahkan coba lagi nanti!!",
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.white,
-                          fontWeight: Constants.medium,
-                        ),
-                  ),
-                ),
+              errorSnackbar(
+                context: context,
+                message: "Gagal update profile. Silahkan coba lagi nanti!!",
               );
             }
           },
