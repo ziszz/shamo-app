@@ -14,6 +14,7 @@ import 'package:shamo_app/domain/usecases/user_login.dart';
 import 'package:shamo_app/domain/usecases/user_logout.dart';
 import 'package:shamo_app/domain/usecases/user_register.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
+import 'package:shamo_app/presentation/cubit/page_cubit.dart';
 
 final locator = GetIt.instance;
 
@@ -28,6 +29,9 @@ void init(HttpClient httpClient) {
       updateProfile: locator(),
     ),
   );
+
+  // cubit
+  locator.registerFactory<PageCubit>(() => PageCubit());
 
   // use cases
   locator.registerLazySingleton<UserLogin>(
