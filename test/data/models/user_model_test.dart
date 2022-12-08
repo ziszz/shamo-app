@@ -25,7 +25,7 @@ void main() {
       // act
       final result = testUserModel.toEntity();
       // assert
-      expect(result, testUser);
+      expect(result, testUserFromUserModel);
     });
   });
 }

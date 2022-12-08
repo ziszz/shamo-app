@@ -421,9 +421,21 @@ const testCheckoutBody = CheckoutBody(
   shippingPrice: 1,
 );
 
-const testUser = User(
+const testUserFromUserModel = User(
   id: 1,
   token: "",
+  name: "name",
+  email: "email",
+  username: "username",
+  roles: "roles",
+  profilePhotoUrl: "profile_photo_url",
+  createdAt: "created_at",
+  updatedAt: "updated_at",
+);
+
+const testUserFromUserReponse = User(
+  id: 1,
+  token: "access_token",
   name: "name",
   email: "email",
   username: "username",
