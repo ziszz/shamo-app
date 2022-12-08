@@ -7,7 +7,7 @@ void main() {
   group("User Response", () {
     test("should return a valid Model from JSON", () async {
       // act
-      const jsonMap = testUserJson;
+      const jsonMap = testUserResponseJson;
       final result = UserResponse.fromJson(jsonMap);
       // assert
       expect(result, testUserResponse);
@@ -15,7 +15,7 @@ void main() {
 
     test("should return json containing proper data", () async {
       // act
-      const expectedJson = testUserJson;
+      const expectedJson = testUserResponseJson;
       final result = testUserResponse.toJson();
       // assert
       expect(result, expectedJson);

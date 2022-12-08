@@ -275,7 +275,7 @@ const testTransactionResponseJson = {
 final testTransactionResponse =
     TransactionResponse.fromJson(testTransactionResponseJson).transactionList;
 
-const testUserJson = {
+const testUserResponseJson = {
   "access_token": "access_token",
   "user": {
     "id": 1,
@@ -287,6 +287,17 @@ const testUserJson = {
     "updated_at": "updated_at",
     "profile_photo_url": "profile_photo_url"
   }
+};
+
+const testUserJson = {
+  "id": 1,
+  "name": "name",
+  "email": "email",
+  "username": "username",
+  "roles": "roles",
+  "created_at": "created_at",
+  "updated_at": "updated_at",
+  "profile_photo_url": "profile_photo_url"
 };
 
 const testUserModel = UserModel(
@@ -412,7 +423,7 @@ const testCheckoutBody = CheckoutBody(
 
 const testUser = User(
   id: 1,
-  token: "access_token",
+  token: "",
   name: "name",
   email: "email",
   username: "username",
