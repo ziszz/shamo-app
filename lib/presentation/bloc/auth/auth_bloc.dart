@@ -24,6 +24,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required this.getUser,
     required this.updateProfile,
   }) : super(AuthInitial()) {
+    on<OnFetchUser>((event, emit) async {
+      emit(AuthLoading());
+
+      final token = event.token;
+
+      final result = await getUser.execute(token);
+
+      result.fold(
+        (failure) => emit(AuthError(message: failure.message)),
+        (result) => emit(AuthSuccess(user: result)),
+      );
+    });
     on<OnLogin>((event, emit) async {
       emit(AuthLoading());
 
@@ -67,18 +79,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         (result) => emit(
           AuthLogoutSuccess(isLogout: result),
         ),
-      );
-    });
-    on<FetchUser>((event, emit) async {
-      emit(AuthLoading());
-
-      final token = event.token;
-
-      final result = await getUser.execute(token);
-
-      result.fold(
-        (failure) => emit(AuthError(message: failure.message)),
-        (result) => emit(AuthSuccess(user: result)),
       );
     });
     on<OnUpdate>((event, emit) async {

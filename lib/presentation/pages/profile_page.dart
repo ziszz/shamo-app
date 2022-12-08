@@ -18,6 +18,35 @@ class ProfilePage extends StatelessWidget {
     return _content(context: context);
   }
 
+  Widget _optionItem({
+    required BuildContext context,
+    required Function() onTap,
+    required String text,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              text,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppColors.grey,
+                    fontSize: 13,
+                  ),
+            ),
+            const Icon(
+              Icons.keyboard_arrow_right,
+              color: AppColors.grey,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   static AppBar appBar({required BuildContext context, required User user}) {
     return AppBar(
       automaticallyImplyLeading: false,
@@ -106,35 +135,6 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _optionItem({
-    required BuildContext context,
-    required Function() onTap,
-    required String text,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              text,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.grey,
-                    fontSize: 13,
-                  ),
-            ),
-            const Icon(
-              Icons.keyboard_arrow_right,
-              color: AppColors.grey,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _content({required BuildContext context}) {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -154,10 +154,15 @@ class ProfilePage extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          _optionItem(
-            context: context,
-            onTap: () {},
-            text: "Edit Profile",
+          BlocListener<AuthBloc, AuthState>(
+            listener: (context, state) {},
+            child: _optionItem(
+              context: context,
+              onTap: () => context.read<AuthBloc>().add(
+                    OnFetchUser(token: token),
+                  ),
+              text: "Edit Profile",
+            ),
           ),
           _optionItem(
             context: context,

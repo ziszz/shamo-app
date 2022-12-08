@@ -3,13 +3,14 @@ import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/io_client.dart';
 import 'package:shamo_app/data/models/user_model.dart';
+import 'package:shamo_app/data/models/user_response.dart';
 import 'package:shamo_app/utilities/exceptions.dart';
 
 abstract class AuthRemoteDataSource {
   Future<UserModel> getUser(String token);
-  Future<UserModel> register(
+  Future<UserResponse> register(
       String name, String email, String username, String password);
-  Future<UserModel> login(String email, String password);
+  Future<UserResponse> login(String email, String password);
   Future<UserModel> updateProfile(
       String token, String name, String email, String username);
   Future<bool> logout(String token);
@@ -21,7 +22,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   const AuthRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<UserModel> register(
+  Future<UserResponse> register(
       String name, String email, String username, String password) async {
     final body = {
       "name": name,
@@ -36,7 +37,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     );
 
     if (response.statusCode == 200) {
-      final result = UserModel.fromJson(jsonDecode(response.body)["data"]);
+      final result = UserResponse.fromJson(jsonDecode(response.body)["data"]);
       return result;
     } else {
       throw ServerException();
@@ -44,7 +45,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserModel> login(String email, String password) async {
+  Future<UserResponse> login(String email, String password) async {
     final body = {"email": email, "password": password};
     final response = await client.post(
       Uri.parse("${dotenv.env["apiUrl"]}/api/login"),
@@ -52,7 +53,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     );
 
     if (response.statusCode == 200) {
-      final result = UserModel.fromJson(jsonDecode(response.body)["data"]);
+      final result = UserResponse.fromJson(jsonDecode(response.body)["data"]);
       return result;
     } else {
       throw ServerException();

@@ -70,12 +70,12 @@ void main() {
       when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/register"),
               body: testBody))
           .thenAnswer((_) async =>
-              http.Response(readJson("dummy_data/user.json"), 200));
+              http.Response(readJson("dummy_data/login_register.json"), 200));
       // act
       final result = await dataSource.register(
           testName, testEmail, testUsername, testPass);
       // assert
-      expect(result, testUserModel);
+      expect(result, testUserResponse);
     });
 
     test("should throw server exception when the response code is 404 or other",
@@ -103,11 +103,11 @@ void main() {
       when(mockIOClient.post(Uri.parse("${dotenv.env["apiUrl"]}/api/login"),
               body: testBody))
           .thenAnswer((_) async =>
-              http.Response(readJson("dummy_data/user.json"), 200));
+              http.Response(readJson("dummy_data/login_register.json"), 200));
       // act
       final result = await dataSource.login(testEmail, testPass);
       // assert
-      expect(result, testUserModel);
+      expect(result, testUserResponse);
     });
 
     test("should throw server exception when the response code is 404 or other",

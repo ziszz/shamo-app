@@ -9,6 +9,7 @@ import 'package:shamo_app/data/models/transaction_item_model.dart';
 import 'package:shamo_app/data/models/transaction_model.dart';
 import 'package:shamo_app/data/models/transaction_response.dart';
 import 'package:shamo_app/data/models/user_model.dart';
+import 'package:shamo_app/data/models/user_response.dart';
 import 'package:shamo_app/domain/entities/category.dart';
 import 'package:shamo_app/domain/entities/checkout_body.dart';
 import 'package:shamo_app/domain/entities/checkout_item.dart';
@@ -290,7 +291,6 @@ const testUserJson = {
 
 const testUserModel = UserModel(
   id: 1,
-  token: "access_token",
   name: "name",
   email: "email",
   username: "username",
@@ -298,6 +298,11 @@ const testUserModel = UserModel(
   profilePhotoUrl: "profile_photo_url",
   createdAt: "created_at",
   updatedAt: "updated_at",
+);
+
+const testUserResponse = UserResponse(
+  token: "access_token",
+  user: testUserModel,
 );
 
 const testCheckoutItemJson = {

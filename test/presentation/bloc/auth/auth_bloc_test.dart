@@ -203,7 +203,7 @@ void main() {
             .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
-      act: (bloc) => bloc.add(const FetchUser(token: testToken)),
+      act: (bloc) => bloc.add(const OnFetchUser(token: testToken)),
       verify: (bloc) => verify(bloc.getUser.execute(testToken)),
     );
 
@@ -214,7 +214,7 @@ void main() {
             .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
-      act: (bloc) => bloc.add(const FetchUser(token: testToken)),
+      act: (bloc) => bloc.add(const OnFetchUser(token: testToken)),
       expect: () => [
         AuthLoading(),
         const AuthSuccess(user: testUser),
@@ -228,7 +228,7 @@ void main() {
             .thenAnswer((_) async => const Left(ServerFailure("")));
         return bloc;
       },
-      act: (bloc) => bloc.add(const FetchUser(token: testToken)),
+      act: (bloc) => bloc.add(const OnFetchUser(token: testToken)),
       expect: () => [
         AuthLoading(),
         const AuthError(message: ""),

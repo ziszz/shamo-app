@@ -3,7 +3,6 @@ import 'package:shamo_app/domain/entities/user.dart';
 
 class UserModel extends Equatable {
   final int id;
-  final String? token;
   final String name;
   final String email;
   final String username;
@@ -14,7 +13,6 @@ class UserModel extends Equatable {
 
   const UserModel({
     required this.id,
-    required this.token,
     required this.name,
     required this.email,
     required this.username,
@@ -25,34 +23,30 @@ class UserModel extends Equatable {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-        id: json["user"]["id"],
-        token: json["access_token"] ?? "",
-        name: json["user"]["name"],
-        email: json["user"]["email"],
-        username: json["user"]["username"],
-        roles: json["user"]["roles"],
-        profilePhotoUrl: json["user"]["profile_photo_url"],
-        createdAt: json["user"]["created_at"],
-        updatedAt: json["user"]["updated_at"],
+        id: json["id"],
+        name: json["name"],
+        email: json["email"],
+        username: json["username"],
+        roles: json["roles"],
+        profilePhotoUrl: json["profile_photo_url"],
+        createdAt: json["created_at"],
+        updatedAt: json["updated_at"],
       );
 
   Map<String, dynamic> toJson() => {
-        "access_token": token ?? "",
-        "user": {
-          "id": id,
-          "name": name,
-          "email": email,
-          "username": username,
-          "roles": roles,
-          "profile_photo_url": profilePhotoUrl,
-          "created_at": createdAt,
-          "updated_at": updatedAt,
-        },
+        "id": id,
+        "name": name,
+        "email": email,
+        "username": username,
+        "roles": roles,
+        "profile_photo_url": profilePhotoUrl,
+        "created_at": createdAt,
+        "updated_at": updatedAt,
       };
 
   User toEntity() => User(
         id: id,
-        token: token,
+        token: "",
         name: name,
         email: email,
         username: username,
@@ -65,7 +59,6 @@ class UserModel extends Equatable {
   @override
   List<Object?> get props => [
         id,
-        token,
         name,
         email,
         username,

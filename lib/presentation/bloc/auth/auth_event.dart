@@ -43,10 +43,10 @@ class OnLogout extends AuthEvent {
   List<Object?> get props => [token];
 }
 
-class FetchUser extends AuthEvent {
+class OnFetchUser extends AuthEvent {
   final String token;
 
-  const FetchUser({required this.token});
+  const OnFetchUser({required this.token});
 
   @override
   List<Object?> get props => [token];
