@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
+import 'package:shamo_app/presentation/cubit/page_cubit.dart';
 import 'package:shamo_app/presentation/pages/main_page.dart';
 import 'package:shamo_app/presentation/pages/sign_up_page.dart';
 import 'package:shamo_app/presentation/widgets/center_progress_bar.dart';
@@ -70,6 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                       BlocConsumer<AuthBloc, AuthState>(
                         listener: (context, state) {
                           if (state is AuthSuccess) {
+                            context.read<PageCubit>().setPage(0);
                             Navigator.pushNamedAndRemoveUntil(
                               context,
                               MainPage.routeName,

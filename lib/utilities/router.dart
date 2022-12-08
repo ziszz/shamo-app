@@ -86,13 +86,10 @@ RouteFactory? router = (settings) {
         page: const CheckoutSuccessPage(),
       );
     case EditProfilePage.routeName:
-      final args = settings.arguments as Map<String, dynamic>;
-
       return _createRoute(
         settings: settings,
         page: EditProfilePage(
-          token: args["token"],
-          user: args["user"],
+          user: settings.arguments as User,
         ),
       );
     case ProductDetailPage.routeName:

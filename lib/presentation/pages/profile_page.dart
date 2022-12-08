@@ -153,10 +153,7 @@ class ProfilePage extends StatelessWidget {
                 Navigator.pushNamed(
                   context,
                   EditProfilePage.routeName,
-                  arguments: {
-                    "token": token,
-                    "user": state.user,
-                  },
+                  arguments: state.user,
                 );
               }
             },

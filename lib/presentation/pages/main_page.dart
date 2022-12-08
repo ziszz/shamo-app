@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shamo_app/domain/entities/user.dart';
+import 'package:shamo_app/presentation/cubit/page_cubit.dart';
 import 'package:shamo_app/presentation/pages/cart_page.dart';
 import 'package:shamo_app/presentation/pages/chat_page.dart';
 import 'package:shamo_app/presentation/pages/favorite_page.dart';
@@ -20,16 +22,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
-  int _currentIndex = 0;
-  late PageController _pageController;
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController(
-      initialPage: _currentIndex,
-    );
-  }
+  final _pageController = PageController();
 
   @override
   void dispose() {
@@ -46,33 +39,37 @@ class _MainPageState extends State<MainPage>
       ProfilePage.appBar(context: context),
     ];
 
-    return Scaffold(
-      backgroundColor: _currentIndex != 0 ? AppColors.black3 : AppColors.black1,
-      bottomNavigationBar: _bottomNavBar(),
-      floatingActionButton: _floatingButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      appBar: appBarList[_currentIndex],
-      body: SafeArea(
-        child: PageView(
-          controller: _pageController,
-          physics: const NeverScrollableScrollPhysics(),
-          onPageChanged: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          children: [
-            HomePage(
-              token: widget.user.token ?? "",
+    return BlocBuilder<PageCubit, int>(
+      builder: (context, currentIndex) {
+        return Scaffold(
+          backgroundColor:
+              currentIndex != 0 ? AppColors.black3 : AppColors.black1,
+          bottomNavigationBar: _bottomNavBar(),
+          floatingActionButton: _floatingButton(),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          appBar: appBarList[currentIndex],
+          body: SafeArea(
+            child: PageView(
+              controller: _pageController,
+              physics: const NeverScrollableScrollPhysics(),
+              onPageChanged: (index) {
+                context.read<PageCubit>().setPage(index);
+              },
+              children: [
+                HomePage(
+                  token: widget.user.token ?? "",
+                ),
+                const ChatPage(),
+                const FavoritePage(),
+                ProfilePage(
+                  token: widget.user.token ?? "",
+                ),
+              ],
             ),
-            const ChatPage(),
-            const FavoritePage(),
-            ProfilePage(
-              token: widget.user.token ?? "",
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
@@ -97,18 +94,22 @@ class _MainPageState extends State<MainPage>
     required int index,
     required ImageProvider image,
   }) {
-    return GestureDetector(
-      onTap: () {
-        _pageController.jumpToPage(index);
+    return BlocBuilder<PageCubit, int>(
+      builder: (context, currentIndex) {
+        return GestureDetector(
+          onTap: () {
+            _pageController.jumpToPage(index);
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: ImageIcon(
+              image,
+              color: currentIndex == index ? AppColors.purple : AppColors.grey,
+              size: 20,
+            ),
+          ),
+        );
       },
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: ImageIcon(
-          image,
-          color: _currentIndex == index ? AppColors.purple : AppColors.grey,
-          size: 20,
-        ),
-      ),
     );
   }
 
