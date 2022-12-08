@@ -29,12 +29,12 @@ void main() {
       // arrange
       when(mockAuthRepository.register(
               testName, testEmail, testUsername, testPass))
-          .thenAnswer((_) async => const Right(testUser));
+          .thenAnswer((_) async => const Right(testUserFromUserReponse));
       // act
       final result =
           await usecase.execute(testName, testEmail, testUsername, testPass);
       // assert
-      expect(result, const Right(testUser));
+      expect(result, const Right(testUserFromUserReponse));
     });
 
     test("should get failure message when get from repository is failed",
