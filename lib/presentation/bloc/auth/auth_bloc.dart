@@ -24,7 +24,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required this.getUser,
     required this.updateProfile,
   }) : super(AuthInitial()) {
-    on<OnFetchUser>((event, emit) async {
+    on<OnGetCurrentUser>((event, emit) async {
       emit(AuthLoading());
 
       final token = event.token;

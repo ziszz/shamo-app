@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     Future.microtask(
-      () => context.read<AuthBloc>().add(OnFetchUser(token: widget.token)),
+      () => context.read<AuthBloc>().add(OnGetCurrentUser(token: widget.token)),
     );
   }
 

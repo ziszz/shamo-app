@@ -195,7 +195,7 @@ void main() {
     );
   });
 
-  group("Get User Event", () {
+  group("Get Current User Event", () {
     blocTest<AuthBloc, AuthState>(
       "should execute get user when function called",
       build: () {
@@ -203,7 +203,7 @@ void main() {
             .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnFetchUser(token: testToken)),
+      act: (bloc) => bloc.add(const OnGetCurrentUser(token: testToken)),
       verify: (bloc) => verify(bloc.getUser.execute(testToken)),
     );
 
@@ -214,7 +214,7 @@ void main() {
             .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnFetchUser(token: testToken)),
+      act: (bloc) => bloc.add(const OnGetCurrentUser(token: testToken)),
       expect: () => [
         AuthLoading(),
         const AuthSuccess(user: testUser),
@@ -228,7 +228,7 @@ void main() {
             .thenAnswer((_) async => const Left(ServerFailure("")));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnFetchUser(token: testToken)),
+      act: (bloc) => bloc.add(const OnGetCurrentUser(token: testToken)),
       expect: () => [
         AuthLoading(),
         const AuthError(message: ""),
