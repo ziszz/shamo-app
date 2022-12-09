@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:shamo_app/data/datasources/auth_remote_data_source.dart';
+import 'package:shamo_app/data/datasources/remote/auth_remote_data_source.dart';
 import 'package:shamo_app/domain/entities/user.dart';
 import 'package:shamo_app/domain/repositories/auth_repository.dart';
 import 'package:shamo_app/utilities/constants.dart';

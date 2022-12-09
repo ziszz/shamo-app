@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:shamo_app/data/datasources/product_remote_data_source.dart';
+import 'package:shamo_app/data/datasources/remote/product_remote_data_source.dart';
 import 'package:shamo_app/data/models/checkout_body_model.dart';
 import 'package:shamo_app/domain/entities/category.dart';
 import 'package:shamo_app/domain/entities/checkout_body.dart';

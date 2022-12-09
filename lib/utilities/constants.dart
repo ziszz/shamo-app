@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 abstract class Constants {
+  // key
+  static const tokenKey = "user_token";
   // message
   static const checkoutFailedMessage = "failed";
   static const unauthenticatedMessage = "Unauthenticated";

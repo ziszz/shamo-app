@@ -2,15 +2,15 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:shamo_app/data/datasources/product_remote_data_source.dart';
+import 'package:shamo_app/data/datasources/remote/product_remote_data_source.dart';
 import 'package:shamo_app/utilities/exceptions.dart';
 
-import '../../dummy_data/dummy_object.dart';
-import '../../helpers/test_helper.mocks.dart';
-import '../../json_reader.dart';
+import '../../../dummy_data/dummy_object.dart';
+import '../../../helpers/test_helper.mocks.dart';
+import '../../../json_reader.dart';
 
 void main() {
-  late ProductRemoteDataSourceImpl dataSource;
+  late ProductRemoteDataSource dataSource;
   late MockIOClient mockIOClient;
 
   setUp(() {
