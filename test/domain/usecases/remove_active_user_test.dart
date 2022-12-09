@@ -1,30 +1,27 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:shamo_app/domain/usecases/save_active_user.dart';
+import 'package:shamo_app/domain/usecases/remove_active_user.dart';
 
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {
-  late SaveActiveUser usecase;
+  late RemoveActiveUser usecase;
   late MockAuthRepository mockAuthRepository;
 
   setUp(() {
     mockAuthRepository = MockAuthRepository();
-    usecase = SaveActiveUser(
+    usecase = RemoveActiveUser(
       repository: mockAuthRepository,
     );
   });
 
-  const testToken = "access_token";
-
-  group("Save active user use case", () {
+  group("Remove active user use case", () {
     test("should return true when get data from repository is successfuly",
         () async {
       // arrange
-      when(mockAuthRepository.saveUser(testToken))
-          .thenAnswer((_) async => true);
+      when(mockAuthRepository.removeUser()).thenAnswer((_) async => true);
       // act
-      final result = await usecase.execute(testToken);
+      final result = await usecase.execute();
       // assert
       expect(result, true);
     });
