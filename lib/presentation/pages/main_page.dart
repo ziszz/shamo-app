@@ -9,34 +9,12 @@ import 'package:shamo_app/presentation/pages/home_page.dart';
 import 'package:shamo_app/presentation/pages/profile_page.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 
-class MainPage extends StatefulWidget {
+class MainPage extends StatelessWidget {
   static const routeName = "/main";
 
   final User user;
 
   const MainPage({super.key, required this.user});
-
-  @override
-  State<MainPage> createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage>
-    with SingleTickerProviderStateMixin {
-  late PageController _pageController;
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController(
-      initialPage: context.read<PageCubit>().state,
-    );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _pageController.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,38 +25,36 @@ class _MainPageState extends State<MainPage>
       ProfilePage.appBar(context: context),
     ];
 
+    final pagelist = [
+      HomePage(
+        token: user.token ?? "",
+      ),
+      const ChatPage(),
+      const FavoritePage(),
+      ProfilePage(
+        token: user.token ?? "",
+      ),
+    ];
+
     return BlocBuilder<PageCubit, int>(
       builder: (context, currentIndex) {
         return Scaffold(
           backgroundColor:
               currentIndex != 0 ? AppColors.black3 : AppColors.black1,
           bottomNavigationBar: _bottomNavBar(),
-          floatingActionButton: _floatingButton(),
+          floatingActionButton: _floatingButton(context: context),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           appBar: appBarList[currentIndex],
           body: SafeArea(
-            child: PageView(
-              controller: _pageController,
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                HomePage(
-                  token: widget.user.token ?? "",
-                ),
-                const ChatPage(),
-                const FavoritePage(),
-                ProfilePage(
-                  token: widget.user.token ?? "",
-                ),
-              ],
-            ),
+            child: pagelist[currentIndex],
           ),
         );
       },
     );
   }
 
-  Widget _floatingButton() {
+  Widget _floatingButton({required BuildContext context}) {
     return FloatingActionButton(
       backgroundColor: AppColors.lightBlue,
       shape: RoundedRectangleBorder(
@@ -104,7 +80,6 @@ class _MainPageState extends State<MainPage>
         return GestureDetector(
           onTap: () {
             context.read<PageCubit>().setPage(index);
-            _pageController.jumpToPage(index);
           },
           child: Padding(
             padding: const EdgeInsets.all(16),
