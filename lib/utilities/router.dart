@@ -65,7 +65,7 @@ RouteFactory? router = (settings) {
       return MaterialPageRoute(
         settings: settings,
         builder: (_) => MainPage(
-          user: settings.arguments as User,
+          token: settings.arguments as String,
         ),
       );
     case ChatDetailPage.routeName:

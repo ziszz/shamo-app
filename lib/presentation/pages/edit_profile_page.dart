@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shamo_app/domain/entities/user.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
+import 'package:shamo_app/presentation/cubit/page_cubit.dart';
+import 'package:shamo_app/presentation/pages/main_page.dart';
 import 'package:shamo_app/presentation/widgets/error_snackbar.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/constants.dart';
@@ -81,8 +83,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
             );
           },
           listener: (context, state) {
-            if (state is AuthUpdateSuccess) {
-              Navigator.pop(context);
+            if (state is AuthSuccess) {
+              Navigator.popAndPushNamed(
+                context,
+                MainPage.routeName,
+                arguments: state.user.token,
+              ).whenComplete(() => context.read<PageCubit>().setPage(3));
             } else if (state is AuthError) {
               errorSnackbar(
                 context: context,

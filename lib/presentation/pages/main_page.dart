@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shamo_app/domain/entities/user.dart';
 import 'package:shamo_app/presentation/cubit/page_cubit.dart';
 import 'package:shamo_app/presentation/pages/cart_page.dart';
 import 'package:shamo_app/presentation/pages/chat_page.dart';
@@ -12,9 +11,9 @@ import 'package:shamo_app/utilities/app_colors.dart';
 class MainPage extends StatelessWidget {
   static const routeName = "/main";
 
-  final User user;
+  final String token;
 
-  const MainPage({super.key, required this.user});
+  const MainPage({super.key, required this.token});
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +26,12 @@ class MainPage extends StatelessWidget {
 
     final pagelist = [
       HomePage(
-        token: user.token ?? "",
+        token: token,
       ),
       const ChatPage(),
       const FavoritePage(),
       ProfilePage(
-        token: user.token ?? "",
+        token: token,
       ),
     ];
 

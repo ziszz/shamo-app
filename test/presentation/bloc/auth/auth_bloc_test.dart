@@ -275,7 +275,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        const AuthUpdateSuccess(user: testUser),
+        const AuthSuccess(user: testUser),
       ],
     );
 

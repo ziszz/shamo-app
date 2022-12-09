@@ -101,7 +101,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             Navigator.pushNamedAndRemoveUntil(
                               context,
                               MainPage.routeName,
-                              arguments: state.user,
+                              arguments: state.user.token,
                               (route) => false,
                             );
                           } else if (state is AuthError) {
