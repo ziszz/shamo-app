@@ -469,21 +469,21 @@ class MockAuthLocalDataSource extends _i1.Mock
   }
 
   @override
-  _i15.Future<String> cacheToken(String? token) => (super.noSuchMethod(
+  _i15.Future<bool> cacheToken(String? token) => (super.noSuchMethod(
         Invocation.method(
           #cacheToken,
           [token],
         ),
-        returnValue: _i15.Future<String>.value(''),
-      ) as _i15.Future<String>);
+        returnValue: _i15.Future<bool>.value(false),
+      ) as _i15.Future<bool>);
   @override
-  _i15.Future<String> removeCache() => (super.noSuchMethod(
+  _i15.Future<bool> removeTokenCache() => (super.noSuchMethod(
         Invocation.method(
-          #removeCache,
+          #removeTokenCache,
           [],
         ),
-        returnValue: _i15.Future<String>.value(''),
-      ) as _i15.Future<String>);
+        returnValue: _i15.Future<bool>.value(false),
+      ) as _i15.Future<bool>);
 }
 
 /// A class which mocks [AuthRepository].
@@ -613,6 +613,22 @@ class MockAuthRepository extends _i1.Mock implements _i5.AuthRepository {
           ),
         )),
       ) as _i15.Future<_i4.Either<_i22.Failure, bool>>);
+  @override
+  _i15.Future<bool> saveUser(String? token) => (super.noSuchMethod(
+        Invocation.method(
+          #saveUser,
+          [token],
+        ),
+        returnValue: _i15.Future<bool>.value(false),
+      ) as _i15.Future<bool>);
+  @override
+  _i15.Future<bool> removeUser() => (super.noSuchMethod(
+        Invocation.method(
+          #removeUser,
+          [],
+        ),
+        returnValue: _i15.Future<bool>.value(false),
+      ) as _i15.Future<bool>);
 }
 
 /// A class which mocks [UserLogin].

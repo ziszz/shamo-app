@@ -11,12 +11,15 @@ import '../../helpers/test_helper.mocks.dart';
 
 void main() {
   late AuthRepositoryImpl repository;
+  late MockAuthLocalDataSource mockAuthLocalDataSource;
   late MockAuthRemoteDataSource mockRemoteDataSource;
 
   setUp(() {
+    mockAuthLocalDataSource = MockAuthLocalDataSource();
     mockRemoteDataSource = MockAuthRemoteDataSource();
     repository = AuthRepositoryImpl(
       remoteDataSource: mockRemoteDataSource,
+      localDataSource: mockAuthLocalDataSource,
     );
   });
 
@@ -170,6 +173,28 @@ void main() {
   group("Cache User Token", () {
     test(
         "should return true when the call to local data source is successfully",
-        () async {});
+        () async {
+      // arrange
+      when(mockAuthLocalDataSource.cacheToken(testToken))
+          .thenAnswer((_) async => true);
+      // act
+      final result = await repository.saveUser(testToken);
+      // assert
+      expect(result, true);
+    });
+  });
+
+  group("Remove user token", () {
+    test(
+        "should return true when the call to local data source is successfully",
+        () async {
+      // arrange
+      when(mockAuthLocalDataSource.removeTokenCache())
+          .thenAnswer((_) async => true);
+      // act
+      final result = await repository.removeUser();
+      // assert
+      expect(result, true);
+    });
   });
 }

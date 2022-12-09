@@ -57,7 +57,10 @@ void init(HttpClient httpClient) {
 
   // repositories
   locator.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(remoteDataSource: locator()),
+    () => AuthRepositoryImpl(
+      remoteDataSource: locator(),
+      localDataSource: locator(),
+    ),
   );
   locator.registerLazySingleton<ProductRepository>(
     () => ProductRepositoryImpl(remoteDataSource: locator()),

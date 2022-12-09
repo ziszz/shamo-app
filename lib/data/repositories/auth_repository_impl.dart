@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:shamo_app/data/datasources/local/auth_local_data_source.dart';
 import 'package:shamo_app/data/datasources/remote/auth_remote_data_source.dart';
 import 'package:shamo_app/domain/entities/user.dart';
 import 'package:shamo_app/domain/repositories/auth_repository.dart';
@@ -9,8 +10,12 @@ import '../../utilities/exceptions.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
+  final AuthLocalDataSource localDataSource;
 
-  const AuthRepositoryImpl({required this.remoteDataSource});
+  const AuthRepositoryImpl({
+    required this.remoteDataSource,
+    required this.localDataSource,
+  });
 
   @override
   Future<Either<Failure, User>> getUser(String token) async {
@@ -64,5 +69,17 @@ class AuthRepositoryImpl implements AuthRepository {
     } on ServerException {
       return const Left(ServerFailure(Constants.unauthenticatedMessage));
     }
+  }
+
+  @override
+  Future<bool> saveUser(String token) async {
+    final result = await localDataSource.cacheToken(token);
+    return result;
+  }
+
+  @override
+  Future<bool> removeUser() async {
+    final result = await localDataSource.removeTokenCache();
+    return result;
   }
 }

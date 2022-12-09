@@ -23,7 +23,7 @@ void main() {
       // act
       final result = await localDataSource.cacheToken(testToken);
       // assert
-      expect(result, Constants.saveTokenMessage);
+      expect(result, true);
     });
 
     test("should return true when remove token from cache is successfuly",
@@ -31,9 +31,9 @@ void main() {
       // arrange
       SharedPreferences.setMockInitialValues({Constants.tokenKey: testToken});
       // act
-      final result = await localDataSource.removeCache();
+      final result = await localDataSource.removeTokenCache();
       // assert
-      expect(result, Constants.removeTokenMessage);
+      expect(result, true);
     });
   });
 }
