@@ -48,86 +48,6 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  static AppBar appBar({required BuildContext context}) {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      backgroundColor: AppColors.black1,
-      toolbarHeight: 125,
-      titleSpacing: 30,
-      title: BlocConsumer<AuthBloc, AuthState>(
-        listener: (context, state) {
-          if (state is AuthLogoutSuccess) {
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              LoginPage.routeName,
-              (route) => false,
-            );
-          } else if (state is AuthError) {
-            errorSnackbar(
-              context: context,
-              message: state.message,
-            );
-          }
-        },
-        builder: (context, state) {
-          if (state is AuthSuccess) {
-            return Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: CachedNetworkImage(
-                    imageUrl: state.user.profilePhotoUrl,
-                    width: 64,
-                    placeholder: (context, url) => const CenterProgressBar(),
-                    errorWidget: (context, url, error) => Image.asset(
-                      "assets/images/default-user-profile.png",
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 16,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Hello, ${state.user.name}",
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            fontSize: 20,
-                            fontWeight: Constants.semiBold,
-                            color: AppColors.white,
-                          ),
-                    ),
-                    Text(
-                      "@${state.user.username}",
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            fontWeight: Constants.regular,
-                            color: AppColors.grey,
-                          ),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                InkWell(
-                  onTap: () => context.read<AuthBloc>().add(
-                        OnLogout(token: state.user.token ?? ""),
-                      ),
-                  child: const ImageIcon(
-                    AssetImage("assets/images/ic-logout.png"),
-                    size: 20,
-                    color: AppColors.red,
-                  ),
-                ),
-              ],
-            );
-          } else {
-            return const SizedBox();
-          }
-        },
-      ),
-    );
-  }
-
   Widget _content({required BuildContext context}) {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -204,6 +124,86 @@ class ProfilePage extends StatelessWidget {
             text: "Rate App",
           ),
         ],
+      ),
+    );
+  }
+
+  static AppBar appBar({required BuildContext context}) {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: AppColors.black1,
+      toolbarHeight: 125,
+      titleSpacing: 30,
+      title: BlocConsumer<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state is AuthInitial) {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              LoginPage.routeName,
+              (route) => false,
+            );
+          } else if (state is AuthError) {
+            errorSnackbar(
+              context: context,
+              message: state.message,
+            );
+          }
+        },
+        builder: (context, state) {
+          if (state is AuthSuccess) {
+            return Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: CachedNetworkImage(
+                    imageUrl: state.user.profilePhotoUrl,
+                    width: 64,
+                    placeholder: (context, url) => const CenterProgressBar(),
+                    errorWidget: (context, url, error) => Image.asset(
+                      "assets/images/default-user-profile.png",
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Hello, ${state.user.name}",
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontSize: 20,
+                            fontWeight: Constants.semiBold,
+                            color: AppColors.white,
+                          ),
+                    ),
+                    Text(
+                      "@${state.user.username}",
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: Constants.regular,
+                            color: AppColors.grey,
+                          ),
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                InkWell(
+                  onTap: () => context.read<AuthBloc>().add(
+                        OnLogout(token: state.user.token ?? ""),
+                      ),
+                  child: const ImageIcon(
+                    AssetImage("assets/images/ic-logout.png"),
+                    size: 20,
+                    color: AppColors.red,
+                  ),
+                ),
+              ],
+            );
+          } else {
+            return const SizedBox();
+          }
+        },
       ),
     );
   }

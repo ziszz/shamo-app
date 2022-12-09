@@ -73,12 +73,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final result = await userLogout.execute(token);
 
       result.fold(
-        (failure) => emit(
-          AuthError(message: failure.message),
-        ),
-        (result) => emit(
-          AuthLogoutSuccess(isLogout: result),
-        ),
+        (failure) => emit(AuthError(message: failure.message)),
+        (result) => emit(AuthInitial()),
       );
     });
     on<OnUpdate>((event, emit) async {

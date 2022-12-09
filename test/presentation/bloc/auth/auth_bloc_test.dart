@@ -167,7 +167,7 @@ void main() {
     );
 
     blocTest<AuthBloc, AuthState>(
-      "should emit [Loading, Success] when post data successfuly",
+      "should emit [Loading, Initial] when post data successfuly",
       build: () {
         when(mockUserLogout.execute(testToken))
             .thenAnswer((_) async => const Right(true));
@@ -176,7 +176,7 @@ void main() {
       act: (bloc) => bloc.add(const OnLogout(token: testToken)),
       expect: () => [
         AuthLoading(),
-        const AuthLogoutSuccess(isLogout: true),
+        AuthInitial(),
       ],
     );
 

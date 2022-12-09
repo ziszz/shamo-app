@@ -22,7 +22,15 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
-  final _pageController = PageController();
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(
+      initialPage: context.read<PageCubit>().state,
+    );
+  }
 
   @override
   void dispose() {
@@ -53,9 +61,6 @@ class _MainPageState extends State<MainPage>
             child: PageView(
               controller: _pageController,
               physics: const NeverScrollableScrollPhysics(),
-              onPageChanged: (index) {
-                context.read<PageCubit>().setPage(index);
-              },
               children: [
                 HomePage(
                   token: widget.user.token ?? "",
@@ -98,6 +103,7 @@ class _MainPageState extends State<MainPage>
       builder: (context, currentIndex) {
         return GestureDetector(
           onTap: () {
+            context.read<PageCubit>().setPage(index);
             _pageController.jumpToPage(index);
           },
           child: Padding(
