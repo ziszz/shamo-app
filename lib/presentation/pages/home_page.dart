@@ -7,81 +7,10 @@ import 'package:shamo_app/presentation/widgets/center_progress_bar.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/constants.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   final String token;
 
   const HomePage({super.key, required this.token});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-
-  static AppBar appBar({required BuildContext context}) {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      toolbarHeight: 87,
-      flexibleSpace: FlexibleSpaceBar(
-        titlePadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-        ),
-        title: SafeArea(child: BlocBuilder<AuthBloc, AuthState>(
-          builder: (context, state) {
-            if (state is AuthSuccess) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Hello, ${state.user.name}",
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              fontSize: 20,
-                              fontWeight: Constants.semiBold,
-                              color: AppColors.white,
-                            ),
-                      ),
-                      Text(
-                        "@${state.user.username}",
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              fontWeight: Constants.regular,
-                              color: AppColors.grey,
-                            ),
-                      ),
-                    ],
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: CachedNetworkImage(
-                      imageUrl: state.user.profilePhotoUrl,
-                      width: 50,
-                      placeholder: (context, url) => const CenterProgressBar(),
-                      errorWidget: (context, url, error) => Image.asset(
-                        "assets/images/default-user-profile.png",
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            } else {
-              return const SizedBox();
-            }
-          },
-        )),
-      ),
-    );
-  }
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(
-      () => context.read<AuthBloc>().add(OnGetCurrentUser(token: widget.token)),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -400,6 +329,64 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ],
+      ),
+    );
+  }
+
+  static AppBar appBar({required BuildContext context}) {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      toolbarHeight: 87,
+      flexibleSpace: FlexibleSpaceBar(
+        titlePadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+        ),
+        title: SafeArea(child: BlocBuilder<AuthBloc, AuthState>(
+          builder: (context, state) {
+            if (state is AuthSuccess) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Hello, ${state.user.name}",
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontSize: 20,
+                              fontWeight: Constants.semiBold,
+                              color: AppColors.white,
+                            ),
+                      ),
+                      Text(
+                        "@${state.user.username}",
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontWeight: Constants.regular,
+                              color: AppColors.grey,
+                            ),
+                      ),
+                    ],
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: CachedNetworkImage(
+                      imageUrl: state.user.profilePhotoUrl,
+                      width: 50,
+                      placeholder: (context, url) => const CenterProgressBar(),
+                      errorWidget: (context, url, error) => Image.asset(
+                        "assets/images/default-user-profile.png",
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            } else {
+              return const SizedBox();
+            }
+          },
+        )),
       ),
     );
   }

@@ -64,14 +64,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
         BlocConsumer<AuthBloc, AuthState>(
           builder: (context, state) {
             return IconButton(
-              onPressed: () => context.read<AuthBloc>().add(
-                    OnUpdate(
-                      token: widget.user.token ?? "",
-                      name: _nameController.text,
-                      email: _emailController.text,
-                      username: _usernameController.text,
-                    ),
-                  ),
+              onPressed: () {
+                context.read<AuthBloc>().add(
+                      OnUpdate(
+                        token: widget.user.token ?? "",
+                        name: _nameController.text,
+                        email: _emailController.text,
+                        username: _usernameController.text,
+                      ),
+                    );
+              },
               icon: const Icon(
                 Icons.check,
                 color: AppColors.purple,
@@ -79,7 +81,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             );
           },
           listener: (context, state) {
-            if (state is AuthSuccess) {
+            if (state is AuthUpdateSuccess) {
               Navigator.pop(context);
             } else if (state is AuthError) {
               errorSnackbar(

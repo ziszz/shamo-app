@@ -20,6 +20,15 @@ class AuthSuccess extends AuthState {
   List<Object> get props => [user];
 }
 
+class AuthUpdateSuccess extends AuthState {
+  final User user;
+
+  const AuthUpdateSuccess({required this.user});
+
+  @override
+  List<Object> get props => [user];
+}
+
 class AuthError extends AuthState {
   final String message;
 
