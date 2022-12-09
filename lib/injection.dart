@@ -33,6 +33,7 @@ void init(HttpClient httpClient) {
       getUser: locator(),
       updateProfile: locator(),
       saveActiveUser: locator(),
+      removeActiveUser: locator(),
     ),
   );
 

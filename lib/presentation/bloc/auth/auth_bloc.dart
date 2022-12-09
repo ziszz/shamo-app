@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shamo_app/domain/entities/user.dart';
 import 'package:shamo_app/domain/usecases/get_user.dart';
+import 'package:shamo_app/domain/usecases/remove_active_user.dart';
 import 'package:shamo_app/domain/usecases/save_active_user.dart';
 import 'package:shamo_app/domain/usecases/update_profile.dart';
 import 'package:shamo_app/domain/usecases/user_login.dart';
@@ -18,6 +19,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final GetUser getUser;
   final UpdateProfile updateProfile;
   final SaveActiveUser saveActiveUser;
+  final RemoveActiveUser removeActiveUser;
 
   AuthBloc({
     required this.userLogin,
@@ -26,6 +28,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required this.getUser,
     required this.updateProfile,
     required this.saveActiveUser,
+    required this.removeActiveUser,
   }) : super(AuthInitial()) {
     on<OnGetCurrentUser>((event, emit) async {
       emit(AuthLoading());
@@ -100,8 +103,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       final token = event.token;
       final result = await saveActiveUser.execute(token);
-      
-      emit(AuthOnSaveSuccess(isSaved: result));
+
+      if (result) {
+        emit(AuthOnSaveSuccess(isSaved: result));
+      }
+    });
+    on<OnRemoveUser>((event, emit) async {
+      emit(AuthLoading());
+
+      final result = await removeActiveUser.execute();
+
+      if (result) {
+        emit(AuthInitial());
+      }
     });
   }
 }

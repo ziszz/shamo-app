@@ -78,3 +78,10 @@ class OnSaveUser extends AuthEvent {
   @override
   List<Object?> get props => [token];
 }
+
+class OnRemoveUser extends AuthEvent {
+  const OnRemoveUser();
+
+  @override
+  List<Object?> get props => [];
+}

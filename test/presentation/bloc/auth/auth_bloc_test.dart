@@ -17,6 +17,7 @@ void main() {
   late MockGetUser mockGetUser;
   late MockUpdateProfile mockUpdateProfile;
   late MockSaveActiveUser mockSaveActiveUser;
+  late MockRemoveActiveUser mockRemoveActiveUser;
 
   setUp(() {
     mockUserRegister = MockUserRegister();
@@ -25,6 +26,7 @@ void main() {
     mockGetUser = MockGetUser();
     mockUpdateProfile = MockUpdateProfile();
     mockSaveActiveUser = MockSaveActiveUser();
+    mockRemoveActiveUser = MockRemoveActiveUser();
     bloc = AuthBloc(
       userLogin: mockUserLogin,
       userRegister: mockUserRegister,
@@ -32,6 +34,7 @@ void main() {
       getUser: mockGetUser,
       updateProfile: mockUpdateProfile,
       saveActiveUser: mockSaveActiveUser,
+      removeActiveUser: mockRemoveActiveUser,
     );
   });
 
@@ -326,6 +329,31 @@ void main() {
       expect: () => [
         AuthLoading(),
         const AuthOnSaveSuccess(isSaved: true),
+      ],
+    );
+  });
+
+  group("OnRemoveUser Event", () {
+    blocTest<AuthBloc, AuthState>(
+      "should execute remove active user usecase when function called",
+      build: () {
+        when(mockRemoveActiveUser.execute()).thenAnswer((_) async => true);
+        return bloc;
+      },
+      act: (bloc) => bloc.add(const OnRemoveUser()),
+      verify: (bloc) => verify(bloc.removeActiveUser.execute()),
+    );
+
+    blocTest<AuthBloc, AuthState>(
+      "should emit [Loading, Initial] when post data successfuly",
+      build: () {
+        when(mockRemoveActiveUser.execute()).thenAnswer((_) async => true);
+        return bloc;
+      },
+      act: (bloc) => bloc.add(const OnRemoveUser()),
+      expect: () => [
+        AuthLoading(),
+        AuthInitial(),
       ],
     );
   });
