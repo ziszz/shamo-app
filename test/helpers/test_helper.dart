@@ -6,6 +6,8 @@ import 'package:shamo_app/data/datasources/remote/product_remote_data_source.dar
 import 'package:shamo_app/domain/repositories/auth_repository.dart';
 import 'package:shamo_app/domain/repositories/product_repository.dart';
 import 'package:shamo_app/domain/usecases/get_user.dart';
+import 'package:shamo_app/domain/usecases/remove_active_user.dart';
+import 'package:shamo_app/domain/usecases/save_active_user.dart';
 import 'package:shamo_app/domain/usecases/update_profile.dart';
 import 'package:shamo_app/domain/usecases/user_login.dart';
 import 'package:shamo_app/domain/usecases/user_logout.dart';
@@ -23,6 +25,8 @@ import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
   UserLogout,
   GetUser,
   UpdateProfile,
+  SaveActiveUser,
+  RemoveActiveUser,
   AuthBloc,
 ], customMocks: [
   MockSpec<IOClient>(as: #MockIOClient),

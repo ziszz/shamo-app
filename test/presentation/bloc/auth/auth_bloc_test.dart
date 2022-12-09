@@ -16,6 +16,7 @@ void main() {
   late MockUserLogout mockUserLogout;
   late MockGetUser mockGetUser;
   late MockUpdateProfile mockUpdateProfile;
+  late MockSaveActiveUser mockSaveActiveUser;
 
   setUp(() {
     mockUserRegister = MockUserRegister();
@@ -23,12 +24,14 @@ void main() {
     mockUserLogout = MockUserLogout();
     mockGetUser = MockGetUser();
     mockUpdateProfile = MockUpdateProfile();
+    mockSaveActiveUser = MockSaveActiveUser();
     bloc = AuthBloc(
       userLogin: mockUserLogin,
       userRegister: mockUserRegister,
       userLogout: mockUserLogout,
       getUser: mockGetUser,
       updateProfile: mockUpdateProfile,
+      saveActiveUser: mockSaveActiveUser,
     );
   });
 
@@ -296,6 +299,33 @@ void main() {
       expect: () => [
         AuthLoading(),
         const AuthError(message: ""),
+      ],
+    );
+  });
+
+  group("OnSaveUser Event", () {
+    blocTest<AuthBloc, AuthState>(
+      "should execute save active user usecase when function called",
+      build: () {
+        when(mockSaveActiveUser.execute(testToken))
+            .thenAnswer((_) async => true);
+        return bloc;
+      },
+      act: (bloc) => bloc.add(const OnSaveUser(token: testToken)),
+      verify: (bloc) => verify(bloc.saveActiveUser.execute(testToken)),
+    );
+
+    blocTest<AuthBloc, AuthState>(
+      "should emit [Loading, Success] when post data successfuly",
+      build: () {
+        when(mockSaveActiveUser.execute(testToken))
+            .thenAnswer((_) async => true);
+        return bloc;
+      },
+      act: (bloc) => bloc.add(const OnSaveUser(token: testToken)),
+      expect: () => [
+        AuthLoading(),
+        const AuthOnSaveSuccess(isSaved: true),
       ],
     );
   });

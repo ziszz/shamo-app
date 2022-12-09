@@ -4,13 +4,13 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i15;
-import 'dart:convert' as _i31;
-import 'dart:typed_data' as _i32;
+import 'dart:convert' as _i33;
+import 'dart:typed_data' as _i34;
 
 import 'package:dartz/dartz.dart' as _i4;
-import 'package:flutter_bloc/flutter_bloc.dart' as _i29;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i31;
 import 'package:http/io_client.dart' as _i12;
-import 'package:http/src/base_request.dart' as _i30;
+import 'package:http/src/base_request.dart' as _i32;
 import 'package:http/src/response.dart' as _i13;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:shamo_app/data/datasources/local/auth_local_data_source.dart'
@@ -33,6 +33,8 @@ import 'package:shamo_app/domain/entities/user.dart' as _i28;
 import 'package:shamo_app/domain/repositories/auth_repository.dart' as _i5;
 import 'package:shamo_app/domain/repositories/product_repository.dart' as _i21;
 import 'package:shamo_app/domain/usecases/get_user.dart' as _i9;
+import 'package:shamo_app/domain/usecases/remove_active_user.dart' as _i30;
+import 'package:shamo_app/domain/usecases/save_active_user.dart' as _i29;
 import 'package:shamo_app/domain/usecases/update_profile.dart' as _i10;
 import 'package:shamo_app/domain/usecases/user_login.dart' as _i6;
 import 'package:shamo_app/domain/usecases/user_logout.dart' as _i8;
@@ -840,6 +842,58 @@ class MockUpdateProfile extends _i1.Mock implements _i10.UpdateProfile {
       ) as _i15.Future<_i4.Either<_i22.Failure, _i28.User>>);
 }
 
+/// A class which mocks [SaveActiveUser].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSaveActiveUser extends _i1.Mock implements _i29.SaveActiveUser {
+  MockSaveActiveUser() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.AuthRepository get repository => (super.noSuchMethod(
+        Invocation.getter(#repository),
+        returnValue: _FakeAuthRepository_3(
+          this,
+          Invocation.getter(#repository),
+        ),
+      ) as _i5.AuthRepository);
+  @override
+  _i15.Future<bool> execute(String? token) => (super.noSuchMethod(
+        Invocation.method(
+          #execute,
+          [token],
+        ),
+        returnValue: _i15.Future<bool>.value(false),
+      ) as _i15.Future<bool>);
+}
+
+/// A class which mocks [RemoveActiveUser].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRemoveActiveUser extends _i1.Mock implements _i30.RemoveActiveUser {
+  MockRemoveActiveUser() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.AuthRepository get repository => (super.noSuchMethod(
+        Invocation.getter(#repository),
+        returnValue: _FakeAuthRepository_3(
+          this,
+          Invocation.getter(#repository),
+        ),
+      ) as _i5.AuthRepository);
+  @override
+  _i15.Future<bool> execute() => (super.noSuchMethod(
+        Invocation.method(
+          #execute,
+          [],
+        ),
+        returnValue: _i15.Future<bool>.value(false),
+      ) as _i15.Future<bool>);
+}
+
 /// A class which mocks [AuthBloc].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -932,8 +986,8 @@ class MockAuthBloc extends _i1.Mock implements _i11.AuthBloc {
       );
   @override
   void on<E extends _i11.AuthEvent>(
-    _i29.EventHandler<E, _i11.AuthState>? handler, {
-    _i29.EventTransformer<E>? transformer,
+    _i31.EventHandler<E, _i11.AuthState>? handler, {
+    _i31.EventTransformer<E>? transformer,
   }) =>
       super.noSuchMethod(
         Invocation.method(
@@ -945,7 +999,7 @@ class MockAuthBloc extends _i1.Mock implements _i11.AuthBloc {
       );
   @override
   void onTransition(
-          _i29.Transition<_i11.AuthEvent, _i11.AuthState>? transition) =>
+          _i31.Transition<_i11.AuthEvent, _i11.AuthState>? transition) =>
       super.noSuchMethod(
         Invocation.method(
           #onTransition,
@@ -963,7 +1017,7 @@ class MockAuthBloc extends _i1.Mock implements _i11.AuthBloc {
         returnValueForMissingStub: _i15.Future<void>.value(),
       ) as _i15.Future<void>);
   @override
-  void onChange(_i29.Change<_i11.AuthState>? change) => super.noSuchMethod(
+  void onChange(_i31.Change<_i11.AuthState>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
@@ -1011,7 +1065,7 @@ class MockIOClient extends _i1.Mock implements _i12.IOClient {
   }
 
   @override
-  _i15.Future<_i12.IOStreamedResponse> send(_i30.BaseRequest? request) =>
+  _i15.Future<_i12.IOStreamedResponse> send(_i32.BaseRequest? request) =>
       (super.noSuchMethod(
         Invocation.method(
           #send,
@@ -1079,7 +1133,7 @@ class MockIOClient extends _i1.Mock implements _i12.IOClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i31.Encoding? encoding,
+    _i33.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1109,7 +1163,7 @@ class MockIOClient extends _i1.Mock implements _i12.IOClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i31.Encoding? encoding,
+    _i33.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1139,7 +1193,7 @@ class MockIOClient extends _i1.Mock implements _i12.IOClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i31.Encoding? encoding,
+    _i33.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1169,7 +1223,7 @@ class MockIOClient extends _i1.Mock implements _i12.IOClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i31.Encoding? encoding,
+    _i33.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1208,7 +1262,7 @@ class MockIOClient extends _i1.Mock implements _i12.IOClient {
         returnValue: _i15.Future<String>.value(''),
       ) as _i15.Future<String>);
   @override
-  _i15.Future<_i32.Uint8List> readBytes(
+  _i15.Future<_i34.Uint8List> readBytes(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -1218,6 +1272,6 @@ class MockIOClient extends _i1.Mock implements _i12.IOClient {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i15.Future<_i32.Uint8List>.value(_i32.Uint8List(0)),
-      ) as _i15.Future<_i32.Uint8List>);
+        returnValue: _i15.Future<_i34.Uint8List>.value(_i34.Uint8List(0)),
+      ) as _i15.Future<_i34.Uint8List>);
 }

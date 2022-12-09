@@ -32,6 +32,7 @@ void init(HttpClient httpClient) {
       userLogout: locator(),
       getUser: locator(),
       updateProfile: locator(),
+      saveActiveUser: locator(),
     ),
   );
 

@@ -69,3 +69,12 @@ class OnUpdate extends AuthEvent {
   @override
   List<Object?> get props => [token, name, email, username];
 }
+
+class OnSaveUser extends AuthEvent {
+  final String token;
+
+  const OnSaveUser({required this.token});
+
+  @override
+  List<Object?> get props => [token];
+}
