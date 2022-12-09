@@ -166,4 +166,10 @@ void main() {
           result, const Left(ServerFailure(Constants.unauthenticatedMessage)));
     });
   });
+
+  group("Cache User Token", () {
+    test(
+        "should return true when the call to local data source is successfully",
+        () async {});
+  });
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:shamo_app/presentation/cubit/page_cubit.dart';
@@ -8,6 +9,7 @@ import 'package:shamo_app/presentation/pages/splash_screen.dart';
 import 'package:shamo_app/utilities/app_colors.dart';
 import 'package:shamo_app/utilities/router.dart';
 import 'package:shamo_app/utilities/ssl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'injection.dart' as di;
 
@@ -16,7 +18,9 @@ void main() async {
   await dotenv.load(fileName: ".env");
 
   di.init(await getHttpClient());
-  runApp(const MyApp());
+  GetIt.I.isReady<SharedPreferences>().then((_) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
