@@ -31,7 +31,7 @@ void main() {
       // arrange
       SharedPreferences.setMockInitialValues({Constants.tokenKey: testToken});
       // act
-      final result = await localDataSource.removeTokenCache();
+      final result = await localDataSource.clearTokenCache();
       // assert
       expect(result, true);
     });

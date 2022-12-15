@@ -178,7 +178,7 @@ void main() {
       when(mockAuthLocalDataSource.cacheToken(testToken))
           .thenAnswer((_) async => true);
       // act
-      final result = await repository.saveUser(testToken);
+      final result = await repository.cacheToken(testToken);
       // assert
       expect(result, true);
     });
@@ -189,10 +189,10 @@ void main() {
         "should return true when the call to local data source is successfully",
         () async {
       // arrange
-      when(mockAuthLocalDataSource.removeTokenCache())
+      when(mockAuthLocalDataSource.clearTokenCache())
           .thenAnswer((_) async => true);
       // act
-      final result = await repository.removeUser();
+      final result = await repository.clearTokenCache();
       // assert
       expect(result, true);
     });

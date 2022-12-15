@@ -21,7 +21,7 @@ void main() {
     test("should return true when get data from repository is successfuly",
         () async {
       // arrange
-      when(mockAuthRepository.saveUser(testToken))
+      when(mockAuthRepository.cacheToken(testToken))
           .thenAnswer((_) async => true);
       // act
       final result = await usecase.execute(testToken);

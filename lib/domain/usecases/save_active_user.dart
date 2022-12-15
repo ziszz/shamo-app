@@ -5,5 +5,5 @@ class SaveActiveUser {
 
   const SaveActiveUser({required this.repository});
 
-  Future<bool> execute(String token) => repository.saveUser(token);
+  Future<bool> execute(String token) => repository.cacheToken(token);
 }

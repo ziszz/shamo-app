@@ -19,7 +19,7 @@ void main() {
     test("should return true when get data from repository is successfuly",
         () async {
       // arrange
-      when(mockAuthRepository.removeUser()).thenAnswer((_) async => true);
+      when(mockAuthRepository.clearTokenCache()).thenAnswer((_) async => true);
       // act
       final result = await usecase.execute();
       // assert

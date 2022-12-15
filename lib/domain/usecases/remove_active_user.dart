@@ -5,5 +5,5 @@ class RemoveActiveUser {
 
   const RemoveActiveUser({required this.repository});
 
-  Future<bool> execute() => repository.removeUser();
+  Future<bool> execute() => repository.clearTokenCache();
 }

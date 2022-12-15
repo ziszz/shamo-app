@@ -77,7 +77,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        const AuthSuccess(user: testUser),
+        AuthSuccess(user: testUser),
       ],
     );
 
@@ -94,7 +94,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        const AuthError(message: ""),
+        AuthError(message: ""),
       ],
     );
   });
@@ -135,7 +135,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        const AuthSuccess(user: testUser),
+        AuthSuccess(user: testUser),
       ],
     );
 
@@ -155,7 +155,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        const AuthError(message: ""),
+        AuthError(message: ""),
       ],
     );
   });
@@ -196,7 +196,7 @@ void main() {
       act: (bloc) => bloc.add(const OnLogout(token: testToken)),
       expect: () => [
         AuthLoading(),
-        const AuthError(message: Constants.unauthenticatedMessage),
+        AuthError(message: Constants.unauthenticatedMessage),
       ],
     );
   });
@@ -223,7 +223,7 @@ void main() {
       act: (bloc) => bloc.add(const OnGetCurrentUser(token: testToken)),
       expect: () => [
         AuthLoading(),
-        const AuthSuccess(user: testUser),
+        AuthSuccess(user: testUser),
       ],
     );
 
@@ -237,7 +237,7 @@ void main() {
       act: (bloc) => bloc.add(const OnGetCurrentUser(token: testToken)),
       expect: () => [
         AuthLoading(),
-        const AuthError(message: ""),
+        AuthError(message: ""),
       ],
     );
   });
@@ -281,7 +281,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        const AuthSuccess(user: testUser),
+        AuthSuccess(user: testUser),
       ],
     );
 
@@ -301,7 +301,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        const AuthError(message: ""),
+        AuthError(message: ""),
       ],
     );
   });
@@ -328,7 +328,7 @@ void main() {
       act: (bloc) => bloc.add(const OnSaveUser(token: testToken)),
       expect: () => [
         AuthLoading(),
-        const AuthOnSaveSuccess(isSaved: true),
+        AuthOnSaveSuccess(isSaved: true),
       ],
     );
   });

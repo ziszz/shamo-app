@@ -72,14 +72,14 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<bool> saveUser(String token) async {
+  Future<bool> cacheToken(String token) async {
     final result = await localDataSource.cacheToken(token);
     return result;
   }
 
   @override
-  Future<bool> removeUser() async {
-    final result = await localDataSource.removeTokenCache();
+  Future<bool> clearTokenCache() async {
+    final result = await localDataSource.clearTokenCache();
     return result;
   }
 }
