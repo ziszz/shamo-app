@@ -33,6 +33,8 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final result =
           await _remoteDataSource.register(name, email, username, password);
+      _localDataSource.cacheToken(result.token);
+
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure(""));
@@ -43,6 +45,8 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, User>> login(String email, String password) async {
     try {
       final result = await _remoteDataSource.login(email, password);
+      _localDataSource.cacheToken(result.token);
+
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure(""));
@@ -65,6 +69,8 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, bool>> logout(String token) async {
     try {
       final result = await _remoteDataSource.logout(token);
+      _localDataSource.clearTokenCache();
+
       return Right(result);
     } on ServerException {
       return const Left(ServerFailure(Constants.unauthenticatedMessage));
@@ -74,17 +80,5 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<String> getCacheToken() async {
     return await _localDataSource.getCacheToken();
-  }
-
-  @override
-  Future<bool> cacheToken(String token) async {
-    final result = await _localDataSource.cacheToken(token);
-    return result;
-  }
-
-  @override
-  Future<bool> clearTokenCache() async {
-    final result = await _localDataSource.clearTokenCache();
-    return result;
   }
 }

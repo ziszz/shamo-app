@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:shamo_app/data/datasources/local/auth_local_data_source.dart';
 import 'package:shamo_app/utilities/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,21 +26,17 @@ void main() {
   });
 
   group("Cache token", () {
-    test("should return true when cache token is successfuly", () async {
-      // act
-      final result = await localDataSource.cacheToken(testToken);
+    test("should cache data locally when call is successful", () async {
       // assert
-      expect(result, true);
+      verify(localDataSource.cacheToken(testToken));
     });
   });
 
   group("Clear Token Cache", () {
     test("should return true when remove token from cache is successfuly",
         () async {
-      // act
-      final result = await localDataSource.clearTokenCache();
       // assert
-      expect(result, true);
+      verify(localDataSource.clearTokenCache());
     });
   });
 }

@@ -98,9 +98,6 @@ class _SignUpPageState extends State<SignUpPage> {
                         listener: (context, state) {
                           if (state is AuthSuccess) {
                             context.read<PageCubit>().setPage(0);
-                            context.read<AuthBloc>().add(
-                                  OnSaveUser(token: state.user.token ?? ""),
-                                );
                             Navigator.pushNamedAndRemoveUntil(
                               context,
                               MainPage.routeName,

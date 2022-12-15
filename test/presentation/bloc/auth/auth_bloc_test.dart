@@ -35,8 +35,6 @@ void main() {
       mockUserLogout,
       mockGetUser,
       mockUpdateProfile,
-      mockSaveActiveUser,
-      mockRemoveActiveUser,
       mockGetActiveUser,
     );
   });
@@ -330,58 +328,6 @@ void main() {
       expect: () => [
         AuthLoading(),
         AuthGetTokenSuccess(testToken),
-      ],
-    );
-  });
-
-  group("OnSaveUser Event", () {
-    blocTest<AuthBloc, AuthState>(
-      "should execute save active user usecase when function called",
-      build: () {
-        when(mockSaveActiveUser.execute(testToken))
-            .thenAnswer((_) async => true);
-        return bloc;
-      },
-      act: (bloc) => bloc.add(const OnSaveUser(token: testToken)),
-      verify: (bloc) => verify(bloc.saveActiveUser.execute(testToken)),
-    );
-
-    blocTest<AuthBloc, AuthState>(
-      "should emit [Loading, Success] when post data successfuly",
-      build: () {
-        when(mockSaveActiveUser.execute(testToken))
-            .thenAnswer((_) async => true);
-        return bloc;
-      },
-      act: (bloc) => bloc.add(const OnSaveUser(token: testToken)),
-      expect: () => [
-        AuthLoading(),
-        AuthOnSaveSuccess(true),
-      ],
-    );
-  });
-
-  group("OnRemoveUser Event", () {
-    blocTest<AuthBloc, AuthState>(
-      "should execute remove active user usecase when function called",
-      build: () {
-        when(mockRemoveActiveUser.execute()).thenAnswer((_) async => true);
-        return bloc;
-      },
-      act: (bloc) => bloc.add(const OnRemoveUser()),
-      verify: (bloc) => verify(bloc.removeActiveUser.execute()),
-    );
-
-    blocTest<AuthBloc, AuthState>(
-      "should emit [Loading, Initial] when post data successfuly",
-      build: () {
-        when(mockRemoveActiveUser.execute()).thenAnswer((_) async => true);
-        return bloc;
-      },
-      act: (bloc) => bloc.add(const OnRemoveUser()),
-      expect: () => [
-        AuthLoading(),
-        AuthInitial(),
       ],
     );
   });

@@ -38,12 +38,3 @@ class AuthError extends AuthState {
   @override
   List<Object> get props => [message];
 }
-
-class AuthOnSaveSuccess extends AuthState {
-  final bool isSaved;
-
-  AuthOnSaveSuccess(this.isSaved);
-
-  @override
-  List<Object> get props => [isSaved];
-}

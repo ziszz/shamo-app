@@ -170,33 +170,6 @@ void main() {
     });
   });
 
-  group("Cache User Token", () {
-    test(
-        "should return true when the call to local data source is successfully",
-        () async {
-      // arrange
-      when(mockAuthLocalDataSource.cacheToken(testToken))
-          .thenAnswer((_) async => true);
-      // act
-      final result = await repository.cacheToken(testToken);
-      // assert
-      expect(result, true);
-    });
-  });
-
-  group("Clear token cache", () {
-    test("should return true when the call to local data source is successfuly",
-        () async {
-      // arrange
-      when(mockAuthLocalDataSource.clearTokenCache())
-          .thenAnswer((_) async => true);
-      // act
-      final result = await repository.clearTokenCache();
-      // assert
-      expect(result, true);
-    });
-  });
-
   group("Get cache token", () {
     test(
         "should return token when the call to local data source is successfuly",

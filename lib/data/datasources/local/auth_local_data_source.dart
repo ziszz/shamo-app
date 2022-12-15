@@ -2,8 +2,8 @@ import 'package:shamo_app/utilities/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AuthLocalDataSource {
-  Future<bool> cacheToken(String token);
-  Future<bool> clearTokenCache();
+  Future<void> cacheToken(String token);
+  Future<void> clearTokenCache();
   Future<String> getCacheToken();
 }
 
@@ -13,13 +13,13 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   const AuthLocalDataSourceImpl(this._prefs);
 
   @override
-  Future<bool> cacheToken(String token) async {
-    return await _prefs.setString(Constants.tokenKey, token);
+  Future<void> cacheToken(String token) async {
+    await _prefs.setString(Constants.tokenKey, token);
   }
 
   @override
-  Future<bool> clearTokenCache() async {
-    return await _prefs.remove(Constants.tokenKey);
+  Future<void> clearTokenCache() async {
+    await _prefs.remove(Constants.tokenKey);
   }
 
   @override
