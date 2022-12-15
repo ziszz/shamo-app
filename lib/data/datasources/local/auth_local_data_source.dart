@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 abstract class AuthLocalDataSource {
   Future<bool> cacheToken(String token);
   Future<bool> clearTokenCache();
+  Future<String> getCacheToken();
 }
 
 class AuthLocalDataSourceImpl implements AuthLocalDataSource {
@@ -19,5 +20,10 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   @override
   Future<bool> clearTokenCache() async {
     return await prefs.remove(Constants.tokenKey);
+  }
+
+  @override
+  Future<String> getCacheToken() async {
+    return prefs.getString(Constants.tokenKey) ?? "";
   }
 }

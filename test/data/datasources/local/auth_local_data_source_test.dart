@@ -7,29 +7,37 @@ void main() {
   late SharedPreferences prefs;
   late AuthLocalDataSource localDataSource;
 
+  const testToken = "access_token";
+
   setUp(() async {
+    SharedPreferences.setMockInitialValues({Constants.tokenKey: testToken});
     prefs = await SharedPreferences.getInstance();
     localDataSource = AuthLocalDataSourceImpl(
       prefs: prefs,
     );
   });
 
-  const testToken = "access_token";
+  group("Get Token Cache", () {
+    test("should return user token when get data is successfuly", () async {
+      // act
+      final result = await localDataSource.getCacheToken();
+      // assert
+      expect(result, testToken);
+    });
+  });
 
   group("Cache token", () {
     test("should return true when cache token is successfuly", () async {
-      // arrange
-      SharedPreferences.setMockInitialValues({});
       // act
       final result = await localDataSource.cacheToken(testToken);
       // assert
       expect(result, true);
     });
+  });
 
+  group("Clear Token Cache", () {
     test("should return true when remove token from cache is successfuly",
         () async {
-      // arrange
-      SharedPreferences.setMockInitialValues({Constants.tokenKey: testToken});
       // act
       final result = await localDataSource.clearTokenCache();
       // assert
