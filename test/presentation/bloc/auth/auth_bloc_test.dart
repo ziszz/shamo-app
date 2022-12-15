@@ -18,6 +18,7 @@ void main() {
   late MockUpdateProfile mockUpdateProfile;
   late MockSaveActiveUser mockSaveActiveUser;
   late MockRemoveActiveUser mockRemoveActiveUser;
+  late MockGetActiveUser mockGetActiveUser;
 
   setUp(() {
     mockUserRegister = MockUserRegister();
@@ -27,14 +28,17 @@ void main() {
     mockUpdateProfile = MockUpdateProfile();
     mockSaveActiveUser = MockSaveActiveUser();
     mockRemoveActiveUser = MockRemoveActiveUser();
+    mockGetActiveUser = MockGetActiveUser();
     bloc = AuthBloc(
-        mockUserLogin,
-        mockUserRegister,
-        mockUserLogout,
-        mockGetUser,
-        mockUpdateProfile,
-        mockSaveActiveUser,
-        mockRemoveActiveUser);
+      mockUserLogin,
+      mockUserRegister,
+      mockUserLogout,
+      mockGetUser,
+      mockUpdateProfile,
+      mockSaveActiveUser,
+      mockRemoveActiveUser,
+      mockGetActiveUser,
+    );
   });
 
   const testToken = "access_token";
@@ -301,6 +305,31 @@ void main() {
       expect: () => [
         AuthLoading(),
         AuthError(""),
+      ],
+    );
+  });
+
+  group("OnGetActiveUser Event", () {
+    blocTest<AuthBloc, AuthState>(
+      "should execute get active user when function called",
+      build: () {
+        when(mockGetActiveUser.execute()).thenAnswer((_) async => testToken);
+        return bloc;
+      },
+      act: (bloc) => bloc.add(const OnGetActiveUser()),
+      verify: (bloc) => verify(bloc.getActiveUser.execute()),
+    );
+
+    blocTest<AuthBloc, AuthState>(
+      "should emit [Loading, Success] when data gotten successfuly",
+      build: () {
+        when(mockGetActiveUser.execute()).thenAnswer((_) async => testToken);
+        return bloc;
+      },
+      act: (bloc) => bloc.add(const OnGetActiveUser()),
+      expect: () => [
+        AuthLoading(),
+        AuthGetTokenSuccess(testToken),
       ],
     );
   });

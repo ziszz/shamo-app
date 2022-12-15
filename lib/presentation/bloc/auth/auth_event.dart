@@ -52,6 +52,13 @@ class OnGetUser extends AuthEvent {
   List<Object?> get props => [token];
 }
 
+class OnGetActiveUser extends AuthEvent {
+  const OnGetActiveUser();
+
+  @override
+  List<Object?> get props => [];
+}
+
 class OnUpdate extends AuthEvent {
   final String token;
   final String name;

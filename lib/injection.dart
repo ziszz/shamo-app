@@ -26,7 +26,7 @@ void init(HttpClient httpClient, SharedPreferences prefs) async {
   // blocs
   locator.registerFactory<AuthBloc>(
     () => AuthBloc(locator(), locator(), locator(), locator(), locator(),
-        locator(), locator()),
+        locator(), locator(), locator()),
   );
 
   // cubit

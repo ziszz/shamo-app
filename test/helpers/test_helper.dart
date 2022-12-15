@@ -5,6 +5,7 @@ import 'package:shamo_app/data/datasources/remote/auth_remote_data_source.dart';
 import 'package:shamo_app/data/datasources/remote/product_remote_data_source.dart';
 import 'package:shamo_app/domain/repositories/auth_repository.dart';
 import 'package:shamo_app/domain/repositories/product_repository.dart';
+import 'package:shamo_app/domain/usecases/get_active_user.dart';
 import 'package:shamo_app/domain/usecases/get_user.dart';
 import 'package:shamo_app/domain/usecases/remove_active_user.dart';
 import 'package:shamo_app/domain/usecases/save_active_user.dart';
@@ -25,6 +26,7 @@ import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
   UserLogout,
   GetUser,
   UpdateProfile,
+  GetActiveUser,
   SaveActiveUser,
   RemoveActiveUser,
   AuthBloc,
