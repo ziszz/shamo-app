@@ -28,14 +28,13 @@ void main() {
     mockSaveActiveUser = MockSaveActiveUser();
     mockRemoveActiveUser = MockRemoveActiveUser();
     bloc = AuthBloc(
-      userLogin: mockUserLogin,
-      userRegister: mockUserRegister,
-      userLogout: mockUserLogout,
-      getUser: mockGetUser,
-      updateProfile: mockUpdateProfile,
-      saveActiveUser: mockSaveActiveUser,
-      removeActiveUser: mockRemoveActiveUser,
-    );
+        mockUserLogin,
+        mockUserRegister,
+        mockUserLogout,
+        mockGetUser,
+        mockUpdateProfile,
+        mockSaveActiveUser,
+        mockRemoveActiveUser);
   });
 
   const testToken = "access_token";
