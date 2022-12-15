@@ -67,6 +67,7 @@ void main() {
       final result = await repository.register(
           testName, testEmail, testUsername, testPass);
       // assert
+      verify(mockAuthLocalDataSource.cacheToken(testToken));
       expect(result, const Right(testUser));
     });
 
@@ -98,6 +99,7 @@ void main() {
       // act
       final result = await repository.login(testEmail, testPass);
       // assert
+      verify(mockAuthLocalDataSource.cacheToken(testToken));
       expect(result, const Right(testUser));
     });
 
@@ -154,6 +156,7 @@ void main() {
       // act
       final result = await repository.logout(testToken);
       // assert
+      verify(mockAuthLocalDataSource.clearTokenCache());
       expect(result, const Right(true));
     });
 

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:get_it/get_it.dart';
 import 'package:http/io_client.dart';
 import 'package:shamo_app/data/datasources/local/auth_local_data_source.dart';
+import 'package:shamo_app/data/datasources/preferences/user_preferences.dart';
 import 'package:shamo_app/data/datasources/remote/auth_remote_data_source.dart';
 import 'package:shamo_app/data/datasources/remote/product_remote_data_source.dart';
 import 'package:shamo_app/data/repositories/auth_repository_impl.dart';
@@ -57,7 +58,7 @@ void init(HttpClient httpClient, SharedPreferences prefs) async {
 
   // data sources
   locator.registerLazySingleton<AuthLocalDataSource>(
-    () => AuthLocalDataSourceImpl(prefs),
+    () => AuthLocalDataSourceImpl(locator()),
   );
   locator.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(locator()),
@@ -68,4 +69,7 @@ void init(HttpClient httpClient, SharedPreferences prefs) async {
 
   // external
   locator.registerLazySingleton<IOClient>(() => IOClient(httpClient));
+
+  //preferences
+  locator.registerLazySingleton<UserPreferences>(() => UserPreferences(prefs));
 }
