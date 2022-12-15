@@ -27,7 +27,7 @@ void main() {
     });
 
     test("should throw cache exception when get data is failed", () async {
-      when(mockUserPreferences.getCacheToken()).thenThrow(Exception());
+      when(mockUserPreferences.getCacheToken()).thenAnswer((_) async => "");
       // act
       final result = localDataSource.getCacheToken();
       // assert

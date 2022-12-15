@@ -96,10 +96,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
     });
     on<OnGetActiveUser>((event, emit) async {
-      emit(AuthLoading());
-
-      final result = await getActiveUser.execute();
-      emit(AuthGetTokenSuccess(result));
+      // final result = await getActiveUser.execute();
+      // emit(AuthGetTokenSuccess(result));
     });
   }
 }

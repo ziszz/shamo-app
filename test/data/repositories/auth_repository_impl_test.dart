@@ -11,15 +11,15 @@ import '../../helpers/test_helper.mocks.dart';
 
 void main() {
   late AuthRepositoryImpl repository;
-  late MockAuthLocalDataSource mockAuthLocalDataSource;
+  late MockAuthLocalDataSource mockLocalDataSource;
   late MockAuthRemoteDataSource mockRemoteDataSource;
 
   setUp(() {
-    mockAuthLocalDataSource = MockAuthLocalDataSource();
+    mockLocalDataSource = MockAuthLocalDataSource();
     mockRemoteDataSource = MockAuthRemoteDataSource();
     repository = AuthRepositoryImpl(
       mockRemoteDataSource,
-      mockAuthLocalDataSource,
+      mockLocalDataSource,
     );
   });
 
@@ -67,7 +67,7 @@ void main() {
       final result = await repository.register(
           testName, testEmail, testUsername, testPass);
       // assert
-      verify(mockAuthLocalDataSource.cacheToken(testToken));
+      verify(mockLocalDataSource.cacheToken(testToken));
       expect(result, const Right(testUser));
     });
 
@@ -99,7 +99,7 @@ void main() {
       // act
       final result = await repository.login(testEmail, testPass);
       // assert
-      verify(mockAuthLocalDataSource.cacheToken(testToken));
+      verify(mockLocalDataSource.cacheToken(testToken));
       expect(result, const Right(testUser));
     });
 
@@ -156,7 +156,7 @@ void main() {
       // act
       final result = await repository.logout(testToken);
       // assert
-      verify(mockAuthLocalDataSource.clearTokenCache());
+      verify(mockLocalDataSource.clearTokenCache());
       expect(result, const Right(true));
     });
 
@@ -178,12 +178,23 @@ void main() {
         "should return token when the call to local data source is successfuly",
         () async {
       // arrange
-      when(mockAuthLocalDataSource.getCacheToken())
+      when(mockLocalDataSource.getCacheToken())
           .thenAnswer((_) async => testToken);
       // act
       final result = await repository.getCacheToken();
       // assert
-      expect(result, testToken);
+      expect(result, const Right(testToken));
+    });
+
+    test(
+        "should return cache failure when the call local data source is failed",
+        () async {
+      // arrange
+      when(mockLocalDataSource.getCacheToken()).thenThrow(CacheException());
+      // act
+      final result = await repository.getCacheToken();
+      // assert
+      expect(result, const Left(CacheFailure(Constants.cacheEmptyMessage)));
     });
   });
 }

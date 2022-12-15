@@ -24,10 +24,12 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
 
   @override
   Future<String> getCacheToken() async {
-    try {
-      return _userPrefs.getCacheToken();
-    } catch (e) {
-      throw CacheException(e.toString());
+    final result = await _userPrefs.getCacheToken();
+
+    if (result.isNotEmpty) {
+      return result;
+    } else {
+      throw CacheException();
     }
   }
 }

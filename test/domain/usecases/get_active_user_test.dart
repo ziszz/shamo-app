@@ -1,6 +1,9 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shamo_app/domain/usecases/get_active_user.dart';
+import 'package:shamo_app/utilities/constants.dart';
+import 'package:shamo_app/utilities/failure.dart';
 
 import '../../helpers/test_helper.mocks.dart';
 
@@ -21,11 +24,23 @@ void main() {
         () async {
       // arrange
       when(mockAuthRepository.getCacheToken())
-          .thenAnswer((_) async => testToken);
+          .thenAnswer((_) async => const Right(testToken));
       // act
       final result = await usecase.execute();
       // assert
-      expect(result, testToken);
+      expect(result, const Right(testToken));
+    });
+
+    test(
+        "should cache failure data when get data from the repository is failed",
+        () async {
+      // arrange
+      when(mockAuthRepository.getCacheToken()).thenAnswer(
+          (_) async => const Left(CacheFailure(Constants.cacheEmptyMessage)));
+      // act
+      final result = await usecase.execute();
+      // assert
+      expect(result, const Left(CacheFailure(Constants.cacheEmptyMessage)));
     });
   });
 }
