@@ -10,6 +10,8 @@ import 'package:shamo_app/data/repositories/product_repository_impl.dart';
 import 'package:shamo_app/domain/repositories/auth_repository.dart';
 import 'package:shamo_app/domain/repositories/product_repository.dart';
 import 'package:shamo_app/domain/usecases/get_user.dart';
+import 'package:shamo_app/domain/usecases/remove_active_user.dart';
+import 'package:shamo_app/domain/usecases/save_active_user.dart';
 import 'package:shamo_app/domain/usecases/update_profile.dart';
 import 'package:shamo_app/domain/usecases/user_login.dart';
 import 'package:shamo_app/domain/usecases/user_logout.dart';
@@ -20,10 +22,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final locator = GetIt.instance;
 
-Future<SharedPreferences> get prefs async =>
-    await SharedPreferences.getInstance();
-
-void init(HttpClient httpClient) {
+void init(HttpClient httpClient, SharedPreferences prefs) async {
   // blocs
   locator.registerFactory<AuthBloc>(
     () => AuthBloc(
@@ -56,6 +55,12 @@ void init(HttpClient httpClient) {
   locator.registerLazySingleton<UpdateProfile>(
     () => UpdateProfile(repository: locator()),
   );
+  locator.registerLazySingleton<SaveActiveUser>(
+    () => SaveActiveUser(repository: locator()),
+  );
+  locator.registerLazySingleton<RemoveActiveUser>(
+    () => RemoveActiveUser(repository: locator()),
+  );
 
   // repositories
   locator.registerLazySingleton<AuthRepository>(
@@ -70,7 +75,7 @@ void init(HttpClient httpClient) {
 
   // data sources
   locator.registerLazySingleton<AuthLocalDataSource>(
-    () => AuthLocalDataSourceImpl(prefs: locator()),
+    () => AuthLocalDataSourceImpl(prefs: prefs),
   );
   locator.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(client: locator()),

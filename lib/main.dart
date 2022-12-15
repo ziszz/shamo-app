@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:shamo_app/presentation/cubit/page_cubit.dart';
@@ -17,10 +16,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
 
-  di.init(await getHttpClient());
-  GetIt.I.isReady<SharedPreferences>().then((_) {
-    runApp(const MyApp());
-  });
+  di.init(
+    await getHttpClient(),
+    await SharedPreferences.getInstance(),
+  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
