@@ -78,10 +78,12 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, String>> getCacheToken() async {
+  Future<Either<Failure, User>> getActiveUser() async {
     try {
-      final result = await _localDataSource.getCacheToken();
-      return Right(result);
+      final tokenResult = await _localDataSource.getCacheToken();
+      final userResult = await _remoteDataSource.getUser(tokenResult);
+
+      return Right(userResult.toEntity());
     } on CacheException {
       return const Left(CacheFailure(Constants.cacheEmptyMessage));
     }

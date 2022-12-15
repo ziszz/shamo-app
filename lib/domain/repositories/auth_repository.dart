@@ -10,5 +10,5 @@ abstract class AuthRepository {
   Future<Either<Failure, User>> updateProfile(
       String token, String name, String email, String username);
   Future<Either<Failure, bool>> logout(String token);
-  Future<Either<Failure, String>> getCacheToken();
+  Future<Either<Failure, User>> getActiveUser();
 }

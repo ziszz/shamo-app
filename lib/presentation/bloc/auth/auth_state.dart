@@ -21,15 +21,6 @@ class AuthSuccess extends AuthState {
   List<Object> get props => [user];
 }
 
-class AuthGetTokenSuccess extends AuthState {
-  final String token;
-
-  AuthGetTokenSuccess(this.token);
-
-  @override
-  List<Object> get props => [token];
-}
-
 class AuthError extends AuthState {
   final String message;
 

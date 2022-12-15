@@ -662,21 +662,21 @@ class MockAuthRepository extends _i1.Mock implements _i29.AuthRepository {
         )),
       ) as _i15.Future<_i4.Either<_i23.Failure, bool>>);
   @override
-  _i15.Future<_i4.Either<_i23.Failure, String>> getCacheToken() =>
+  _i15.Future<_i4.Either<_i23.Failure, _i30.User>> getActiveUser() =>
       (super.noSuchMethod(
         Invocation.method(
-          #getCacheToken,
+          #getActiveUser,
           [],
         ),
-        returnValue: _i15.Future<_i4.Either<_i23.Failure, String>>.value(
-            _FakeEither_2<_i23.Failure, String>(
+        returnValue: _i15.Future<_i4.Either<_i23.Failure, _i30.User>>.value(
+            _FakeEither_2<_i23.Failure, _i30.User>(
           this,
           Invocation.method(
-            #getCacheToken,
+            #getActiveUser,
             [],
           ),
         )),
-      ) as _i15.Future<_i4.Either<_i23.Failure, String>>);
+      ) as _i15.Future<_i4.Either<_i23.Failure, _i30.User>>);
 }
 
 /// A class which mocks [UserLogin].
@@ -857,21 +857,21 @@ class MockGetActiveUser extends _i1.Mock implements _i10.GetActiveUser {
   }
 
   @override
-  _i15.Future<_i4.Either<_i23.Failure, String>> execute() =>
+  _i15.Future<_i4.Either<_i23.Failure, _i30.User>> execute() =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
           [],
         ),
-        returnValue: _i15.Future<_i4.Either<_i23.Failure, String>>.value(
-            _FakeEither_2<_i23.Failure, String>(
+        returnValue: _i15.Future<_i4.Either<_i23.Failure, _i30.User>>.value(
+            _FakeEither_2<_i23.Failure, _i30.User>(
           this,
           Invocation.method(
             #execute,
             [],
           ),
         )),
-      ) as _i15.Future<_i4.Either<_i23.Failure, String>>);
+      ) as _i15.Future<_i4.Either<_i23.Failure, _i30.User>>);
 }
 
 /// A class which mocks [AuthBloc].

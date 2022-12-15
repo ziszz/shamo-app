@@ -175,15 +175,17 @@ void main() {
 
   group("Get cache token", () {
     test(
-        "should return token when the call to local data source is successfuly",
+        "should return user data when the call to local data source is successfuly",
         () async {
       // arrange
       when(mockLocalDataSource.getCacheToken())
           .thenAnswer((_) async => testToken);
+      when(mockRemoteDataSource.getUser(testToken))
+          .thenAnswer((_) async => testUserModel);
       // act
-      final result = await repository.getCacheToken();
+      final result = await repository.getActiveUser();
       // assert
-      expect(result, const Right(testToken));
+      expect(result, const Right(testUser));
     });
 
     test(
@@ -192,7 +194,7 @@ void main() {
       // arrange
       when(mockLocalDataSource.getCacheToken()).thenThrow(CacheException());
       // act
-      final result = await repository.getCacheToken();
+      final result = await repository.getActiveUser();
       // assert
       expect(result, const Left(CacheFailure(Constants.cacheEmptyMessage)));
     });
