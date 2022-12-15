@@ -307,7 +307,8 @@ void main() {
     blocTest<AuthBloc, AuthState>(
       "should execute get active user when function called",
       build: () {
-        when(mockGetActiveUser.execute()).thenAnswer((_) async => testToken);
+        when(mockGetActiveUser.execute())
+            .thenAnswer((_) async => const Right(testToken));
         return bloc;
       },
       act: (bloc) => bloc.add(const OnGetActiveUser()),
@@ -315,14 +316,14 @@ void main() {
     );
 
     blocTest<AuthBloc, AuthState>(
-      "should emit [Loading, Success] when data gotten successfuly",
+      "should emit [Success] when data gotten successfuly",
       build: () {
-        when(mockGetActiveUser.execute()).thenAnswer((_) async => testToken);
+        when(mockGetActiveUser.execute())
+            .thenAnswer((_) async => const Right(testToken));
         return bloc;
       },
       act: (bloc) => bloc.add(const OnGetActiveUser()),
       expect: () => [
-        AuthLoading(),
         AuthGetTokenSuccess(testToken),
       ],
     );
