@@ -76,7 +76,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        AuthSuccess(user: testUser),
+        AuthSuccess(testUser),
       ],
     );
 
@@ -93,7 +93,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        AuthError(message: ""),
+        AuthError(""),
       ],
     );
   });
@@ -134,7 +134,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        AuthSuccess(user: testUser),
+        AuthSuccess(testUser),
       ],
     );
 
@@ -154,7 +154,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        AuthError(message: ""),
+        AuthError(""),
       ],
     );
   });
@@ -195,12 +195,12 @@ void main() {
       act: (bloc) => bloc.add(const OnLogout(token: testToken)),
       expect: () => [
         AuthLoading(),
-        AuthError(message: Constants.unauthenticatedMessage),
+        AuthError(Constants.unauthenticatedMessage),
       ],
     );
   });
 
-  group("Get Current User Event", () {
+  group("Get User Event", () {
     blocTest<AuthBloc, AuthState>(
       "should execute get user when function called",
       build: () {
@@ -208,7 +208,7 @@ void main() {
             .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnGetCurrentUser(token: testToken)),
+      act: (bloc) => bloc.add(const OnGetUser(token: testToken)),
       verify: (bloc) => verify(bloc.getUser.execute(testToken)),
     );
 
@@ -219,10 +219,10 @@ void main() {
             .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnGetCurrentUser(token: testToken)),
+      act: (bloc) => bloc.add(const OnGetUser(token: testToken)),
       expect: () => [
         AuthLoading(),
-        AuthSuccess(user: testUser),
+        AuthSuccess(testUser),
       ],
     );
 
@@ -233,10 +233,10 @@ void main() {
             .thenAnswer((_) async => const Left(ServerFailure("")));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnGetCurrentUser(token: testToken)),
+      act: (bloc) => bloc.add(const OnGetUser(token: testToken)),
       expect: () => [
         AuthLoading(),
-        AuthError(message: ""),
+        AuthError(""),
       ],
     );
   });
@@ -280,7 +280,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        AuthSuccess(user: testUser),
+        AuthSuccess(testUser),
       ],
     );
 
@@ -300,7 +300,7 @@ void main() {
       )),
       expect: () => [
         AuthLoading(),
-        AuthError(message: ""),
+        AuthError(""),
       ],
     );
   });
@@ -327,7 +327,7 @@ void main() {
       act: (bloc) => bloc.add(const OnSaveUser(token: testToken)),
       expect: () => [
         AuthLoading(),
-        AuthOnSaveSuccess(isSaved: true),
+        AuthOnSaveSuccess(true),
       ],
     );
   });

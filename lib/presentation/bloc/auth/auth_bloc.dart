@@ -30,7 +30,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     this.saveActiveUser,
     this.removeActiveUser,
   ) : super(AuthInitial()) {
-    on<OnGetCurrentUser>((event, emit) async {
+    on<OnGetUser>((event, emit) async {
       emit(AuthLoading());
 
       final token = event.token;
@@ -38,8 +38,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final result = await getUser.execute(token);
 
       result.fold(
-        (failure) => emit(AuthError(message: failure.message)),
-        (result) => emit(AuthSuccess(user: result)),
+        (failure) => emit(AuthError(failure.message)),
+        (result) => emit(AuthSuccess(result)),
       );
     });
     on<OnLogin>((event, emit) async {
@@ -51,8 +51,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final result = await userLogin.execute(email, password);
 
       result.fold(
-        (failure) => emit(AuthError(message: failure.message)),
-        (result) => emit(AuthSuccess(user: result)),
+        (failure) => emit(AuthError(failure.message)),
+        (result) => emit(AuthSuccess(result)),
       );
     });
     on<OnRegister>((event, emit) async {
@@ -67,8 +67,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           await userRegister.execute(name, email, username, password);
 
       result.fold(
-        (failure) => emit(AuthError(message: failure.message)),
-        (result) => emit(AuthSuccess(user: result)),
+        (failure) => emit(AuthError(failure.message)),
+        (result) => emit(AuthSuccess(result)),
       );
     });
     on<OnLogout>((event, emit) async {
@@ -79,7 +79,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final result = await userLogout.execute(token);
 
       result.fold(
-        (failure) => emit(AuthError(message: failure.message)),
+        (failure) => emit(AuthError(failure.message)),
         (result) => emit(AuthInitial()),
       );
     });
@@ -94,8 +94,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final result = await updateProfile.execute(token, name, email, username);
 
       result.fold(
-        (failure) => emit(AuthError(message: failure.message)),
-        (result) => emit(AuthSuccess(user: result)),
+        (failure) => emit(AuthError(failure.message)),
+        (result) => emit(AuthSuccess(result)),
       );
     });
     on<OnSaveUser>((event, emit) async {
@@ -105,7 +105,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final result = await saveActiveUser.execute(token);
 
       if (result) {
-        emit(AuthOnSaveSuccess(isSaved: result));
+        emit(AuthOnSaveSuccess(result));
       }
     });
     on<OnRemoveUser>((event, emit) async {

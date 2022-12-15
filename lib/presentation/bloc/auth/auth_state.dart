@@ -15,7 +15,7 @@ class AuthLoading extends AuthState {
 class AuthSuccess extends AuthState {
   final User user;
 
-  AuthSuccess({required this.user});
+  AuthSuccess(this.user);
 
   @override
   List<Object> get props => [user];
@@ -24,7 +24,7 @@ class AuthSuccess extends AuthState {
 class AuthError extends AuthState {
   final String message;
 
-  AuthError({required this.message});
+  AuthError(this.message);
 
   @override
   List<Object> get props => [message];
@@ -33,7 +33,7 @@ class AuthError extends AuthState {
 class AuthOnSaveSuccess extends AuthState {
   final bool isSaved;
 
-  AuthOnSaveSuccess({required this.isSaved});
+  AuthOnSaveSuccess(this.isSaved);
 
   @override
   List<Object> get props => [isSaved];

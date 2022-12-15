@@ -80,7 +80,7 @@ class ProfilePage extends StatelessWidget {
             child: _optionItem(
               context: context,
               onTap: () => context.read<AuthBloc>().add(
-                    OnGetCurrentUser(token: token),
+                    OnGetUser(token: token),
                   ),
               text: "Edit Profile",
             ),
