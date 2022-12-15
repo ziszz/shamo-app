@@ -12,4 +12,5 @@ abstract class AuthRepository {
   Future<Either<Failure, bool>> logout(String token);
   Future<bool> cacheToken(String token);
   Future<bool> clearTokenCache();
+  Future<Either<Failure, String>> getCacheToken();
 }

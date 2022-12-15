@@ -184,9 +184,8 @@ void main() {
     });
   });
 
-  group("Remove user token", () {
-    test(
-        "should return true when the call to local data source is successfully",
+  group("Clear token cache", () {
+    test("should return true when the call to local data source is successfuly",
         () async {
       // arrange
       when(mockAuthLocalDataSource.clearTokenCache())
@@ -195,6 +194,20 @@ void main() {
       final result = await repository.clearTokenCache();
       // assert
       expect(result, true);
+    });
+  });
+
+  group("Get cache token", () {
+    test(
+        "should return token when the call to local data source is successfuly",
+        () async {
+      // arrange
+      when(mockAuthLocalDataSource.getCacheToken())
+          .thenAnswer((_) async => testToken);
+      // act
+      final result = await repository.getCacheToken();
+      // assert
+      expect(result, testToken);
     });
   });
 }

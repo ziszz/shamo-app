@@ -5,9 +5,3 @@ class CacheException implements Exception {
 
   const CacheException({required this.message});
 }
-
-class DatabaseException implements Exception {
-  final String message;
-
-  const DatabaseException({required this.message});
-}

@@ -508,6 +508,14 @@ class MockAuthLocalDataSource extends _i1.Mock
         ),
         returnValue: _i17.Future<bool>.value(false),
       ) as _i17.Future<bool>);
+  @override
+  _i17.Future<String> getCacheToken() => (super.noSuchMethod(
+        Invocation.method(
+          #getCacheToken,
+          [],
+        ),
+        returnValue: _i17.Future<String>.value(''),
+      ) as _i17.Future<String>);
 }
 
 /// A class which mocks [AuthRepository].
