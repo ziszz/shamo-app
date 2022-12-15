@@ -4,11 +4,11 @@ import 'package:shamo_app/domain/repositories/auth_repository.dart';
 import 'package:shamo_app/utilities/failure.dart';
 
 class UserRegister {
-  final AuthRepository repository;
+  final AuthRepository _repository;
 
-  const UserRegister({required this.repository});
+  const UserRegister(this._repository);
 
   Future<Either<Failure, User>> execute(
           String name, String email, String username, String password) =>
-      repository.register(name, email, username, password);
+      _repository.register(name, email, username, password);
 }

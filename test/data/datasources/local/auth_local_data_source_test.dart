@@ -12,9 +12,7 @@ void main() {
   setUp(() async {
     SharedPreferences.setMockInitialValues({Constants.tokenKey: testToken});
     prefs = await SharedPreferences.getInstance();
-    localDataSource = AuthLocalDataSourceImpl(
-      prefs: prefs,
-    );
+    localDataSource = AuthLocalDataSourceImpl(prefs);
   });
 
   group("Get Token Cache", () {

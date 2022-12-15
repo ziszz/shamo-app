@@ -5,10 +5,10 @@ import 'package:shamo_app/domain/repositories/auth_repository.dart';
 import '../../utilities/failure.dart';
 
 class GetUser {
-  final AuthRepository repository;
+  final AuthRepository _repository;
 
-  const GetUser({required this.repository});
+  const GetUser(this._repository);
 
   Future<Either<Failure, User>> execute(String token) =>
-      repository.getUser(token);
+      _repository.getUser(token);
 }

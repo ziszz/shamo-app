@@ -16,9 +16,9 @@ abstract class AuthRemoteDataSource {
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
-  final IOClient client;
+  final IOClient _client;
 
-  const AuthRemoteDataSourceImpl({required this.client});
+  const AuthRemoteDataSourceImpl(this._client);
 
   @override
   Future<UserModel> register(
@@ -30,7 +30,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       "password": password,
     };
 
-    final response = await client.post(
+    final response = await _client.post(
       Uri.parse("${dotenv.env["apiUrl"]}/api/register"),
       body: body,
     );
@@ -48,7 +48,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<UserModel> login(String email, String password) async {
     final body = {"email": email, "password": password};
-    final response = await client.post(
+    final response = await _client.post(
       Uri.parse("${dotenv.env["apiUrl"]}/api/login"),
       body: body,
     );
@@ -66,7 +66,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<bool> logout(String token) async {
     final headers = {"Authorization": "Bearer $token"};
-    final response = await client.post(
+    final response = await _client.post(
       Uri.parse("${dotenv.env["apiUrl"]}/api/logout"),
       headers: headers,
     );
@@ -89,7 +89,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       "username": username,
     };
 
-    final response = await client.post(
+    final response = await _client.post(
       Uri.parse("${dotenv.env["apiUrl"]}/api/user"),
       body: body,
       headers: headers,
@@ -107,7 +107,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<UserModel> getUser(String token) async {
     final headers = {"Authorization": "Bearer $token"};
-    final response = await client
+    final response = await _client
         .get(Uri.parse("${dotenv.env["apiUrl"]}/api/user"), headers: headers);
 
     if (response.statusCode == 200) {

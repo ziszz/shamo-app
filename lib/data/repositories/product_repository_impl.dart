@@ -11,14 +11,14 @@ import 'package:shamo_app/utilities/exceptions.dart';
 import 'package:shamo_app/utilities/failure.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
-  final ProductRemoteDataSource remoteDataSource;
+  final ProductRemoteDataSource _remoteDataSource;
 
-  const ProductRepositoryImpl({required this.remoteDataSource});
+  const ProductRepositoryImpl(this._remoteDataSource);
 
   @override
   Future<Either<Failure, List<Product>>> getProducts() async {
     try {
-      final result = await remoteDataSource.getProducts();
+      final result = await _remoteDataSource.getProducts();
       return Right(result.map((e) => e.toEntity()).toList());
     } on ServerException {
       return const Left(ServerFailure(""));
@@ -28,7 +28,7 @@ class ProductRepositoryImpl implements ProductRepository {
   @override
   Future<Either<Failure, List<Category>>> getProductCategories() async {
     try {
-      final result = await remoteDataSource.getProductCategories();
+      final result = await _remoteDataSource.getProductCategories();
       return Right(result.map((e) => e.toEntity()).toList());
     } on ServerException {
       return const Left(ServerFailure(""));
@@ -39,7 +39,7 @@ class ProductRepositoryImpl implements ProductRepository {
   Future<Either<Failure, List<Transaction>>> getTransactions(
       int idUser, String token) async {
     try {
-      final result = await remoteDataSource.getTransactions(idUser, token);
+      final result = await _remoteDataSource.getTransactions(idUser, token);
       return Right(result.map((e) => e.toEntity()).toList());
     } catch (e) {
       return const Left(ServerFailure(""));
@@ -50,7 +50,7 @@ class ProductRepositoryImpl implements ProductRepository {
   Future<Either<Failure, String>> checkout(
       String token, CheckoutBody checkoutData) async {
     try {
-      final result = await remoteDataSource.checkout(
+      final result = await _remoteDataSource.checkout(
           token, CheckoutBodyModel.fromEntity(checkoutData));
       return Right(result.status);
     } on ServerException {

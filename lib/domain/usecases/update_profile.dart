@@ -4,11 +4,11 @@ import 'package:shamo_app/domain/repositories/auth_repository.dart';
 import 'package:shamo_app/utilities/failure.dart';
 
 class UpdateProfile {
-  final AuthRepository repository;
+  final AuthRepository _repository;
 
-  const UpdateProfile({required this.repository});
+  const UpdateProfile(this._repository);
 
   Future<Either<Failure, User>> execute(
           String token, String name, String email, String username) =>
-      repository.updateProfile(token, name, email, username);
+      _repository.updateProfile(token, name, email, username);
 }

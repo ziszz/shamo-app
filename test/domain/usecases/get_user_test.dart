@@ -13,9 +13,7 @@ void main() {
 
   setUp(() {
     mockAuthRepository = MockAuthRepository();
-    usecase = GetUser(
-      repository: mockAuthRepository,
-    );
+    usecase = GetUser(mockAuthRepository);
   });
 
   const testToken = "access_token";

@@ -25,15 +25,8 @@ final locator = GetIt.instance;
 void init(HttpClient httpClient, SharedPreferences prefs) async {
   // blocs
   locator.registerFactory<AuthBloc>(
-    () => AuthBloc(
-      userLogin: locator(),
-      userRegister: locator(),
-      userLogout: locator(),
-      getUser: locator(),
-      updateProfile: locator(),
-      saveActiveUser: locator(),
-      removeActiveUser: locator(),
-    ),
+    () => AuthBloc(locator(), locator(), locator(), locator(), locator(),
+        locator(), locator()),
   );
 
   // cubit
@@ -41,47 +34,44 @@ void init(HttpClient httpClient, SharedPreferences prefs) async {
 
   // use cases
   locator.registerLazySingleton<UserLogin>(
-    () => UserLogin(repository: locator()),
+    () => UserLogin(locator()),
   );
   locator.registerLazySingleton<UserRegister>(
-    () => UserRegister(repository: locator()),
+    () => UserRegister(locator()),
   );
   locator.registerLazySingleton<UserLogout>(
-    () => UserLogout(repository: locator()),
+    () => UserLogout(locator()),
   );
   locator.registerLazySingleton<GetUser>(
-    () => GetUser(repository: locator()),
+    () => GetUser(locator()),
   );
   locator.registerLazySingleton<UpdateProfile>(
-    () => UpdateProfile(repository: locator()),
+    () => UpdateProfile(locator()),
   );
   locator.registerLazySingleton<SaveActiveUser>(
-    () => SaveActiveUser(repository: locator()),
+    () => SaveActiveUser(locator()),
   );
   locator.registerLazySingleton<RemoveActiveUser>(
-    () => RemoveActiveUser(repository: locator()),
+    () => RemoveActiveUser(locator()),
   );
 
   // repositories
   locator.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(
-      remoteDataSource: locator(),
-      localDataSource: locator(),
-    ),
+    () => AuthRepositoryImpl(locator(), locator()),
   );
   locator.registerLazySingleton<ProductRepository>(
-    () => ProductRepositoryImpl(remoteDataSource: locator()),
+    () => ProductRepositoryImpl(locator()),
   );
 
   // data sources
   locator.registerLazySingleton<AuthLocalDataSource>(
-    () => AuthLocalDataSourceImpl(prefs: prefs),
+    () => AuthLocalDataSourceImpl(prefs),
   );
   locator.registerLazySingleton<AuthRemoteDataSource>(
-    () => AuthRemoteDataSourceImpl(client: locator()),
+    () => AuthRemoteDataSourceImpl(locator()),
   );
   locator.registerLazySingleton<ProductRemoteDataSource>(
-    () => ProductRemoteDataSourceImpl(client: locator()),
+    () => ProductRemoteDataSourceImpl(locator()),
   );
 
   // external

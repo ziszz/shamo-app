@@ -1,9 +1,9 @@
 import 'package:shamo_app/domain/repositories/auth_repository.dart';
 
 class RemoveActiveUser {
-  final AuthRepository repository;
+  final AuthRepository _repository;
 
-  const RemoveActiveUser({required this.repository});
+  const RemoveActiveUser(this._repository);
 
-  Future<bool> execute() => repository.clearTokenCache();
+  Future<bool> execute() => _repository.clearTokenCache();
 }

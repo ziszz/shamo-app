@@ -13,29 +13,29 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final UserLogin userLogin;
-  final UserRegister userRegister;
-  final UserLogout userLogout;
-  final GetUser getUser;
-  final UpdateProfile updateProfile;
-  final SaveActiveUser saveActiveUser;
-  final RemoveActiveUser removeActiveUser;
+  final UserLogin _userLogin;
+  final UserRegister _userRegister;
+  final UserLogout _userLogout;
+  final GetUser _getUser;
+  final UpdateProfile _updateProfile;
+  final SaveActiveUser _saveActiveUser;
+  final RemoveActiveUser _removeActiveUser;
 
-  AuthBloc({
-    required this.userLogin,
-    required this.userRegister,
-    required this.userLogout,
-    required this.getUser,
-    required this.updateProfile,
-    required this.saveActiveUser,
-    required this.removeActiveUser,
-  }) : super(AuthInitial()) {
+  AuthBloc(
+    this._userLogin,
+    this._userRegister,
+    this._userLogout,
+    this._getUser,
+    this._updateProfile,
+    this._saveActiveUser,
+    this._removeActiveUser,
+  ) : super(AuthInitial()) {
     on<OnGetCurrentUser>((event, emit) async {
       emit(AuthLoading());
 
       final token = event.token;
 
-      final result = await getUser.execute(token);
+      final result = await _getUser.execute(token);
 
       result.fold(
         (failure) => emit(AuthError(message: failure.message)),
@@ -48,7 +48,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final email = event.email;
       final password = event.password;
 
-      final result = await userLogin.execute(email, password);
+      final result = await _userLogin.execute(email, password);
 
       result.fold(
         (failure) => emit(AuthError(message: failure.message)),
@@ -64,7 +64,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final password = event.password;
 
       final result =
-          await userRegister.execute(name, email, username, password);
+          await _userRegister.execute(name, email, username, password);
 
       result.fold(
         (failure) => emit(AuthError(message: failure.message)),
@@ -76,7 +76,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       final token = event.token;
 
-      final result = await userLogout.execute(token);
+      final result = await _userLogout.execute(token);
 
       result.fold(
         (failure) => emit(AuthError(message: failure.message)),
@@ -91,7 +91,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final email = event.email;
       final username = event.username;
 
-      final result = await updateProfile.execute(token, name, email, username);
+      final result = await _updateProfile.execute(token, name, email, username);
 
       result.fold(
         (failure) => emit(AuthError(message: failure.message)),
@@ -102,7 +102,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthLoading());
 
       final token = event.token;
-      final result = await saveActiveUser.execute(token);
+      final result = await _saveActiveUser.execute(token);
 
       if (result) {
         emit(AuthOnSaveSuccess(isSaved: result));
@@ -111,7 +111,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<OnRemoveUser>((event, emit) async {
       emit(AuthLoading());
 
-      final result = await removeActiveUser.execute();
+      final result = await _removeActiveUser.execute();
 
       if (result) {
         emit(AuthInitial());

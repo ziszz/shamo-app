@@ -21,13 +21,13 @@ abstract class ProductRemoteDataSource {
 }
 
 class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
-  final IOClient client;
+  final IOClient _client;
 
-  const ProductRemoteDataSourceImpl({required this.client});
+  const ProductRemoteDataSourceImpl(this._client);
 
   @override
   Future<List<ProductModel>> getProducts() async {
-    final response = await client.get(
+    final response = await _client.get(
       Uri.parse("${dotenv.env["apiUrl"]}/api/products"),
     );
 
@@ -43,7 +43,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   @override
   Future<List<CategoryModel>> getProductCategories() async {
     final response =
-        await client.get(Uri.parse("${dotenv.env["apiUrl"]}/api/categories"));
+        await _client.get(Uri.parse("${dotenv.env["apiUrl"]}/api/categories"));
 
     if (response.statusCode == 200) {
       final result =
@@ -61,7 +61,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
       "Accept": "application/json",
       "Authorization": "Bearer $token",
     };
-    final response = await client.get(
+    final response = await _client.get(
         Uri.parse("${dotenv.env["apiUrl"]}/api/transactions?id=$idUser"),
         headers: headers);
 
@@ -82,7 +82,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
       "Authorization": "Bearer $token",
     };
 
-    final response = await client.post(
+    final response = await _client.post(
         Uri.parse("${dotenv.env["apiUrl"]}/api/checkout"),
         body: checkoutData.toJson(),
         headers: headers);

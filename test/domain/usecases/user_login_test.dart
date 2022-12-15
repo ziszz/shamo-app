@@ -13,9 +13,7 @@ void main() {
 
   setUp(() {
     mockAuthRepository = MockAuthRepository();
-    usecase = UserLogin(
-      repository: mockAuthRepository,
-    );
+    usecase = UserLogin(mockAuthRepository);
   });
 
   const testEmail = "abdaziz1181@gmail.com";

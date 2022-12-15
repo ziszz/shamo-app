@@ -18,8 +18,8 @@ void main() {
     mockAuthLocalDataSource = MockAuthLocalDataSource();
     mockRemoteDataSource = MockAuthRemoteDataSource();
     repository = AuthRepositoryImpl(
-      remoteDataSource: mockRemoteDataSource,
-      localDataSource: mockAuthLocalDataSource,
+      mockRemoteDataSource,
+      mockAuthLocalDataSource,
     );
   });
 

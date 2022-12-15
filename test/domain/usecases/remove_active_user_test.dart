@@ -10,9 +10,7 @@ void main() {
 
   setUp(() {
     mockAuthRepository = MockAuthRepository();
-    usecase = RemoveActiveUser(
-      repository: mockAuthRepository,
-    );
+    usecase = RemoveActiveUser(mockAuthRepository);
   });
 
   group("Remove active user use case", () {

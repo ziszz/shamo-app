@@ -15,9 +15,7 @@ void main() {
 
   setUp(() {
     mockRemoteDataSource = MockProductRemoteDataSource();
-    repository = ProductRepositoryImpl(
-      remoteDataSource: mockRemoteDataSource,
-    );
+    repository = ProductRepositoryImpl(mockRemoteDataSource);
   });
 
   const testToken = "access_token";

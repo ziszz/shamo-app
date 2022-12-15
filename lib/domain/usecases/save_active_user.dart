@@ -1,9 +1,9 @@
 import 'package:shamo_app/domain/repositories/auth_repository.dart';
 
 class SaveActiveUser {
-  final AuthRepository repository;
+  final AuthRepository _repository;
 
-  const SaveActiveUser({required this.repository});
+  const SaveActiveUser(this._repository);
 
-  Future<bool> execute(String token) => repository.cacheToken(token);
+  Future<bool> execute(String token) => _repository.cacheToken(token);
 }

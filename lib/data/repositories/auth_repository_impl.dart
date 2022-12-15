@@ -9,18 +9,18 @@ import 'package:shamo_app/utilities/failure.dart';
 import '../../utilities/exceptions.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthRemoteDataSource remoteDataSource;
-  final AuthLocalDataSource localDataSource;
+  final AuthRemoteDataSource _remoteDataSource;
+  final AuthLocalDataSource _localDataSource;
 
-  const AuthRepositoryImpl({
-    required this.remoteDataSource,
-    required this.localDataSource,
-  });
+  const AuthRepositoryImpl(
+    this._remoteDataSource,
+    this._localDataSource,
+  );
 
   @override
   Future<Either<Failure, User>> getUser(String token) async {
     try {
-      final result = await remoteDataSource.getUser(token);
+      final result = await _remoteDataSource.getUser(token);
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure(""));
@@ -32,7 +32,7 @@ class AuthRepositoryImpl implements AuthRepository {
       String name, String email, String username, String password) async {
     try {
       final result =
-          await remoteDataSource.register(name, email, username, password);
+          await _remoteDataSource.register(name, email, username, password);
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure(""));
@@ -42,7 +42,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, User>> login(String email, String password) async {
     try {
-      final result = await remoteDataSource.login(email, password);
+      final result = await _remoteDataSource.login(email, password);
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure(""));
@@ -54,7 +54,7 @@ class AuthRepositoryImpl implements AuthRepository {
       String token, String name, String email, String username) async {
     try {
       final result =
-          await remoteDataSource.updateProfile(token, name, email, username);
+          await _remoteDataSource.updateProfile(token, name, email, username);
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure(""));
@@ -64,7 +64,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, bool>> logout(String token) async {
     try {
-      final result = await remoteDataSource.logout(token);
+      final result = await _remoteDataSource.logout(token);
       return Right(result);
     } on ServerException {
       return const Left(ServerFailure(Constants.unauthenticatedMessage));
@@ -73,18 +73,18 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<String> getCacheToken() async {
-    return await localDataSource.getCacheToken();
+    return await _localDataSource.getCacheToken();
   }
 
   @override
   Future<bool> cacheToken(String token) async {
-    final result = await localDataSource.cacheToken(token);
+    final result = await _localDataSource.cacheToken(token);
     return result;
   }
 
   @override
   Future<bool> clearTokenCache() async {
-    final result = await localDataSource.clearTokenCache();
+    final result = await _localDataSource.clearTokenCache();
     return result;
   }
 }

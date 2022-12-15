@@ -8,22 +8,22 @@ abstract class AuthLocalDataSource {
 }
 
 class AuthLocalDataSourceImpl implements AuthLocalDataSource {
-  final SharedPreferences prefs;
+  final SharedPreferences _prefs;
 
-  const AuthLocalDataSourceImpl({required this.prefs});
+  const AuthLocalDataSourceImpl(this._prefs);
 
   @override
   Future<bool> cacheToken(String token) async {
-    return await prefs.setString(Constants.tokenKey, token);
+    return await _prefs.setString(Constants.tokenKey, token);
   }
 
   @override
   Future<bool> clearTokenCache() async {
-    return await prefs.remove(Constants.tokenKey);
+    return await _prefs.remove(Constants.tokenKey);
   }
 
   @override
   Future<String> getCacheToken() async {
-    return prefs.getString(Constants.tokenKey) ?? "";
+    return _prefs.getString(Constants.tokenKey) ?? "";
   }
 }

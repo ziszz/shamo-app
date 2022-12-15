@@ -18,9 +18,7 @@ void main() {
     dotenv.testLoad();
 
     mockIOClient = MockIOClient();
-    dataSource = ProductRemoteDataSourceImpl(
-      client: mockIOClient,
-    );
+    dataSource = ProductRemoteDataSourceImpl(mockIOClient);
   });
 
   const testToken = "access_token";

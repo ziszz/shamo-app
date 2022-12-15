@@ -13,9 +13,7 @@ void main() {
 
   setUp(() {
     mockAuthRepository = MockAuthRepository();
-    usecase = UserRegister(
-      repository: mockAuthRepository,
-    );
+    usecase = UserRegister(mockAuthRepository);
   });
 
   const testName = "Zis";

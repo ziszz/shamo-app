@@ -10,9 +10,7 @@ void main() {
 
   setUp(() {
     mockAuthRepository = MockAuthRepository();
-    usecase = SaveActiveUser(
-      repository: mockAuthRepository,
-    );
+    usecase = SaveActiveUser(mockAuthRepository);
   });
 
   const testToken = "access_token";
