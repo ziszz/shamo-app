@@ -16,8 +16,6 @@ void main() {
   late MockUserLogout mockUserLogout;
   late MockGetUser mockGetUser;
   late MockUpdateProfile mockUpdateProfile;
-  late MockSaveActiveUser mockSaveActiveUser;
-  late MockRemoveActiveUser mockRemoveActiveUser;
   late MockGetActiveUser mockGetActiveUser;
 
   setUp(() {
@@ -26,8 +24,6 @@ void main() {
     mockUserLogout = MockUserLogout();
     mockGetUser = MockGetUser();
     mockUpdateProfile = MockUpdateProfile();
-    mockSaveActiveUser = MockSaveActiveUser();
-    mockRemoveActiveUser = MockRemoveActiveUser();
     mockGetActiveUser = MockGetActiveUser();
     bloc = AuthBloc(
       mockUserLogin,
