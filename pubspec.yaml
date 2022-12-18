@@ -33,12 +33,15 @@ dependencies:
     path: auth
   core:
     path: core
-  product:
-    path: product
   flutter:
     sdk: flutter
   flutter_dotenv: ^5.0.2
   get_it: ^7.2.0
+  flutter_bloc: ^8.1.1
+  google_fonts: ^3.0.1
+  http: ^0.13.5
+  product:
+    path: product
   shared_preferences: ^2.0.15
 
 dev_dependencies:

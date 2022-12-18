@@ -1,5 +1,4 @@
 import 'package:auth/auth.dart';
-import 'package:auth/presentation/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:product/presentation/pages/main_page.dart';
