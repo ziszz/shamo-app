@@ -3,8 +3,8 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:shamo_app/presentation/pages/cart_page.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
-import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/constants.dart';
+import '../../../core/lib/utilities/app_colors.dart';
+import '../../../core/lib/utilities/constants.dart';
 
 class ProductDetailPage extends StatefulWidget {
   static const routeName = "/product-detail";

@@ -5,9 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:shamo_app/presentation/cubit/page_cubit.dart';
 import 'package:shamo_app/presentation/pages/splash_screen.dart';
-import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/router.dart';
-import 'package:shamo_app/utilities/ssl.dart';
+import '../core/lib/utilities/app_colors.dart';
+import '../core/lib/utilities/router.dart';
+import '../core/lib/utilities/ssl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'injection.dart' as di;

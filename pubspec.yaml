@@ -29,6 +29,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  auth:
+    path: auth
+  core:
+    path: core
   cached_network_image: ^3.2.3
   carousel_slider: ^4.1.1
   cupertino_icons: ^1.0.2

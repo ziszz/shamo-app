@@ -3,7 +3,7 @@ import 'package:shamo_app/domain/entities/category.dart';
 import 'package:shamo_app/domain/entities/checkout_body.dart';
 import 'package:shamo_app/domain/entities/product.dart';
 import 'package:shamo_app/domain/entities/transaction.dart';
-import 'package:shamo_app/utilities/failure.dart';
+import '../../../core/lib/utilities/failure.dart';
 
 abstract class ProductRepository {
   Future<Either<Failure, List<Product>>> getProducts();

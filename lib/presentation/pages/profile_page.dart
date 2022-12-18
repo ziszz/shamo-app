@@ -5,8 +5,8 @@ import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:shamo_app/presentation/pages/edit_profile_page.dart';
 import 'package:shamo_app/presentation/pages/login_page.dart';
 import 'package:shamo_app/presentation/widgets/error_snackbar.dart';
-import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/constants.dart';
+import '../../../core/lib/utilities/app_colors.dart';
+import '../../../core/lib/utilities/constants.dart';
 
 class ProfilePage extends StatelessWidget {
   final String token;

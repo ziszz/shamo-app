@@ -2,11 +2,11 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shamo_app/data/repositories/product_repository_impl.dart';
-import 'package:shamo_app/utilities/constants.dart';
-import 'package:shamo_app/utilities/exceptions.dart';
-import 'package:shamo_app/utilities/failure.dart';
+import '../../../core/lib/utilities/constants.dart';
+import '../../../core/lib/utilities/exceptions.dart';
+import '../../../core/lib/utilities/failure.dart';
 
-import '../../dummy_data/dummy_object.dart';
+import '../../../auth/test/dummy_data/dummy_object.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {

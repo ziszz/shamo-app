@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shamo_app/data/models/checkout_body_model.dart';
 
-import '../../dummy_data/dummy_object.dart';
+import '../../../auth/test/dummy_data/dummy_object.dart';
 
 void main() {
   group("Checkout Body Model", () {

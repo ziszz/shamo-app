@@ -6,7 +6,7 @@ import 'package:shamo_app/presentation/pages/chat_page.dart';
 import 'package:shamo_app/presentation/pages/favorite_page.dart';
 import 'package:shamo_app/presentation/pages/home_page.dart';
 import 'package:shamo_app/presentation/pages/profile_page.dart';
-import 'package:shamo_app/utilities/app_colors.dart';
+import '../../../core/lib/utilities/app_colors.dart';
 
 class MainPage extends StatelessWidget {
   static const routeName = "/main";

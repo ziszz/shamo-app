@@ -7,8 +7,8 @@ import 'package:shamo_app/presentation/widgets/center_progress_bar.dart';
 import 'package:shamo_app/presentation/widgets/error_snackbar.dart';
 import 'package:shamo_app/presentation/widgets/field_item.dart';
 import 'package:shamo_app/presentation/widgets/filled_button.dart';
-import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/constants.dart';
+import '../../../core/lib/utilities/app_colors.dart';
+import '../../../core/lib/utilities/constants.dart';
 
 class SignUpPage extends StatefulWidget {
   static const routeName = "/sign-up";

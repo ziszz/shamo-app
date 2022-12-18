@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:shamo_app/presentation/pages/product_detail_page.dart';
-import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/constants.dart';
+import '../../../core/lib/utilities/app_colors.dart';
+import '../../../core/lib/utilities/constants.dart';
 
 class HomePage extends StatelessWidget {
   final String token;

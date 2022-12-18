@@ -19,20 +19,20 @@ import 'package:shamo_app/data/datasources/preferences/user_preferences.dart'
     as _i14;
 import 'package:shamo_app/data/datasources/remote/auth_remote_data_source.dart'
     as _i21;
-import 'package:shamo_app/data/datasources/remote/product_remote_data_source.dart'
+import 'package:shamo_app/data/datasources/product_remote_data_source.dart'
     as _i16;
 import 'package:shamo_app/data/models/category_model.dart' as _i18;
 import 'package:shamo_app/data/models/checkout_body_model.dart' as _i20;
 import 'package:shamo_app/data/models/checkout_response.dart' as _i2;
 import 'package:shamo_app/data/models/product_model.dart' as _i17;
 import 'package:shamo_app/data/models/transaction_model.dart' as _i19;
-import 'package:shamo_app/data/models/user_model.dart' as _i3;
+import '../../auth/lib/data/model/user_model.dart' as _i3;
 import 'package:shamo_app/domain/entities/category.dart' as _i25;
 import 'package:shamo_app/domain/entities/checkout_body.dart' as _i27;
 import 'package:shamo_app/domain/entities/product.dart' as _i24;
 import 'package:shamo_app/domain/entities/transaction.dart' as _i26;
-import 'package:shamo_app/domain/entities/user.dart' as _i30;
-import 'package:shamo_app/domain/repositories/auth_repository.dart' as _i29;
+import '../../auth/lib/domain/entities/user.dart' as _i30;
+import '../../auth/lib/domain/repositories/auth_repository.dart' as _i29;
 import 'package:shamo_app/domain/repositories/product_repository.dart' as _i22;
 import 'package:shamo_app/domain/usecases/get_active_user.dart' as _i10;
 import 'package:shamo_app/domain/usecases/get_user.dart' as _i8;
@@ -41,7 +41,7 @@ import 'package:shamo_app/domain/usecases/user_login.dart' as _i5;
 import 'package:shamo_app/domain/usecases/user_logout.dart' as _i7;
 import 'package:shamo_app/domain/usecases/user_register.dart' as _i6;
 import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart' as _i11;
-import 'package:shamo_app/utilities/failure.dart' as _i23;
+import '../../core/lib/utilities/failure.dart' as _i23;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

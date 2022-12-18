@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/constants.dart';
+import '../../../core/lib/utilities/app_colors.dart';
+import '../../../core/lib/utilities/constants.dart';
 
 class EmptyPage extends StatelessWidget {
   const EmptyPage({super.key});

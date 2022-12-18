@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shamo_app/presentation/widgets/filled_textfield.dart';
-import 'package:shamo_app/utilities/app_colors.dart';
-import 'package:shamo_app/utilities/constants.dart';
+import '../../../core/lib/utilities/app_colors.dart';
+import '../../../core/lib/utilities/constants.dart';
 
 class FormItem extends StatelessWidget {
   final String label;
