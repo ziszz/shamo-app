@@ -1,27 +1,22 @@
+import 'package:auth/presentation/bloc/auth_bloc.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
-import 'package:shamo_app/presentation/cubit/page_cubit.dart';
-import 'package:shamo_app/presentation/pages/main_page.dart';
-import 'package:shamo_app/presentation/pages/sign_up_page.dart';
-import 'package:shamo_app/presentation/widgets/center_progress_bar.dart';
-import 'package:shamo_app/presentation/widgets/error_snackbar.dart';
-import 'package:shamo_app/presentation/widgets/field_item.dart';
-import 'package:shamo_app/presentation/widgets/filled_button.dart';
-import '../../../core/lib/utilities/app_colors.dart';
-import '../../../core/lib/utilities/constants.dart';
+import 'package:product/product.dart';
 
-class LoginPage extends StatefulWidget {
-  static const routeName = "/login";
+class SignUpPage extends StatefulWidget {
+  static const routeName = "/sign-up";
 
-  const LoginPage({super.key});
+  const SignUpPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
+  final _usernameController = TextEditingController();
   final _passController = TextEditingController();
 
   @override
@@ -35,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.only(
               left: 16,
               right: 16,
-              top: 60,
+              top: 30,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,6 +38,31 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   child: Column(
                     children: [
+                      FormItem(
+                        textInputAction: TextInputAction.next,
+                        controller: _nameController,
+                        label: "Full Name",
+                        prefixIcon: Image.asset(
+                          "assets/images/ic-profile.png",
+                          width: 17,
+                          color: AppColors.purple,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      FormItem(
+                        textInputAction: TextInputAction.next,
+                        controller: _usernameController,
+                        label: "Username",
+                        prefixIcon: Image.asset(
+                          "assets/images/ic-username.png",
+                          width: 20,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       FormItem(
                         textInputAction: TextInputAction.next,
                         controller: _emailController,
@@ -66,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 30,
                       ),
                       BlocConsumer<AuthBloc, AuthState>(
                         listener: (context, state) {
@@ -81,7 +101,8 @@ class _LoginPageState extends State<LoginPage> {
                           } else if (state is AuthError) {
                             errorSnackbar(
                               context: context,
-                              message: "Email atau password anda salah",
+                              message:
+                                  "Maaf register gagal, silahkan coba lagi nanti!!",
                             );
                           }
                         },
@@ -91,13 +112,15 @@ class _LoginPageState extends State<LoginPage> {
                           } else {
                             return FilledButton(
                               onPressed: () => context.read<AuthBloc>().add(
-                                    OnLogin(
+                                    OnRegister(
+                                      name: _nameController.text,
+                                      username: _usernameController.text,
                                       email: _emailController.text,
                                       password: _passController.text,
                                     ),
                                   ),
                               child: Text(
-                                "Sign In",
+                                "Sign Up",
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium
@@ -116,19 +139,16 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 30),
                   child: InkWell(
-                    onTap: () => Navigator.pushNamed(
-                      context,
-                      SignUpPage.routeName,
-                    ),
+                    onTap: () => Navigator.pop(context),
                     child: Text.rich(
                       TextSpan(
-                        text: "Don't have an account? ",
+                        text: "Already have an account? ",
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: AppColors.grey,
                             ),
                         children: [
                           TextSpan(
-                            text: "Sign Up",
+                            text: "Sign In",
                             style:
                                 Theme.of(context).textTheme.bodySmall?.copyWith(
                                       color: AppColors.purple,
@@ -156,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Login",
+            "Sign Up",
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   fontSize: 20,
                   color: AppColors.white,

@@ -1,7 +1,19 @@
 library auth;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'data/datasources/local/auth_local_data_source.dart';
+export 'data/datasources/preferences/user_preferences.dart';
+export 'data/datasources/remote/auth_remote_data_source.dart';
+export 'data/model/user_model.dart';
+export 'data/repositories/auth_repository_impl.dart';
+export 'domain/entities/user.dart';
+export 'domain/repositories/auth_repository.dart';
+export 'domain/usecases/get_active_user.dart';
+export 'domain/usecases/get_user.dart';
+export 'domain/usecases/update_profile.dart';
+export 'domain/usecases/user_login.dart';
+export 'domain/usecases/user_logout.dart';
+export 'domain/usecases/user_register.dart';
+export 'presentation/bloc/auth_bloc.dart';
+export 'presentation/pages/edit_profile_page.dart';
+export 'presentation/pages/login_page.dart';
+export 'presentation/pages/sign_up_page.dart';

@@ -1,23 +1,10 @@
 import 'dart:io';
 
+import 'package:auth/auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/io_client.dart';
-import 'package:shamo_app/data/datasources/local/auth_local_data_source.dart';
-import 'package:shamo_app/data/datasources/preferences/user_preferences.dart';
-import 'package:shamo_app/data/datasources/remote/auth_remote_data_source.dart';
-import 'package:shamo_app/data/datasources/product_remote_data_source.dart';
-import '../auth/lib/data/repositories/auth_repository_impl.dart';
-import 'package:shamo_app/data/repositories/product_repository_impl.dart';
-import '../auth/lib/domain/repositories/auth_repository.dart';
-import 'package:shamo_app/domain/repositories/product_repository.dart';
-import 'package:shamo_app/domain/usecases/get_active_user.dart';
-import 'package:shamo_app/domain/usecases/get_user.dart';
-import 'package:shamo_app/domain/usecases/update_profile.dart';
-import 'package:shamo_app/domain/usecases/user_login.dart';
-import 'package:shamo_app/domain/usecases/user_logout.dart';
-import 'package:shamo_app/domain/usecases/user_register.dart';
-import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
-import 'package:shamo_app/presentation/cubit/page_cubit.dart';
+import 'package:product/presentation/cubit/page_cubit.dart';
+import 'package:product/product.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final locator = GetIt.instance;

@@ -1,12 +1,9 @@
+import 'package:auth/domain/entities/user.dart';
+import 'package:auth/presentation/bloc/auth_bloc.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../auth/lib/domain/entities/user.dart';
-import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
-import 'package:shamo_app/presentation/cubit/page_cubit.dart';
-import 'package:shamo_app/presentation/pages/main_page.dart';
-import 'package:shamo_app/presentation/widgets/error_snackbar.dart';
-import '../../../core/lib/utilities/app_colors.dart';
-import '../../../core/lib/utilities/constants.dart';
+import 'package:product/product.dart';
 
 class EditProfilePage extends StatefulWidget {
   static const routeName = "/edit-profile";

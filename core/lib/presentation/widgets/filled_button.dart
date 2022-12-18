@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../utilities/app_colors.dart';
+import '../../utilities/app_colors.dart';
 
 class FilledButton extends StatelessWidget {
   final Function() onPressed;

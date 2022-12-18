@@ -9,6 +9,10 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  auth:
+    path: ../auth
+  product:
+    path: ../product
   flutter:
     sdk: flutter
   equatable: ^2.0.5

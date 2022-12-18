@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../utilities/app_colors.dart';
-import '../../../utilities/constants.dart';
+import '../../utilities/app_colors.dart';
+import '../../utilities/constants.dart';
 
 void errorSnackbar({required BuildContext context, required String message}) {
   ScaffoldMessenger.of(context).showSnackBar(

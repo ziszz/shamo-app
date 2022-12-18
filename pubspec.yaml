@@ -33,28 +33,18 @@ dependencies:
     path: auth
   core:
     path: core
-  cached_network_image: ^3.2.3
-  carousel_slider: ^4.1.1
-  cupertino_icons: ^1.0.2
-  dartz: ^0.10.1
-  dots_indicator: ^2.1.0
-  equatable: ^2.0.5
+  product:
+    path: product
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.1
   flutter_dotenv: ^5.0.2
   get_it: ^7.2.0
-  google_fonts: ^3.0.1
-  http: ^0.13.5
   shared_preferences: ^2.0.15
 
 dev_dependencies:
-  bloc_test: ^9.1.0
-  build_runner: ^2.1.5
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  mockito: ^5.3.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

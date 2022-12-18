@@ -1,4 +1,6 @@
+import 'package:auth/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:product/product.dart';
 
 enum SlideOption { slideX, slideY }
 

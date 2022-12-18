@@ -11,6 +11,8 @@ environment:
 dependencies:
   core:
     path: ../core
+  product:
+    path: ../product
   cached_network_image: ^3.2.3
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1

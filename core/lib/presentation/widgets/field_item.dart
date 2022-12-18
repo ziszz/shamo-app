@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:core/presentation/widget/widgets/filled_textfield.dart';
-import '../../../utilities/app_colors.dart';
-import '../../../utilities/constants.dart';
+import 'package:core/presentation/widgets/filled_textfield.dart';
+import '../../utilities/app_colors.dart';
+import '../../utilities/constants.dart';
 
 class FormItem extends StatelessWidget {
   final String label;
