@@ -1,13 +1,11 @@
+import 'package:auth/data/repositories/auth_repository_impl.dart';
+import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import '../../../lib/data/repositories/auth_repository_impl.dart';
-import 'package:shamo_app/utilities/constants.dart';
-import 'package:shamo_app/utilities/exceptions.dart';
-import 'package:shamo_app/utilities/failure.dart';
 
-import '../../../../test/dummy_data/dummy_object.dart';
-import '../../../../test/helpers/test_helper.mocks.dart';
+import '../../dummy_data/dummy_object.dart';
+import '../../helpers/test_helper.mocks.dart';
 
 void main() {
   late AuthRepositoryImpl repository;

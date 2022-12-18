@@ -1,8 +1,7 @@
+import 'package:auth/domain/entities/user.dart';
+import 'package:auth/domain/repositories/auth_repository.dart';
+import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
-import '../../../auth/lib/domain/entities/user.dart';
-import '../../../auth/lib/domain/repositories/auth_repository.dart';
-
-import '../../utilities/failure.dart';
 
 class GetUser {
   final AuthRepository _repository;

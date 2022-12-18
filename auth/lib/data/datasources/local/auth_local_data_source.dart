@@ -1,5 +1,5 @@
-import 'package:shamo_app/data/datasources/preferences/user_preferences.dart';
-import 'package:shamo_app/utilities/exceptions.dart';
+import 'package:auth/data/datasources/preferences/user_preferences.dart';
+import 'package:core/core.dart';
 
 abstract class AuthLocalDataSource {
   Future<void> cacheToken(String token);

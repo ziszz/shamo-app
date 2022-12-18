@@ -1,6 +1,6 @@
+import 'package:auth/domain/repositories/auth_repository.dart';
+import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
-import '../../../auth/lib/domain/repositories/auth_repository.dart';
-import 'package:shamo_app/utilities/failure.dart';
 
 class UserLogout {
   final AuthRepository _repository;

@@ -1,9 +1,9 @@
 import 'dart:convert';
 
+import 'package:auth/data/model/user_model.dart';
+import 'package:core/core.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/io_client.dart';
-import 'package:shamo_app/data/models/user_model.dart';
-import 'package:shamo_app/utilities/exceptions.dart';
 
 abstract class AuthRemoteDataSource {
   Future<UserModel> getUser(String token);

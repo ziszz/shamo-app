@@ -1,7 +1,7 @@
+import 'package:auth/domain/entities/user.dart';
+import 'package:auth/domain/repositories/auth_repository.dart';
+import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
-import '../../../auth/lib/domain/entities/user.dart';
-import '../../../auth/lib/domain/repositories/auth_repository.dart';
-import 'package:shamo_app/utilities/failure.dart';
 
 class UpdateProfile {
   final AuthRepository _repository;

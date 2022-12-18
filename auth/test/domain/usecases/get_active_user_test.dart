@@ -1,9 +1,8 @@
+import 'package:auth/domain/usecases/get_active_user.dart';
+import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:shamo_app/domain/usecases/get_active_user.dart';
-import 'package:shamo_app/utilities/constants.dart';
-import 'package:shamo_app/utilities/failure.dart';
 
 import '../../dummy_data/dummy_object.dart';
 import '../../helpers/test_helper.mocks.dart';

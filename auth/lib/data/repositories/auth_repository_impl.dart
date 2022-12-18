@@ -2,6 +2,7 @@ import 'package:auth/data/datasources/local/auth_local_data_source.dart';
 import 'package:auth/data/datasources/remote/auth_remote_data_source.dart';
 import 'package:auth/domain/entities/user.dart';
 import 'package:auth/domain/repositories/auth_repository.dart';
+import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
 
 class AuthRepositoryImpl implements AuthRepository {

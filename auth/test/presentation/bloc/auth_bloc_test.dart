@@ -1,13 +1,12 @@
+import 'package:auth/presentation/bloc/auth_bloc.dart';
 import 'package:bloc_test/bloc_test.dart';
+import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:shamo_app/presentation/bloc/auth/auth_bloc.dart';
-import 'package:shamo_app/utilities/constants.dart';
-import 'package:shamo_app/utilities/failure.dart';
 
 import '../../dummy_data/dummy_object.dart';
-import '../../../../test/helpers/test_helper.mocks.dart';
+import '../../helpers/test_helper.mocks.dart';
 
 void main() {
   late AuthBloc bloc;

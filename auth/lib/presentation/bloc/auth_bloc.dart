@@ -1,12 +1,12 @@
+import 'package:auth/domain/entities/user.dart';
+import 'package:auth/domain/usecases/get_active_user.dart';
+import 'package:auth/domain/usecases/get_user.dart';
+import 'package:auth/domain/usecases/update_profile.dart';
+import 'package:auth/domain/usecases/user_login.dart';
+import 'package:auth/domain/usecases/user_logout.dart';
+import 'package:auth/domain/usecases/user_register.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../auth/lib/domain/entities/user.dart';
-import 'package:shamo_app/domain/usecases/get_active_user.dart';
-import 'package:shamo_app/domain/usecases/get_user.dart';
-import 'package:shamo_app/domain/usecases/update_profile.dart';
-import 'package:shamo_app/domain/usecases/user_login.dart';
-import 'package:shamo_app/domain/usecases/user_logout.dart';
-import 'package:shamo_app/domain/usecases/user_register.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';

@@ -1,7 +1,7 @@
+import 'package:auth/data/model/user_model.dart';
 import 'package:flutter_test/flutter_test.dart';
-import '../../../lib/data/model/user_model.dart';
 
-import '../../../../test/dummy_data/dummy_object.dart';
+import '../../dummy_data/dummy_object.dart';
 
 void main() {
   group("User Model", () {
