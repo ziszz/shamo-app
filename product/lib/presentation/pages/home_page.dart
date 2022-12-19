@@ -3,56 +3,139 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:product/presentation/bloc/product_bloc.dart';
 import 'package:product/presentation/pages/product_detail_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   final String token;
 
   const HomePage({super.key, required this.token});
 
   @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: 0,
-      length: 6,
-      child: Column(children: [
-        TabBar(
-          indicatorWeight: 0,
-          indicator: BoxDecoration(
-            color: AppColors.purple,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          labelStyle: Theme.of(context).textTheme.bodyMedium,
-          unselectedLabelStyle:
-              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontWeight: Constants.light,
+  State<HomePage> createState() => _HomePageState();
+
+  static AppBar appBar({required BuildContext context}) {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      toolbarHeight: 87,
+      flexibleSpace: FlexibleSpaceBar(
+        titlePadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+        ),
+        title: SafeArea(child: BlocBuilder<AuthBloc, AuthState>(
+          builder: (context, state) {
+            if (state is AuthSuccess) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Hello, ${state.user.name}",
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontSize: 20,
+                              fontWeight: Constants.semiBold,
+                              color: AppColors.white,
+                            ),
+                      ),
+                      Text(
+                        "@${state.user.username}",
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontWeight: Constants.regular,
+                              color: AppColors.grey,
+                            ),
+                      ),
+                    ],
                   ),
-          padding: const EdgeInsets.fromLTRB(8, 24, 8, 8),
-          splashBorderRadius: BorderRadius.circular(12),
-          physics: const BouncingScrollPhysics(),
-          isScrollable: true,
-          tabs: [
-            _tabItem(text: "Tab 1"),
-            _tabItem(text: "Tab 2"),
-            _tabItem(text: "Tab 3"),
-            _tabItem(text: "Tab 4"),
-            _tabItem(text: "Tab 5"),
-            _tabItem(text: "Tab 6"),
-          ],
-        ),
-        Expanded(
-          child: TabBarView(
-            physics: const BouncingScrollPhysics(),
-            children: [
-              _allProduct(context: context),
-              ...List.generate(
-                5,
-                (index) => _productByCategory(context: context),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: CachedNetworkImage(
+                      imageUrl: state.user.profilePhotoUrl,
+                      width: 50,
+                      placeholder: (context, url) => Image.asset(
+                        "assets/images/default-user-profile.png",
+                      ),
+                      errorWidget: (context, url, error) => Image.asset(
+                        "assets/images/default-user-profile.png",
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            } else {
+              return const SizedBox();
+            }
+          },
+        )),
+      ),
+    );
+  }
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() {
+      context.read<ProductBloc>().add(OnFetchProduct());
+      context.read<ProductBloc>().add(OnFetchCategories());
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ProductBloc, ProductState>(
+      builder: (context, state) {
+        if (state is CategorySuccess) {
+          return DefaultTabController(
+            initialIndex: 0,
+            length: 6,
+            child: Column(children: [
+              TabBar(
+                indicatorWeight: 0,
+                indicator: BoxDecoration(
+                  color: AppColors.purple,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                labelStyle: Theme.of(context).textTheme.bodyMedium,
+                unselectedLabelStyle:
+                    Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontWeight: Constants.light,
+                        ),
+                padding: const EdgeInsets.fromLTRB(8, 24, 8, 8),
+                splashBorderRadius: BorderRadius.circular(12),
+                physics: const BouncingScrollPhysics(),
+                isScrollable: true,
+                tabs: state.categories.reversed
+                    .map((e) => _tabItem(text: e.name))
+                    .toList(),
               ),
-            ],
-          ),
-        ),
-      ]),
+              Expanded(
+                child: TabBarView(
+                  physics: const BouncingScrollPhysics(),
+                  children: [
+                    _allProduct(context: context),
+                    ...List.generate(
+                      5,
+                      (index) => _productByCategory(context: context),
+                    ),
+                  ],
+                ),
+              ),
+            ]),
+          );
+        } else if (state is ProductError) {
+          return const CenterMessage(
+            text: Constants.emptyProductMessage,
+          );
+        } else {
+          return const SizedBox();
+        }
+      },
     );
   }
 
@@ -327,66 +410,6 @@ class HomePage extends StatelessWidget {
             },
           ),
         ],
-      ),
-    );
-  }
-
-  static AppBar appBar({required BuildContext context}) {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      toolbarHeight: 87,
-      flexibleSpace: FlexibleSpaceBar(
-        titlePadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-        ),
-        title: SafeArea(child: BlocBuilder<AuthBloc, AuthState>(
-          builder: (context, state) {
-            if (state is AuthSuccess) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Hello, ${state.user.name}",
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              fontSize: 20,
-                              fontWeight: Constants.semiBold,
-                              color: AppColors.white,
-                            ),
-                      ),
-                      Text(
-                        "@${state.user.username}",
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              fontWeight: Constants.regular,
-                              color: AppColors.grey,
-                            ),
-                      ),
-                    ],
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: CachedNetworkImage(
-                      imageUrl: state.user.profilePhotoUrl,
-                      width: 50,
-                      placeholder: (context, url) => Image.asset(
-                        "assets/images/default-user-profile.png",
-                      ),
-                      errorWidget: (context, url, error) => Image.asset(
-                        "assets/images/default-user-profile.png",
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            } else {
-              return const SizedBox();
-            }
-          },
-        )),
       ),
     );
   }

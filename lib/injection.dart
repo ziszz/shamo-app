@@ -3,6 +3,11 @@ import 'dart:io';
 import 'package:auth/auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/io_client.dart';
+import 'package:product/domain/usecases/checkout.dart';
+import 'package:product/domain/usecases/get_product_categories.dart';
+import 'package:product/domain/usecases/get_products.dart';
+import 'package:product/domain/usecases/get_transactions.dart';
+import 'package:product/presentation/bloc/product_bloc.dart';
 import 'package:product/product.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,6 +18,9 @@ void init(HttpClient httpClient, SharedPreferences prefs) async {
   locator.registerFactory<AuthBloc>(
     () => AuthBloc(
         locator(), locator(), locator(), locator(), locator(), locator()),
+  );
+  locator.registerFactory<ProductBloc>(
+    () => ProductBloc(locator(), locator(), locator(), locator()),
   );
 
   // cubit
@@ -36,6 +44,18 @@ void init(HttpClient httpClient, SharedPreferences prefs) async {
   );
   locator.registerLazySingleton<GetActiveUser>(
     () => GetActiveUser(locator()),
+  );
+  locator.registerLazySingleton<GetProducts>(
+    () => GetProducts(locator()),
+  );
+  locator.registerLazySingleton<GetProductCategories>(
+    () => GetProductCategories(locator()),
+  );
+  locator.registerLazySingleton<GetTransactions>(
+    () => GetTransactions(locator()),
+  );
+  locator.registerLazySingleton<Checkout>(
+    () => Checkout(locator()),
   );
 
   // repositories

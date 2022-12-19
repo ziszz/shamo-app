@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:product/presentation/bloc/product_bloc.dart';
 import 'package:product/product.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => di.locator<AuthBloc>()),
         BlocProvider(create: (_) => di.locator<PageCubit>()),
+        BlocProvider(create: (_) => di.locator<ProductBloc>())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
