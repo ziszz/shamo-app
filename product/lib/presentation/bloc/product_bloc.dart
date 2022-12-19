@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:product/domain/usecases/checkout.dart';
 import 'package:product/domain/usecases/get_product_categories.dart';
 import 'package:product/domain/usecases/get_products.dart';
@@ -21,7 +21,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     this.getTransactions,
     this.checkout,
   ) : super(ProductInitial()) {
-    on<ProductEvent>((event, emit) async {
+    on<OnFetchProduct>((event, emit) async {
       emit(ProductLoading());
 
       final result = await getProducts.execute();
@@ -29,6 +29,16 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       result.fold(
         (failure) => emit(ProductError(failure.message)),
         (result) => emit(ProductSuccess(result)),
+      );
+    });
+    on<OnFetchCategories>((event, emit) async {
+      emit(ProductLoading());
+
+      final result = await getProductCategories.execute();
+
+      result.fold(
+        (failure) => emit(ProductError(failure.message)),
+        (result) => emit(CategorySuccess(result)),
       );
     });
   }

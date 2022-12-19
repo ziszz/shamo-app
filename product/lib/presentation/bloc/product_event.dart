@@ -6,5 +6,12 @@ class OnFetchProduct extends ProductEvent {
   OnFetchProduct();
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
+}
+
+class OnFetchCategories extends ProductEvent {
+  OnFetchCategories();
+
+  @override
+  List<Object?> get props => [];
 }

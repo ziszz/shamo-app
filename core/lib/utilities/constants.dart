@@ -7,6 +7,7 @@ abstract class Constants {
   static const checkoutFailedMessage = "failed";
   static const unauthenticatedMessage = "Unauthenticated";
   static const cacheEmptyMessage = "Cache Empty";
+  static const emptyProductMessage = "Products Empty";
   // font weight
   static const light = FontWeight.w300;
   static const regular = FontWeight.w400;

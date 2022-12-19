@@ -73,4 +73,45 @@ void main() {
       ],
     );
   });
+
+  group("OnFetchCategories Event", () {
+    blocTest<ProductBloc, ProductState>(
+      "should execute get product categories when function is called",
+      build: () {
+        when(mockGetProductCategories.execute())
+            .thenAnswer((_) async => const Right([testCategory]));
+        return bloc;
+      },
+      act: (bloc) => bloc.add(OnFetchCategories()),
+      verify: (bloc) => verify(bloc.getProductCategories.execute()),
+    );
+
+    blocTest<ProductBloc, ProductState>(
+      "should emit [Loading, Success] when get data is successfuly",
+      build: () {
+        when(mockGetProductCategories.execute())
+            .thenAnswer((_) async => const Right([testCategory]));
+        return bloc;
+      },
+      act: (bloc) => bloc.add(OnFetchCategories()),
+      expect: () => [
+        ProductLoading(),
+        CategorySuccess(const [testCategory]),
+      ],
+    );
+
+    blocTest<ProductBloc, ProductState>(
+      "should emit [Loading, Error] when get data is failed",
+      build: () {
+        when(mockGetProductCategories.execute())
+            .thenAnswer((_) async => const Left(ServerFailure("")));
+        return bloc;
+      },
+      act: (bloc) => bloc.add(OnFetchCategories()),
+      expect: () => [
+        ProductLoading(),
+        ProductError(""),
+      ],
+    );
+  });
 }
