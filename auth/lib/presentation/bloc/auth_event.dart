@@ -1,17 +1,12 @@
 part of 'auth_bloc.dart';
 
-abstract class AuthEvent extends Equatable {
-  const AuthEvent();
-
-  @override
-  List<Object?> get props => [];
-}
+abstract class AuthEvent extends Equatable {}
 
 class OnLogin extends AuthEvent {
   final String email;
   final String password;
 
-  const OnLogin({required this.email, required this.password});
+  OnLogin({required this.email, required this.password});
 
   @override
   List<Object?> get props => [email, password];
@@ -23,7 +18,7 @@ class OnRegister extends AuthEvent {
   final String username;
   final String password;
 
-  const OnRegister({
+  OnRegister({
     required this.email,
     required this.name,
     required this.username,
@@ -37,7 +32,7 @@ class OnRegister extends AuthEvent {
 class OnLogout extends AuthEvent {
   final String token;
 
-  const OnLogout({required this.token});
+  OnLogout({required this.token});
 
   @override
   List<Object?> get props => [token];
@@ -46,14 +41,14 @@ class OnLogout extends AuthEvent {
 class OnGetUser extends AuthEvent {
   final String token;
 
-  const OnGetUser({required this.token});
+  OnGetUser({required this.token});
 
   @override
   List<Object?> get props => [token];
 }
 
 class OnGetActiveUser extends AuthEvent {
-  const OnGetActiveUser();
+  OnGetActiveUser();
 
   @override
   List<Object?> get props => [];
@@ -65,7 +60,7 @@ class OnUpdate extends AuthEvent {
   final String email;
   final String username;
 
-  const OnUpdate({
+  OnUpdate({
     required this.token,
     required this.name,
     required this.email,
@@ -80,14 +75,14 @@ class OnUpdate extends AuthEvent {
 class OnSaveUser extends AuthEvent {
   final String token;
 
-  const OnSaveUser({required this.token});
+  OnSaveUser({required this.token});
 
   @override
   List<Object?> get props => [token];
 }
 
 class OnRemoveUser extends AuthEvent {
-  const OnRemoveUser();
+  OnRemoveUser();
 
   @override
   List<Object?> get props => [];

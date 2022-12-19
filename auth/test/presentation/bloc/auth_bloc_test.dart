@@ -53,7 +53,7 @@ void main() {
             .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnLogin(
+      act: (bloc) => bloc.add(OnLogin(
         email: testEmail,
         password: testPass,
       )),
@@ -67,7 +67,7 @@ void main() {
             .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnLogin(
+      act: (bloc) => bloc.add(OnLogin(
         email: testEmail,
         password: testPass,
       )),
@@ -84,7 +84,7 @@ void main() {
             .thenAnswer((_) async => const Left(ServerFailure("")));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnLogin(
+      act: (bloc) => bloc.add(OnLogin(
         email: testEmail,
         password: testPass,
       )),
@@ -104,7 +104,7 @@ void main() {
             .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnRegister(
+      act: (bloc) => bloc.add(OnRegister(
         name: testName,
         email: testEmail,
         username: testUsername,
@@ -123,7 +123,7 @@ void main() {
             .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnRegister(
+      act: (bloc) => bloc.add(OnRegister(
         name: testName,
         email: testEmail,
         username: testUsername,
@@ -143,7 +143,7 @@ void main() {
             .thenAnswer((_) async => const Left(ServerFailure("")));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnRegister(
+      act: (bloc) => bloc.add(OnRegister(
         name: testName,
         email: testEmail,
         username: testUsername,
@@ -164,7 +164,7 @@ void main() {
             .thenAnswer((_) async => const Right(true));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnLogout(token: testToken)),
+      act: (bloc) => bloc.add(OnLogout(token: testToken)),
       verify: (bloc) => verify(bloc.userLogout.execute(testToken)),
     );
 
@@ -175,7 +175,7 @@ void main() {
             .thenAnswer((_) async => const Right(true));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnLogout(token: testToken)),
+      act: (bloc) => bloc.add(OnLogout(token: testToken)),
       expect: () => [
         AuthLoading(),
         AuthInitial(),
@@ -189,7 +189,7 @@ void main() {
             const Left(ServerFailure(Constants.unauthenticatedMessage)));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnLogout(token: testToken)),
+      act: (bloc) => bloc.add(OnLogout(token: testToken)),
       expect: () => [
         AuthLoading(),
         AuthError(Constants.unauthenticatedMessage),
@@ -205,7 +205,7 @@ void main() {
             .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnGetUser(token: testToken)),
+      act: (bloc) => bloc.add(OnGetUser(token: testToken)),
       verify: (bloc) => verify(bloc.getUser.execute(testToken)),
     );
 
@@ -216,7 +216,7 @@ void main() {
             .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnGetUser(token: testToken)),
+      act: (bloc) => bloc.add(OnGetUser(token: testToken)),
       expect: () => [
         AuthLoading(),
         AuthSuccess(testUser),
@@ -230,7 +230,7 @@ void main() {
             .thenAnswer((_) async => const Left(ServerFailure("")));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnGetUser(token: testToken)),
+      act: (bloc) => bloc.add(OnGetUser(token: testToken)),
       expect: () => [
         AuthLoading(),
         AuthError(""),
@@ -247,7 +247,7 @@ void main() {
             .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnUpdate(
+      act: (bloc) => bloc.add(OnUpdate(
         token: testToken,
         name: testName,
         email: testEmail,
@@ -269,7 +269,7 @@ void main() {
             .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnUpdate(
+      act: (bloc) => bloc.add(OnUpdate(
         token: testToken,
         name: testName,
         email: testEmail,
@@ -289,7 +289,7 @@ void main() {
             .thenAnswer((_) async => const Left(ServerFailure("")));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnUpdate(
+      act: (bloc) => bloc.add(OnUpdate(
         token: testToken,
         name: testName,
         email: testEmail,
@@ -310,7 +310,7 @@ void main() {
             .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnGetActiveUser()),
+      act: (bloc) => bloc.add(OnGetActiveUser()),
       verify: (bloc) => verify(bloc.getActiveUser.execute()),
     );
 
@@ -321,7 +321,7 @@ void main() {
             .thenAnswer((_) async => const Right(testUser));
         return bloc;
       },
-      act: (bloc) => bloc.add(const OnGetActiveUser()),
+      act: (bloc) => bloc.add(OnGetActiveUser()),
       expect: () => [
         AuthSuccess(testUser),
       ],

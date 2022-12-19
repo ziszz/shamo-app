@@ -4,6 +4,7 @@ import 'package:product/domain/usecases/checkout.dart';
 import 'package:product/domain/usecases/get_product_categories.dart';
 import 'package:product/domain/usecases/get_products.dart';
 import 'package:product/domain/usecases/get_transactions.dart';
+import 'package:product/product.dart';
 
 part 'product_event.dart';
 part 'product_state.dart';
@@ -20,6 +21,15 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     this.getTransactions,
     this.checkout,
   ) : super(ProductInitial()) {
-    on<ProductEvent>((event, emit) {});
+    on<ProductEvent>((event, emit) async {
+      emit(ProductLoading());
+
+      final result = await getProducts.execute();
+
+      result.fold(
+        (failure) => emit(ProductError(failure.message)),
+        (result) => emit(ProductSuccess(result)),
+      );
+    });
   }
 }

@@ -16,8 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-        () => context.read<AuthBloc>().add(const OnGetActiveUser()));
+    Future.microtask(() => context.read<AuthBloc>().add(OnGetActiveUser()));
 
     Future.delayed(
       const Duration(seconds: 3),
