@@ -19,9 +19,7 @@ void init(HttpClient httpClient, SharedPreferences prefs) async {
     () => AuthBloc(
         locator(), locator(), locator(), locator(), locator(), locator()),
   );
-  locator.registerFactory<ProductBloc>(
-    () => ProductBloc(locator(), locator(), locator(), locator()),
-  );
+  locator.registerFactory<ProductBloc>(() => ProductBloc(locator()));
 
   // cubit
   locator.registerFactory<PageCubit>(() => PageCubit());

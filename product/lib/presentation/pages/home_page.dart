@@ -1,6 +1,7 @@
 import 'package:auth/presentation/bloc/auth_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:product/presentation/bloc/product_bloc.dart';
@@ -82,60 +83,52 @@ class _HomePageState extends State<HomePage> {
 
     Future.microtask(() {
       context.read<ProductBloc>().add(OnFetchProduct());
-      context.read<ProductBloc>().add(OnFetchCategories());
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductBloc, ProductState>(
-      builder: (context, state) {
-        if (state is CategorySuccess) {
-          return DefaultTabController(
-            initialIndex: 0,
-            length: 6,
-            child: Column(children: [
-              TabBar(
-                indicatorWeight: 0,
-                indicator: BoxDecoration(
-                  color: AppColors.purple,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                labelStyle: Theme.of(context).textTheme.bodyMedium,
-                unselectedLabelStyle:
-                    Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontWeight: Constants.light,
-                        ),
-                padding: const EdgeInsets.fromLTRB(8, 24, 8, 8),
-                splashBorderRadius: BorderRadius.circular(12),
-                physics: const BouncingScrollPhysics(),
-                isScrollable: true,
-                tabs: state.categories.reversed
-                    .map((e) => _tabItem(text: e.name))
-                    .toList(),
+    return DefaultTabController(
+      initialIndex: 0,
+      length: 6,
+      child: Column(children: [
+        TabBar(
+          indicatorWeight: 0,
+          indicator: BoxDecoration(
+            color: AppColors.purple,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          labelStyle: Theme.of(context).textTheme.bodyMedium,
+          unselectedLabelStyle:
+              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: Constants.light,
+                  ),
+          padding: const EdgeInsets.fromLTRB(8, 24, 8, 8),
+          splashBorderRadius: BorderRadius.circular(12),
+          physics: const BouncingScrollPhysics(),
+          isScrollable: true,
+          tabs: [
+            _tabItem(text: "Tab 1"),
+            _tabItem(text: "Tab 2"),
+            _tabItem(text: "Tab 3"),
+            _tabItem(text: "Tab 4"),
+            _tabItem(text: "Tab 5"),
+            _tabItem(text: "Tab 6"),
+          ],
+        ),
+        Expanded(
+          child: TabBarView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              _allProduct(context: context),
+              ...List.generate(
+                5,
+                (index) => _productByCategory(context: context),
               ),
-              Expanded(
-                child: TabBarView(
-                  physics: const BouncingScrollPhysics(),
-                  children: [
-                    _allProduct(context: context),
-                    ...List.generate(
-                      5,
-                      (index) => _productByCategory(context: context),
-                    ),
-                  ],
-                ),
-              ),
-            ]),
-          );
-        } else if (state is ProductError) {
-          return const CenterMessage(
-            text: Constants.emptyProductMessage,
-          );
-        } else {
-          return const SizedBox();
-        }
-      },
+            ],
+          ),
+        ),
+      ]),
     );
   }
 
@@ -310,7 +303,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.only(left: 16, top: 22),
             child: Text(
-              "Popular Product",
+              "Exclusive Product",
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: AppColors.white,
                     fontWeight: Constants.semiBold,
@@ -320,23 +313,44 @@ class _HomePageState extends State<HomePage> {
           ),
           SizedBox(
             height: 300,
-            child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 5,
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.all(16),
-              separatorBuilder: (context, index) => const SizedBox(
-                width: 30,
-              ),
-              itemBuilder: (context, index) {
-                return _productCard(
-                  context: context,
-                  image: "assets/images/product-example.png",
-                  category: "Football",
-                  name: "Predator 20.3 Firm Ground",
-                  price: "\$68,47",
-                );
+            child: BlocBuilder<ProductBloc, ProductState>(
+              builder: (context, state) {
+                if (state is ProductLoading) {
+                  return const CenterProgressBar();
+                } else {
+                  if (state is ProductSuccess) {
+                    if (kDebugMode) {
+                      print(state);
+                    }
+                    return ListView.separated(
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: state.products.length,
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.all(16),
+                      separatorBuilder: (context, index) => const SizedBox(
+                        width: 30,
+                      ),
+                      itemBuilder: (context, index) {
+                        return _productCard(
+                          context: context,
+                          image: "assets/images/product-example.png",
+                          category: "Football",
+                          name: "Predator 20.3 Firm Ground",
+                          price: "\$68,47",
+                        );
+                      },
+                    );
+                  } else if (state is ProductError) {
+                    return const CenterMessage(
+                      text: Constants.emptyProductMessage,
+                    );
+                  } else {
+                    return const CenterMessage(
+                      text: Constants.emptyProductMessage,
+                    );
+                  }
+                }
               },
             ),
           ),
