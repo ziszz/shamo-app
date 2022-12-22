@@ -12,6 +12,15 @@ class CategoryLoading extends CategoryState {
   List<Object?> get props => [];
 }
 
+class CategorySuccess extends CategoryState {
+  final Category category;
+
+  CategorySuccess(this.category);
+
+  @override
+  List<Object?> get props => [category];
+}
+
 class CategoryListSuccess extends CategoryState {
   final List<Category> categories;
 

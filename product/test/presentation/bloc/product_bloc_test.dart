@@ -24,7 +24,7 @@ void main() {
     expect(bloc.state, ProductInitial());
   });
 
-  group("OnFetchProducts Event", () {
+  group("OnFetchProducts event", () {
     blocTest<ProductBloc, ProductState>(
       "should execute get products when function is called",
       build: () {
