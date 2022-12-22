@@ -13,22 +13,14 @@ class CategoryLoading extends CategoryState {
 }
 
 class CategorySuccess extends CategoryState {
-  final Category category;
-
-  CategorySuccess(this.category);
-
-  @override
-  List<Object?> get props => [category];
-}
-
-class CategoryListSuccess extends CategoryState {
   final List<Category> categories;
 
-  CategoryListSuccess(this.categories);
+  CategorySuccess(this.categories);
 
   @override
   List<Object?> get props => [categories];
 }
+
 
 class CategoryError extends CategoryState {
   final String message;

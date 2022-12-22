@@ -34,17 +34,6 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   @override
-  Future<Either<Failure, Category>> getProductCategoryById(
-      int categoryId) async {
-    try {
-      final result = await _remoteDataSource.getProductCategoryById(categoryId);
-      return Right(result.toEntity());
-    } on ServerException {
-      return const Left(ServerFailure(""));
-    }
-  }
-
-  @override
   Future<Either<Failure, List<Transaction>>> getTransactions(
       int idUser, String token) async {
     try {

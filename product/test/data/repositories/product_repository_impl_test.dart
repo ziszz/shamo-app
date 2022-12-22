@@ -71,34 +71,6 @@ void main() {
     });
   });
 
-  group("Product Category By ID", () {
-    const testCategoryId = 1;
-
-    test(
-        "should return remote data when call to the remote data source is successfuly",
-        () async {
-      // arrange
-      when(mockRemoteDataSource.getProductCategoryById(testCategoryId))
-          .thenAnswer((_) async => testCategoryModel);
-      // act
-      final result = await repository.getProductCategoryById(testCategoryId);
-      // assert
-      expect(result, const Right(testCategory));
-    });
-
-    test(
-        "should return server failure when call to the remote data source is failed",
-        () async {
-      // arrange
-      when(mockRemoteDataSource.getProductCategoryById(testCategoryId))
-          .thenThrow(ServerException());
-      // act
-      final result = await repository.getProductCategoryById(testCategoryId);
-      // assert
-      expect(result, const Left(ServerFailure("")));
-    });
-  });
-
   group("Transaction", () {
     const testIdUser = 1;
 

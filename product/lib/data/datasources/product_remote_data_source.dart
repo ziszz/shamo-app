@@ -15,7 +15,6 @@ import 'package:product/data/models/transaction_response.dart';
 abstract class ProductRemoteDataSource {
   Future<List<ProductModel>> getProducts();
   Future<List<CategoryModel>> getProductCategories();
-  Future<CategoryModel> getProductCategoryById(int categoryId);
   Future<List<TransactionModel>> getTransactions(int idUser, String token);
   Future<CheckoutResponse> checkout(
       String token, CheckoutBodyModel checkoutData);
@@ -49,19 +48,6 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
     if (response.statusCode == 200) {
       final result =
           CategoryResponse.fromJson(jsonDecode(response.body)).catagoryList;
-      return result;
-    } else {
-      throw ServerException();
-    }
-  }
-
-  @override
-  Future<CategoryModel> getProductCategoryById(int categoryId) async {
-    final response = await _client.get(
-        Uri.parse("${dotenv.env["apiUrl"]}/api/categories?id=$categoryId"));
-
-    if (response.statusCode == 200) {
-      final result = CategoryModel.fromJson(jsonDecode(response.body)["data"]);
       return result;
     } else {
       throw ServerException();

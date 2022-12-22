@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return BlocBuilder<CategoryBloc, CategoryState>(
       builder: (context, state) {
-        if (state is CategoryListSuccess) {
+        if (state is CategorySuccess) {
           return DefaultTabController(
             initialIndex: 0,
             length: state.categories.length,
