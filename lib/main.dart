@@ -30,7 +30,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => di.locator<AuthBloc>()),
         BlocProvider(create: (_) => di.locator<PageCubit>()),
-        BlocProvider(create: (_) => di.locator<ProductBloc>())
+        BlocProvider(create: (_) => di.locator<ProductBloc>()),
+        BlocProvider(create: (_) => di.locator<CategoryBloc>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

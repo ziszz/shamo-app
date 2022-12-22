@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:product/domain/entities/product.dart';
+import 'package:product/presentation/bloc/category/category_bloc.dart';
 import 'package:product/presentation/bloc/product/product_bloc.dart';
 import 'package:product/presentation/pages/product_detail_page.dart';
 
@@ -83,52 +84,56 @@ class _HomePageState extends State<HomePage> {
 
     Future.microtask(() {
       context.read<ProductBloc>().add(OnFetchProduct());
+      context.read<CategoryBloc>().add(OnFetchCategories());
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: 0,
-      length: 6,
-      child: Column(children: [
-        TabBar(
-          indicatorWeight: 0,
-          indicator: BoxDecoration(
-            color: AppColors.purple,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          labelStyle: Theme.of(context).textTheme.bodyMedium,
-          unselectedLabelStyle:
-              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontWeight: Constants.light,
-                  ),
-          padding: const EdgeInsets.fromLTRB(8, 24, 8, 8),
-          splashBorderRadius: BorderRadius.circular(12),
-          physics: const BouncingScrollPhysics(),
-          isScrollable: true,
-          tabs: [
-            _tabItem(text: "Tab 1"),
-            _tabItem(text: "Tab 2"),
-            _tabItem(text: "Tab 3"),
-            _tabItem(text: "Tab 4"),
-            _tabItem(text: "Tab 5"),
-            _tabItem(text: "Tab 6"),
-          ],
-        ),
-        Expanded(
-          child: TabBarView(
-            physics: const BouncingScrollPhysics(),
-            children: [
-              _allProduct(context: context),
-              ...List.generate(
-                5,
-                (index) => _productByCategory(context: context),
+    return BlocBuilder<CategoryBloc, CategoryState>(
+      builder: (context, state) {
+        if (state is CategoryListSuccess) {
+          return DefaultTabController(
+            initialIndex: 0,
+            length: state.categories.length,
+            child: Column(children: [
+              TabBar(
+                indicatorWeight: 0,
+                indicator: BoxDecoration(
+                  color: AppColors.purple,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                labelStyle: Theme.of(context).textTheme.bodyMedium,
+                unselectedLabelStyle:
+                    Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontWeight: Constants.light,
+                        ),
+                padding: const EdgeInsets.fromLTRB(8, 24, 8, 8),
+                splashBorderRadius: BorderRadius.circular(12),
+                physics: const BouncingScrollPhysics(),
+                isScrollable: true,
+                tabs: state.categories.reversed
+                    .map((e) => _tabItem(text: e.name))
+                    .toList(),
               ),
-            ],
-          ),
-        ),
-      ]),
+              Expanded(
+                child: TabBarView(
+                  physics: const BouncingScrollPhysics(),
+                  children: [
+                    _allProduct(context: context),
+                    ...List.generate(
+                      state.categories.length - 1,
+                      (index) => _productByCategory(context: context),
+                    ),
+                  ],
+                ),
+              ),
+            ]),
+          );
+        } else {
+          return const SizedBox();
+        }
+      },
     );
   }
 
@@ -174,12 +179,7 @@ class _HomePageState extends State<HomePage> {
                 width: 215,
                 height: 120,
                 fit: BoxFit.cover,
-                placeholder: (context, url) => Image.asset(
-                  "assets/images/default-user-profile.png",
-                ),
-                errorWidget: (context, url, error) => Image.asset(
-                  "assets/images/default-user-profile.png",
-                ),
+                placeholder: (context, url) => const CenterProgressBar(),
               ),
             ),
             const SizedBox(
