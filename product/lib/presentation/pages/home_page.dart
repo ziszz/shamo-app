@@ -1,9 +1,9 @@
 import 'package:auth/presentation/bloc/auth_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:product/domain/entities/product.dart';
 import 'package:product/presentation/bloc/product_bloc.dart';
 import 'package:product/presentation/pages/product_detail_page.dart';
 
@@ -149,10 +149,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _productCard({
     required BuildContext context,
-    required String image,
-    required String category,
-    required String name,
-    required String price,
+    required Product product,
   }) {
     return InkWell(
       onTap: () => Navigator.pushNamed(
@@ -172,11 +169,17 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.symmetric(
                 vertical: 30,
               ),
-              child: Image.asset(
-                "assets/images/product-example.png",
+              child: CachedNetworkImage(
+                imageUrl: product.galleries[0].url,
                 width: 215,
                 height: 120,
                 fit: BoxFit.cover,
+                placeholder: (context, url) => Image.asset(
+                  "assets/images/default-user-profile.png",
+                ),
+                errorWidget: (context, url, error) => Image.asset(
+                  "assets/images/default-user-profile.png",
+                ),
               ),
             ),
             const SizedBox(
@@ -187,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                 horizontal: 20,
               ),
               child: Text(
-                category,
+                "Football",
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.grey,
                     ),
@@ -201,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                 horizontal: 20,
               ),
               child: Text(
-                name,
+                product.name,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: AppColors.black1,
@@ -217,7 +220,7 @@ class _HomePageState extends State<HomePage> {
                 horizontal: 20,
               ),
               child: Text(
-                price,
+                "\$${product.price}",
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: AppColors.blue,
                       fontWeight: Constants.medium,
@@ -319,13 +322,13 @@ class _HomePageState extends State<HomePage> {
                   return const CenterProgressBar();
                 } else {
                   if (state is ProductSuccess) {
-                    if (kDebugMode) {
-                      print(state);
-                    }
+                    final product =
+                        state.products.where((x) => x.price >= 200).toList();
+
                     return ListView.separated(
                       physics: const BouncingScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: state.products.length,
+                      itemCount: product.length,
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.all(16),
                       separatorBuilder: (context, index) => const SizedBox(
@@ -334,10 +337,7 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (context, index) {
                         return _productCard(
                           context: context,
-                          image: "assets/images/product-example.png",
-                          category: "Football",
-                          name: "Predator 20.3 Firm Ground",
-                          price: "\$68,47",
+                          product: product[index],
                         );
                       },
                     );
