@@ -21,6 +21,8 @@ export 'domain/entities/product.dart';
 export 'domain/entities/transaction.dart';
 export 'domain/entities/transaction_item.dart';
 export 'domain/repositories/product_repository.dart';
+export 'presentation/bloc/category/category_bloc.dart';
+export 'presentation/bloc/product/product_bloc.dart';
 export 'presentation/cubit/page_cubit.dart';
 export 'presentation/pages/cart_page.dart';
 export 'presentation/pages/chat_detail_page.dart';

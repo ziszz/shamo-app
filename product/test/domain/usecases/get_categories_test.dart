@@ -2,18 +2,18 @@ import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:product/domain/usecases/get_product_categories.dart';
+import 'package:product/domain/usecases/get_categories.dart';
 
 import '../../dummy_data/dummy_object.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {
-  late GetProductCategories usecase;
+  late GetCategories usecase;
   late MockProductRepository mockProductRepository;
 
   setUp(() {
     mockProductRepository = MockProductRepository();
-    usecase = GetProductCategories(mockProductRepository);
+    usecase = GetCategories(mockProductRepository);
   });
 
   group("Get Product Categories use case", () {

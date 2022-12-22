@@ -26,7 +26,7 @@ import 'package:product/domain/entities/product.dart' as _i14;
 import 'package:product/domain/entities/transaction.dart' as _i16;
 import 'package:product/domain/repositories/product_repository.dart' as _i12;
 import 'package:product/domain/usecases/checkout.dart' as _i21;
-import 'package:product/domain/usecases/get_product_categories.dart' as _i19;
+import 'package:product/domain/usecases/get_categories.dart' as _i19;
 import 'package:product/domain/usecases/get_products.dart' as _i18;
 import 'package:product/domain/usecases/get_transactions.dart' as _i20;
 
@@ -276,12 +276,11 @@ class MockGetProducts extends _i1.Mock implements _i18.GetProducts {
       ) as _i7.Future<_i3.Either<_i13.Failure, List<_i14.Product>>>);
 }
 
-/// A class which mocks [GetProductCategories].
+/// A class which mocks [GetCategories].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetProductCategories extends _i1.Mock
-    implements _i19.GetProductCategories {
-  MockGetProductCategories() {
+class MockGetCategories extends _i1.Mock implements _i19.GetCategories {
+  MockGetCategories() {
     _i1.throwOnMissingStub(this);
   }
 

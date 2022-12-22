@@ -4,7 +4,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:product/domain/entities/product.dart';
-import 'package:product/presentation/bloc/product_bloc.dart';
+import 'package:product/presentation/bloc/product/product_bloc.dart';
 import 'package:product/presentation/pages/product_detail_page.dart';
 
 class HomePage extends StatefulWidget {
