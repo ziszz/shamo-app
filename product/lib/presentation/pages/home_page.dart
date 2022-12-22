@@ -190,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                 horizontal: 20,
               ),
               child: Text(
-                "Football",
+                product.category.name,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.grey,
                     ),
