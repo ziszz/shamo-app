@@ -233,13 +233,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _productTile({
-    required BuildContext context,
-    required String image,
-    required String category,
-    required String name,
-    required String price,
-  }) {
+  Widget _productTile(
+      {required BuildContext context, required Product product}) {
     return InkWell(
       onTap: () => Navigator.pushNamed(
         context,
@@ -249,10 +244,12 @@ class _HomePageState extends State<HomePage> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              image,
+            child: CachedNetworkImage(
+              imageUrl: product.galleries[0].url,
               width: 120,
               height: 120,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => const CenterProgressBar(),
             ),
           ),
           const SizedBox(
@@ -263,7 +260,7 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                category,
+                product.category.name,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.grey,
                     ),
@@ -272,7 +269,7 @@ class _HomePageState extends State<HomePage> {
                 height: 6,
               ),
               Text(
-                name,
+                product.name,
                 overflow: TextOverflow.clip,
                 maxLines: 2,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -284,7 +281,7 @@ class _HomePageState extends State<HomePage> {
                 height: 6,
               ),
               Text(
-                price,
+                "\$${product.price}",
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: AppColors.blue,
                       fontWeight: Constants.medium,
@@ -320,36 +317,30 @@ class _HomePageState extends State<HomePage> {
               builder: (context, state) {
                 if (state is ProductLoading) {
                   return const CenterProgressBar();
-                } else {
-                  if (state is ProductSuccess) {
-                    final product =
-                        state.products.where((x) => x.price >= 200).toList();
+                } else if (state is ProductSuccess) {
+                  final product =
+                      state.products.where((x) => x.price >= 200).toList();
 
-                    return ListView.separated(
-                      physics: const BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: product.length,
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.all(16),
-                      separatorBuilder: (context, index) => const SizedBox(
-                        width: 30,
-                      ),
-                      itemBuilder: (context, index) {
-                        return _productCard(
-                          context: context,
-                          product: product[index],
-                        );
-                      },
-                    );
-                  } else if (state is ProductError) {
-                    return const CenterMessage(
-                      text: Constants.emptyProductMessage,
-                    );
-                  } else {
-                    return const CenterMessage(
-                      text: Constants.emptyProductMessage,
-                    );
-                  }
+                  return ListView.separated(
+                    physics: const BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: product.length,
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.all(16),
+                    separatorBuilder: (context, index) => const SizedBox(
+                      width: 30,
+                    ),
+                    itemBuilder: (context, index) {
+                      return _productCard(
+                        context: context,
+                        product: product[index],
+                      );
+                    },
+                  );
+                } else {
+                  return const CenterMessage(
+                    text: Constants.emptyProductMessage,
+                  );
                 }
               },
             ),
@@ -365,22 +356,31 @@ class _HomePageState extends State<HomePage> {
                   ),
             ),
           ),
-          ListView.separated(
-            physics: const BouncingScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: 5,
-            padding: const EdgeInsets.all(16),
-            separatorBuilder: (context, index) => const SizedBox(
-              height: 30,
-            ),
-            itemBuilder: (context, index) {
-              return _productTile(
-                context: context,
-                image: "assets/images/product-example.png",
-                category: "Football",
-                name: "Predator 20.3 Firm Ground",
-                price: "\$68,47",
-              );
+          BlocBuilder<ProductBloc, ProductState>(
+            builder: (context, state) {
+              if (state is ProductLoading) {
+                return const CenterProgressBar();
+              } else if (state is ProductSuccess) {
+                return ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: state.products.length,
+                  padding: const EdgeInsets.all(16),
+                  separatorBuilder: (context, index) => const SizedBox(
+                    height: 30,
+                  ),
+                  itemBuilder: (context, index) {
+                    return _productTile(
+                      context: context,
+                      product: state.products[index],
+                    );
+                  },
+                );
+              } else {
+                return const CenterMessage(
+                  text: Constants.emptyProductMessage,
+                );
+              }
             },
           ),
         ],
@@ -405,22 +405,31 @@ class _HomePageState extends State<HomePage> {
                   ),
             ),
           ),
-          ListView.separated(
-            physics: const BouncingScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: 5,
-            padding: const EdgeInsets.all(16),
-            separatorBuilder: (context, index) => const SizedBox(
-              height: 30,
-            ),
-            itemBuilder: (context, index) {
-              return _productTile(
-                context: context,
-                image: "assets/images/product-example.png",
-                category: "Football",
-                name: "Predator 20.3 Firm Ground",
-                price: "\$68,47",
-              );
+          BlocBuilder<ProductBloc, ProductState>(
+            builder: (context, state) {
+              if (state is ProductLoading) {
+                return const CenterProgressBar();
+              } else if (state is ProductSuccess) {
+                return ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: state.products.length,
+                  padding: const EdgeInsets.all(16),
+                  separatorBuilder: (context, index) => const SizedBox(
+                    height: 30,
+                  ),
+                  itemBuilder: (context, index) {
+                    return _productTile(
+                      context: context,
+                      product: state.products[index],
+                    );
+                  },
+                );
+              } else {
+                return const CenterMessage(
+                  text: Constants.emptyProductMessage,
+                );
+              }
             },
           ),
         ],
