@@ -222,6 +222,23 @@ class MockProductRepository extends _i1.Mock implements _i12.ProductRepository {
             )),
           ) as _i8.Future<_i4.Either<_i13.Failure, List<_i15.Category>>>);
   @override
+  _i8.Future<_i4.Either<_i13.Failure, _i15.Category>> getProductCategoryById(
+          int? categoryId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getProductCategoryById,
+          [categoryId],
+        ),
+        returnValue: _i8.Future<_i4.Either<_i13.Failure, _i15.Category>>.value(
+            _FakeEither_2<_i13.Failure, _i15.Category>(
+          this,
+          Invocation.method(
+            #getProductCategoryById,
+            [categoryId],
+          ),
+        )),
+      ) as _i8.Future<_i4.Either<_i13.Failure, _i15.Category>>);
+  @override
   _i8.Future<_i4.Either<_i13.Failure, List<_i16.Transaction>>> getTransactions(
     int? idUser,
     String? token,
