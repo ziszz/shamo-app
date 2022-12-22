@@ -1,0 +1,9 @@
+{
+    "data": {
+        "id": 1,
+        "name": "name",
+        "deleted_at": null,
+        "created_at": "created_at",
+        "updated_at": "updated_at"
+    }
+}

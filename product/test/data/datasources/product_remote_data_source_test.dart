@@ -60,7 +60,7 @@ void main() {
       when(mockIOClient
               .get(Uri.parse("${dotenv.env["apiUrl"]}/api/categories")))
           .thenAnswer((_) async =>
-              http.Response(readJson("dummy_data/category.json"), 200));
+              http.Response(readJson("dummy_data/categories.json"), 200));
       // act
       final result = await dataSource.getProductCategories();
       // assert
@@ -76,6 +76,35 @@ void main() {
           .thenAnswer((_) async => http.Response("Not Found", 404));
       // act
       final result = dataSource.getProductCategories();
+      // assert
+      expect(result, throwsA(isA<ServerException>()));
+    });
+  });
+
+  group("Product Category by ID", () {
+    const testId = 1;
+
+    test("should return list of Category Model when the response code is 200",
+        () async {
+      // arrange
+      when(mockIOClient.get(
+              Uri.parse("${dotenv.env["apiUrl"]}/api/categories?id=$testId")))
+          .thenAnswer((_) async =>
+              http.Response(readJson("dummy_data/category_by_id.json"), 200));
+      // act
+      final result = await dataSource.getProductCategoryById(testId);
+      // assert
+      expect(result, testCategoryModel);
+    });
+
+    test("should throw server exception when the response code is 404 or other",
+        () async {
+      // arrange
+      when(mockIOClient.get(
+              Uri.parse("${dotenv.env["apiUrl"]}/api/categories?id=$testId")))
+          .thenAnswer((_) async => http.Response("Not Found", 404));
+      // act
+      final result = dataSource.getProductCategoryById(testId);
       // assert
       expect(result, throwsA(isA<ServerException>()));
     });
