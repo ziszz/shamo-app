@@ -5,7 +5,6 @@ import 'package:get_it/get_it.dart';
 import 'package:http/io_client.dart';
 import 'package:product/domain/usecases/checkout.dart';
 import 'package:product/domain/usecases/get_categories.dart';
-import 'package:product/domain/usecases/get_category_by_id.dart';
 import 'package:product/domain/usecases/get_products.dart';
 import 'package:product/domain/usecases/get_transactions.dart';
 import 'package:product/product.dart';
@@ -20,9 +19,7 @@ void init(HttpClient httpClient, SharedPreferences prefs) async {
         locator(), locator(), locator(), locator(), locator(), locator()),
   );
   locator.registerFactory<ProductBloc>(() => ProductBloc(locator()));
-  locator.registerFactory<CategoryBloc>(
-    () => CategoryBloc(locator(), locator()),
-  );
+  locator.registerFactory<CategoryBloc>(() => CategoryBloc(locator()));
 
   // cubit
   locator.registerFactory<PageCubit>(() => PageCubit());
@@ -51,9 +48,6 @@ void init(HttpClient httpClient, SharedPreferences prefs) async {
   );
   locator.registerLazySingleton<GetCategories>(
     () => GetCategories(locator()),
-  );
-  locator.registerLazySingleton<GetCategoryById>(
-    () => GetCategoryById(locator()),
   );
   locator.registerLazySingleton<GetTransactions>(
     () => GetTransactions(locator()),

@@ -41,7 +41,12 @@ const testProductJson = {
   "price": 1,
   "description": "description",
   "tags": null,
-  "categories_id": 1,
+  "category": {
+    "id": 1,
+    "name": "name",
+    "created_at": "created_at",
+    "updated_at": "updated_at"
+  },
   "galleries": [
     {
       "id": 1,
@@ -61,7 +66,7 @@ const testProductModel = ProductModel(
   price: 1,
   description: "description",
   tags: null,
-  categoriesId: 1,
+  category: testCategoryModel,
   galleries: testGalleryModelList,
   createdAt: "created_at",
   updatedAt: "updated_at",
@@ -78,10 +83,15 @@ const testProductResponseJson = {
         "price": 1,
         "description": "description",
         "tags": "tags",
-        "categories_id": 1,
         "deleted_at": "deleted_at",
         "created_at": "created_at",
         "updated_at": "updated_at",
+        "category": {
+          "id": 1,
+          "name": "name",
+          "created_at": "created_at",
+          "updated_at": "updated_at"
+        },
         "galleries": [
           {
             "id": 1,
@@ -167,7 +177,7 @@ const testTransactionItemModel = TransactionItemModel(
     price: 1,
     description: "description",
     tags: null,
-    categoriesId: 1,
+    category: testCategoryModel,
     galleries: [],
     createdAt: "created_at",
     updatedAt: "updated_at",
@@ -327,7 +337,7 @@ const testProduct = Product(
   price: 1,
   description: "description",
   tags: "",
-  categoriesId: 1,
+  category: testCategory,
   galleries: [testGallery],
   createdAt: "created_at",
   updatedAt: "updated_at",

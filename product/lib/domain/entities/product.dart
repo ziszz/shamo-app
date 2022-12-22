@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:product/domain/entities/category.dart';
 import 'package:product/domain/entities/gallery.dart';
 
 class Product extends Equatable {
@@ -7,7 +8,7 @@ class Product extends Equatable {
   final double price;
   final String description;
   final String tags;
-  final int categoriesId;
+  final Category category;
   final List<Gallery> galleries;
   final String createdAt;
   final String updatedAt;
@@ -18,7 +19,7 @@ class Product extends Equatable {
     required this.price,
     required this.description,
     required this.tags,
-    required this.categoriesId,
+    required this.category,
     required this.galleries,
     required this.createdAt,
     required this.updatedAt,
@@ -31,7 +32,7 @@ class Product extends Equatable {
         price,
         description,
         tags,
-        categoriesId,
+        category,
         galleries,
         createdAt,
         updatedAt,

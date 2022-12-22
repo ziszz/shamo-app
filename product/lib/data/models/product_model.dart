@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:product/data/models/category_model.dart';
 import 'package:product/data/models/gallery_model.dart';
 import 'package:product/domain/entities/product.dart';
 
@@ -8,7 +9,7 @@ class ProductModel extends Equatable {
   final double price;
   final String description;
   final String? tags;
-  final int categoriesId;
+  final CategoryModel category;
   final List<GalleryModel>? galleries;
   final String createdAt;
   final String updatedAt;
@@ -19,7 +20,7 @@ class ProductModel extends Equatable {
     required this.price,
     required this.description,
     required this.tags,
-    required this.categoriesId,
+    required this.category,
     required this.galleries,
     required this.createdAt,
     required this.updatedAt,
@@ -31,7 +32,7 @@ class ProductModel extends Equatable {
         price: json["price"].toDouble(),
         description: json["description"],
         tags: json["tags"],
-        categoriesId: json["categories_id"],
+        category: CategoryModel.fromJson(json["category"]),
         galleries: json["galleries"] != null
             ? List<GalleryModel>.from(
                 (json["galleries"] as List)
@@ -48,7 +49,7 @@ class ProductModel extends Equatable {
         "price": price,
         "description": description,
         "tags": tags,
-        "categories_id": categoriesId,
+        "category": category.toJson(),
         "galleries": galleries?.map((e) => e.toJson()).toList(),
         "created_at": createdAt,
         "updated_at": updatedAt,
@@ -60,7 +61,7 @@ class ProductModel extends Equatable {
         price: price,
         description: description,
         tags: tags ?? "",
-        categoriesId: categoriesId,
+        category: category.toEntity(),
         galleries: galleries?.map((e) => e.toEntity()).toList() ?? [],
         createdAt: createdAt,
         updatedAt: updatedAt,
@@ -73,7 +74,7 @@ class ProductModel extends Equatable {
         price,
         description,
         tags,
-        categoriesId,
+        category,
         galleries,
         createdAt,
         updatedAt,
