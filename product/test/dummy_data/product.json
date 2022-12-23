@@ -7,10 +7,15 @@
                 "price": 1,
                 "description": "description",
                 "tags": null,
-                "categories_id": 1,
                 "deleted_at": null,
                 "created_at": "created_at",
                 "updated_at": "updated_at",
+                "category": {
+                    "id": 1,
+                    "name": "name",
+                    "created_at": "created_at",
+                    "updated_at": "updated_at"
+                },
                 "galleries": [
                     {
                         "id": 1,

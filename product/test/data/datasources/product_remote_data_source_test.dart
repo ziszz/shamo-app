@@ -53,6 +53,36 @@ void main() {
     });
   });
 
+  group("Product By Category", () {
+    const testCategoryId = 1;
+
+    test("should return list of Product Model when the response code is 200",
+        () async {
+      // arrange
+      when(mockIOClient.get(Uri.parse(
+              "${dotenv.env['apiUrl']}/api/products?categories=$testCategoryId")))
+          .thenAnswer((_) async =>
+              http.Response(readJson("dummy_data/product.json"), 200));
+      // act
+      final result = await dataSource.getProductsByCategory(testCategoryId);
+      // assert
+      expect(result, testProductModelList);
+    });
+
+    test(
+        "should throw a server exception when the response code is 404 or other",
+        () async {
+      // arrange
+      when(mockIOClient.get(Uri.parse(
+              "${dotenv.env['apiUrl']}/api/products?categories=$testCategoryId")))
+          .thenAnswer((_) async => http.Response("Not Found", 404));
+      // act
+      final result = dataSource.getProductsByCategory(testCategoryId);
+      // assert
+      expect(result, throwsA(isA<ServerException>()));
+    });
+  });
+
   group("Product Categories", () {
     test("should return list of Category Model when the response code is 200",
         () async {
