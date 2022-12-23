@@ -8,3 +8,12 @@ class OnFetchProduct extends ProductEvent {
   @override
   List<Object?> get props => [];
 }
+
+class OnFetchProductByCategory extends ProductEvent {
+  final int categoryId;
+
+  OnFetchProductByCategory(this.categoryId);
+
+  @override
+  List<Object?> get props => [];
+}

@@ -6,6 +6,7 @@ import 'package:http/io_client.dart';
 import 'package:product/domain/usecases/checkout.dart';
 import 'package:product/domain/usecases/get_categories.dart';
 import 'package:product/domain/usecases/get_products.dart';
+import 'package:product/domain/usecases/get_products_by_category.dart';
 import 'package:product/domain/usecases/get_transactions.dart';
 import 'package:product/product.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,7 +19,7 @@ void init(HttpClient httpClient, SharedPreferences prefs) async {
     () => AuthBloc(
         locator(), locator(), locator(), locator(), locator(), locator()),
   );
-  locator.registerFactory<ProductBloc>(() => ProductBloc(locator()));
+  locator.registerFactory<ProductBloc>(() => ProductBloc(locator(), locator()));
   locator.registerFactory<CategoryBloc>(() => CategoryBloc(locator()));
 
   // cubit
@@ -45,6 +46,9 @@ void init(HttpClient httpClient, SharedPreferences prefs) async {
   );
   locator.registerLazySingleton<GetProducts>(
     () => GetProducts(locator()),
+  );
+  locator.registerLazySingleton<GetProductsByCategory>(
+    () => GetProductsByCategory(locator()),
   );
   locator.registerLazySingleton<GetCategories>(
     () => GetCategories(locator()),
