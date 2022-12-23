@@ -7,6 +7,7 @@ import 'package:product/domain/entities/transaction.dart';
 
 abstract class ProductRepository {
   Future<Either<Failure, List<Product>>> getProducts();
+  Future<Either<Failure, List<Product>>> getProductsByCategory(int categoryId);
   Future<Either<Failure, List<Category>>> getProductCategories();
   Future<Either<Failure, List<Transaction>>> getTransactions(String token);
   Future<Either<Failure, String>> checkout(

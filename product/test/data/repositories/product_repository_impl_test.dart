@@ -44,6 +44,35 @@ void main() {
     });
   });
 
+  group("Product By Category", () {
+    const testCategoryId = 1;
+
+    test(
+        "should return remote data when the call to remote data source is successful",
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getProductsByCategory(testCategoryId))
+          .thenAnswer((_) async => testProductModelList);
+      // act
+      final result = await repository.getProductsByCategory(testCategoryId);
+      final resultList = result.getOrElse(() => []);
+      // assert
+      expect(resultList, [testProduct]);
+    });
+
+    test(
+        "should return server failure when the call to remote data source is failed",
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getProductsByCategory(testCategoryId))
+          .thenThrow(ServerException());
+      // act
+      final result = await repository.getProductsByCategory(testCategoryId);
+      // assert
+      expect(result, const Left(ServerFailure("")));
+    });
+  });
+
   group("Product Categories", () {
     test(
         "should return remote data when the call to remote data source is successful",
