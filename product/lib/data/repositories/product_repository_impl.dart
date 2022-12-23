@@ -35,9 +35,9 @@ class ProductRepositoryImpl implements ProductRepository {
 
   @override
   Future<Either<Failure, List<Transaction>>> getTransactions(
-      int idUser, String token) async {
+      String token) async {
     try {
-      final result = await _remoteDataSource.getTransactions(idUser, token);
+      final result = await _remoteDataSource.getTransactions(token);
       return Right(result.map((e) => e.toEntity()).toList());
     } catch (e) {
       return const Left(ServerFailure(""));

@@ -190,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                 horizontal: 20,
               ),
               child: Text(
-                product.category.name,
+                product.category?.name ?? "",
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.grey,
                     ),
@@ -260,7 +260,7 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                product.category.name,
+                product.category?.name ?? "",
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.grey,
                     ),

@@ -9,7 +9,7 @@ class ProductModel extends Equatable {
   final double price;
   final String description;
   final String? tags;
-  final CategoryModel category;
+  final CategoryModel? category;
   final List<GalleryModel>? galleries;
   final String createdAt;
   final String updatedAt;
@@ -20,7 +20,7 @@ class ProductModel extends Equatable {
     required this.price,
     required this.description,
     required this.tags,
-    required this.category,
+    this.category,
     required this.galleries,
     required this.createdAt,
     required this.updatedAt,
@@ -32,7 +32,9 @@ class ProductModel extends Equatable {
         price: json["price"].toDouble(),
         description: json["description"],
         tags: json["tags"],
-        category: CategoryModel.fromJson(json["category"]),
+        category: json["category"] != null
+            ? CategoryModel.fromJson(json["category"])
+            : null,
         galleries: json["galleries"] != null
             ? List<GalleryModel>.from(
                 (json["galleries"] as List)
@@ -49,7 +51,7 @@ class ProductModel extends Equatable {
         "price": price,
         "description": description,
         "tags": tags,
-        "category": category.toJson(),
+        "category": category?.toJson(),
         "galleries": galleries?.map((e) => e.toJson()).toList(),
         "created_at": createdAt,
         "updated_at": updatedAt,
@@ -61,7 +63,7 @@ class ProductModel extends Equatable {
         price: price,
         description: description,
         tags: tags ?? "",
-        category: category.toEntity(),
+        category: category?.toEntity(),
         galleries: galleries?.map((e) => e.toEntity()).toList() ?? [],
         createdAt: createdAt,
         updatedAt: updatedAt,

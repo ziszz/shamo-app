@@ -16,7 +16,7 @@ abstract class ProductRemoteDataSource {
   Future<List<ProductModel>> getProducts();
   Future<List<ProductModel>> getProductsByCategory(int categoryId);
   Future<List<CategoryModel>> getProductCategories();
-  Future<List<TransactionModel>> getTransactions(int idUser, String token);
+  Future<List<TransactionModel>> getTransactions(String token);
   Future<CheckoutResponse> checkout(
       String token, CheckoutBodyModel checkoutData);
 }
@@ -68,14 +68,13 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   }
 
   @override
-  Future<List<TransactionModel>> getTransactions(
-      int idUser, String token) async {
+  Future<List<TransactionModel>> getTransactions(String token) async {
     final headers = {
       "Accept": "application/json",
       "Authorization": "Bearer $token",
     };
     final response = await _client.get(
-        Uri.parse("${dotenv.env["apiUrl"]}/api/transactions?id=$idUser"),
+        Uri.parse("${dotenv.env["apiUrl"]}/api/transactions"),
         headers: headers);
 
     if (response.statusCode == 200) {

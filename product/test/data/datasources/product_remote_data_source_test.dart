@@ -112,17 +112,15 @@ void main() {
   });
 
   group("Transactions", () {
-    const testId = 1;
-
     test("should return a valid Model from JSON", () async {
       // arrange
       when(mockIOClient.get(
-              Uri.parse("${dotenv.env["apiUrl"]}/api/transactions?id=$testId"),
+              Uri.parse("${dotenv.env["apiUrl"]}/api/transactions"),
               headers: testHeaders))
           .thenAnswer((_) async =>
               http.Response(readJson("dummy_data/transactions.json"), 200));
       // act
-      final result = await dataSource.getTransactions(testId, testToken);
+      final result = await dataSource.getTransactions(testToken);
       // assert
       expect(result, testTransactionModelList);
     });
@@ -131,11 +129,11 @@ void main() {
         () async {
       // arrange
       when(mockIOClient.get(
-              Uri.parse("${dotenv.env["apiUrl"]}/api/transactions?id=$testId"),
+              Uri.parse("${dotenv.env["apiUrl"]}/api/transactions"),
               headers: testHeaders))
           .thenAnswer((_) async => http.Response("Not Found", 404));
       // act
-      final result = dataSource.getTransactions(testId, testToken);
+      final result = dataSource.getTransactions(testToken);
       // assert
       expect(result, throwsA(isA<ServerException>()));
     });

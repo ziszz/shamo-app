@@ -158,7 +158,7 @@ const testTransactionItemJson = {
     "price": 1,
     "description": "description",
     "tags": null,
-    "categories_id": 1,
+    "category": null,
     "galleries": [],
     "created_at": "created_at",
     "updated_at": "updated_at"
@@ -177,7 +177,6 @@ const testTransactionItemModel = TransactionItemModel(
     price: 1,
     description: "description",
     tags: null,
-    category: testCategoryModel,
     galleries: [],
     createdAt: "created_at",
     updatedAt: "updated_at",
@@ -213,7 +212,7 @@ const testTransactionJson = {
         "price": 1,
         "description": "description",
         "tags": null,
-        "categories_id": 1,
+        "category": null,
         "galleries": [],
         "created_at": "created_at",
         "updated_at": "updated_at"

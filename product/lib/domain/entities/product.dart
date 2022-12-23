@@ -8,7 +8,7 @@ class Product extends Equatable {
   final double price;
   final String description;
   final String tags;
-  final Category category;
+  final Category? category;
   final List<Gallery> galleries;
   final String createdAt;
   final String updatedAt;

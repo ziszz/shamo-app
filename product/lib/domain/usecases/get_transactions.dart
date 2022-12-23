@@ -8,7 +8,6 @@ class GetTransactions {
 
   const GetTransactions(this._repository);
 
-  Future<Either<Failure, List<Transaction>>> execute(
-          int userId, String token) =>
-      _repository.getTransactions(userId, token);
+  Future<Either<Failure, List<Transaction>>> execute(String token) =>
+      _repository.getTransactions(token);
 }

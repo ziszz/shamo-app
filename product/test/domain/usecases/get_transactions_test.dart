@@ -24,10 +24,10 @@ void main() {
         "should return transaction data when get data from the repository is successfuly",
         () async {
       // arrange
-      when(mockProductRepository.getTransactions(testUserId, testToken))
+      when(mockProductRepository.getTransactions(testToken))
           .thenAnswer((_) async => const Right([testTransaction]));
       // act
-      final result = await usecase.execute(testUserId, testToken);
+      final result = await usecase.execute(testToken);
       // assert
       expect(result, const Right([testTransaction]));
     });
@@ -36,10 +36,10 @@ void main() {
         "should return server failure when get data from the repository is failed",
         () async {
       // arrange
-      when(mockProductRepository.getTransactions(testUserId, testToken))
+      when(mockProductRepository.getTransactions(testToken))
           .thenAnswer((_) async => const Left(ServerFailure("")));
       // act
-      final result = await usecase.execute(testUserId, testToken);
+      final result = await usecase.execute(testToken);
       // assert
       expect(result, const Left(ServerFailure("")));
     });

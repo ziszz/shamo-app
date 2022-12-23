@@ -102,6 +102,16 @@ class MockProductRemoteDataSource extends _i1.Mock
             _i7.Future<List<_i8.ProductModel>>.value(<_i8.ProductModel>[]),
       ) as _i7.Future<List<_i8.ProductModel>>);
   @override
+  _i7.Future<List<_i8.ProductModel>> getProductsByCategory(int? categoryId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getProductsByCategory,
+          [categoryId],
+        ),
+        returnValue:
+            _i7.Future<List<_i8.ProductModel>>.value(<_i8.ProductModel>[]),
+      ) as _i7.Future<List<_i8.ProductModel>>);
+  @override
   _i7.Future<List<_i9.CategoryModel>> getProductCategories() =>
       (super.noSuchMethod(
         Invocation.method(
@@ -112,17 +122,11 @@ class MockProductRemoteDataSource extends _i1.Mock
             _i7.Future<List<_i9.CategoryModel>>.value(<_i9.CategoryModel>[]),
       ) as _i7.Future<List<_i9.CategoryModel>>);
   @override
-  _i7.Future<List<_i10.TransactionModel>> getTransactions(
-    int? idUser,
-    String? token,
-  ) =>
+  _i7.Future<List<_i10.TransactionModel>> getTransactions(String? token) =>
       (super.noSuchMethod(
         Invocation.method(
           #getTransactions,
-          [
-            idUser,
-            token,
-          ],
+          [token],
         ),
         returnValue: _i7.Future<List<_i10.TransactionModel>>.value(
             <_i10.TransactionModel>[]),
@@ -198,16 +202,11 @@ class MockProductRepository extends _i1.Mock implements _i12.ProductRepository {
           ) as _i7.Future<_i3.Either<_i13.Failure, List<_i15.Category>>>);
   @override
   _i7.Future<_i3.Either<_i13.Failure, List<_i16.Transaction>>> getTransactions(
-    int? idUser,
-    String? token,
-  ) =>
+          String? token) =>
       (super.noSuchMethod(
         Invocation.method(
           #getTransactions,
-          [
-            idUser,
-            token,
-          ],
+          [token],
         ),
         returnValue:
             _i7.Future<_i3.Either<_i13.Failure, List<_i16.Transaction>>>.value(
@@ -215,10 +214,7 @@ class MockProductRepository extends _i1.Mock implements _i12.ProductRepository {
           this,
           Invocation.method(
             #getTransactions,
-            [
-              idUser,
-              token,
-            ],
+            [token],
           ),
         )),
       ) as _i7.Future<_i3.Either<_i13.Failure, List<_i16.Transaction>>>);
@@ -313,16 +309,11 @@ class MockGetTransactions extends _i1.Mock implements _i20.GetTransactions {
 
   @override
   _i7.Future<_i3.Either<_i13.Failure, List<_i16.Transaction>>> execute(
-    int? userId,
-    String? token,
-  ) =>
+          String? token) =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
-          [
-            userId,
-            token,
-          ],
+          [token],
         ),
         returnValue:
             _i7.Future<_i3.Either<_i13.Failure, List<_i16.Transaction>>>.value(
@@ -330,10 +321,7 @@ class MockGetTransactions extends _i1.Mock implements _i20.GetTransactions {
           this,
           Invocation.method(
             #execute,
-            [
-              userId,
-              token,
-            ],
+            [token],
           ),
         )),
       ) as _i7.Future<_i3.Either<_i13.Failure, List<_i16.Transaction>>>);

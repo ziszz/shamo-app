@@ -72,16 +72,14 @@ void main() {
   });
 
   group("Transaction", () {
-    const testIdUser = 1;
-
     test(
         "should return remote data when call to the remote data source is successful",
         () async {
       // arrange
-      when(mockRemoteDataSource.getTransactions(testIdUser, testToken))
+      when(mockRemoteDataSource.getTransactions(testToken))
           .thenAnswer((_) async => testTransactionModelList);
       // act
-      final result = await repository.getTransactions(testIdUser, testToken);
+      final result = await repository.getTransactions(testToken);
       final resultList = result.getOrElse(() => []);
       // assert
       expect(resultList, [testTransaction]);
@@ -91,10 +89,10 @@ void main() {
         "should return server failure when call to the remote data source is failed",
         () async {
       // arrange
-      when(mockRemoteDataSource.getTransactions(testIdUser, testToken))
+      when(mockRemoteDataSource.getTransactions(testToken))
           .thenThrow(ServerException());
       // act
-      final result = await repository.getTransactions(testIdUser, testToken);
+      final result = await repository.getTransactions(testToken);
       // assert
       expect(result, const Left(ServerFailure("")));
     });

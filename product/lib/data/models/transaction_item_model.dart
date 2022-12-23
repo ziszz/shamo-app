@@ -64,6 +64,7 @@ class TransactionItemModel extends Equatable {
         productsId,
         transactionsId,
         quantity,
+        product,
         createdAt,
         updatedAt,
       ];
