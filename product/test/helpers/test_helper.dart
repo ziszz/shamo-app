@@ -5,12 +5,14 @@ import 'package:product/domain/repositories/product_repository.dart';
 import 'package:product/domain/usecases/checkout.dart';
 import 'package:product/domain/usecases/get_categories.dart';
 import 'package:product/domain/usecases/get_products.dart';
+import 'package:product/domain/usecases/get_products_by_category.dart';
 import 'package:product/domain/usecases/get_transactions.dart';
 
 @GenerateMocks([
   ProductRemoteDataSource,
   ProductRepository,
   GetProducts,
+  GetProductsByCategory,
   GetCategories,
   GetTransactions,
   Checkout,

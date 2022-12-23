@@ -18,7 +18,7 @@ void main() {
 
   const testToken = "access_token";
 
-  group("Product", () {
+  group("Products", () {
     test(
         "should return remote data when the call to remote data source is successful",
         () async {
@@ -44,7 +44,7 @@ void main() {
     });
   });
 
-  group("Product By Category", () {
+  group("Products By Category", () {
     const testCategoryId = 1;
 
     test(

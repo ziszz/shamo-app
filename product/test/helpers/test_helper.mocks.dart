@@ -4,13 +4,13 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i7;
-import 'dart:convert' as _i23;
-import 'dart:typed_data' as _i24;
+import 'dart:convert' as _i24;
+import 'dart:typed_data' as _i25;
 
 import 'package:core/core.dart' as _i13;
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:http/io_client.dart' as _i4;
-import 'package:http/src/base_request.dart' as _i22;
+import 'package:http/src/base_request.dart' as _i23;
 import 'package:http/src/response.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:product/data/datasources/product_remote_data_source.dart'
@@ -25,10 +25,11 @@ import 'package:product/domain/entities/checkout_body.dart' as _i17;
 import 'package:product/domain/entities/product.dart' as _i14;
 import 'package:product/domain/entities/transaction.dart' as _i16;
 import 'package:product/domain/repositories/product_repository.dart' as _i12;
-import 'package:product/domain/usecases/checkout.dart' as _i21;
-import 'package:product/domain/usecases/get_categories.dart' as _i19;
+import 'package:product/domain/usecases/checkout.dart' as _i22;
+import 'package:product/domain/usecases/get_categories.dart' as _i20;
 import 'package:product/domain/usecases/get_products.dart' as _i18;
-import 'package:product/domain/usecases/get_transactions.dart' as _i20;
+import 'package:product/domain/usecases/get_products_by_category.dart' as _i19;
+import 'package:product/domain/usecases/get_transactions.dart' as _i21;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -184,6 +185,23 @@ class MockProductRepository extends _i1.Mock implements _i12.ProductRepository {
         )),
       ) as _i7.Future<_i3.Either<_i13.Failure, List<_i14.Product>>>);
   @override
+  _i7.Future<_i3.Either<_i13.Failure, List<_i14.Product>>>
+      getProductsByCategory(int? categoryId) => (super.noSuchMethod(
+            Invocation.method(
+              #getProductsByCategory,
+              [categoryId],
+            ),
+            returnValue:
+                _i7.Future<_i3.Either<_i13.Failure, List<_i14.Product>>>.value(
+                    _FakeEither_1<_i13.Failure, List<_i14.Product>>(
+              this,
+              Invocation.method(
+                #getProductsByCategory,
+                [categoryId],
+              ),
+            )),
+          ) as _i7.Future<_i3.Either<_i13.Failure, List<_i14.Product>>>);
+  @override
   _i7.Future<_i3.Either<_i13.Failure, List<_i15.Category>>>
       getProductCategories() => (super.noSuchMethod(
             Invocation.method(
@@ -272,10 +290,39 @@ class MockGetProducts extends _i1.Mock implements _i18.GetProducts {
       ) as _i7.Future<_i3.Either<_i13.Failure, List<_i14.Product>>>);
 }
 
+/// A class which mocks [GetProductsByCategory].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetProductsByCategory extends _i1.Mock
+    implements _i19.GetProductsByCategory {
+  MockGetProductsByCategory() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.Future<_i3.Either<_i13.Failure, List<_i14.Product>>> execute(
+          int? categoryId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #execute,
+          [categoryId],
+        ),
+        returnValue:
+            _i7.Future<_i3.Either<_i13.Failure, List<_i14.Product>>>.value(
+                _FakeEither_1<_i13.Failure, List<_i14.Product>>(
+          this,
+          Invocation.method(
+            #execute,
+            [categoryId],
+          ),
+        )),
+      ) as _i7.Future<_i3.Either<_i13.Failure, List<_i14.Product>>>);
+}
+
 /// A class which mocks [GetCategories].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetCategories extends _i1.Mock implements _i19.GetCategories {
+class MockGetCategories extends _i1.Mock implements _i20.GetCategories {
   MockGetCategories() {
     _i1.throwOnMissingStub(this);
   }
@@ -302,7 +349,7 @@ class MockGetCategories extends _i1.Mock implements _i19.GetCategories {
 /// A class which mocks [GetTransactions].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetTransactions extends _i1.Mock implements _i20.GetTransactions {
+class MockGetTransactions extends _i1.Mock implements _i21.GetTransactions {
   MockGetTransactions() {
     _i1.throwOnMissingStub(this);
   }
@@ -330,7 +377,7 @@ class MockGetTransactions extends _i1.Mock implements _i20.GetTransactions {
 /// A class which mocks [Checkout].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCheckout extends _i1.Mock implements _i21.Checkout {
+class MockCheckout extends _i1.Mock implements _i22.Checkout {
   MockCheckout() {
     _i1.throwOnMissingStub(this);
   }
@@ -371,7 +418,7 @@ class MockIOClient extends _i1.Mock implements _i4.IOClient {
   }
 
   @override
-  _i7.Future<_i4.IOStreamedResponse> send(_i22.BaseRequest? request) =>
+  _i7.Future<_i4.IOStreamedResponse> send(_i23.BaseRequest? request) =>
       (super.noSuchMethod(
         Invocation.method(
           #send,
@@ -439,7 +486,7 @@ class MockIOClient extends _i1.Mock implements _i4.IOClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i23.Encoding? encoding,
+    _i24.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -469,7 +516,7 @@ class MockIOClient extends _i1.Mock implements _i4.IOClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i23.Encoding? encoding,
+    _i24.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -499,7 +546,7 @@ class MockIOClient extends _i1.Mock implements _i4.IOClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i23.Encoding? encoding,
+    _i24.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -529,7 +576,7 @@ class MockIOClient extends _i1.Mock implements _i4.IOClient {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i23.Encoding? encoding,
+    _i24.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -568,7 +615,7 @@ class MockIOClient extends _i1.Mock implements _i4.IOClient {
         returnValue: _i7.Future<String>.value(''),
       ) as _i7.Future<String>);
   @override
-  _i7.Future<_i24.Uint8List> readBytes(
+  _i7.Future<_i25.Uint8List> readBytes(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -578,6 +625,6 @@ class MockIOClient extends _i1.Mock implements _i4.IOClient {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i7.Future<_i24.Uint8List>.value(_i24.Uint8List(0)),
-      ) as _i7.Future<_i24.Uint8List>);
+        returnValue: _i7.Future<_i25.Uint8List>.value(_i25.Uint8List(0)),
+      ) as _i7.Future<_i25.Uint8List>);
 }
