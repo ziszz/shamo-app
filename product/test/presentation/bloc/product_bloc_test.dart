@@ -93,7 +93,7 @@ void main() {
       act: (bloc) => bloc.add(OnFetchProductByCategory(testCategoryId)),
       expect: () => [
         ProductLoading(),
-        ProductSuccess(const [testProduct]),
+        ProductByCategorySuccess(const [testProduct]),
       ],
     );
 

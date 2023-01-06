@@ -21,6 +21,15 @@ class ProductSuccess extends ProductState {
   List<Object?> get props => [products];
 }
 
+class ProductByCategorySuccess extends ProductState {
+  final List<Product> products;
+
+  ProductByCategorySuccess(this.products);
+
+  @override
+  List<Object?> get props => [products];
+}
+
 class ProductError extends ProductState {
   final String message;
 

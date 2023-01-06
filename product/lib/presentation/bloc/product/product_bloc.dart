@@ -31,7 +31,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       final result = await getProductsByCategory.execute(categoryId);
       result.fold(
         (failure) => emit(ProductError(failure.message)),
-        (result) => emit(ProductSuccess(result)),
+        (result) => emit(ProductByCategorySuccess(result)),
       );
     });
   }

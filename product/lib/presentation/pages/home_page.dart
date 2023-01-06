@@ -81,7 +81,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-
     Future.microtask(() {
       context.read<ProductBloc>().add(OnFetchProduct());
       context.read<CategoryBloc>().add(OnFetchCategories());
@@ -93,9 +92,11 @@ class _HomePageState extends State<HomePage> {
     return BlocBuilder<CategoryBloc, CategoryState>(
       builder: (context, state) {
         if (state is CategorySuccess) {
+          final categories = state.categories.reversed.toList();
+
           return DefaultTabController(
             initialIndex: 0,
-            length: state.categories.length,
+            length: categories.length,
             child: Column(children: [
               TabBar(
                 indicatorWeight: 0,
@@ -112,20 +113,14 @@ class _HomePageState extends State<HomePage> {
                 splashBorderRadius: BorderRadius.circular(12),
                 physics: const BouncingScrollPhysics(),
                 isScrollable: true,
-                tabs: state.categories.reversed
-                    .map((e) => _tabItem(text: e.name))
-                    .toList(),
+                tabs: categories.map((e) => _tabItem(text: e.name)).toList(),
               ),
               Expanded(
                 child: TabBarView(
                   physics: const BouncingScrollPhysics(),
-                  children: [
-                    _allProduct(context: context),
-                    ...List.generate(
-                      state.categories.length - 1,
-                      (index) => _productByCategory(context: context),
-                    ),
-                  ],
+                  children: categories
+                      .map((e) => _content(categoryId: e.id))
+                      .toList(),
                 ),
               ),
             ]),
@@ -294,6 +289,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget _content({required int categoryId}) {
+    if (categoryId == 6) {
+      return _allProduct(context: context);
+    } else {
+      return _productByCategory(context: context);
+    }
+  }
+
   Widget _allProduct({required BuildContext context}) {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
@@ -409,7 +412,7 @@ class _HomePageState extends State<HomePage> {
             builder: (context, state) {
               if (state is ProductLoading) {
                 return const CenterProgressBar();
-              } else if (state is ProductSuccess) {
+              } else if (state is ProductByCategorySuccess) {
                 return ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,

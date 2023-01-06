@@ -16,7 +16,6 @@ void main() {
     usecase = GetTransactions(mockProductRepository);
   });
 
-  const testUserId = 1;
   const testToken = "access_token";
 
   group("Get Transactions use case", () {
