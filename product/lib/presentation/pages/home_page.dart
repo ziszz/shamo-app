@@ -82,8 +82,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<ProductBloc>().add(OnFetchProduct());
       context.read<CategoryBloc>().add(OnFetchCategories());
+      context.read<ProductBloc>().add(OnFetchProduct());
     });
   }
 
@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                     Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: Constants.light,
                         ),
-                padding: const EdgeInsets.fromLTRB(8, 24, 8, 8),
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
                 splashBorderRadius: BorderRadius.circular(12),
                 physics: const BouncingScrollPhysics(),
                 isScrollable: true,
@@ -304,7 +304,7 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 16, top: 22),
+            padding: const EdgeInsets.only(left: 16, top: 8),
             child: Text(
               "Exclusive Product",
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -331,7 +331,7 @@ class _HomePageState extends State<HomePage> {
                     scrollDirection: Axis.horizontal,
                     padding: const EdgeInsets.all(16),
                     separatorBuilder: (context, index) => const SizedBox(
-                      width: 30,
+                      width: 16,
                     ),
                     itemBuilder: (context, index) {
                       return _productCard(
@@ -349,7 +349,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 16, top: 30),
+            padding: const EdgeInsets.only(left: 16),
             child: Text(
               "New Arrival",
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -370,7 +370,7 @@ class _HomePageState extends State<HomePage> {
                   itemCount: state.products.length,
                   padding: const EdgeInsets.all(16),
                   separatorBuilder: (context, index) => const SizedBox(
-                    height: 30,
+                    height: 16,
                   ),
                   itemBuilder: (context, index) {
                     return _productTile(
@@ -398,7 +398,7 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 16, top: 30),
+            padding: const EdgeInsets.only(left: 16, top: 8),
             child: Text(
               "For you",
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
